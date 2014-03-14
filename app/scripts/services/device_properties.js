@@ -2,7 +2,7 @@
 
 var client = angular.module('lelylan.directives.device.services.properties', [])
 
-client.factory('DeviceProperties', function() {
+client.factory('DeviceProperties', ['Device', 'Utils', function(Device, Utils) {
 
   var service = {};
 
@@ -17,7 +17,7 @@ client.factory('DeviceProperties', function() {
   service.update = function(scope, functionProperties) {
     var properties = filter(functionProperties);
     updateProperties(scope, properties);
-    previewProperties(properties);
+    previewProperties(scope, properties);
     scope.device.pending = true;
   };
 
@@ -31,7 +31,7 @@ client.factory('DeviceProperties', function() {
    * Returns all fields needed to update the device properties
    */
 
-  var filter = function(properties) {
+  service.filter = function(properties) {
     return _.map(properties, function(property) {
       return {
         id: property.id,
@@ -47,7 +47,7 @@ client.factory('DeviceProperties', function() {
    * with the new values.
    */
 
-  var updateProperties = function(scope, properties) {
+  service.updateProperties = function(scope, properties) {
     var device = new Device({ id: scope.device.id, properties: properties});
     device.$properties({}, function() {
       scope.device = device;
@@ -61,9 +61,9 @@ client.factory('DeviceProperties', function() {
    * the success callback is not fired yet (optimistic).
    */
 
-  var previewProperties = function(properties) {
+  service.previewProperties = function(scope, properties) {
     _.each(scope.device.properties, function(resource) {
-      property = Utils.getResource(resource.id, properties)
+      var property = Utils.getResource(resource.id, properties)
       resource.pending  = property.pending;
       resource.expected = property.expected;
     });
@@ -71,4 +71,4 @@ client.factory('DeviceProperties', function() {
 
 
   return service;
-});
+}]);

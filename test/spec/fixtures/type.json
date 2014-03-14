@@ -6,8 +6,8 @@
     "created_at": "2012-07-16T14:32:50Z",
     "updated_at": "2012-07-16T14:32:50Z",
     "properties": [{
+        "id": "1",
         "uri": "http://www.example.com/properties/50042612d033a9b4ac0007ed",
-        "id": "50042612d033a9b4ac0007ed",
         "name": "Status",
         "default": "off",
         "values": ["on", "off"],
@@ -16,7 +16,7 @@
     },
     {
         "uri": "http://www.example.com/properties/50042612d033a9b4ac0007ee",
-        "id": "50042612d033a9b4ac0007ee",
+        "id": "2",
         "name": "Intensity",
         "default": "0.0",
         "values": ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"],
@@ -30,8 +30,9 @@
         "created_at": "2012-07-16T14:32:50Z",
         "updated_at": "2012-07-16T14:32:50Z",
         "properties": [{
-            "uri": "http://www.example.com/properties/status",
-            "value": "on"
+          "id": "1",
+          "uri": "http://www.example.com/properties/status",
+          "value": "on"
         }]
     },
     {
@@ -41,8 +42,9 @@
         "created_at": "2012-07-16T14:32:50Z",
         "updated_at": "2012-07-16T14:32:50Z",
         "properties": [{
-            "uri": "http://www.example.com/properties/status",
-            "value": "off"
+          "id": "1",
+          "uri": "http://www.example.com/properties/status",
+          "value": "off"
         }]
     },
     {
@@ -52,12 +54,14 @@
         "created_at": "2012-07-16T14:32:50Z",
         "updated_at": "2012-07-16T14:32:50Z",
         "properties": [{
-            "uri": "http://www.example.com/properties/status",
-            "value": "on"
+          "id": "1",
+          "uri": "http://www.example.com/properties/status",
+          "value": "on"
         },
         {
-            "uri": "http://www.example.com/properties/intensity",
-            "value": "0"
+          "id": "2",
+          "uri": "http://www.example.com/properties/intensity",
+          "value": "0"
         }]
     }],
     "statuses": [{

@@ -3,13 +3,16 @@
   "id": "5003c611d033a96b96000271",
   "name": "Closet dimmer",
   "type": {
+    "id": "1",
     "uri": "https://type.lelylan.com/types/dimmer"
   },
   "properties": [{
+    "id": "1",
     "uri": "https://type.lelylan.com/properties/status",
     "value": "off"
   },
   {
+    "id": "2",
     "uri": "https://type.lelylan.com/properties/intensity",
     "value": "0.0"
   }],
