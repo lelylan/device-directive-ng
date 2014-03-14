@@ -2,16 +2,21 @@
 
 describe('DeviceProperties', function() {
 
-  var $httpBackend, $httpBackend, DeviceProperties, properties, payload, result;
+  var $httpBackend, $httpBackend, properties, payload, result, DeviceProperties, DeviceFunction;
   var scope = {};
 
   beforeEach(module('lelylan.directives.device'));
 
   beforeEach(inject(function($injector) { DeviceProperties = $injector.get('DeviceProperties') }));
-  beforeEach(inject(function($injector) { $httpBackend    = $injector.get('$httpBackend') }));
+  beforeEach(inject(function($injector) { DeviceFunction   = $injector.get('DeviceFunction') }));
+  beforeEach(inject(function($injector) { $httpBackend     = $injector.get('$httpBackend') }));
 
 
   describe('when executes a function', function() {
+
+    beforeEach(function() {
+      spyOn(DeviceFunction, 'setForms');
+    });
 
     beforeEach(function() {
       jasmine.getFixtures().fixturesPath = 'base/test/spec/fixtures';
@@ -44,7 +49,7 @@ describe('DeviceProperties', function() {
     });
 
 
-    describe('.properties', function() {
+    describe('.sendProperties', function() {
 
       beforeEach(function() {
         payload = { id: '1', properties: [{ id: '1', pending: true, expected: 'on' }]};
@@ -52,30 +57,46 @@ describe('DeviceProperties', function() {
 
       beforeEach(function() {
         result = JSON.parse(readFixtures('device.json'));
-        result.properties[0].value = 'on';
+        result.properties[0].expected = 'on';
+      });
+
+      beforeEach(function() {
         $httpBackend.whenPUT('http://api.lelylan.com/devices/1/properties', payload).respond(result);
       });
 
       beforeEach(function() {
-        expect(scope.device.properties[0].value).toBe('off');
+        expect(scope.device.properties[0].expected).toBe('off');
       })
 
       it('makes the request', function() {
         $httpBackend.expect('PUT', 'http://api.lelylan.com/devices/1/properties', payload);
-        DeviceProperties.properties(scope, payload.properties);
+        DeviceProperties.sendProperties(scope, payload.properties);
         $httpBackend.flush();
       });
 
       it('gets the updated device representation', function() {
-        DeviceProperties.properties(scope, payload.properties);
+        DeviceProperties.sendProperties(scope, payload.properties);
         $httpBackend.flush();
-        expect(scope.device.properties[0].value).toBe('on');
+        expect(scope.device.properties[0].expected).toBe('on');
       });
 
-      it('gets the updated device', function() {
-        DeviceProperties.properties(scope, payload.properties);
+      it('set the functions form fields with the updated properties', function() {
+        DeviceProperties.sendProperties(scope, payload.properties);
         $httpBackend.flush();
-        expect(scope.device.properties[0].value).toBe('on');
+        expect(DeviceFunction.setForms).toHaveBeenCalled();
+      });
+    });
+
+
+    describe('.presetProperties', function() {
+
+      beforeEach(function() {
+        payload = [{ id: '1', pending: true, expected: 'on' }];
+      });
+
+      it('pre applies the updated device representation', function() {
+        DeviceProperties.presetProperties(scope, payload);
+        expect(scope.device.properties[0].expected).toBe('on');
       });
     });
   });

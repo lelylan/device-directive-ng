@@ -9,11 +9,13 @@
   "properties": [{
     "id": "1",
     "uri": "https://type.lelylan.com/properties/status",
+    "expected": "off",
     "value": "off"
   },
   {
     "id": "2",
     "uri": "https://type.lelylan.com/properties/intensity",
+    "expected": "0.0",
     "value": "0.0"
   }],
   "physical": {
