@@ -11,11 +11,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      JASMINE,
-      JASMINE_ADAPTER,
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/angular-resource/angular-resource.js', // TODO remove
+      'app/bower_components/jquery/dist/jquery.js',
+      'app/bower_components/jasmine-jquery/lib/jasmine-jquery.js',
       'app/bower_components/underscore/underscore.js',
       'app/bower_components/lelylan-ng/lelylan-ng.js',
       'app/scripts/*.js',

@@ -2,7 +2,8 @@
 
 describe('DeviceProperties', function() {
 
-  var $httpBackend, DeviceProperties, scope, functionProperties;
+  var $httpBackend, DeviceProperties, functionProperties;
+  var scope = {};
 
   beforeEach(module('lelylan.directives.device'));
 
@@ -11,15 +12,15 @@ describe('DeviceProperties', function() {
   describe('.update', function() {
 
     beforeEach(function() {
-      jasmine.getJSONFixtures().fixturesPath ='base/test/spec/fixtures';
+      jasmine.getFixtures().fixturesPath = 'base/test/spec/fixtures';
     });
 
     beforeEach(function() {
-      scope.device = getJSONFixture('device.json');
+      scope.device = readFixtures('device.json');
     });
 
     beforeEach(function() {
-      scope.type = getJSONFixture('type.json');
+      scope.type = readFixtures('type.json');
     });
 
     describe('when executes a function', function() {

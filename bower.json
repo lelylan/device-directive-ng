@@ -5,13 +5,17 @@
     "angular": "1.2.14",
     "json3": "~3.2.6",
     "es5-shim": "~2.1.0",
-    "jquery": "~1.10.2",
+    "jquery": "~2.1.0",
     "bootstrap": "~3.0.3",
     "angular-resource": "~1.2.14",
-    "underscore": "~1.6.0"
+    "underscore": "~1.6.0",
+    "jasmine-jquery": "~2.0.3"
   },
   "devDependencies": {
     "angular-mocks": "1.2.14",
     "angular-scenario": "1.2.14"
+  },
+  "resolutions": {
+    "jquery": "~2.1.0"
   }
 }
