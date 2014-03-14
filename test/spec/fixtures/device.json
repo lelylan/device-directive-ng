@@ -1,6 +1,6 @@
 {
+  "id": "1",
   "uri": "http://www.example.com/devices/5003c611d033a96b96000271",
-  "id": "5003c611d033a96b96000271",
   "name": "Closet dimmer",
   "type": {
     "id": "1",

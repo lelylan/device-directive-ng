@@ -47,7 +47,7 @@ client.factory('DeviceProperties', ['Device', 'Utils', function(Device, Utils) {
    * with the new values.
    */
 
-  service.updateProperties = function(scope, properties) {
+  service.properties = function(scope, properties) {
     var device = new Device({ id: scope.device.id, properties: properties});
     device.$properties({}, function() {
       scope.device = device;
