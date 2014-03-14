@@ -1,0 +1,25 @@
+{
+  "uri": "http://www.example.com/devices/5003c611d033a96b96000271",
+  "id": "5003c611d033a96b96000271",
+  "name": "Closet dimmer",
+  "type": {
+    "uri": "https://type.lelylan.com/types/dimmer"
+  },
+  "properties": [{
+    "uri": "https://type.lelylan.com/properties/status",
+    "value": "off"
+  },
+  {
+    "uri": "https://type.lelylan.com/properties/intensity",
+    "value": "0.0"
+  }],
+  "physical": {
+    "uri": "https://node.lelylan.com/devices/physical-dimmer"
+  },
+  "pending": {
+    "uri": "http://www.example.com/devices/5003c611d033a96b96000271/pending",
+    "status": "false"
+  },
+  "created_at": "2012-07-16T09:43:13+02:00",
+  "updated_at": "2012-07-16T09:43:13+02:00"
+}

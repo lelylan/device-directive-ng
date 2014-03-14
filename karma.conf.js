@@ -11,6 +11,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      JASMINE,
+      JASMINE_ADAPTER,
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/angular-resource/angular-resource.js', // TODO remove
@@ -18,8 +20,8 @@ module.exports = function(config) {
       'app/bower_components/lelylan-ng/lelylan-ng.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
-      //'test/mock/**/*.js',
-      'test/spec/**/*.js'
+      'test/spec/**/*.js',
+      { pattern: 'test/spec/fixtures/*.json', watched: true, served: true, included: false }
     ],
 
     // list of files / patterns to exclude

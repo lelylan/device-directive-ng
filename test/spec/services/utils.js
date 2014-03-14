@@ -27,8 +27,5 @@ describe('Utils', function() {
         expect(result).toBeNull
       });
     });
-
   });
-
-
 });

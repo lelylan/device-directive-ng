@@ -2,8 +2,8 @@
 
 angular.module('lelylan.directives.device.directive', [])
 
-angular.module('lelylan.directives.device.directive').directive('device', ['$rootScope', '$timeout', 'Device', 'Type',
-  function($rootScope, $timeout, Device, Type) {
+angular.module('lelylan.directives.device.directive').directive('device', ['$rootScope', '$timeout', 'Utils', 'Device', 'Type',
+  function($rootScope, $timeout, Utils, Device, Type) {
 
   var definition = {
     restrict: 'EA',
@@ -101,13 +101,13 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
         // to be is asked to the user. This is done to show to the user the actual property value - setExpected()
         _.each(_function.properties, function(property) {
           if (property.toFill)
-            property.expected = getResource(property.id, scope.device.properties).expected;
+            property.expected = Utils.getResource(property.id, scope.device.properties).expected;
         });
 
         // sets the type property fields into the function properties to let the UI to build the
         // correct input fields that will be shown to the user - extendFunctionProperties()
         _.each(_function.properties, function(resource) {
-          property = getResource(resource.id, scope.type.properties);
+          property = Utils.getResource(resource.id, scope.type.properties);
           resource.type     = property.type;
           resource.range    = property.range;
           resource.accepted = property.accepted;
@@ -150,7 +150,7 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
 
       // optimistic update of the device properties waiting for the final values
       _.each(scope.device.properties, function(resource) {
-        property = getResource(resource.id, properties)
+        property = Utils.getResource(resource.id, properties)
         resource.pending  = property.pending;
         resource.expected = property.expected;
       });
@@ -181,10 +181,10 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
       _.each(scope.type.statuses, function(status) {
         _.each(status.properties, function(property) {
           var list   = property.values;
-          var object = getResource(property.id, scope.device.properties).expected;
+          var object = Utils.getResource(property.id, scope.device.properties).expected;
           if (_.contains(list, object)) {
             scope.status = status;
-            scope.status.function = getResource(scope.status.function.id, scope.functions);
+            scope.status.function = Utils.getResource(scope.status.function.id, scope.functions);
           }
         });
       });
@@ -200,16 +200,6 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
       scope.device.$delete()
     }
 
-
-
-    /*
-     * Helper functions
-     */
-
-    // get the resource with the specific ID
-    var getResource = function(id, resources) {
-      return _.find(resources, function(resource) { return resource.id == id })
-    };
   };
 
   return definition
