@@ -23,10 +23,6 @@ describe('DeviceFunction', function() {
       scope.type   = JSON.parse(readFixtures('type.json'));
     });
 
-    beforeEach(function() {
-      _function = scope.type.functions[2];
-    });
-
 
     describe('.setForms', function() {
 
@@ -75,6 +71,44 @@ describe('DeviceFunction', function() {
 
       it('calls #extendFunctionProperties', function() {
         expect(DeviceFunction.extendFunctionProperties).toHaveBeenCalled();
+      });
+    });
+
+
+    describe('.setPropertiesToFill', function() {
+
+      describe('when turn on the light', function() {
+
+        beforeEach(function() {
+          _function = scope.type.functions[0];
+        });
+
+        beforeEach(function() {
+          DeviceFunction.setPropertiesToFill(_function);
+        });
+
+        it('sets status#toFill to false', function() {
+          expect(_function.properties[0].toFill).toBe(false);
+        });
+      });
+
+      describe('when dimmers light intensity', function() {
+
+        beforeEach(function() {
+          _function = scope.type.functions[2];
+        });
+
+        beforeEach(function() {
+          DeviceFunction.setPropertiesToFill(_function);
+        });
+
+        it('sets status#toFill to false', function() {
+          expect(_function.properties[0].toFill).toBe(false);
+        });
+
+        it('sets status#toFill to true', function() {
+          expect(_function.properties[1].toFill).toBe(true);
+        });
       });
     });
   });
