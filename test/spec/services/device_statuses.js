@@ -2,7 +2,7 @@
 
 describe('DeviceStatuses', function() {
 
-  var $httpBackend, $httpBackend, _function, property, statusProperty, result, DeviceStatuses;
+  var $httpBackend, $httpBackend, _function, status, property, statusProperty, result, DeviceStatuses;
   var scope = {};
 
   beforeEach(module('lelylan.directives.device'));
@@ -39,6 +39,52 @@ describe('DeviceStatuses', function() {
     });
 
 
+    describe('.checkStatus', function() {
+
+      beforeEach(function() {
+        property = scope.device.properties[1];
+      });
+
+      describe('with matching properties', function() {
+
+        beforeEach(function() {
+          status = [
+            { id: '1', pending: false, values: ['off'], ranges: [] },
+            { id: '2', pending: false, values: [], ranges: [ { min: 0, max: 20 } ] }
+          ]
+        });
+
+        beforeEach(function() {
+          result = DeviceStatuses.checkStatus(property, { properties: [statusProperty] });
+        });
+
+        it('returns true', function() {
+          expect(result).toBe(true);
+        });
+      });
+
+      describe('with no matching properties', function() {
+
+        beforeEach(function() {
+          status = {
+            properties: [
+              { id: '1', pending: false, values: ['on'], ranges: [] }, // 'on' not mathing
+              { id: '2', pending: false, values: [], ranges: [ { min: 0, max: 20 } ] }
+            ]
+          }
+        });
+
+        beforeEach(function() {
+          result = DeviceStatuses.checkStatus(status, scope.device);
+        });
+
+        it('returns true', function() {
+          expect(result).toBe(false);
+        });
+      });
+    });
+
+
     describe('.passProperty', function() {
 
       beforeEach(function() {
@@ -48,7 +94,7 @@ describe('DeviceStatuses', function() {
       describe('with matching pending & values', function() {
 
         beforeEach(function() {
-          statusProperty = { id: '1', pending: false, values: ['0.0'], ranges: [] };
+          statusProperty = { id: '2', pending: false, values: ['0.0'], ranges: [] };
         });
 
         beforeEach(function() {
@@ -63,7 +109,7 @@ describe('DeviceStatuses', function() {
       describe('with matching pending & range', function() {
 
         beforeEach(function() {
-          statusProperty = { id: '1', pending: false, values: [], ranges: [{ min: 0, max: 20 }] };
+          statusProperty = { id: '2', pending: false, values: [], ranges: [{ min: 0, max: 20 }] };
         });
 
         beforeEach(function() {
@@ -78,7 +124,7 @@ describe('DeviceStatuses', function() {
       describe('with matching pending & values & range', function() {
 
         beforeEach(function() {
-          statusProperty = { id: '1', pending: false, values: ['0.0'], ranges: [{ min: 0, max: 20 }] };
+          statusProperty = { id: '2', pending: false, values: ['0.0'], ranges: [{ min: 0, max: 20 }] };
         });
 
         beforeEach(function() {
@@ -93,7 +139,7 @@ describe('DeviceStatuses', function() {
       describe('with no matching values', function() {
 
         beforeEach(function() {
-          statusProperty = { id: '1', pending: false, values: ['100.0'], ranges: [] };
+          statusProperty = { id: '2', pending: false, values: ['100.0'], ranges: [] };
         });
 
         beforeEach(function() {
@@ -108,7 +154,7 @@ describe('DeviceStatuses', function() {
       describe('with no matching pending', function() {
 
         beforeEach(function() {
-          statusProperty = { id: '1', pending: true, values: ['0.0'], ranges: [] };
+          statusProperty = { id: '2', pending: true, values: ['0.0'], ranges: [] };
         });
 
         beforeEach(function() {
@@ -123,7 +169,7 @@ describe('DeviceStatuses', function() {
       describe('with no matching ranges', function() {
 
         beforeEach(function() {
-          statusProperty = { id: '1', pending: false, values: [], ranges: [{ min: 10, max: 20 }] };
+          statusProperty = { id: '2', pending: false, values: [], ranges: [{ min: 10, max: 20 }] };
         });
 
         beforeEach(function() {
@@ -138,7 +184,7 @@ describe('DeviceStatuses', function() {
       describe('with no params', function() {
 
         beforeEach(function() {
-          statusProperty = { id: '1', pending: null, values: [], ranges: [] };
+          statusProperty = { id: '2', pending: null, values: [], ranges: [] };
         });
 
         beforeEach(function() {
@@ -149,7 +195,6 @@ describe('DeviceStatuses', function() {
           expect(result).toBe(true);
         });
       });
-
     });
 
 

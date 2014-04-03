@@ -31,7 +31,7 @@ client.factory('DeviceStatuses', ['Device', 'Utils', function(Device, Utils) {
 
     _.each(status.properties, function(statusProperty) {
       var property = Utils.getResource(statusProperty.id, device.properties);
-      pass << passProperty(property, statusProperty);
+      passAll.push(service.passProperty(property, statusProperty));
     });
 
     return _.every(passAll, _.identity);
