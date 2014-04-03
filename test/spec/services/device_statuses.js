@@ -39,6 +39,120 @@ describe('DeviceStatuses', function() {
     });
 
 
+    describe('.passProperty', function() {
+
+      beforeEach(function() {
+        property = scope.device.properties[1];
+      });
+
+      describe('with matching pending & values', function() {
+
+        beforeEach(function() {
+          statusProperty = { id: '1', pending: false, values: ['0.0'], ranges: [] };
+        });
+
+        beforeEach(function() {
+          result = DeviceStatuses.passProperty(property, statusProperty);
+        });
+
+        it('returns true', function() {
+          expect(result).toBe(true);
+        });
+      });
+
+      describe('with matching pending & range', function() {
+
+        beforeEach(function() {
+          statusProperty = { id: '1', pending: false, values: [], ranges: [{ min: 0, max: 20 }] };
+        });
+
+        beforeEach(function() {
+          result = DeviceStatuses.passProperty(property, statusProperty);
+        });
+
+        it('returns true', function() {
+          expect(result).toBe(true);
+        });
+      });
+
+      describe('with matching pending & values & range', function() {
+
+        beforeEach(function() {
+          statusProperty = { id: '1', pending: false, values: ['0.0'], ranges: [{ min: 0, max: 20 }] };
+        });
+
+        beforeEach(function() {
+          result = DeviceStatuses.passProperty(property, statusProperty);
+        });
+
+        it('returns true', function() {
+          expect(result).toBe(true);
+        });
+      });
+
+      describe('with no matching values', function() {
+
+        beforeEach(function() {
+          statusProperty = { id: '1', pending: false, values: ['100.0'], ranges: [] };
+        });
+
+        beforeEach(function() {
+          result = DeviceStatuses.passProperty(property, statusProperty);
+        });
+
+        it('returns true', function() {
+          expect(result).toBe(false);
+        });
+      });
+
+      describe('with no matching pending', function() {
+
+        beforeEach(function() {
+          statusProperty = { id: '1', pending: true, values: ['0.0'], ranges: [] };
+        });
+
+        beforeEach(function() {
+          result = DeviceStatuses.passProperty(property, statusProperty);
+        });
+
+        it('returns true', function() {
+          expect(result).toBe(false);
+        });
+      });
+
+      describe('with no matching ranges', function() {
+
+        beforeEach(function() {
+          statusProperty = { id: '1', pending: false, values: [], ranges: [{ min: 10, max: 20 }] };
+        });
+
+        beforeEach(function() {
+          result = DeviceStatuses.passProperty(property, statusProperty);
+        });
+
+        it('returns true', function() {
+          expect(result).toBe(false);
+        });
+      });
+
+      describe('with no params', function() {
+
+        beforeEach(function() {
+          statusProperty = { id: '1', pending: null, values: [], ranges: [] };
+        });
+
+        beforeEach(function() {
+          result = DeviceStatuses.passProperty(property, statusProperty);
+        });
+
+        it('returns true', function() {
+          expect(result).toBe(true);
+        });
+      });
+
+    });
+
+
     describe('.checkPending', function() {
 
       beforeEach(function() {
