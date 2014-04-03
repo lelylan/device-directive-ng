@@ -20,8 +20,9 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
   definition.link = function postLink(scope, element, attrs) {
 
     /*
-     * Configurations
+     * CONFIGURATIONS
      */
+
 
     // activates the loading phase
     scope.loading = true;
@@ -29,39 +30,51 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
 
 
     /*
-     * Data preloading
+     * PRELOADING
      */
 
-    // watch the presence of the device ID and:
-    // * gets the device representation
-    // * call the function to get type representation
+
+    /*
+     * Watches the device ID and starts loading all needed data
+     */
+
     scope.$watch('deviceId', function(value) {
       if (value) {
         scope.device = Device.get({ id: value }, getType);
       }
     });
 
-    // whatch the presence of the device representation in JSON and:
-    // * call the function to get the type representation
+    /*
+     * Whatches the device JSON and starts loading all needed data
+     */
+
     scope.$watch('deviceJson', function(value) {
       if (value) {
         scope.device = value; getType()
       }
     });
 
-    // gets the type representation and:
-    // * call the function to get the device privates
+    /*
+     * gets the type representation
+     */
+
     var getType = function() {
       scope.type = Type.get({ id: scope.device.type.id }, loadPrivates);
     };
 
-    // TODO call only when the private section is visible and the logged user
-    // is the connected user, otherwise skips it
+    /*
+     * gets the device privates info
+     *
+     * TODO call only when the private section is visible and the logged user
+     *      is the connected user, otherwise skips it
+     */
     var getPrivates = function() {
       scope.privates = Device.privates({ id: scope.device.id }), loaded;
     }
 
-    // completes the loading phase
+    /*
+     * completes the loading phase and starts the initialization
+     */
     var loaded = function() {
       initialize();
       scope.loading = false;
@@ -74,70 +87,17 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
      */
 
     var initialize = function() {
-      setFunctionsForms();
+      DeviceFunction.setForms();
       setDeviceStatus();
     };
 
 
-
-    /*
-     * Get private device data representation
-     */
-
-
-
-
-    /*
-     * Functions form definition
-     *
-     * Sets the function forms that will be shown asking for required properties
-     * to the user (the form is shown when property values are missing).
-     */
-
-    // Extends the type functions properties injecting the device value
-    var setFunctionsForms = function() {
-
-      // copy all functions to not update the type resource
-      scope.functions = angular.copy(scope.type.functions);
-
-      _.each(scope.functions, function(_function) {
-
-        // sets the properties that need to be filled from the user (the ones without expected value) - setPropertiesToFill()
-        _.each(_function.properties, function(property) { property.toFill = (property.expected == null) });
-
-        // sets the functions that need to be filled from the user (if at least one property needs to be filled) - setFormsToFill()
-        _function.toFill = _.reduce(_function.properties, function(result, property) { return result || property.toFill; }, false);
-
-        // sets the function property `expected` taking it from the device properties when the value needs
-        // to be is asked to the user. This is done to show to the user the actual property value - setExpected()
-        _.each(_function.properties, function(property) {
-          if (property.toFill)
-            property.expected = Utils.getResource(property.id, scope.device.properties).expected;
-        });
-
-        // sets the type property fields into the function properties to let the UI to build the
-        // correct input fields that will be shown to the user - extendFunctionProperties()
-        _.each(_function.properties, function(resource) {
-          property = Utils.getResource(resource.id, scope.type.properties);
-          resource.type     = property.type;
-          resource.range    = property.range;
-          resource.accepted = property.accepted;
-        });
-
-      });
-    }
-
-
-
     /*
      * Function execution
-     *
-     * - if the function requires a form to be filled we toggle it
-     * - if the function does not require a form to be filled we update the properties
      */
 
     scope.execute = function(_function) {
-      (_function.toFill) ? _function.show = !_function.show : scope.updateProperties(_function.properties)
+      DeviceFunction.execute();
     };
 
 

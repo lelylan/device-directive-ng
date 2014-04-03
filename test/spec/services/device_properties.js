@@ -66,7 +66,7 @@ describe('DeviceProperties', function() {
       });
 
       beforeEach(function() {
-        payload = [{ id: '1', pending: undefined, expected: undefined }];
+        payload = [{ id: '1', pending: undefined, expected: 'on' }];
       })
 
       it('returns only the params needed to update the device properties', function() {
@@ -76,10 +76,6 @@ describe('DeviceProperties', function() {
 
 
     describe('.sendProperties', function() {
-
-      beforeEach(function() {
-        spyOn(DeviceFunction, 'setForms');
-      });
 
       beforeEach(function() {
         payload = { id: '1', properties: [{ id: '1', pending: true, expected: 'on' }]};
@@ -108,12 +104,6 @@ describe('DeviceProperties', function() {
         DeviceProperties.sendProperties(scope, payload.properties);
         $httpBackend.flush();
         expect(scope.device.properties[0].expected).toBe('on');
-      });
-
-      it('set the functions form fields with the updated properties', function() {
-        DeviceProperties.sendProperties(scope, payload.properties);
-        $httpBackend.flush();
-        expect(DeviceFunction.setForms).toHaveBeenCalled();
       });
     });
 
