@@ -19,28 +19,53 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
 
   definition.link = function postLink(scope, element, attrs) {
 
-
-
     /*
      * Configurations
      */
 
-    // Starts the loading phase
+    // activates the loading phase
     scope.loading = true;
 
 
 
     /*
-     * Watchers
+     * Data preloading
      */
 
+    // watch the presence of the device ID and:
+    // * gets the device representation
+    // * call the function to get type representation
     scope.$watch('deviceId', function(value) {
-      if (value) { scope.device = Device.get({ id: value }, getType); }
+      if (value) {
+        scope.device = Device.get({ id: value }, getType);
+      }
     });
 
+    // whatch the presence of the device representation in JSON and:
+    // * call the function to get the type representation
     scope.$watch('deviceJson', function(value) {
-      if (value) { scope.device = value; getType() }
+      if (value) {
+        scope.device = value; getType()
+      }
     });
+
+    // gets the type representation and:
+    // * call the function to get the device privates
+    var getType = function() {
+      scope.type = Type.get({ id: scope.device.type.id }, loadPrivates);
+    };
+
+    // TODO call only when the private section is visible and the logged user
+    // is the connected user, otherwise skips it
+    var getPrivates = function() {
+      scope.privates = Device.privates({ id: scope.device.id }), loaded;
+    }
+
+    // completes the loading phase
+    var loaded = function() {
+      initialize();
+      scope.loading = false;
+    }
 
 
 
@@ -48,20 +73,9 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
      * Initialization
      */
 
-    // Component initialization.
-    var getType = function() {
-      scope.type = Type.get({ id: scope.device.type.id }, initialize);
-    };
-
     var initialize = function() {
-      // Gets the private device info
-      getPrivates();
-      // Sets the function forms logics
       setFunctionsForms();
-      // get the actual device status
       setDeviceStatus();
-      // complete the loading phase
-      scope.loading = false;
     };
 
 
@@ -70,9 +84,6 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
      * Get private device data representation
      */
 
-    var getPrivates = function() {
-      scope.privates = Device.privates({ id: scope.device.id });
-    }
 
 
 
@@ -130,46 +141,22 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
     };
 
 
-
     /*
      * Properties update
      */
 
     scope.updateProperties = function(properties) {
-
-      // filters the properties we need to sent to the API
-      properties = filterUpdateProperties(properties);
-
-      // makes the request to Lelylan and once it's done returns the device
-      // representation and initialize the form values
-      var device = new Device({ id: scope.device.id, properties: properties});
-      device.$properties({}, function() {
-        scope.device = device;
-        setFunctionsForms();
-      });
-
-      // optimistic update of the device properties waiting for the final values
-      _.each(scope.device.properties, function(resource) {
-        property = Utils.getResource(resource.id, properties)
-        resource.pending  = property.pending;
-        resource.expected = property.expected;
-      });
-
-      scope.device.pending = true;
-    };
-
-
-    // Filter the property fields that needs to be sent to Lelylan
-    var filterUpdateProperties = function(properties) {
-      return _.map(properties, function(property) {
-        return {
-          id: property.id,
-          pending: property.pending,
-          expected: property.expected
-        }
-      });
+      DeviceProperties.update(scope, properties);
     }
 
+
+    /*
+     * Delete Device
+     */
+
+    scope.destroy = function() {
+      scope.device.$delete()
+    }
 
 
     /*
@@ -189,17 +176,6 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
         });
       });
     };
-
-
-
-    /*
-     * Delete Device
-     */
-
-    scope.destroy = function() {
-      scope.device.$delete()
-    }
-
   };
 
   return definition

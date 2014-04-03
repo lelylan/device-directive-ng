@@ -15,10 +15,6 @@ describe('DeviceProperties', function() {
   describe('when executes a function', function() {
 
     beforeEach(function() {
-      spyOn(DeviceFunction, 'setForms');
-    });
-
-    beforeEach(function() {
       jasmine.getFixtures().fixturesPath = 'base/test/spec/fixtures';
     });
 
@@ -33,10 +29,40 @@ describe('DeviceProperties', function() {
     });
 
 
-    describe('.filter', function() {
+    describe('.update', function() {
 
       beforeEach(function() {
-        result = DeviceProperties.filter(properties);
+        spyOn(DeviceProperties, 'mapProperties');
+        spyOn(DeviceProperties, 'sendProperties');
+        spyOn(DeviceProperties, 'optimisticProperties');
+      });
+
+      beforeEach(function() {
+        DeviceProperties.update(scope, properties);
+      });
+
+      it('#mapProperties', function() {
+        expect(DeviceProperties.mapProperties).toHaveBeenCalled();
+      });
+
+      it('#sendProperties', function() {
+        expect(DeviceProperties.sendProperties).toHaveBeenCalled();
+      });
+
+      it('#optimisticProperties', function() {
+        expect(DeviceProperties.optimisticProperties).toHaveBeenCalled();
+      });
+
+      it('sets the pending status to true', function() {
+        expect(scope.device.pending).toBe(true);
+      });
+    });
+
+
+    describe('.mapProperties', function() {
+
+      beforeEach(function() {
+        result = DeviceProperties.mapProperties(properties);
       });
 
       beforeEach(function() {
@@ -50,6 +76,10 @@ describe('DeviceProperties', function() {
 
 
     describe('.sendProperties', function() {
+
+      beforeEach(function() {
+        spyOn(DeviceFunction, 'setForms');
+      });
 
       beforeEach(function() {
         payload = { id: '1', properties: [{ id: '1', pending: true, expected: 'on' }]};
@@ -88,14 +118,14 @@ describe('DeviceProperties', function() {
     });
 
 
-    describe('.presetProperties', function() {
+    describe('.optimisticProperties', function() {
 
       beforeEach(function() {
         payload = [{ id: '1', pending: true, expected: 'on' }];
       });
 
       it('pre applies the updated device representation', function() {
-        DeviceProperties.presetProperties(scope, payload);
+        DeviceProperties.optimisticProperties(scope, payload);
         expect(scope.device.properties[0].expected).toBe('on');
       });
     });

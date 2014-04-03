@@ -8,16 +8,17 @@ client.factory('DeviceProperties', ['Device', 'DeviceFunction', 'Utils', functio
 
 
   /*
-   * Update the device properties and and reset of the functions form with
-   * the updated values to make consistent the next function execution
+   * Updates the device properties (API) and reset the values of the functions form with
+   * the updated values so that the next function execution contains the new values
+   * to send to the server.
    *
    *   DeviceProperties.update(device, properties);
    */
 
   service.update = function(scope, functionProperties) {
-    var properties = filter(functionProperties);
-    sendProperties(scope, properties);
-    presetProperties(scope, properties);
+    var properties = service.mapProperties(functionProperties);
+    service.sendProperties(scope, properties);
+    service.optimisticProperties(scope, properties);
     scope.device.pending = true;
   };
 
@@ -31,7 +32,8 @@ client.factory('DeviceProperties', ['Device', 'DeviceFunction', 'Utils', functio
    * Returns all fields needed to update the device properties
    */
 
-  service.filter = function(properties) {
+  service.mapProperties = function(properties) {
+
     return _.map(properties, function(property) {
       return {
         id: property.id,
@@ -43,8 +45,9 @@ client.factory('DeviceProperties', ['Device', 'DeviceFunction', 'Utils', functio
 
 
   /*
-   * Updates the device properties and reset of the functions form
-   * with the new values.
+   * Updates the device properties (API) and set the functions forms with the
+   * new values. In this way, the next function execution will send the
+   * correct values.
    */
 
   service.sendProperties = function(scope, properties) {
@@ -61,7 +64,7 @@ client.factory('DeviceProperties', ['Device', 'DeviceFunction', 'Utils', functio
    * the success callback is not fired yet (optimistic).
    */
 
-  service.presetProperties = function(scope, properties) {
+  service.optimisticProperties = function(scope, properties) {
     _.each(properties, function(resource) {
       var property = Utils.getResource(resource.id, scope.device.properties)
       property.pending  = resource.pending;
