@@ -28,13 +28,12 @@ client.factory('DeviceFunction', ['Device', 'Utils', 'DeviceProperties', functio
    *   - if visible, it updates the properties and becomes hidden
    */
 
-  service.execute = function(_function) {
+  service.execute = function(_function, callback) {
     if (_function.toFill == false) {
       scope.updateProperties(_function.properties)
     } else {
-      if (_function.visibleForm == true) {
-        DeviceProperties.update(scope, _function.properties);
-      }
+      if (_function.visibleForm == true)
+        scope.updateProperties(_function.properties);
       _function.visibleForm = !_function.visibleForm;
     }
   }

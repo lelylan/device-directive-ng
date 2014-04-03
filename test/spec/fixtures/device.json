@@ -10,13 +10,15 @@
     "id": "1",
     "uri": "https://type.lelylan.com/properties/status",
     "expected": "off",
-    "value": "off"
+    "value": "off",
+    "pending": false
   },
   {
     "id": "2",
     "uri": "https://type.lelylan.com/properties/intensity",
     "expected": "0.0",
-    "value": "0.0"
+    "value": "0.0",
+    "pending": false
   }],
   "physical": {
     "uri": "https://node.lelylan.com/devices/physical-dimmer"

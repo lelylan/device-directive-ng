@@ -1,3 +1,8 @@
+/*
+* TODO call only when the private section is visible and the logged user
+*      is the connected user, otherwise skips it
+*/
+
 'use strict';
 
 angular.module('lelylan.directives.device.directive', [])
@@ -19,6 +24,7 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
 
   definition.link = function postLink(scope, element, attrs) {
 
+
     /*
      * CONFIGURATIONS
      */
@@ -30,51 +36,35 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
 
 
     /*
-     * PRELOADING
+     * Data loading
      */
 
 
-    /*
-     * Watches the device ID and starts loading all needed data
-     */
-
+    /* watches the device ID and starts loading all needed data */
     scope.$watch('deviceId', function(value) {
       if (value) {
         scope.device = Device.get({ id: value }, getType);
       }
     });
 
-    /*
-     * Whatches the device JSON and starts loading all needed data
-     */
-
+    /* whatches the device JSON and starts loading all needed data */
     scope.$watch('deviceJson', function(value) {
       if (value) {
         scope.device = value; getType()
       }
     });
 
-    /*
-     * gets the type representation
-     */
-
+    /* gets the type representation */
     var getType = function() {
       scope.type = Type.get({ id: scope.device.type.id }, loadPrivates);
     };
 
-    /*
-     * gets the device privates info
-     *
-     * TODO call only when the private section is visible and the logged user
-     *      is the connected user, otherwise skips it
-     */
+    /* gets the device privates info */
     var getPrivates = function() {
       scope.privates = Device.privates({ id: scope.device.id }), loaded;
     }
 
-    /*
-     * completes the loading phase and starts the initialization
-     */
+    /* completes the loading phase and starts the initialization */
     var loaded = function() {
       initialize();
       scope.loading = false;
@@ -87,8 +77,8 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
      */
 
     var initialize = function() {
-      DeviceFunction.setForms();
-      setDeviceStatus();
+      DeviceFunction.setForms(scope);
+      DeviceStatuses.set(scope);
     };
 
 
@@ -97,7 +87,7 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
      */
 
     scope.execute = function(_function) {
-      DeviceFunction.execute();
+      DeviceFunction.execute(_function);
     };
 
 
@@ -107,35 +97,17 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
 
     scope.updateProperties = function(properties) {
       DeviceProperties.update(scope, properties);
+      initialize();
     }
 
 
     /*
-     * Delete Device
+     * Delete device
      */
 
     scope.destroy = function() {
       scope.device.$delete()
     }
-
-
-    /*
-     * Device status definition
-     */
-
-    var setDeviceStatus = function() {
-      scope.status = { }
-      _.each(scope.type.statuses, function(status) {
-        _.each(status.properties, function(property) {
-          var list   = property.values;
-          var object = Utils.getResource(property.id, scope.device.properties).expected;
-          if (_.contains(list, object)) {
-            scope.status = status;
-            scope.status.function = Utils.getResource(scope.status.function.id, scope.functions);
-          }
-        });
-      });
-    };
   };
 
   return definition

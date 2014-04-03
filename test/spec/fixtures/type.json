@@ -75,15 +75,14 @@
         "updated_at": "2012-07-16T14:32:50Z",
         "properties": [{
             "uri": "http://www.example.com/properties/status",
+            "pending": false,
             "values": ["on"],
-            "range": {
-                "start": null,
-                "end": null
-            }
+            "ranges": null
         },
         {
             "uri": "http://www.example.com/properties/intensity",
             "values": [],
+            "pending": false,
             "range": {
                 "start": "0",
                 "end": "100"
