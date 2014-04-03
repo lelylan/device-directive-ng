@@ -91,8 +91,9 @@ client.factory('DeviceFunction', ['Device', 'Utils', 'DeviceProperties', functio
 
   service.setExpectedProperties = function(_function, scope) {
     _.each(_function.properties, function(property) {
-      if (property.toFill)
+      if (property.toFill) {
         property.expected = Utils.getResource(property.id, scope.device.properties).expected;
+      }
     });
   }
 

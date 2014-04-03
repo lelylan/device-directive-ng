@@ -77,7 +77,7 @@ describe('DeviceFunction', function() {
 
     describe('.setPropertiesToFill', function() {
 
-      describe('when turn on the light', function() {
+      describe('when turns the light on', function() {
 
         beforeEach(function() {
           _function = scope.type.functions[0];
@@ -92,7 +92,7 @@ describe('DeviceFunction', function() {
         });
       });
 
-      describe('when dimmers light intensity', function() {
+      describe('when dimmers the light intensity', function() {
 
         beforeEach(function() {
           _function = scope.type.functions[2];
@@ -108,6 +108,96 @@ describe('DeviceFunction', function() {
 
         it('sets status#toFill to true', function() {
           expect(_function.properties[1].toFill).toBe(true);
+        });
+      });
+    });
+
+
+    describe('.setFunctionToFill', function() {
+
+      describe('when turns the light on', function() {
+
+        beforeEach(function() {
+          _function = scope.type.functions[0];
+        });
+
+        beforeEach(function() {
+          DeviceFunction.setPropertiesToFill(_function);
+          DeviceFunction.setFunctionToFill(_function);
+        });
+
+        it('sets function#toFill to false', function() {
+          expect(_function.toFill).toBe(false);
+        });
+      });
+
+      describe('when dimmers the light intensity', function() {
+
+        beforeEach(function() {
+          _function = scope.type.functions[2];
+        });
+
+        beforeEach(function() {
+          DeviceFunction.setPropertiesToFill(_function);
+          DeviceFunction.setFunctionToFill(_function);
+        });
+
+        it('sets function#toFill to true', function() {
+          expect(_function.toFill).toBe(true);
+        });
+      });
+    });
+
+
+    describe('.setExpectedProperties', function() {
+
+      beforeEach(function() {
+        _function = scope.type.functions[2];
+      });
+
+      beforeEach(function() {
+        DeviceFunction.setPropertiesToFill(_function);
+      });
+
+      beforeEach(function() {
+        DeviceFunction.setExpectedProperties(_function, scope);
+      });
+
+      it('keeps the status expected value', function() {
+        expect(_function.properties[0].expected).toBe('on');
+      });
+
+      it('updates the intensity expected value', function() {
+        expect(_function.properties[1].expected).toBe('0.0');
+      });
+    });
+
+
+    describe('.extendFunctionProperties', function() {
+
+      beforeEach(function() {
+        _function = scope.type.functions[2];
+      });
+
+      beforeEach(function() {
+        DeviceFunction.extendFunctionProperties(_function, scope);
+      });
+
+      describe('status', function() {
+
+        it('adds the attributes defined in the status type property', function() {
+          var payload = { "on": "On", "off": "Off" };
+          expect(_function.properties[0].accepted).toEqual(jasmine.objectContaining(payload));
+          expect(_function.properties[0].type).toBe('text');
+        });
+      });
+
+      describe('intensity', function() {
+
+        it('adds the attributes defined in the intenisty type property', function() {
+          var payload = { "min": "0", "max": "100", "step": "1" };
+          expect(_function.properties[1].range).toEqual(jasmine.objectContaining(payload));
+          expect(_function.properties[1].type).toBe('range');
         });
       });
     });

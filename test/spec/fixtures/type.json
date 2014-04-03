@@ -9,8 +9,9 @@
         "id": "1",
         "uri": "http://www.example.com/properties/50042612d033a9b4ac0007ed",
         "name": "Status",
-        "default": "off",
-        "values": ["on", "off"],
+        "type": "text",
+        "default": "0",
+        "accepted": { "on": "On", "off": "Off" },
         "created_at": "2012-07-16T14:32:50Z",
         "updated_at": "2012-07-16T14:32:50Z"
     },
@@ -18,8 +19,9 @@
         "uri": "http://www.example.com/properties/50042612d033a9b4ac0007ee",
         "id": "2",
         "name": "Intensity",
+        "type": "range",
+        "range": { "min": "0", "max": "100", "step": "1" },
         "default": "0.0",
-        "values": ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"],
         "created_at": "2012-07-16T14:32:50Z",
         "updated_at": "2012-07-16T14:32:50Z"
     }],
