@@ -40,8 +40,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       deviceId: '@',
       deviceJson: '@',
       deviceType: '@',
-      deviceView: '@',
-      deviceMenu: '@',
+      deviceTemplate: '@'
     }
   };
 
@@ -76,7 +75,6 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     compile();
 
 
-
     /*
      * API REQUESTS
      */
@@ -84,26 +82,34 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* watches the device ID and starts loading all needed data */
     scope.$watch('deviceId', function(value) {
-
       if (value) {
-        scope.device = Device.get({ id: value }, getType);
+        Device.get({ id: value }).$promise.then(
+          function(response) {
+            scope.device = response;
+            getType(scope.device.type.id);
+          }
+        )
       }
     });
 
 
     /* whatches the device JSON and starts loading all needed data */
     scope.$watch('deviceJson', function(value) {
-      compile();
-
       if (value) {
-        scope.device = value; getType()
+        scope.device = value;
+        getType()
       }
     });
 
 
     /* gets the type representation */
-    var getType = function() {
-      scope.type = Type.get({ id: scope.device.type.id }, loadPrivates);
+    var getType = function(id) {
+      Type.get({ id: id }).$promise.then(
+        function(response) {
+          scope.type = response;
+          //loadPrivates();
+        }
+      )
     };
 
 
