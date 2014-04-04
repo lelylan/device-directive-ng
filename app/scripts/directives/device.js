@@ -7,8 +7,31 @@
 
 angular.module('lelylan.directives.device.directive', [])
 
-angular.module('lelylan.directives.device.directive').directive('device', ['$rootScope', '$timeout', 'Utils', 'Device', 'Type',
-  function($rootScope, $timeout, Utils, Device, Type) {
+angular.module('lelylan.directives.device.directive').directive('device', [
+  '$rootScope',
+  '$timeout',
+  '$compile',
+  '$templateCache',
+  '$http',
+  'Device',
+  'Type',
+  'DeviceProperties',
+  'DeviceFunction',
+  'DeviceStatuses',
+
+  function(
+    $rootScope,
+    $timeout,
+    $compile,
+    $templateCache,
+    $http,
+    Device,
+    Type,
+    DeviceProperties,
+    DeviceFunction,
+    DeviceStatuses
+  ) {
+
 
   var definition = {
     restrict: 'EA',
@@ -22,6 +45,7 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
     }
   };
 
+  // TODO try to remove the name of the funciton postLink
   definition.link = function postLink(scope, element, attrs) {
 
 
@@ -33,36 +57,61 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
     // activates the loading phase
     scope.loading = true;
 
+    // template setting
+    scope.template = attrs.template || 'views/templates/default.html'
+
 
 
     /*
-     * Data loading
+     * DYNAMIC LAYOUT
+     */
+
+    var compile = function() {
+      $http.get(scope.template, { cache: $templateCache }).success(function(html) {
+        element.html(html);
+        $compile(element.contents())(scope);
+      });
+    }
+
+    compile();
+
+
+
+    /*
+     * API REQUESTS
      */
 
 
     /* watches the device ID and starts loading all needed data */
     scope.$watch('deviceId', function(value) {
+
       if (value) {
         scope.device = Device.get({ id: value }, getType);
       }
     });
 
+
     /* whatches the device JSON and starts loading all needed data */
     scope.$watch('deviceJson', function(value) {
+      compile();
+
       if (value) {
         scope.device = value; getType()
       }
     });
+
 
     /* gets the type representation */
     var getType = function() {
       scope.type = Type.get({ id: scope.device.type.id }, loadPrivates);
     };
 
+
     /* gets the device privates info */
     var getPrivates = function() {
       scope.privates = Device.privates({ id: scope.device.id }), loaded;
     }
+
 
     /* completes the loading phase and starts the initialization */
     var loaded = function() {
@@ -73,38 +122,30 @@ angular.module('lelylan.directives.device.directive').directive('device', ['$roo
 
 
     /*
-     * Initialization
+     * FEATURES
      */
 
+    /* Initialization */
     var initialize = function() {
       DeviceFunction.setForms(scope);
       DeviceStatuses.set(scope);
     };
 
 
-    /*
-     * Function execution
-     */
-
+    /* Function execution */
     scope.execute = function(_function) {
       DeviceFunction.execute(_function);
     };
 
 
-    /*
-     * Properties update
-     */
-
+    /* Properties update */
     scope.updateProperties = function(properties) {
       DeviceProperties.update(scope, properties);
       initialize();
     }
 
 
-    /*
-     * Delete device
-     */
-
+    /* Delete device */
     scope.destroy = function() {
       scope.device.$delete()
     }

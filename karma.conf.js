@@ -18,9 +18,11 @@ module.exports = function(config) {
       'app/bower_components/jasmine-jquery/lib/jasmine-jquery.js',
       'app/bower_components/underscore/underscore.js',
       'app/bower_components/lelylan-ng/lelylan-ng.js',
+      'app/views/**/*.html',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
       'test/spec/**/*.js',
+
       { pattern: 'test/spec/fixtures/*.json', watched: true, served: true, included: false }
     ],
 
@@ -58,13 +60,13 @@ module.exports = function(config) {
     // Karma plugins for preprocessors, reporters, browser launchers and frameworks
     plugins: [
       'karma-jasmine',
-      'karma-phantomjs-launcher'
+      'karma-phantomjs-launcher',
+      'karma-ng-html2js-preprocessor'
     ],
 
 
     // Preprocessor for converting HTML files to AngularJS templates
     preprocessors: { 'app/views/**/*.html': ['html2js'] },
-
 
     // set the path to use to search the template and set the templates module to
     // load all templates at once

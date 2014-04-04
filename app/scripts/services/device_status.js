@@ -23,7 +23,7 @@ client.factory('DeviceStatuses', ['Device', 'Utils', function(Device, Utils) {
 
 
   /*
-   * Verify if the status matches with the current device properties.
+   * Verify if all properties in a specific status matches with the current device properties.
    */
 
   service.checkStatus = function(status, device) {
@@ -36,6 +36,11 @@ client.factory('DeviceStatuses', ['Device', 'Utils', function(Device, Utils) {
 
     return _.every(passAll, _.identity);
   }
+
+
+  /*
+   * Verify if a single property in a specific status matches with the current device property.
+   */
 
   service.passProperty = function(property, statusProperty) {
     var pass = true;
