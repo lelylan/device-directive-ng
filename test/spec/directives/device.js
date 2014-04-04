@@ -5,6 +5,7 @@
 describe('<device>', function() {
 
   var $rootScope, $compile, $location, $httpBackend, $scope, scope = {}, element;
+  var DeviceFunction, DeviceProperties, DeviceStatuses;
   var device, type, privates;
 
   var compile = function($rootScope, $compile) {
@@ -16,10 +17,13 @@ describe('<device>', function() {
   beforeEach(module('lelylan.directives.device'));
   beforeEach(module('templates'));
 
-  beforeEach(inject(function($injector) { $location    = $injector.get('$location') }));
-  beforeEach(inject(function($injector) { $httpBackend = $injector.get('$httpBackend') }));
-  beforeEach(inject(function($injector) { $rootScope   = $injector.get('$rootScope') }));
-  beforeEach(inject(function($injector) { $compile     = $injector.get('$compile') }));
+  beforeEach(inject(function($injector) { $location        = $injector.get('$location') }));
+  beforeEach(inject(function($injector) { $httpBackend     = $injector.get('$httpBackend') }));
+  beforeEach(inject(function($injector) { $rootScope       = $injector.get('$rootScope') }));
+  beforeEach(inject(function($injector) { $compile         = $injector.get('$compile') }));
+  beforeEach(inject(function($injector) { DeviceProperties = $injector.get('DeviceProperties') }));
+  beforeEach(inject(function($injector) { DeviceFunction   = $injector.get('DeviceFunction') }));
+  beforeEach(inject(function($injector) { DeviceStatuses   = $injector.get('DeviceStatuses') }));
 
   beforeEach(function() {
     element = angular.element('<device device-id="1"></div>');
@@ -167,6 +171,106 @@ describe('<device>', function() {
       it('sets pending to false', function() {
         expect(scope.loading).toBe(false);
       });
+    });
+  });
+
+
+  describe('#initialize', function() {
+
+    beforeEach(function() {
+      spyOn(DeviceFunction, 'setForm');
+      spyOn(DeviceStatuses, 'set');
+    });
+
+    beforeEach(function() {
+      compile($rootScope, $compile);
+      $httpBackend.flush();
+    });
+
+    it('DeviceFunction#setForm', function() {
+      expect(DeviceFunction.setForm).toHaveBeenCalled();
+    });
+
+    it('DeviceStatuses#set', function() {
+      expect(DeviceStatuses.set).toHaveBeenCalled();
+    });
+  });
+
+
+  describe('#execute', function() {
+
+    beforeEach(function() {
+      spyOn(DeviceFunction, 'execute');
+    });
+
+    beforeEach(function() {
+      compile($rootScope, $compile);
+      $httpBackend.flush();
+    });
+
+    beforeEach(function() {
+      scope = element.scope().$$childTail;
+    });
+
+    beforeEach(function() {
+      scope.execute(type.functions[0]);
+    })
+
+    it('DeviceFunction#execute', function() {
+      expect(DeviceFunction.execute).toHaveBeenCalled();
+    });
+  });
+
+
+  describe('#updateProperties', function() {
+
+    beforeEach(function() {
+      spyOn(DeviceProperties, 'update');
+      spyOn(DeviceFunction, 'setForm');
+      spyOn(DeviceStatuses, 'set');
+    });
+
+    beforeEach(function() {
+      compile($rootScope, $compile);
+      $httpBackend.flush();
+    });
+
+    beforeEach(function() {
+      scope = element.scope().$$childTail;
+    });
+
+    beforeEach(function() {
+      scope.updateProperties(type.functions[0].properties);
+    })
+
+    it('DeviceProperties#update', function() {
+      expect(DeviceProperties.update).toHaveBeenCalled();
+    });
+
+    it('#initialize', function() {
+      expect(DeviceFunction.setForm).toHaveBeenCalled();
+      expect(DeviceStatuses.set).toHaveBeenCalled();
+    });
+  });
+
+
+  describe('#destroy', function() {
+
+    beforeEach(function() {
+      $httpBackend.whenDELETE('http://api.lelylan.com/devices/1').respond(device);
+    });
+
+    // needed to get scope.device
+    beforeEach(function() {
+      compile($rootScope, $compile);
+      scope = element.scope().$$childTail;
+      $httpBackend.flush();
+    });
+
+    it('makes the request', function() {
+      $httpBackend.expect('DELETE', 'http://api.lelylan.com/devices/1');
+      scope.destroy()
+      $httpBackend.flush();
     });
   });
 });
