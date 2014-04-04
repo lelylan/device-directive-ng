@@ -32,7 +32,6 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     DeviceStatuses
   ) {
 
-
   var definition = {
     restrict: 'EA',
     replace: true,
@@ -44,8 +43,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     }
   };
 
-  // TODO try to remove the name of the funciton postLink
-  definition.link = function postLink(scope, element, attrs) {
+  definition.link = function(scope, element, attrs) {
 
 
     /*
@@ -75,12 +73,13 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     compile();
 
 
+
     /*
      * API REQUESTS
      */
 
 
-    /* watches the device ID and starts loading all needed data */
+    /* watches the device ID and gets the device representation and calls the type API */
     scope.$watch('deviceId', function(value) {
       if (value) {
         Device.get({ id: value }).$promise.then(
@@ -93,11 +92,11 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     });
 
 
-    /* whatches the device JSON and starts loading all needed data */
+    /* whatches the device JSON and starts the loading phase and calls the type API */
     scope.$watch('deviceJson', function(value) {
       if (value) {
         scope.device = value;
-        getType()
+        getType(scope.device.type.id)
       }
     });
 
@@ -107,20 +106,25 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       Type.get({ id: id }).$promise.then(
         function(response) {
           scope.type = response;
-          //loadPrivates();
+          getPrivates(scope.device.id);
         }
       )
-    };
+    }
 
 
     /* gets the device privates info */
-    var getPrivates = function() {
-      scope.privates = Device.privates({ id: scope.device.id }), loaded;
+    var getPrivates = function(id) {
+      Device.privates({ id: id }).$promise.then(
+        function(response) {
+          scope.privates = response;
+          loadingCompleted();
+        }
+      )
     }
 
 
     /* completes the loading phase and starts the initialization */
-    var loaded = function() {
+    var loadingCompleted = function() {
       initialize();
       scope.loading = false;
     }

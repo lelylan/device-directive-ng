@@ -5,6 +5,13 @@
 describe('<device>', function() {
 
   var $rootScope, $compile, $location, $httpBackend, $scope, scope = {}, element;
+  var device, type, privates;
+
+  var compile = function($rootScope, $compile) {
+    $scope = $rootScope;
+    $compile(element)($scope);
+    $scope.$digest();
+  }
 
   beforeEach(module('lelylan.directives.device'));
   beforeEach(module('templates'));
@@ -14,58 +21,152 @@ describe('<device>', function() {
   beforeEach(inject(function($injector) { $rootScope   = $injector.get('$rootScope') }));
   beforeEach(inject(function($injector) { $compile     = $injector.get('$compile') }));
 
-  // fixtures
   beforeEach(function() {
-    jasmine.getFixtures().fixturesPath = 'base/test/spec/fixtures';
-    scope.device = JSON.parse(readFixtures('device.json'));
-    scope.type = JSON.parse(readFixtures('type.json'));
+    element = angular.element('<device device-id="1"></div>');
   });
 
-  // compile
-  beforeEach(inject(function($rootScope, $compile) {
-    element = angular.element('<device device-id="1"></div>');
-  }));
+  beforeEach(function() {
+    jasmine.getFixtures().fixturesPath = 'base/test/spec/fixtures';
+  });
 
-  var compile = function($rootScope, $compile) {
-    $scope = $rootScope;
-    $compile(element)($scope);
-    $scope.$digest();
-  }
+  beforeEach(function() {
+    device   = JSON.parse(readFixtures('device.json'));
+    type     = JSON.parse(readFixtures('type.json'));
+    privates = JSON.parse(readFixtures('privates.json'));
+  });
+
+  beforeEach(function() {
+    $httpBackend.whenGET('http://api.lelylan.com/devices/1').respond(device);
+    $httpBackend.whenGET('http://api.lelylan.com/types/1').respond(type);
+    $httpBackend.whenGET('http://api.lelylan.com/devices/1/privates').respond(privates);
+  });
 
 
-  describe('when makes the API requests', function() {
+
+  describe('when configures the directive', function() {
 
     beforeEach(function() {
-      $httpBackend.whenGET('http://api.lelylan.com/devices/1').respond(scope.device);
-      $httpBackend.whenGET('http://api.lelylan.com/types/1').respond(scope.device);
-    });
-
-    it('GET /devices/:id', function() {
-      $httpBackend.expect('GET', 'http://api.lelylan.com/devices/1');
       compile($rootScope, $compile);
-      $httpBackend.flush();
     });
 
-    it('GET /types/:id', function() {
-      $httpBackend.expect('GET', 'http://api.lelylan.com/types/1');
-      compile($rootScope, $compile);
-      $httpBackend.flush();
+    beforeEach(function() {
+      scope = element.scope().$$childTail;
+    })
+
+    it('sets pending to true', function() {
+      expect(scope.loading).toBe(true)
+    });
+  })
+
+
+
+  describe('when sets the template', function() {
+
+    describe('when the template is not defined', function() {
+
+      beforeEach(function() {
+        compile($rootScope, $compile);
+      });
+
+      beforeEach(function() {
+        scope = element.scope().$$childTail;
+      })
+
+      it('sets the default template', function() {
+        expect(scope.template).toBe('views/templates/default.html');
+      });
+    })
+
+    describe('when the template is defined', function() {
+
+      beforeEach(function() {
+        $httpBackend.whenGET('/new.html').respond('');
+      });
+
+      beforeEach(function() {
+        element = angular.element('<device device-id="1" template="/new.html"></div>');
+      });
+
+      beforeEach(function() {
+        compile($rootScope, $compile);
+      });
+
+      beforeEach(function() {
+        scope = element.scope().$$childTail;
+      });
+
+      it('sets the desired template', function() {
+        expect(scope.template).toBe('/new.html');
+      });
+    });
+  });
+
+
+
+  describe('when calls the API', function() {
+
+    describe('when GET /devices/:id', function() {
+
+      it('makes the request', function() {
+        $httpBackend.expect('GET', 'http://api.lelylan.com/devices/1');
+        compile($rootScope, $compile);
+        $httpBackend.flush();
+      });
+
+      it('sets scope.device', function() {
+        compile($rootScope, $compile);
+        scope = element.scope().$$childTail;
+        $httpBackend.flush();
+        expect(scope.device.name).toBe('Closet dimmer');
+      });
     });
 
+    describe('when GET /types/:id', function() {
 
+      it('makes the request', function() {
+        $httpBackend.expect('GET', 'http://api.lelylan.com/devices/1');
+        compile($rootScope, $compile);
+        $httpBackend.flush();
+      });
 
+      it('sets scope.type', function() {
+        compile($rootScope, $compile);
+        scope = element.scope().$$childTail;
+        $httpBackend.flush();
+        expect(scope.type.name).toBe('Dimmer');
+      });
+    });
 
-    //describe('when checks the pending status', function() {
+    describe('when GET /devices/:id/privates', function() {
 
-      //beforeEach(function() {
-        //compile($rootScope, $compile);
-        //$httpBackend.flush();
-        //scope = element.scope().$$childTail
-      //})
+      it('makes the request', function() {
+        $httpBackend.expect('GET', 'http://api.lelylan.com/devices/1/privates');
+        compile($rootScope, $compile);
+        $httpBackend.flush();
+      });
 
-      //it('sets the final pending to false', function() {
-        //expect(scope.loading).toBe(false);
-      //});
-    //});
+      it('sets scope.private', function() {
+        compile($rootScope, $compile);
+        scope = element.scope().$$childTail;
+        $httpBackend.flush();
+        expect(scope.privates.secret).toBe('secret');
+      });
+    });
+
+    describe('when all requests are resolved', function() {
+
+      beforeEach(function() {
+        compile($rootScope, $compile);
+        $httpBackend.flush();
+      })
+
+      beforeEach(function() {
+        scope = element.scope().$$childTail;
+      })
+
+      it('sets pending to false', function() {
+        expect(scope.loading).toBe(false);
+      });
+    });
   });
 });

@@ -16,8 +16,8 @@ client.factory('DeviceStatuses', ['Device', 'Utils', function(Device, Utils) {
    */
 
   service.set = function(scope) {
-    _.each(statuses, function(status) {
-      if (checkStatus(status, scope.device)) { scope.status = status }
+    _.each(scope.type.statuses, function(status) {
+      if (service.checkStatus(status, scope.device)) { scope.status = status }
     });
   }
 

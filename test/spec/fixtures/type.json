@@ -74,19 +74,21 @@
         "created_at": "2012-07-16T14:32:50Z",
         "updated_at": "2012-07-16T14:32:50Z",
         "properties": [{
+            "id": "1",
             "uri": "http://www.example.com/properties/status",
             "pending": false,
             "values": ["on"],
-            "ranges": null
+            "ranges": []
         },
         {
+            "id": "1",
             "uri": "http://www.example.com/properties/intensity",
-            "values": [],
             "pending": false,
-            "range": {
+            "values": [],
+            "ranges": [{
                 "start": "0",
                 "end": "100"
-            }
+            }]
         }]
     }],
     "categories": [{
