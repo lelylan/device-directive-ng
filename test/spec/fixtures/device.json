@@ -1,7 +1,10 @@
 {
   "id": "1",
-  "uri": "http://www.example.com/devices/5003c611d033a96b96000271",
+  "uri": "http://www.example.com/devices/1",
   "name": "Closet dimmer",
+  "categories": ["lights"],
+  "pending": false,
+  "activated": true,
   "type": {
     "id": "1",
     "uri": "https://type.lelylan.com/types/dimmer"
@@ -9,24 +12,30 @@
   "properties": [{
     "id": "1",
     "uri": "https://type.lelylan.com/properties/status",
-    "expected": "off",
     "value": "off",
-    "pending": false
-  },
-  {
+    "expected": "off",
+    "pending": false,
+    "accepted": null
+  }, {
     "id": "2",
     "uri": "https://type.lelylan.com/properties/intensity",
     "expected": "0.0",
     "value": "0.0",
-    "pending": false
+    "pending": false,
+    "accepted": null
   }],
   "physical": {
     "uri": "https://node.lelylan.com/devices/physical-dimmer"
   },
-  "pending": {
-    "uri": "http://www.example.com/devices/5003c611d033a96b96000271/pending",
-    "status": "false"
+  "owner": {
+    "id": "5036227a4f1b030200000001",
+    "uri": "http://api.lelylan.com/people/5036227a4f1b030200000001"
   },
-  "created_at": "2012-07-16T09:43:13+02:00",
-  "updated_at": "2012-07-16T09:43:13+02:00"
+  "maker": {
+    "id": "5036227a4f1b030200000001",
+    "uri": "http://api.lelylan.com/people/5036227a4f1b030200000001"
+  },
+  "created_at": "2013-06-20T15:54:42Z",
+  "updated_at": "2014-04-08T12:52:31Z",
+  "updated_from": "physical"
 }

@@ -1,3 +1,121 @@
-<div class="ly-device">
+<div class="ly-device ly-device-{{device.id}} ly-type-{{type.id}} ">
+
+  <!-- ----------------- -->
+  <!--  Loading message  -->
+  <!-- ----------------- -->
+
+  <div class="ly-loading">
+    <p class="ly-description">Loading Device</p>
+    <div class="ly-spinner">
+      <div class="ly-bounce-1"></div>
+      <div class="ly-bounce-2"></div>
+      <div class="ly-bounce-3"></div>
+    </div>
+  </div>
+
+
+  <!-- ---------------- -->
+  <!--  Device Content  -->
+  <!-- ---------------- -->
+
+  <div class="ly-content" ng-show="false">
+
+
+    <!-- ------------- -->
+    <!-- Device header -->
+    <!-- ------------- -->
+
+    <div class="ly-header">
+
+      <!-- Name -->
+
+      <p class="ly-name">{{device.name}}</p>
+
+      <!-- Top menu -->
+
+      <ul class="ly-menu">
+        <li><a href="#">Controls</a></li>
+        <li><a href="#">History</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+
+      <!-- Device status -->
+
+      <div class="ly-status">
+
+        <!-- Function status execution -->
+
+        <div class="ly-execute">
+          <div class="ly-icon">
+            <span>Execute</span>
+            <div class="ly-spinner"><span>Spinner</span></div>
+          </div>
+        </div>
+
+        <!-- Description -->
+
+        <div class="ly-info">
+          <p class="ly-description">{{status.name}}</p>
+          <p class="ly-extras">{{device.updated_at}} from {{device.updated_from}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ---------------- -->
+    <!-- Device functions -->
+    <!-- ---------------- -->
+
+    <div class="ly-functions">
+      <div class="ly-function ly-function-{{function.id}}" ng-repeat="function in functions">
+
+        <!-- Function execution -->
+
+        <div class="ly-execute">
+          <div class="ly-icon"></div>
+          <div class="ly-description">{{function.name}}</div>
+        <div>
+
+        <!-- Funtion form -->
+
+        <div class="ly-form" ng-show="visibleForm">
+          <p class="ly-title">{{function.name}}</p>
+          <p class="ly-description">Fill the required params and execute the function.</p>
+          <div class="ly-fields" ng-repeat="property in function.properties" >
+            <p class="ly-description">Set {{property.name}} to {{property.expected}}</p>
+            <div class="ly-input">
+              <input
+                type="{{property.type}}"
+                min="{{property.range.min}}"
+                max="{{property.range.max}}"
+                step="{{property.range.step}}"
+                ng-model="property.expected">
+              </input>
+            </div>
+          </div>
+          <div class="ly-buttons">
+            <button class="ly-update">Execute</div>
+            <button class="ly-cancel">Cancel</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Device properties -->
+
+    <div class="ly-properties">
+      <div class="ly-property ly-property-{{property.id}}" ng-repeat="property in device.properties">
+        <div class="ly-name">{{property.name}}</div>
+        <div class="ly-value">{{property.value}}</div>
+        <div class="ly-expected">{{property.expected}}</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Device error messages -->
+
+  <div class="ly-messages">
+  </div>
 </div>
 

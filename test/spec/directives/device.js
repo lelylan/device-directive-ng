@@ -260,7 +260,7 @@ describe('<device>', function() {
       $httpBackend.whenDELETE('http://api.lelylan.com/devices/1').respond(device);
     });
 
-    // needed to get scope.device
+    // block needed to populate scope.device
     beforeEach(function() {
       compile($rootScope, $compile);
       scope = element.scope().$$childTail;

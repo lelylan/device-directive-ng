@@ -23,6 +23,20 @@ client.factory('DeviceProperties', ['Device', 'Utils', function(Device, Utils) {
   };
 
 
+  /*
+   * Extend the device properties adding the name value (comes from the type)
+   *
+   *   DeviceProperties.extend(scope);
+   */
+
+  service.extend = function(scope) {
+    _.each(scope.device.properties, function(property) {
+      var resource = Utils.getResource(property.id, scope.type.properties)
+      property.name = resource.name;
+    });
+  }
+
+
 
   /*
    * HELPERS

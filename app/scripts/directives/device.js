@@ -55,7 +55,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     scope.loading = true;
 
     // template setting
-    scope.template = attrs.template || 'views/templates/default.html'
+    scope.template = attrs.template || 'views/templates/default.html';
 
 
 
@@ -137,6 +137,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Initialization */
     var initialize = function() {
+      DeviceProperties.extend(scope);
       DeviceFunction.setForms(scope);
       DeviceStatuses.set(scope);
     };
