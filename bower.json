@@ -9,7 +9,9 @@
     "underscore": "~1.6.0",
     "jasmine-jquery": "~2.0.3",
     "jquery": "~2.1.0",
-    "jasmine": "~2.0.0"
+    "jasmine": "~2.0.0",
+    "moment": "~2.5.1",
+    "angular-moment": "~0.6.2"
   },
   "devDependencies": {
     "angular-mocks": "1.2.14",

@@ -1,6 +1,12 @@
-div.center {
+/*
+ * Example page
+ */
+
+body {
   background-color: #F8F8F8;
-  border: 1px solid #eee;
+}
+
+div.center {
   width: 300px;
   display: block;
   margin-left: auto;
@@ -10,30 +16,76 @@ div.center {
 
 
 /*
- * General
+ * Device component reset
+ */
+
+.ly-device * {
+  background: none repeat scroll 0 0 transparent;
+  border: medium none;
+  border-spacing: 0;
+  font-size: 1em;
+  font-weight: 100;
+  list-style: none outside none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+  text-indent: 0;
+}
+
+
+/*
+ * Device generics
  */
 
 .ly-device {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 200;
-  color: #555;
-  padding: 10px;
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #eee;
 }
 
+div.ly-device {
+}
+
+.ly-device p {
+  margin: 0;
+}
+
+
 /*
- * Spinner
+ * Device links
+ */
+
+.ly-device a {
+  text-decoration: none;
+  color: #239cbb
+}
+
+.ly-device a {
+  -webkit-transition: color 0.3s ease, text-decoration 0.3s ease, background 0.3s ease;
+  -moz-transition: color 0.3s ease, text-decoration 0.3s ease, background 0.3s ease;
+  transition: color 0.3s ease, text-decoration 0.3s ease, background 0.3s ease;
+}
+
+.ly-device a:hover {
+  color: #01cf9e;
+}
+
+
+/*
+ * Device spinner
  */
 
 .ly-spinner > div {
   width: 10px;
   height: 10px;
-  background-color: #aaa;
+  background-color: #333;
 
   border-radius: 100%;
   display: inline-block;
   -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
   animation: bouncedelay 1.4s infinite ease-in-out;
-  /* Prevent first frame from flickering when animation starts */
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
@@ -65,8 +117,13 @@ div.center {
 
 
 /*
- * Loading
+ * Device loading section
  */
+
+.ly-loading {
+  /*background-color: #d5d5d5;*/
+  padding: 1em;
+}
 
 .ly-loading .ly-spinner,
 .ly-loading .ly-description {
@@ -74,14 +131,177 @@ div.center {
 }
 
 .ly-loading .ly-description {
-  margin-top: 0.5em;
-  margin-bottom: 0em;
+  font-size: 1.4em;
 }
 
-.ly-loading .ly-spinner > div {
-  width: 6px;
-  height: 6px;
-  background-color: #555;
+
+/*
+ * Header section
+ */
+
+.ly-header {
+  /*background-color: #ddd;*/
 }
 
+.ly-header {
+  padding: 0.6em;
+  border-bottom: 1px solid #f6f6f6;
+}
+
+.ly-header .ly-name {
+  font-size: 2.2em;
+}
+
+.ly-header .ly-menu {
+  padding-left: 0;
+  padding-right: 0;
+  list-style: none;
+  display: inline;
+}
+
+.ly-header .ly-menu li {
+  display: inline;
+  padding-right: 0.4em;
+}
+
+.ly-header .ly-menu li a {
+  font-size: 1em;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+}
+
+
+/*
+ * Status section
+ */
+
+.ly-status {
+  /*background-color: #e5e5e5;*/
+}
+
+.ly-status {
+  padding: 1em 0.6em;
+  border-bottom: 1px solid #f6f6f6;
+}
+
+.ly-status .ly-execute {
+  position: relative;
+  float: left;
+}
+
+.ly-status .ly-execute .ly-button {
+  width: 2.8em;
+  height: 2.8em;
+  border: 3px solid #239cbb;
+  border-radius: 100%;
+}
+
+.ly-pulse {
+  -webkit-animation-name: ly-pulse;
+  -webkit-animation-duration: 1.6s;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: ly-pulse;
+  duration: 1.6s;
+  animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes ly-pulse {
+  from { opacity: 0.3; }
+  50%  { opacity: 1.0; }
+  to   { opacity: 0.3; }
+}
+
+.ly-status .ly-execute .ly-spinner {
+  position: absolute;
+  top: 0.75em;
+  left: 0.5em;
+}
+
+.ly-status .ly-description {
+  margin-left: 3.7em;
+}
+
+.ly-status .ly-description .ly-name {
+  font-size: 1.7em;
+  color: #239cbb;
+  line-height: 1.05em;
+}
+
+.ly-status .ly-description .ly-extras {
+  font-size: 0.9em;
+  color: #888;
+  letter-spacing: 0.3px;
+}
+
+
+/*
+ * Function
+ */
+
+.ly-functions {
+  /*background-color: #eee;*/
+}
+
+.ly-functions {
+  padding: 0.6em 0em;
+  border-bottom: 1px solid #f6f6f6;
+}
+
+.ly-function {
+  padding: 0.3em 1em;
+}
+
+.ly-function .ly-execute {
+  clear: both;
+}
+
+.ly-function .ly-execute .ly-button {
+  float: left;
+  width: 1.8em;
+  height: 1.8em;
+  border: 2.5px solid #239cbb;
+  border-radius: 100%;
+}
+
+.ly-function .ly-execute .ly-name {
+  margin-left: 2em;
+  font-size: 1.5em;
+}
+
+
+/*
+ * Properties
+ */
+
+.ly-properties {
+  /*background-color: #f4f4f4;*/
+}
+
+.ly-properties {
+  padding: 0.6em 0em;
+}
+
+.ly-property {
+  padding: 0.3em 1.2em;
+  clear: both;
+}
+
+.ly-property .ly-button {
+  float: left;
+  width: 1.4em;
+  height: 1.4em;
+  border: 1.5px solid #aaa;
+  border-radius: 100%;
+}
+
+.ly-property .ly-description {
+  margin-left: 2.4em;
+  font-size: 1.2em;
+  letter-spacing: 0.3px;
+}
+
+.ly-property .ly-name {
+  color: #aaa;
+  font-size: 0.9em;
+}
 

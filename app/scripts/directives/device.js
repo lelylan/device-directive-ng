@@ -44,6 +44,9 @@ angular.module('lelylan.directives.device.directive').directive('device', [
   };
 
   definition.link = function(scope, element, attrs) {
+scope.message = {
+   time: new Date()
+};
 
 
     /*

@@ -4,7 +4,7 @@
   <!--  Loading message  -->
   <!-- ----------------- -->
 
-  <div class="ly-loading">
+  <div class="ly-loading" ng-show="false">
     <p class="ly-description">Loading Device</p>
     <div class="ly-spinner">
       <div class="ly-bounce-1"></div>
@@ -18,7 +18,7 @@
   <!--  Device Content  -->
   <!-- ---------------- -->
 
-  <div class="ly-content" ng-show="false">
+  <div class="ly-content">
 
 
     <!-- ------------- -->
@@ -39,25 +39,23 @@
         <li><a href="#">Settings</a></li>
       </ul>
 
-      <!-- Device status -->
+    </div>
 
-      <div class="ly-status">
+    <!-- Device status -->
 
-        <!-- Function status execution -->
+    <div class="ly-status">
 
-        <div class="ly-execute">
-          <div class="ly-icon">
-            <span>Execute</span>
-            <div class="ly-spinner"><span>Spinner</span></div>
-          </div>
-        </div>
+      <!-- Default function button -->
 
-        <!-- Description -->
+      <div class="ly-execute">
+        <button class="ly-button ly-pulse"></button>
+      </div>
 
-        <div class="ly-info">
-          <p class="ly-description">{{status.name}}</p>
-          <p class="ly-extras">{{device.updated_at}} from {{device.updated_from}}</p>
-        </div>
+      <!-- Description -->
+
+      <div class="ly-description">
+        <p class="ly-name">{{type.name}} {{status.name}}</p>
+        <p class="ly-extras"><span am-time-ago="device.updated_at"></span> from {{device.updated_from}}</p>
       </div>
     </div>
 
@@ -69,11 +67,11 @@
     <div class="ly-functions">
       <div class="ly-function ly-function-{{function.id}}" ng-repeat="function in functions">
 
-        <!-- Function execution -->
+        <!-- Function button -->
 
         <div class="ly-execute">
-          <div class="ly-icon"></div>
-          <div class="ly-description">{{function.name}}</div>
+          <button class="ly-button"></button>
+          <p class="ly-name">{{function.name}}</p>
         <div>
 
         <!-- Funtion form -->
@@ -105,9 +103,11 @@
 
     <div class="ly-properties">
       <div class="ly-property ly-property-{{property.id}}" ng-repeat="property in device.properties">
-        <div class="ly-name">{{property.name}}</div>
-        <div class="ly-value">{{property.value}}</div>
-        <div class="ly-expected">{{property.expected}}</div>
+        <button class="ly-button ly-pulse"></button>
+        <p class="ly-description">
+          <span class="ly-name">{{property.name}} is </span>
+          <span class="ly-expected">{{property.expected}}</span>
+        </p>
       </div>
     </div>
 
