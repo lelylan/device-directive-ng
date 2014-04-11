@@ -87,8 +87,7 @@
             <p class="ly-name">{{functions[2].name}}</p>
           </div>
           <div class="ly-fields">
-
-            <div class="ly-field" ng-repeat="property in functions[2].properties" >
+            <div class="ly-field" ng-repeat="property in functions[2].properties" ng-show="property.toFill">
               <p class="ly-description">
                 <span class="ly-name">Set {{property.name | lowercase}} to</span>
                 <span class="ly-expected">{{property.expected}}</span>
@@ -103,9 +102,9 @@
                 </input>
               </div>
             </div>
-            <div class="ly-actions">
-              <a class="ly-button ly-update">Execute</a>
-            </div>
+          </div>
+          <div class="ly-actions">
+            <a class="ly-button ly-update">Execute</a>
           </div>
         </div>
       </div>

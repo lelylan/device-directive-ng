@@ -310,7 +310,7 @@ div.ly-device {
   height:100%;
   z-index: 2000;
   opacity: 0.8;
-  background-color: #000;
+  background-color: #ddd;
 }
 
 .ly-modal .ly-modal-window {
@@ -351,13 +351,17 @@ div.ly-device {
   font-size: 1.2em;
 }
 
-
 .ly-form .ly-fields {
   padding: 0.6em 0em;
+  padding-bottom: 1em;
 }
 
 .ly-form .ly-field {
   padding: 0.3em 1em;
+}
+
+.ly-form .ly-field .ly-description {
+  margin-bottom:0.5em;
 }
 
 .ly-form .ly-field .ly-name {
@@ -373,6 +377,11 @@ div.ly-device {
   padding-bottom: 0.7em;
   font-size: 1.5em;
 }
+
+.ly-form .ly-field input[type="range"] {
+  width: 95%
+}
+
 
 
 /*
@@ -409,38 +418,4 @@ div.ly-device {
 .ly-property .ly-name {
   color: #aaa;
   font-size: 0.9em;
-}
-
-
-/*
- * Form fields
- */
-input[type="range"] {
-  appearance: none;
-  position: absolute;
-  top: 90px;
-  width: 150px;
-  outline: 0;
-  background: rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 -14px 0 -7px #fff, inset 0 14px 0 -7px #fff;
-  overflow: hidden;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  appearance: none;
-  position: relative;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #ccc;
-}
-
-input[type="range"]::-webkit-slider-thumb:after {
-  content: '';
-  width: 150px;
-  height: 6px;
-  position: absolute;
-  top: 7px;
-  right: 20px;
-  box-shadow: inset 0 0 0 10px rgba(0, 0, 0, 0.5);
 }
