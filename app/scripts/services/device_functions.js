@@ -106,6 +106,7 @@ client.factory('DeviceFunction', ['Device', 'Utils', 'DeviceProperties', functio
   service.extendFunctionProperties = function(_function, scope) {
     _.each(_function.properties, function(resource) {
       var property = Utils.getResource(resource.id, scope.type.properties);
+      resource.name     = property.name;
       resource.type     = property.type;
       resource.range    = property.range;
       resource.accepted = property.accepted;
