@@ -418,21 +418,27 @@ div.ly-device {
 
 .ly-animation.ng-enter,
 .ly-animation.ng-leave {
-  -webkit-transition:1s linear all;
-  transition:1s linear all;
+  -webkit-transition:0.5s ease-out all;
+  transition:0.5s ease-out all;
+}
+
+.ly-animation-fast.ng-enter,
+.ly-animation-fast.ng-leave {
+  -webkit-transition:0.2s ease-out all;
+  transition:0.2s ease-out all;
 }
 
 .ly-animation.ng-enter,
-.ly-animation.ng-leave.ng-leave-active {
+.ly-animation.ng-leave.ng-leave-active,
+.ly-animation-fast.ng-enter,
+.ly-animation-fast.ng-leave.ng-leave-active {
   opacity:0;
 }
 .ly-animation.ng-leave,
-.ly-animation.ng-enter.ng-enter-active {
+.ly-animation.ng-enter.ng-enter-active,
+.ly-animation-fast.ng-leave,
+.ly-animation-fast.ng-enter.ng-enter-active {
   opacity:1;
-}
-
-.ly-animation.ng-hide-add, .my-elm.ng-hide-remove {
-  display:block!important;
 }
 
 

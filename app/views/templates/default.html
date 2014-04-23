@@ -75,7 +75,7 @@
 
         <!-- Function form -->
 
-        <div class="ly-modal" ng-show="function.visibleForm">
+        <div class="ly-modal ly-animation-fast" ng-if="function.visibleForm">
           <div class="ly-modal-backdrop" ng-click="function.visibleForm=false"></div>
           <div class="ly-modal-window">
             <a class="ly-close" href="" ng-click="function.visibleForm=false">×</a>
@@ -84,7 +84,7 @@
                 <p class="ly-name">{{function.name}}</p>
               </div>
               <div class="ly-fields">
-                <div class="ly-field" ng-repeat="property in function.properties" ng-show="property.toFill">
+                <div class="ly-field" ng-repeat="property in function.properties" ng-if="property.toFill">
                   <p class="ly-description">
                   <span class="ly-name">Set {{property.name | lowercase}} to</span>
                   <span class="ly-expected">{{property.expected}}</span>
