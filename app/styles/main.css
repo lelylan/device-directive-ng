@@ -415,11 +415,10 @@ div.ly-device {
  * Elements animation
  */
 
-
 .ly-animation.ng-enter,
 .ly-animation.ng-leave {
-  -webkit-transition:0.5s ease-out all;
-  transition:0.5s ease-out all;
+  -webkit-transition:0.5s linear all;
+  transition:0.5s linear all;
 }
 
 .ly-animation-fast.ng-enter,

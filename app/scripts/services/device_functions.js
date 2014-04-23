@@ -33,7 +33,7 @@ client.factory('DeviceFunction', ['Device', 'Utils', 'DeviceProperties', functio
 
   // TODO change visibleForm with isVisibleForm
   // TODO fix the thing that we need to use referenceScope. We should not
-  service.execute = function(_function, callback) {
+  service.execute = function(_function) {
     if (_function.toFill == false) {
       referenceScope.updateProperties(_function.properties)
     } else {

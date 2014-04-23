@@ -64,13 +64,15 @@
     <!-- ---------------- -->
 
     <div class="ly-functions">
-      <div class="ly-function ly-function-{{function.id}}" ng-click="execute(function)" ng-repeat="function in functions">
+      <div ng-repeat="function in functions">
+        <div class="ly-function ly-function-{{function.id}}" ng-click="execute(function)">
 
-        <!-- Function button -->
+          <!-- Function button -->
 
-        <div class="ly-execute">
-          <a class="ly-button"></a>
-          <p class="ly-name">{{function.name}}</p>
+          <div class="ly-execute">
+            <a class="ly-button"></a>
+            <p class="ly-name">{{function.name}}</p>
+          </div>
         </div>
 
         <!-- Function form -->
@@ -91,11 +93,11 @@
                   </p>
                   <div class="ly-input">
                     <input
-                    type="{{property.type}}"
-                    min="{{property.range.min}}"
-                    max="{{property.range.max}}"
-                    step="{{property.range.step}}"
-                    ng-model="property.expected">
+                      type="{{property.type}}"
+                      min="{{property.range.min}}"
+                      max="{{property.range.max}}"
+                      step="{{property.range.step}}"
+                      ng-model="property.expected">
                     </input>
                   </div>
                 </div>
