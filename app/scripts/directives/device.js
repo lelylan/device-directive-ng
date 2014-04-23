@@ -44,15 +44,11 @@ angular.module('lelylan.directives.device.directive').directive('device', [
   };
 
   definition.link = function(scope, element, attrs) {
-scope.message = {
-   time: new Date()
-};
 
 
     /*
      * CONFIGURATIONS
      */
-
 
     // activates the loading phase
     scope.loading = true;
@@ -80,7 +76,6 @@ scope.message = {
     /*
      * API REQUESTS
      */
-
 
     /* watches the device ID and gets the device representation and calls the type API */
     scope.$watch('deviceId', function(value) {

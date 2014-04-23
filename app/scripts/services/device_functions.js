@@ -5,6 +5,7 @@ var client = angular.module('lelylan.directives.device.services.functions', [])
 client.factory('DeviceFunction', ['Device', 'Utils', 'DeviceProperties', function(Device, Utils, DeviceProperties) {
 
   var service = {};
+  var referenceScope;
 
 
   /*
@@ -12,6 +13,8 @@ client.factory('DeviceFunction', ['Device', 'Utils', 'DeviceProperties', functio
    */
 
   service.setForms = function(scope) {
+    referenceScope = scope;
+
     scope.functions = angular.copy(scope.type.functions);
     _.each(scope.functions, function(_function) {
       service.setForm(_function, scope);
@@ -29,12 +32,13 @@ client.factory('DeviceFunction', ['Device', 'Utils', 'DeviceProperties', functio
    */
 
   // TODO change visibleForm with isVisibleForm
+  // TODO fix the thing that we need to use referenceScope. We should not
   service.execute = function(_function, callback) {
     if (_function.toFill == false) {
-      scope.updateProperties(_function.properties)
+      referenceScope.updateProperties(_function.properties)
     } else {
       if (_function.visibleForm == true)
-        scope.updateProperties(_function.properties);
+        referenceScope.updateProperties(_function.properties);
       _function.visibleForm = !_function.visibleForm;
     }
   }

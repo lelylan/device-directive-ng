@@ -77,6 +77,10 @@
         "name": "On",
         "created_at": "2012-07-16T14:32:50Z",
         "updated_at": "2012-07-16T14:32:50Z",
+        "function": {
+          "id": "2",
+          "uri": "http://www.example.com/functions/turn-off"
+        },
         "properties": [{
           "id": "1",
           "uri": "http://www.example.com/properties/status",
@@ -90,6 +94,10 @@
         "name": "Off",
         "created_at": "2012-07-16T14:32:50Z",
         "updated_at": "2012-07-16T14:32:50Z",
+        "function": {
+          "id": "1",
+          "uri": "http://www.example.com/functions/turn-on"
+        },
         "properties": [{
           "id": "1",
           "uri": "http://www.example.com/properties/status",
