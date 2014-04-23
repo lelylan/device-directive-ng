@@ -80,7 +80,7 @@ client.factory('DeviceProperties', ['Device', 'Utils', function(Device, Utils) {
   service.optimisticProperties = function(scope, properties) {
     _.each(properties, function(resource) {
       var property = Utils.getResource(resource.id, scope.device.properties)
-      property.pending  = resource.pending;
+      property.pending  = true;
       property.expected = resource.expected;
     });
   }

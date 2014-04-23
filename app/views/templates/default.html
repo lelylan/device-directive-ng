@@ -119,7 +119,7 @@
 
     <div class="ly-properties">
       <div class="ly-property ly-property-{{property.id}}" ng-repeat="property in device.properties">
-        <a class="ly-button"></a>
+        <a class="ly-button" ng-class="{ 'ly-pulse': property.pending }"></a>
         <p class="ly-description">
           <span class="ly-name">{{property.name}}</span>
           <span class="ly-expected">{{property.expected}}</span>

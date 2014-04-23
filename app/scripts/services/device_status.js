@@ -19,6 +19,7 @@ client.factory('DeviceStatuses', ['Device', 'Utils', function(Device, Utils) {
     _.each(scope.type.statuses, function(status) {
       if (service.checkStatus(status, scope.device)) {
         scope.status = status
+        scope.status.function = Utils.getResource(status.function.id, scope.functions);
       }
     });
   }
