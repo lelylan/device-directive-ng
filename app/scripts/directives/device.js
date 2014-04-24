@@ -50,15 +50,11 @@ angular.module('lelylan.directives.device.directive').directive('device', [
      * CONFIGURATIONS
      */
 
-    // settings view
-    scope.view = { settings: false, history: false };
-
-    // activates the loading phase
-    scope.loading = true;
+    // active view
+    scope.view = { path: '/loading' }
 
     // template setting
     scope.template = attrs.template || 'views/templates/default.html';
-
 
 
     /*
@@ -127,7 +123,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     /* completes the loading phase and starts the initialization */
     var loadingCompleted = function() {
       initialize();
-      scope.loading = false;
+      scope.view.path = 'default';
     }
 
 
@@ -157,10 +153,18 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     }
 
 
+    /* Device update */
+    scope.update = function() {
+      scope.view.path = '/default';
+      scope.device.$update();
+    }
+
     /* Delete device */
     scope.destroy = function() {
+      scope.view.path = '/message-deleted';
       scope.device.$delete()
     }
+
   };
 
   return definition

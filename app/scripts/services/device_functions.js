@@ -59,7 +59,8 @@ client.factory('DeviceFunction', ['Device', 'Utils', 'DeviceProperties', functio
     service.setPropertiesToFill(_function);
     service.setFunctionToFill(_function);
     service.setExpectedProperties(_function, scope);
-    service.extendFunctionProperties(_function, scope)
+    service.extendFunctionProperties(_function, scope);
+    service.setNumberValuesToInt(_function, scope);
   }
 
 
@@ -116,6 +117,14 @@ client.factory('DeviceFunction', ['Device', 'Utils', 'DeviceProperties', functio
       resource.accepted = property.accepted;
     });
   }
+
+  service.setNumberValuesToInt = function(_function, scope) {
+    _.each(_function.properties, function(property) {
+      if (property.type == 'number')
+        property.expected = parseFloat(property.expected);
+    });
+  }
+
 
 
   return service;

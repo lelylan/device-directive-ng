@@ -65,9 +65,9 @@ div.ly-device {
   color: #239cbb
 }
 
-.ly-device a:hover {
-  color: #01cf9e;
-}
+/*.ly-device a:hover {*/
+  /*color: #01cf9e;*/
+/*}*/
 
 
 /*
@@ -82,10 +82,14 @@ div.ly-device {
   text-align: center;
 }
 
-.ly-device .ly-modal .ly-button:hover {
-  background-color: #01cf9e;
-  color: #fff
+.ly-device .ly-button {
+  cursor: pointer;
 }
+
+/*.ly-device .ly-modal .ly-button:hover {*/
+  /*background-color: #01cf9e;*/
+  /*color: #fff*/
+/*}*/
 
 
 /*
@@ -147,18 +151,19 @@ div.ly-device {
  * Device loading section
  */
 
-.ly-loading {
+.ly-message {
   /*background-color: #d5d5d5;*/
   padding: 1em;
   color: #aaa;
 }
 
-.ly-loading .ly-spinner,
-.ly-loading .ly-description {
+.ly-message .ly-spinner,
+.ly-message .ly-description,
+.ly-message .ly-description-sub {
   text-align: center
 }
 
-.ly-loading .ly-description {
+.ly-message .ly-description {
   font-size: 1.4em;
 }
 
@@ -361,6 +366,7 @@ div.ly-device {
 }
 
 .ly-form .ly-button {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: absolute;
   width: 100%;
   padding: 0;
@@ -368,6 +374,7 @@ div.ly-device {
   padding-bottom: 0.7em;
   font-size: 1.5em;
   text-transform: uppercase;
+  box-shadow: 1px 1px 3px #999;
 }
 
 .ly-form .ly-field input[type="range"] {
@@ -418,22 +425,26 @@ div.ly-device {
  * Settings
  */
 
-.ly-settings .ly-fields {
+.ly-form .ly-fields {
   padding: 0;
 }
 
-.ly-settings .ly-field {
+.ly-form .ly-field {
   padding: 0;
-  height: 3.8em;
+  height: 3.4em;
   position: relative;
-  border-bottom: 1px solid #f8f8f8;
+  /*border-bottom: 1px solid #f8f8f8;*/
 }
 
-.ly-settings .ly-editable {
+.ly-form .ly-editable {
   height: 4.2em;
 }
 
-.ly-settings .ly-field .ly-description {
+.ly-form .ly-no-underline .ly-value {
+  border-bottom: none !important;
+}
+
+.ly-form .ly-field .ly-description {
   position: absolute;
   padding: 1em 0.7em 0;
   color: #bbb;
@@ -441,42 +452,85 @@ div.ly-device {
   text-transform: uppercase;
 }
 
-.ly-settings .ly-field .ly-value {
+.ly-form .ly-field .ly-value {
   position: absolute;
-  color: #333;
+  color: #666;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1em;
   width: 92%;
-  margin: 2em 0.5em 0.8em;
+  margin: 2em 0.6em 0.8em;
 }
 
-.ly-settings .ly-editable .ly-value {
-  padding-bottom: 0.2em;
+.ly-form .ly-editable .ly-value {
+  padding-bottom: 0.1em;
   border-bottom: 1px dashed #ddd;
 }
 
-.ly-settings .ly-actions .ly-button {
+.ly-settings .ly-form .ly-actions .ly-button {
   width: 50%;
 }
 
-.ly-settings .ly-actions .ly-delete {
+.ly-settings .ly-form .ly-actions .ly-delete {
   right: 0;
   background-color: rgb(211, 0, 0);
 }
 
-.ly-settings .ly-actions .ly-delete:hover {
+.ly-settings .ly-form .ly-actions .ly-delete:hover {
   background-color: rgb(211, 0, 0);
 }
 
+.ly-form .ly-field ::-webkit-input-placeholder { color:#ddd; font-weight: 100; }
+.ly-form .ly-field ::-moz-placeholder { color:#ddd; } /* firefox 19+ */
+.ly-form .ly-field :-ms-input-placeholder { color:#ddd; } /* ie */
+.ly-form .ly-field input:-moz-placeholder { color:#ddd; }
 
+.ly-form .ly-field select {
+  background: transparent;
+  -webkit-appearance: none;
+}
 
-.ly-field ::-webkit-input-placeholder { color:#ddd; font-weight: 100; }
-.ly-field ::-moz-placeholder { color:#ddd; } /* firefox 19+ */
-.ly-field :-ms-input-placeholder { color:#ddd; } /* ie */
-.ly-field input:-moz-placeholder { color:#ddd; }
-
-.ly-settings .ly-field input:focus{
+button:focus,
+select:focus,
+input:focus {
   outline: 0;
+}
+
+
+/*
+ * Settings (Delete)
+ */
+
+.ly-modal .ly-info {
+  color: rgb(223, 0, 0);
+  font-size: 1.3em;
+  padding: 0.5em;
+  padding-top: 1em;
+}
+
+.ly-settings .ly-settings-delete .ly-value {
+  font-size: 1.3em;
+  margin: 0.5em 0.5em 0.8em;
+}
+
+.ly-settings .ly-settings-delete .ly-field {
+  height: 10.5em;
+}
+
+.ly-settings .ly-settings-delete .ly-actions .ly-cancel {
+  background-color: #ccc;
+}
+
+.ly-settings .ly-actions {
+  margin-top: 1em;
+}
+
+.ly-settings .ly-actions .ly-disabled {
+  background-color: #ccc;
+}
+
+.ly-settings .ly-actions .ly-disabled:hover {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 
