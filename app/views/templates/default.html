@@ -35,7 +35,7 @@
 
       <ul class="ly-menu">
         <li><a href="#">History</a></li>
-        <li><a href="#">Settings</a></li>
+        <li><a href="#" ng-click="view.settings=true">Settings</a></li>
       </ul>
 
     </div>
@@ -77,7 +77,7 @@
 
         <!-- Function form -->
 
-        <div class="ly-modal ly-animation-fast" ng-if="function.visibleForm">
+        <div class="ly-function-form ly-modal ly-animation-fast" ng-if="function.visibleForm">
           <div class="ly-modal-backdrop" ng-click="function.visibleForm=false"></div>
           <div class="ly-modal-window">
             <a class="ly-close" href="" ng-click="function.visibleForm=false">×</a>
@@ -124,6 +124,50 @@
           <span class="ly-name">{{property.name}}</span>
           <span class="ly-expected">{{property.expected}}</span>
         </p>
+      </div>
+    </div>
+
+    <!-- ----------------- -->
+    <!--  Device Settings  -->
+    <!-- ----------------- -->
+
+    <div class="ly-settings ly-modal ly-animation-fast" ng-if="view.settings">
+      <div class="ly-modal-backdrop" ng-click="view.settings=false"></div>
+      <div class="ly-modal-window">
+        <a class="ly-close" href="" ng-click="view.settings=false">×</a>
+        <div class="ly-form">
+          <div class="ly-header">
+            <p class="ly-name">Settings</p>
+          </div>
+          <div class="ly-fields">
+            <div class="ly-field">
+              <p class="ly-description">ID</p>
+              <input class="ly-value" type="text" disabled ng-model="device.id"></input>
+            </div>
+            <div class="ly-field">
+              <p class="ly-description">Secret</p>
+              <input class="ly-value" type="text" disabled ng-model="privates.secret"></input>
+            </div>
+            <div class="ly-field">
+              <p class="ly-description">Type</p>
+              <p class="ly-value">
+                <a href="http://types.lelylan.com/types/{{type.id}}" target="blank">{{type.name}}</a>
+              </p>
+            </div>
+            <div class="ly-field ly-editable">
+              <p class="ly-description">Name</p>
+              <input class="ly-value" type="text" placeholder="Device name" ng-model="device.name"></input>
+            </div>
+            <div class="ly-field ly-editable">
+              <p class="ly-description">Physical URI <a href="http://dev.lelylan.com/makers#mqtt-set-the-physical-uri" target="blank">(what is this?)</a></p>
+              <input class="ly-value" type="text" placeholder="http://nodes.lelylan.com/mqtt/devices/1" ng-model="device.phisical.uri"></input>
+            </div>
+          </div>
+          <div class="ly-actions">
+            <a class="ly-button ly-update">save</a>
+            <a class="ly-button ly-delete">delete</a>
+          </div>
+        </div>
       </div>
     </div>
 

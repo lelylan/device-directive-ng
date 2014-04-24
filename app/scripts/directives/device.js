@@ -50,6 +50,9 @@ angular.module('lelylan.directives.device.directive').directive('device', [
      * CONFIGURATIONS
      */
 
+    // settings view
+    scope.view = { settings: false, history: false };
+
     // activates the loading phase
     scope.loading = true;
 
