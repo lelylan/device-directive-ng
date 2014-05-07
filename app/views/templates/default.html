@@ -45,7 +45,7 @@
       <!-- Top menu -->
 
       <ul class="ly-menu">
-        <li><a href="#" ng-click="view.path='/settings'">Settings</a></li>
+        <li><a class="ly-menu-settings" href="#" ng-click="view.path='/settings'">Settings</a></li>
       </ul>
 
     </div>
@@ -165,25 +165,25 @@
             <div class="ly-fields">
               <div class="ly-field">
                 <p class="ly-description">ID</p>
-                <input class="ly-value" type="text" disabled ng-model="device.id"></input>
+                <input class="ly-value ly-id" type="text" disabled ng-model="device.id"></input>
               </div>
               <div class="ly-field">
                 <p class="ly-description">Secret</p>
-                <input class="ly-value" type="text" disabled ng-model="privates.secret"></input>
+                <input class="ly-value ly-secret" type="text" disabled ng-model="privates.secret"></input>
               </div>
               <div class="ly-field">
                 <p class="ly-description">Type</p>
                 <p class="ly-value">
-                <a href="http://types.lelylan.com/types/{{type.id}}" target="blank">{{type.name}}</a>
+                <a class="ly-type" href="http://types.lelylan.com/types/{{type.id}}" target="blank">{{type.name}}</a>
                 </p>
               </div>
               <div class="ly-field ly-editable">
                 <p class="ly-description">Name</p>
-                <input class="ly-value" type="text" placeholder="Device name" ng-model="device.name"></input>
+                <input class="ly-value ly-name" type="text" placeholder="Device name" ng-model="device.name"></input>
               </div>
               <div class="ly-field ly-editable">
                 <p class="ly-description">Physical URI <a href="http://dev.lelylan.com/makers#mqtt-set-the-physical-uri" target="blank">(what is this?)</a></p>
-                <input class="ly-value" type="text" placeholder="http://nodes.lelylan.com/mqtt/devices/1" ng-model="device.physical.uri"></input>
+                <input class="ly-value ly-physical" type="text" placeholder="http://nodes.lelylan.com/mqtt/devices/1" ng-model="device.physical.uri"></input>
               </div>
             </div>
             <div class="ly-actions">

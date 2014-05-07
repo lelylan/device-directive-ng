@@ -41,7 +41,8 @@
     "karma-jasmine": "~0.2.2",
     "karma-phantomjs-launcher": "~0.1.2",
     "karma-chrome-launcher": "~0.1.2",
-    "karma-coverage": "~0.2.1"
+    "karma-coverage": "~0.2.1",
+    "grunt-protractor-runner": "~0.2.4"
   },
   "engines": {
     "node": ">=0.8.0"
