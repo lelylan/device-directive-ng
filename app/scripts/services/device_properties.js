@@ -68,7 +68,7 @@ client.factory('DeviceProperties', ['Device', 'Utils', function(Device, Utils) {
     var device = new Device({ id: scope.device.id, properties: properties});
     device.$properties({}, function() {
       scope.device = device;
-      scope.initialize();
+      service.extend(scope);
     });
   }
 
@@ -83,6 +83,7 @@ client.factory('DeviceProperties', ['Device', 'Utils', function(Device, Utils) {
       var property = Utils.getResource(resource.id, scope.device.properties)
       property.pending  = true;
       property.expected = resource.expected;
+      property.value    = resource.expected;
     });
   }
 
