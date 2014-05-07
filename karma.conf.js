@@ -64,12 +64,27 @@ module.exports = function(config) {
     plugins: [
       'karma-jasmine',
       'karma-phantomjs-launcher',
-      'karma-ng-html2js-preprocessor'
+      'karma-ng-html2js-preprocessor',
+      'karma-coverage'
     ],
 
 
     // Preprocessor for converting HTML files to AngularJS templates
-    preprocessors: { 'app/views/**/*.html': ['html2js'] },
+    preprocessors: {
+      'app/views/**/*.html': ['html2js'],
+      'app/scripts/**/*.js': ['coverage']
+    },
+
+    // add coverage to reporters
+    reporters: ['progress', 'coverage'],
+
+    // tell karma how you want the coverage results
+    coverageReporter: {
+      reporters:[
+        {type: 'html', dir:'coverage/'},
+        {type: 'text-summary'}
+      ],
+    },
 
     // set the path to use to search the template and set the templates module to
     // load all templates at once

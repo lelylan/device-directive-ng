@@ -30,3 +30,6 @@ app/bower_components
 
 # Dist
 dist/
+
+# Coverage
+coverage/
