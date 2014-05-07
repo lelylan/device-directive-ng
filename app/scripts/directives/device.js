@@ -56,6 +56,11 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     // template setting
     scope.template = attrs.template || 'views/templates/default.html';
 
+    // structure settings
+    scope.hasStatus    = true;
+    scope.hasFunctions = true;
+
+
 
     /*
      * DYNAMIC LAYOUT
@@ -120,10 +125,11 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     }
 
 
-    /* completes the loading phase and starts the initialization */
+    /* completes the loading phase and starts with the initialization */
     var loadingCompleted = function() {
+      visualize();
       initialize();
-      scope.view.path = 'default';
+      scope.view.path = '/default';
     }
 
 
@@ -131,6 +137,13 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     /*
      * FEATURES
      */
+
+    /* sensor or device visualization */
+    var visualize = function() {
+      scope.hasStatus    = (scope.type.statuses.length  != 0)
+      scope.hasFunctions = (scope.type.functions.length != 0)
+    };
+
 
     /* Initialization */
     var initialize = function() {

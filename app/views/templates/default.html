@@ -29,7 +29,7 @@
   <!--  Device Content  -->
   <!-- ---------------- -->
 
-  <div class="ly-content" ng-class="{'ly-animation': view.path=='default'}" ng-if="view.path!='/loading' && view.path!='/message-deleted'">
+  <div class="ly-content" ng-class="{'ly-animation': view.path=='/default'}" ng-if="view.path!='/loading' && view.path!='/message-deleted'">
 
 
     <!-- ------------- -->
@@ -52,7 +52,7 @@
 
     <!-- Device status -->
 
-    <div class="ly-status" ng-click="execute(status.function)">
+    <div class="ly-status" ng-if="hasStatus" ng-click="execute(status.function)">
 
       <!-- Default function button -->
 
@@ -63,7 +63,7 @@
       <!-- Description -->
 
       <div class="ly-description">
-        <p class="ly-name">{{status.name}}</p>
+        <p class="ly-name">{{status.name || '-'}}</p>
         <p class="ly-extras"><span am-time-ago="device.updated_at"></span> from {{device.updated_from}}</p>
       </div>
     </div>
@@ -73,7 +73,7 @@
     <!-- Device functions -->
     <!-- ---------------- -->
 
-    <div class="ly-functions">
+    <div class="ly-functions" ng-if="hasFunctions">
       <div ng-repeat="function in functions">
         <div class="ly-function ly-function-{{function.id}}" ng-click="execute(function)">
 
@@ -105,7 +105,7 @@
                     <span>Set {{property.name | lowercase}}</span>
                     <span ng-if="property.type=='range'">to {{property.expected}}</span>
                   </p>
-                  <input class="ly-value"
+                  <input class="ly-value ly-{{property.type}}"
                     type="{{property.type}}"
                     min="{{property.range.min}}"
                     max="{{property.range.max}}"

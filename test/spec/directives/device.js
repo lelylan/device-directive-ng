@@ -57,8 +57,8 @@ describe('<device>', function() {
       scope = element.scope().$$childTail;
     })
 
-    it('sets pending to true', function() {
-      expect(scope.loading).toBe(true)
+    it('sets view.paht to /loading', function() {
+      expect(scope.view.path).toBe('/loading')
     });
   })
 
@@ -168,8 +168,8 @@ describe('<device>', function() {
         scope = element.scope().$$childTail;
       })
 
-      it('sets pending to false', function() {
-        expect(scope.loading).toBe(false);
+      it('sets view.path to /default', function() {
+        expect(scope.view.path).toBe('/default');
       });
     });
   });

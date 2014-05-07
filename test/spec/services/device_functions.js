@@ -35,11 +35,11 @@ describe('DeviceFunction', function() {
       });
 
       it('copies the type functions in the scope', function() {
-        expect(scope.functions.length).toBe(3);
+        expect(scope.functions.length).toBe(4);
       });
 
       it('calls #setForm method for each function', function() {
-        expect(DeviceFunction.setForm.calls.count()).toBe(3);
+        expect(DeviceFunction.setForm.calls.count()).toBe(4);
       });
     });
 
@@ -51,6 +51,10 @@ describe('DeviceFunction', function() {
         spyOn(DeviceFunction, 'setFunctionToFill');
         spyOn(DeviceFunction, 'setExpectedProperties');
         spyOn(DeviceFunction, 'extendFunctionProperties');
+      });
+
+      beforeEach(function() {
+        _function = scope.type.functions[0];
       });
 
       beforeEach(function() {
@@ -168,7 +172,7 @@ describe('DeviceFunction', function() {
       });
 
       it('updates the intensity expected value', function() {
-        expect(_function.properties[1].expected).toBe('0.0');
+        expect(_function.properties[1].expected).toBe('0');
       });
     });
 

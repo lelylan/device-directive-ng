@@ -94,7 +94,7 @@ describe('DeviceStatuses', function() {
       describe('with matching pending & values', function() {
 
         beforeEach(function() {
-          statusProperty = { id: '2', pending: false, values: ['0.0'], ranges: [] };
+          statusProperty = { id: '2', pending: false, values: ['0'], ranges: [] };
         });
 
         beforeEach(function() {
@@ -124,7 +124,7 @@ describe('DeviceStatuses', function() {
       describe('with matching pending & values & range', function() {
 
         beforeEach(function() {
-          statusProperty = { id: '2', pending: false, values: ['0.0'], ranges: [{ min: 0, max: 20 }] };
+          statusProperty = { id: '2', pending: false, values: ['0'], ranges: [{ min: 0, max: 20 }] };
         });
 
         beforeEach(function() {

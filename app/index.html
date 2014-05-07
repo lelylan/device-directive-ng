@@ -70,8 +70,10 @@
       app.run(function($httpBackend) {
         jasmine.getFixtures().fixturesPath = 'spec/fixtures';
         var device   = JSON.parse(readFixtures('device.json'));
-        var privates = JSON.parse(readFixtures('privates.json'));
         var type     = JSON.parse(readFixtures('type.json'));
+        <!--var device   = JSON.parse(readFixtures('device-sensor.json'));-->
+        <!--var type     = JSON.parse(readFixtures('type-sensor.json'));-->
+        var privates = JSON.parse(readFixtures('privates.json'));
 
         $httpBackend.when('GET', /\/templates\//).passThrough();
         $httpBackend.whenGET('http://api.lelylan.com/devices/1').respond(device);

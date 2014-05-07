@@ -350,6 +350,7 @@ div.ly-device {
 .ly-form .ly-fields {
   padding: 0.6em 0em;
   padding-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .ly-form .ly-field {
@@ -379,6 +380,15 @@ div.ly-device {
 
 .ly-form .ly-field input[type="range"] {
   width: 95%
+}
+
+.ly-form .ly-field .ly-color {
+  height: 1.8em;
+  margin-left: 0.4em !important;
+}
+
+.ly-form .ly-field .ly-range {
+  margin-top: 2.3em !important;
 }
 
 
@@ -525,11 +535,11 @@ input:focus {
 }
 
 .ly-settings .ly-actions .ly-disabled {
-  background-color: #ccc;
+  background-color: #ccc !important;
 }
 
 .ly-settings .ly-actions .ly-disabled:hover {
-  background-color: #ccc;
+  background-color: #ccc !important;
   cursor: not-allowed;
 }
 
