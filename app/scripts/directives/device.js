@@ -128,7 +128,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     /* completes the loading phase and starts with the initialization */
     var loadingCompleted = function() {
       visualize();
-      initialize();
+      scope.initialize();
       scope.view.path = '/default';
     }
 
@@ -146,7 +146,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
 
     /* Initialization */
-    var initialize = function() {
+    scope.initialize = function() {
       DeviceProperties.extend(scope);
       DeviceFunction.setForms(scope);
       DeviceStatuses.set(scope);
@@ -162,7 +162,6 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     /* Properties update */
     scope.updateProperties = function(properties) {
       DeviceProperties.update(scope, properties);
-      initialize();
     }
 
 

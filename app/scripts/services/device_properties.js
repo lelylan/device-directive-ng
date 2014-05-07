@@ -68,6 +68,7 @@ client.factory('DeviceProperties', ['Device', 'Utils', function(Device, Utils) {
     var device = new Device({ id: scope.device.id, properties: properties});
     device.$properties({}, function() {
       scope.device = device;
+      scope.initialize();
     });
   }
 
