@@ -9,7 +9,7 @@ exports.config = {
   },
 
   specs: [
-    'test/integrations/device.js'
+    'test/integrations/device-settings.js'
   ],
 
   baseUrl: 'http://localhost:9000',
