@@ -8,7 +8,7 @@ body {
 }
 
 div.center {
-  width: 300px;
+  width: 19em;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -238,7 +238,7 @@ div.ly-device {
 }
 
 .ly-status .ly-description {
-  margin-left: 3.7em;
+  margin-left: 3.5em;
   letter-spacing: 0.5px;
 }
 
@@ -268,7 +268,7 @@ div.ly-device {
 }
 
 .ly-function {
-  padding: 0.3em 1em;
+  padding: 0.3em 1em 0.3em 1.1em;
   padding-bottom: 0.6em;
   cursor: pointer;
 }
@@ -406,7 +406,7 @@ div.ly-device {
 }
 
 .ly-property {
-  padding: 0.3em 1.2em;
+  padding: 0.3em 1.2em 0.3em 1.3em;
   clear: both;
 }
 
