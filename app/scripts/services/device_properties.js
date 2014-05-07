@@ -81,6 +81,7 @@ client.factory('DeviceProperties', ['Device', 'Utils', function(Device, Utils) {
   service.optimisticProperties = function(scope, properties) {
     _.each(properties, function(resource) {
       var property = Utils.getResource(resource.id, scope.device.properties)
+      scope.device.updated_at = new Date();
       property.pending  = true;
       property.expected = resource.expected;
       property.value    = resource.expected;

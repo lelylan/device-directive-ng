@@ -67,7 +67,7 @@
     <script>
       var app = angular.module('app', ['lelylan.directives.device', 'ngMockE2E']);
 
-      // add a delay to the $httpBackend responses
+      // Add a delay to the $httpBackend responses
       app.config(function($provide) {
         $provide.decorator('$httpBackend', function($delegate) {
           var proxy = function(method, url, data, callback, headers) {
@@ -76,7 +76,7 @@
               _arguments = arguments;
               setTimeout(function() {
                 callback.apply(_this, _arguments);
-              }, 700);
+              }, 500);
             };
             return $delegate.call(this, method, url, data, interceptor, headers);
           };
