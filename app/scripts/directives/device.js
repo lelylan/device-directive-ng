@@ -173,9 +173,11 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     }
 
     /* Delete device */
-    scope.destroy = function() {
-      scope.view.path = '/message-deleted';
-      scope.device.$delete()
+    scope.destroy = function(confirm) {
+      if (confirm == scope.device.name) {
+        scope.view.path = '/message-deleted';
+        scope.device.$delete()
+      }
     }
 
   };

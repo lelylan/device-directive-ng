@@ -24,8 +24,8 @@ module.exports = function(config) {
       'app/views/**/*.html',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
-      'test/spec/**/*.js',
-
+      'test/spec/directives/**/*.js',
+      'test/spec/services/**/*.js',
       { pattern: 'test/spec/fixtures/*.json', watched: true, served: true, included: false }
     ],
 
@@ -81,8 +81,8 @@ module.exports = function(config) {
     // tell karma how you want the coverage results
     coverageReporter: {
       reporters:[
-        {type: 'html', dir:'coverage/'},
-        {type: 'text-summary'}
+        { type: 'html', dir:'coverage/' },
+        //{type: 'text-summary'}
       ],
     },
 

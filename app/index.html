@@ -101,6 +101,7 @@
           .respond(function(method, url, data, headers) { return [200,  updateDevice(data), {}]; });
         $httpBackend.whenPUT('http://api.lelylan.com/devices/1/properties')
           .respond(function(method, url, data, headers) { return [200,  updateDeviceProperties(data), {}]; });
+        $httpBackend.whenDELETE('http://api.lelylan.com/devices/1').respond(device);
         $httpBackend.whenGET('http://api.lelylan.com/types/1').respond(type);
         $httpBackend.whenGET('http://api.lelylan.com/devices/1/privates').respond(privates);
 

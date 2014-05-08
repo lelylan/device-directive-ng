@@ -273,7 +273,7 @@ describe('<device>', function() {
 
       it('makes the request', function() {
         $httpBackend.expect('DELETE', 'http://api.lelylan.com/devices/1');
-        scope.destroy()
+        scope.destroy('Closet dimmer');
         $httpBackend.flush();
       });
     });

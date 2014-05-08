@@ -17,15 +17,31 @@ describe('<device>', function() {
 
       describe('with the right name', function() {
 
-        beforeEach(function() {
-          $('.ly-delete .ly-form .ly-name').sendKeys('Closet dimmer');
-          $('.ly-delete .ly-delete-button').click();
+        describe('with the delete button', function() {
+
+          beforeEach(function() {
+            $('.ly-delete .ly-form .ly-name').sendKeys('Closet dimmer');
+            $('.ly-delete .ly-delete-button').click();
+          });
+
+          it('deletes the device', function() {
+            expect($('.ly-delete').isPresent()).toBe(false);
+            expect($('.ly-generic-message').isPresent()).toBe(true);
+            expect($('.ly-generic-message .ly-description').getText()).toEqual('Device deleted')
+          });
         });
 
-        it('deletes the device', function() {
-          expect($('.ly-delete').isPresent()).toBe(false);
-          expect($('.ly-generic-message').isPresent()).toBe(true);
-          expect($('.ly-generic-message .ly-description').getText()).toEqual('Device deleted')
+        describe('with the enter key', function() {
+
+          beforeEach(function() {
+            $('.ly-delete .ly-form .ly-name').sendKeys('Closet dimmer', protractor.Key.ENTER);
+          });
+
+          it('deletes the device', function() {
+            expect($('.ly-delete').isPresent()).toBe(false);
+            expect($('.ly-generic-message').isPresent()).toBe(true);
+            expect($('.ly-generic-message .ly-description').getText()).toEqual('Device deleted')
+          });
         });
       });
 

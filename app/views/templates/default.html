@@ -209,7 +209,7 @@
           <div class="ly-header">
             <p class="ly-name">Delete</p>
           </div>
-          <form class="ly-form">
+          <form class="ly-form" ng-submit="destroy(confirm)">
             <div>
               <p class="ly-info">
               Deleting your device is irreversible.
@@ -218,12 +218,11 @@
             </div>
 
             <div class="ly-field ly-editable">
-              <input class="ly-value ly-name" type="text" placeholder="Device name" ng-model="confirm"></input>
+              <input class="ly-value ly-name" type="text" autofocus placeholder="Device name" ng-model="confirm"></input>
             </div>
             <div class="ly-actions">
               <a class="ly-button ly-cancel-button" ng-click="view.path='/default'">cancel</a>
-              <a class="ly-button ly-delete-button ly-disabled" ng-if="confirm!=device.name">delete</a>
-              <a class="ly-button ly-delete-button" ng-click="destroy()" ng-if="confirm==device.name">delete</a>
+              <button class="ly-button ly-delete-button" ng-class="{'ly-disabled': confirm!=device.name}">delete</button>
             </div>
           </form>
         </div>
