@@ -9,7 +9,7 @@ exports.config = {
   },
 
   specs: [
-    'test/spec/integrations/device-functions.js'
+    'test/spec/integrations/*.js'
   ],
 
   // bypass the need of a selenium server
