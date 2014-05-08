@@ -54,7 +54,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     scope.view = { path: '/loading' }
 
     // template setting
-    scope.template = attrs.template || 'views/templates/default.html';
+    scope.template = attrs.deviceTemplate || 'views/templates/default.html';
 
     // structure settings
     scope.hasStatus    = true;

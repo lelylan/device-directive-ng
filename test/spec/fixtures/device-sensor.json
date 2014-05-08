@@ -1,12 +1,12 @@
 {
-  "id": "2",
-  "uri": "http://www.example.com/devices/2",
+  "id": "1",
+  "uri": "http://www.example.com/devices/1",
   "name": "Smoke sensor",
   "categories": ["sensor"],
   "pending": false,
   "activated": true,
   "type": {
-    "id": "2",
+    "id": "1",
     "uri": "https://type.lelylan.com/types/sensor"
   },
   "properties": [{

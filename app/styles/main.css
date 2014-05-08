@@ -1,4 +1,3 @@
-
 /*
  * Example page
  */
@@ -416,6 +415,7 @@ div.ly-device {
   height: 1.4em;
   border: 1.5px solid #aaa;
   border-radius: 100%;
+  cursor: default;
 }
 
 .ly-property .ly-description {
@@ -429,6 +429,13 @@ div.ly-device {
   font-size: 0.9em;
 }
 
+.ly-sensor .ly-properties .ly-property {
+  padding-left: 0.8em;
+}
+
+.ly-sensor .ly-properties .ly-description {
+  margin-left: 2.0em;
+}
 
 
 /*

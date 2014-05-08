@@ -4,7 +4,7 @@
 
 describe('<device>', function() {
 
-  var $rootScope, $compile, $location, $httpBackend, $scope, scope = {}, element;
+  var $rootScope, $compile, $location, $timeout, $httpBackend, $scope, scope = {}, element;
   var DeviceFunction, DeviceProperties, DeviceStatuses;
   var device, type, privates;
 
@@ -21,6 +21,7 @@ describe('<device>', function() {
   beforeEach(inject(function($injector) { $httpBackend     = $injector.get('$httpBackend') }));
   beforeEach(inject(function($injector) { $rootScope       = $injector.get('$rootScope') }));
   beforeEach(inject(function($injector) { $compile         = $injector.get('$compile') }));
+  beforeEach(inject(function($injector) { $timeout         = $injector.get('$timeout') }));
   beforeEach(inject(function($injector) { DeviceProperties = $injector.get('DeviceProperties') }));
   beforeEach(inject(function($injector) { DeviceFunction   = $injector.get('DeviceFunction') }));
   beforeEach(inject(function($injector) { DeviceStatuses   = $injector.get('DeviceStatuses') }));
@@ -88,11 +89,11 @@ describe('<device>', function() {
       describe('when the template is defined', function() {
 
         beforeEach(function() {
-          $httpBackend.whenGET('/new.html').respond('');
+          $httpBackend.whenGET('/new.html').respond('<div>Example</div>');
         });
 
         beforeEach(function() {
-          element = angular.element('<device device-id="1" template="/new.html"></div>');
+          element = angular.element('<device device-id="1" device-template="/new.html"></div>');
         });
 
         beforeEach(function() {
@@ -105,6 +106,11 @@ describe('<device>', function() {
 
         it('sets the desired template', function() {
           expect(scope.template).toBe('/new.html');
+        });
+
+        it('sets the new HTML', function() {
+          $httpBackend.flush();
+          expect(element.text()).toBe('Example')
         });
       });
     });

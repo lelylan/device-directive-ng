@@ -75,9 +75,9 @@
         privates = JSON.parse(readFixtures('privates.json'));
 
         $httpBackend.when('GET', /\/templates\//).passThrough();
-        $httpBackend.whenGET('http://api.lelylan.com/devices/2').respond(deviceSensor);
-        $httpBackend.whenGET('http://api.lelylan.com/types/2').respond(typeSensor);
-        $httpBackend.whenGET('http://api.lelylan.com/devices/2/privates').respond(privates);
+        $httpBackend.whenGET('http://api.lelylan.com/devices/1').respond(deviceSensor);
+        $httpBackend.whenGET('http://api.lelylan.com/types/1').respond(typeSensor);
+        $httpBackend.whenGET('http://api.lelylan.com/devices/1/privates').respond(privates);
       });
     </script>
 </body>

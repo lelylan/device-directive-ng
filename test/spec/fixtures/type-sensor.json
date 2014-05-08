@@ -1,6 +1,6 @@
 {
-    "id": "2",
-    "uri": "http://www.example.com/types/2",
+    "id": "1",
+    "uri": "http://www.example.com/types/1",
     "name": "Sensor",
     "description": "Sensor description",
     "categories": ["sensors"],
