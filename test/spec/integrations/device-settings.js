@@ -76,20 +76,7 @@ describe('<device>', function() {
             expect($('.ly-settings-device').isPresent()).toBe(false);
           });
         });
-
-        // TODO this test should work but it does not
-        //describe('with the modal backdrop', function() {
-
-          //beforeEach(function() {
-            //$('.ly-settings .ly-modal-backdrop').click();
-          //});
-
-          //it('closes the settings window', function() {
-            //expect($('.ly-settings').isPresent()).toBe(false);
-          //});
-        //});
       });
-
     });
   });
 });

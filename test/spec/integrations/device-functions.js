@@ -54,20 +54,6 @@ describe('<device>', function() {
             expect($('.ly-function-container:nth-child(4) .ly-function-form').isPresent()).toBe(false);
           });
         });
-
-        // TODO this test should work but it does not
-        //describe('with the modal backdrop', function() {
-
-          //beforeEach(function() {
-            //$('.ly-settings .ly-modal-backdrop').click();
-          //});
-
-          //it('closes the settings window', function() {
-            //expect($('.ly-settings').isPresent()).toBe(false);
-          //});
-        //});
-      });
-
     });
   });
 });
