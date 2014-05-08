@@ -54,6 +54,7 @@ describe('<device>', function() {
             expect($('.ly-function-container:nth-child(4) .ly-function-form').isPresent()).toBe(false);
           });
         });
+      });
     });
   });
 });
