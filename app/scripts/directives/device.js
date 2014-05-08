@@ -130,7 +130,6 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       visualize();
       scope.initialize();
       scope.view.path = '/default';
-      $rootScope.$broadcast('lelylan:device:load', scope.device);
     }
 
 
@@ -170,17 +169,20 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     /* Device update */
     scope.update = function() {
       scope.view.path = '/default';
-      scope.device.$update();
+      scope.device.$update(function(device) {
+        $rootScope.$broadcast('lelylan:device:update', device);
+      });;
     }
 
     /* Delete device */
     scope.destroy = function(confirm) {
       if (confirm == scope.device.name) {
         scope.view.path = '/message-deleted';
-        scope.device.$delete()
+        scope.device.$delete(function(device) {
+          $rootScope.$broadcast('lelylan:device:delete', device);
+        });
       }
     }
-
   };
 
   return definition

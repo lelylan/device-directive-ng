@@ -2,14 +2,17 @@
 
 describe('DeviceProperties', function() {
 
-  var $httpBackend, $httpBackend, properties, payload, result, DeviceProperties, DeviceFunction;
+  var $rootScope, $httpBackend, $httpBackend, properties, payload, result, DeviceProperties, DeviceFunction;
+  var callback, event = jasmine.any(Object);
   var scope = {};
 
   beforeEach(module('lelylan.directives.device'));
 
+  beforeEach(inject(function($injector) { $rootScope       = $injector.get('$rootScope') }));
+  beforeEach(inject(function($injector) { $httpBackend     = $injector.get('$httpBackend') }));
   beforeEach(inject(function($injector) { DeviceProperties = $injector.get('DeviceProperties') }));
   beforeEach(inject(function($injector) { DeviceFunction   = $injector.get('DeviceFunction') }));
-  beforeEach(inject(function($injector) { $httpBackend     = $injector.get('$httpBackend') }));
+  beforeEach(inject(function($injector) { callback         = jasmine.createSpy('callback') }));
 
 
   describe('when executes a function', function() {
@@ -92,7 +95,7 @@ describe('DeviceProperties', function() {
 
       beforeEach(function() {
         expect(scope.device.properties[0].expected).toBe('off');
-      })
+      });
 
       it('makes the request', function() {
         $httpBackend.expect('PUT', 'http://api.lelylan.com/devices/1/properties', payload);
@@ -104,6 +107,19 @@ describe('DeviceProperties', function() {
         DeviceProperties.sendProperties(scope, payload.properties);
         $httpBackend.flush();
         expect(scope.device.properties[0].expected).toBe('on');
+      });
+
+      it('fires the start function event', function() {
+        $rootScope.$on('lelylan:device:function:start', callback);
+        DeviceProperties.sendProperties(scope, payload.properties);
+        expect(callback).toHaveBeenCalledWith(event, scope.device);
+      });
+
+      it('fires the end function event', function() {
+        $rootScope.$on('lelylan:device:function:end', callback);
+        DeviceProperties.sendProperties(scope, payload.properties);
+        $httpBackend.flush();
+        expect(callback).toHaveBeenCalledWith(event, scope.device);
       });
     });
 

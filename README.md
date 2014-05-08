@@ -40,6 +40,18 @@ In this case you'll have to manually install the following libraries.
 
 
 
+## Events
+
+The Device Component fires the following events.
+
+* `lelylan:device:update` - The device is updated.
+* `lelylan:device:delete` - The device is deleted.
+* `lelylan:device:function:start` - A function request is sent.
+* `lelylan:device:function:end` - A function response is received.
+
+All events receives the device JSON representation.
+
+
 ## Contributing
 
 Fork the repo on github and send a pull requests with topic branches.

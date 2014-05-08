@@ -173,10 +173,6 @@ describe('<device>', function() {
       describe('when all requests are resolved', function() {
 
         beforeEach(function() {
-          $rootScope.$on('lelylan:device:load', callback);
-        });
-
-        beforeEach(function() {
           compile($rootScope, $compile);
           $httpBackend.flush();
         })
@@ -188,12 +184,6 @@ describe('<device>', function() {
         it('sets view.path to /default', function() {
           expect(scope.view.path).toBe('/default');
         });
-
-        it('fires the ly:device:load event', function() {
-          var event = jasmine.any(Object);
-          expect(callback).toHaveBeenCalledWith(event, scope.device);
-        });
-
       });
     });
 
@@ -277,7 +267,43 @@ describe('<device>', function() {
     });
 
 
+    describe('#update', function() {
+
+      beforeEach(function() {
+        $rootScope.$on('lelylan:device:update', callback);
+      });
+
+      beforeEach(function() {
+        $httpBackend.whenPUT('http://api.lelylan.com/devices/1').respond(device);
+      });
+
+      // block needed to populate scope.device
+      beforeEach(function() {
+        compile($rootScope, $compile);
+        scope = element.scope().$$childTail;
+        $httpBackend.flush();
+      });
+
+      it('makes the request', function() {
+        $httpBackend.expect('PUT', 'http://api.lelylan.com/devices/1');
+        scope.update();
+        $httpBackend.flush();
+      });
+
+      it('fires the update device event', function() {
+        scope.update();
+        $httpBackend.flush();
+        var event = jasmine.any(Object);
+        expect(callback).toHaveBeenCalledWith(event, scope.device);
+      });
+    });
+
+
     describe('#destroy', function() {
+
+      beforeEach(function() {
+        $rootScope.$on('lelylan:device:delete', callback);
+      });
 
       beforeEach(function() {
         $httpBackend.whenDELETE('http://api.lelylan.com/devices/1').respond(device);
@@ -294,6 +320,13 @@ describe('<device>', function() {
         $httpBackend.expect('DELETE', 'http://api.lelylan.com/devices/1');
         scope.destroy('Closet dimmer');
         $httpBackend.flush();
+      });
+
+      it('fires the delete device event', function() {
+        scope.destroy('Closet dimmer');
+        $httpBackend.flush();
+        var event = jasmine.any(Object);
+        expect(callback).toHaveBeenCalledWith(event, scope.device);
       });
     });
   });

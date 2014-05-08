@@ -2,7 +2,7 @@
 
 var client = angular.module('lelylan.directives.device.services.properties', [])
 
-client.factory('DeviceProperties', ['Device', 'Utils', function(Device, Utils) {
+client.factory('DeviceProperties', ['$rootScope', 'Device', 'Utils', function($rootScope, Device, Utils) {
 
   var service = {};
 
@@ -66,9 +66,12 @@ client.factory('DeviceProperties', ['Device', 'Utils', function(Device, Utils) {
 
   service.sendProperties = function(scope, properties) {
     var device = new Device({ id: scope.device.id, properties: properties});
+    $rootScope.$broadcast('lelylan:device:function:start', scope.device);
+
     device.$properties({}, function() {
       scope.device = device;
       service.extend(scope);
+      $rootScope.$broadcast('lelylan:device:function:end', scope.device);
     });
   }
 
