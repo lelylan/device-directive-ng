@@ -57,7 +57,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     scope.template = attrs.deviceTemplate || 'views/templates/default.html';
 
     // structure settings
-    scope.hasStatus    = true;
+    scope.hasStatuses  = true;
     scope.hasFunctions = true;
 
 

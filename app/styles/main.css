@@ -252,6 +252,19 @@ div.ly-device {
   color: #888;
 }
 
+.ly-status-disabled {
+  cursor: default;
+}
+
+.ly-status-disabled .ly-description .ly-name {
+  color: #ccc;
+}
+
+.ly-status-disabled .ly-execute .ly-button {
+  border: 2px solid #ccc;
+  cursor: default !important;
+}
+
 
 /*
  * Function

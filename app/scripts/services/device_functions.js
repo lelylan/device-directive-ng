@@ -34,12 +34,14 @@ client.factory('DeviceFunction', ['Device', 'Utils', 'DeviceProperties', functio
   // TODO change visibleForm with isVisibleForm
   // TODO fix the thing that we need to use referenceScope. We should not
   service.execute = function(_function) {
-    if (_function.toFill == false) {
-      referenceScope.updateProperties(_function.properties)
-    } else {
-      if (_function.visibleForm == true)
-        referenceScope.updateProperties(_function.properties);
-      _function.visibleForm = !_function.visibleForm;
+    if (_function ) {
+      if (_function.toFill == false) {
+        referenceScope.updateProperties(_function.properties)
+      } else {
+        if (_function.visibleForm == true)
+          referenceScope.updateProperties(_function.properties);
+        _function.visibleForm = !_function.visibleForm;
+      }
     }
   }
 

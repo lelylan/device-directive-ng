@@ -52,12 +52,12 @@
 
     <!-- Device status -->
 
-    <div class="ly-status" ng-if="hasStatus" ng-click="execute(status.function)">
+    <div class="ly-status" ng-class="{'ly-status-disabled': !status.function}" ng-if="hasStatuses" ng-click="execute(status.function)">
 
       <!-- Default function button -->
 
       <div class="ly-execute">
-        <button class="ly-button" ng-class="{ 'ly-pulse': device.pending }"></button>
+        <button class="ly-button" ng-class="{'ly-pulse': device.pending}"></button>
       </div>
 
       <!-- Description -->
