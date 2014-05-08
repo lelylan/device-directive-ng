@@ -41,6 +41,33 @@ describe('<device>', function() {
           expect($('.ly-property:nth-child(6) .ly-expected').getText()).toBe('http://example.com/updated');
         });
       });
+
+      describe('when closes', function() {
+
+        describe('with the close button', function() {
+
+          beforeEach(function() {
+            $('.ly-function-container:nth-child(4) .ly-close').click();
+          });
+
+          it('closes the settings window', function() {
+            expect($('.ly-function-container:nth-child(4) .ly-function-form').isPresent()).toBe(false);
+          });
+        });
+
+        // TODO this test should work but it does not
+        //describe('with the modal backdrop', function() {
+
+          //beforeEach(function() {
+            //$('.ly-settings .ly-modal-backdrop').click();
+          //});
+
+          //it('closes the settings window', function() {
+            //expect($('.ly-settings').isPresent()).toBe(false);
+          //});
+        //});
+      });
+
     });
   });
 });
