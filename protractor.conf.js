@@ -9,11 +9,11 @@ exports.config = {
   },
 
   specs: [
-    'test/integrations/device-settings.js'
+    'test/spec/integrations/device-functions.js'
   ],
 
   // bypass the need of a selenium server
-  //chromeOnly: true,
+  chromeOnly: true,
 
   baseUrl: 'http://localhost:9000',
 

@@ -15,7 +15,6 @@ describe('<device>', function() {
 
     describe('when confirms the action', function() {
 
-
       describe('with the right name', function() {
 
         beforeEach(function() {
