@@ -7,6 +7,7 @@ describe('<device>', function() {
   var $rootScope, $compile, $location, $timeout, $httpBackend, $scope, scope = {}, element;
   var DeviceFunction, DeviceProperties, DeviceStatuses;
   var device, type, privates;
+  var callback;
 
   var compile = function($rootScope, $compile) {
     $scope = $rootScope;
@@ -25,6 +26,8 @@ describe('<device>', function() {
   beforeEach(inject(function($injector) { DeviceProperties = $injector.get('DeviceProperties') }));
   beforeEach(inject(function($injector) { DeviceFunction   = $injector.get('DeviceFunction') }));
   beforeEach(inject(function($injector) { DeviceStatuses   = $injector.get('DeviceStatuses') }));
+  beforeEach(inject(function($injector) { callback         = jasmine.createSpy('callback') }));
+
 
   beforeEach(function() {
     element = angular.element('<device device-id="1"></div>');
@@ -62,7 +65,7 @@ describe('<device>', function() {
         scope = element.scope().$$childTail;
       })
 
-      it('sets view.paht to /loading', function() {
+      it('sets view.path to /loading', function() {
         expect(scope.view.path).toBe('/loading')
       });
     })
@@ -170,6 +173,10 @@ describe('<device>', function() {
       describe('when all requests are resolved', function() {
 
         beforeEach(function() {
+          $rootScope.$on('lelylan:device:load', callback);
+        });
+
+        beforeEach(function() {
           compile($rootScope, $compile);
           $httpBackend.flush();
         })
@@ -181,6 +188,12 @@ describe('<device>', function() {
         it('sets view.path to /default', function() {
           expect(scope.view.path).toBe('/default');
         });
+
+        it('fires the ly:device:load event', function() {
+          var event = jasmine.any(Object);
+          expect(callback).toHaveBeenCalledWith(event, scope.device);
+        });
+
       });
     });
 

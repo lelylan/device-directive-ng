@@ -130,6 +130,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       visualize();
       scope.initialize();
       scope.view.path = '/default';
+      $rootScope.$broadcast('lelylan:device:load', scope.device);
     }
 
 
