@@ -7,27 +7,33 @@ describe('<device>', function() {
 
   describe('settings', function() {
 
-    describe('when open', function() {
+    it('does not show the settings', function() {
+      expect($('.ly-settings').isPresent()).toBe(false);
+    });
 
-      /* shows settings */
+
+    describe('when opens', function() {
 
       beforeEach(function() {
         $('.ly-menu .ly-menu-settings').click();
       });
 
-      it('shows the settings window', function() {
-        expect($('.ly-settings-device').isPresent()).toBe(true);
+
+      describe('when shows the settings', function() {
+
+        it('shows the settings window', function() {
+          expect($('.ly-settings-device').isPresent()).toBe(true);
+        });
+
+        it('shows the settings info', function() {
+          expect($('.ly-settings .ly-form .ly-id').getAttribute('value')).toBe('1');
+          expect($('.ly-settings .ly-form .ly-secret').getAttribute('value')).toBe('secret');
+          expect($('.ly-settings .ly-form .ly-type').getText()).toBe('Dimmer');
+          expect($('.ly-settings .ly-form .ly-name').getAttribute('value')).toBe('Closet dimmer');
+          expect($('.ly-settings .ly-form .ly-physical').getAttribute('value')).toBe('https://node.lelylan.com/mqtt/devices/1');
+        });
       });
 
-      it('shows the settings info', function() {
-        expect($('.ly-settings .ly-form .ly-id').getAttribute('value')).toBe('1');
-        expect($('.ly-settings .ly-form .ly-secret').getAttribute('value')).toBe('secret');
-        expect($('.ly-settings .ly-form .ly-type').getText()).toBe('Dimmer');
-        expect($('.ly-settings .ly-form .ly-name').getAttribute('value')).toBe('Closet dimmer');
-        expect($('.ly-settings .ly-form .ly-physical').getAttribute('value')).toBe('https://node.lelylan.com/mqtt/devices/1');
-      });
-
-      /* updates device settings */
 
       describe('when updates the name', function() {
 
@@ -35,7 +41,7 @@ describe('<device>', function() {
 
           beforeEach(function() {
             $('.ly-settings .ly-form .ly-name').sendKeys(' updated');
-            $('.ly-settings .ly-update').click();
+            $('.ly-settings .ly-update-button').click();
           });
 
           it('updates the device', function() {
@@ -57,32 +63,8 @@ describe('<device>', function() {
         });
       });
 
-      /* delete device settings */
 
-      describe('when deletes the device', function() {
-
-        describe('with the confermation name', function() {
-
-          beforeEach(function() {
-          });
-
-          it('updates the device', function() {
-          });
-        });
-
-        describe('without the confirmation name', function() {
-
-          beforeEach(function() {
-          });
-
-          it('updates the device', function() {
-          });
-        });
-      });
-
-      /* closes settings */
-
-      describe('when gets closed', function() {
+      describe('when closes', function() {
 
         describe('with the close button', function() {
 
@@ -107,6 +89,7 @@ describe('<device>', function() {
           //});
         //});
       });
+
     });
   });
 });

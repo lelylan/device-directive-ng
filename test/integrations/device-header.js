@@ -11,9 +11,5 @@ describe('<device>', function() {
       var name = $('.ly-header .ly-name').getText();
       expect(name).toEqual('Closet dimmer');
     });
-
-    it('does not show the settings', function() {
-      expect($('.ly-settings').isPresent()).toBe(false);
-    });
   });
 });

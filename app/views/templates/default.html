@@ -5,7 +5,7 @@
   <!--  Deleted message  -->
   <!-- ----------------- -->
 
-  <div class="ly-message ly-loading ly-animation-fast" ng-if="view.path=='/message-deleted'">
+  <div class="ly-message ly-generic-message ly-animation-fast" ng-if="view.path=='/message-deleted'">
     <p class="ly-description">Device deleted</p>
     <p class="ly-description-sub">Reload the page to update the view</p>
   </div>
@@ -187,8 +187,8 @@
               </div>
             </div>
             <div class="ly-actions">
-              <button class="ly-button ly-update">save</button>
-              <a class="ly-button ly-delete" ng-click="view.path='/delete'">delete</a>
+              <button class="ly-button ly-update-button">save</button>
+              <a class="ly-button ly-delete-button" ng-click="view.path='/delete'">delete</a>
             </div>
           </form>
         </div>
@@ -200,7 +200,7 @@
     <!-- Device Delete -->
     <!-- ------------- -->
 
-    <div class="ly-settings ly-modal ly-animation-fast" ng-if="view.path=='/delete'">
+    <div class="ly-settings ly-delete ly-modal ly-animation-fast" ng-if="view.path=='/delete'">
       <div class="ly-modal-backdrop" ng-click="view.path='/default'"></div>
       <div class="ly-modal-window">
         <a class="ly-close" href="" ng-click="view.path='/default'">×</a>
@@ -217,12 +217,12 @@
             </div>
 
             <div class="ly-field ly-editable">
-              <input class="ly-value" type="text" placeholder="Device name" ng-model="confirm"></input>
+              <input class="ly-value ly-name" type="text" placeholder="Device name" ng-model="confirm"></input>
             </div>
             <div class="ly-actions">
-              <a class="ly-button ly-cancel" ng-click="view.path='/default'">cancel</a>
-              <a class="ly-button ly-delete ly-disabled" ng-if="confirm!=device.name">delete</a>
-              <a class="ly-button ly-delete" ng-click="destroy()" ng-if="confirm==device.name">delete</a>
+              <a class="ly-button ly-cancel-button" ng-click="view.path='/default'">cancel</a>
+              <a class="ly-button ly-delete-button ly-disabled" ng-if="confirm!=device.name">delete</a>
+              <a class="ly-button ly-delete-button" ng-click="destroy()" ng-if="confirm==device.name">delete</a>
             </div>
           </form>
         </div>

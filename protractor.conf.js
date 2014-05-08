@@ -12,6 +12,9 @@ exports.config = {
     'test/integrations/device-settings.js'
   ],
 
+  // bypass the need of a selenium server
+  //chromeOnly: true,
+
   baseUrl: 'http://localhost:9000',
 
   jasmineNodeOpts: {
