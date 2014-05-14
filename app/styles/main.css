@@ -148,6 +148,7 @@ div.center {
 }
 
 
+
 /*
  * Device loading section
  */
@@ -235,8 +236,14 @@ div.center {
 
 .ly-status .ly-execute .ly-spinner {
   position: absolute;
-  top: 0.75em;
+  top: 0.65em;
   left: 0.5em;
+}
+
+.ly-status .ly-execute .ly-spinner > div {
+  width: 6px;
+  height: 6px;
+  background-color: #239cbb;
 }
 
 .ly-status .ly-description {
@@ -421,6 +428,7 @@ div.center {
 }
 
 .ly-property {
+  position: relative;
   padding: 0.3em 1.2em 0.3em 1.3em;
   clear: both;
 }
@@ -595,24 +603,3 @@ input:focus {
 .ly-animation-fast.ng-enter.ng-enter-active {
   opacity:1;
 }
-
-
-/*
- * Button animation
- */
-
-.ly-pulse {
-  -webkit-animation-name: ly-pulse;
-  -webkit-animation-duration: 1.6s;
-  -webkit-animation-iteration-count: infinite;
-  animation-name: ly-pulse;
-  duration: 1.6s;
-  animation-iteration-count: infinite;
-}
-
-@-webkit-keyframes ly-pulse {
-  from { opacity: 0.3; }
-  50%  { opacity: 1.0; }
-  to   { opacity: 0.3; }
-}
-
