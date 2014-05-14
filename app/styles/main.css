@@ -448,9 +448,10 @@ div.center {
   letter-spacing: 0.3px;
 }
 
-.ly-property .ly-name {
+.ly-property  .ly-description .ly-name {
   color: #aaa;
-  font-size: 0.9em;
+  text-transform: uppercase;
+  font-size: 0.7em;
 }
 
 /*.ly-sensor .ly-properties .ly-property {*/

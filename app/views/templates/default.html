@@ -148,8 +148,9 @@
       <div class="ly-property ly-property-{{property.id}}" ng-repeat="property in device.properties">
         <button class="ly-button"></button>
         <p class="ly-description">
-          <span class="ly-name">{{property.name}} is</span>
-          <span class="ly-expected">{{property.expected}}</span>
+          <span class="ly-name">{{property.name}}</span>
+          <span class="ly-value" ng-if="property.type!='password'">{{property.expected}}</span>
+          <span class="ly-value" ng-if="property.type=='password'" style="padding-top:1em">********</span>
         </p>
       </div>
     </div>

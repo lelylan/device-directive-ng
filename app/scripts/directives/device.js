@@ -114,16 +114,6 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     }
 
 
-    /* gets the device privates info */
-    var getPrivates = function(id) {
-      Device.privates({ id: id }).$promise.then(
-        function(response) {
-          scope.privates = response;
-        }
-      )
-    }
-
-
     /* completes the loading phase and starts with the initialization */
     var loadingCompleted = function() {
       scope.visualization();
@@ -169,6 +159,15 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       }
     }
 
+    /* Gets the device privates info */
+    var getPrivates = function(id) {
+      Device.privates({ id: id }).$promise.then(
+        function(response) {
+          scope.privates = response;
+        }
+      )
+    }
+
 
     /* Function execution */
     scope.execute = function(_function) {
@@ -191,6 +190,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       });
     }
 
+
     /* Delete device */
     scope.destroy = function(confirm) {
       if (confirm == scope.device.name) {
@@ -201,14 +201,15 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       }
     }
 
+
     /* Form reset */
     scope.resetForm = function() {
       scope.device.name         = scope.deviceCopy.name;
       scope.device.physical.uri = scope.device.physical.uri;
     }
 
+
     /* Animate status change */
-    // TODO must live in another place and be working when the value changes, not the expected
     scope.animateStatus = function() {
       var effect = 'flipInX';
       element.find('.ly-status .ly-description .ly-name').addClass('animated ' + effect);
