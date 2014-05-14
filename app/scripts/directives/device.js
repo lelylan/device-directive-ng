@@ -160,7 +160,9 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Settings visualization */
     scope.showSettings = function() {
-      scope.view.path='/settings';
+      scope.deviceCopy = angular.copy(scope.device);
+      scope.view.path  = '/settings';
+
       if (!scope.privates) {
         getPrivates(scope.device.id);
       }
@@ -185,7 +187,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       scope.view.path = '/default';
       scope.device.$update(function(device) {
         $rootScope.$broadcast('lelylan:device:update', device);
-      });;
+      });
     }
 
     /* Delete device */
@@ -197,7 +199,13 @@ angular.module('lelylan.directives.device.directive').directive('device', [
         });
       }
     }
-  };
+
+    /* Form reset */
+    scope.resetForm = function() {
+      scope.device.name         = scope.deviceCopy.name;
+      scope.device.physical.uri = scope.device.physical.uri;
+    }
+  }
 
   return definition
 }]);

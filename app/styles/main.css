@@ -47,12 +47,14 @@ div.center {
   position: relative;
 }
 
-div.ly-device {
-}
-
 .ly-device p {
   margin: 0;
 }
+
+.ly-device .ly-error {
+  color: #FF7373 !important;
+}
+
 
 
 /*
@@ -172,10 +174,11 @@ div.ly-device {
  */
 
 .ly-header {
-  /*background-color: #ddd;*/
+  background-color: #ddd;
 }
 
 .ly-header {
+  height: 3.7em;
   padding: 0.6em;
   border-bottom: 1px solid #f8f8f8;
 }
@@ -208,7 +211,7 @@ div.ly-device {
  */
 
 .ly-status {
-  /*background-color: #e5e5e5;*/
+  background-color: #e5e5e5;
 }
 
 .ly-status {
@@ -271,7 +274,7 @@ div.ly-device {
  */
 
 .ly-functions {
-  /*background-color: #eee;*/
+  background-color: #eee;
 }
 
 .ly-functions {
@@ -410,7 +413,7 @@ div.ly-device {
  */
 
 .ly-properties {
-  /*background-color: #f4f4f4;*/
+  background-color: #f4f4f4;
 }
 
 .ly-properties {
@@ -554,11 +557,11 @@ input:focus {
   margin-top: 1em;
 }
 
-.ly-settings .ly-actions .ly-disabled {
+.ly-settings .ly-actions .ly-disabled-button {
   background-color: #ccc !important;
 }
 
-.ly-settings .ly-actions .ly-disabled:hover {
+.ly-settings .ly-actions .ly-disabled-button:hover {
   background-color: #ccc !important;
   cursor: not-allowed;
 }
