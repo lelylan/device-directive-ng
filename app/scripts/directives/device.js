@@ -98,7 +98,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       if (value) {
         value = JSON.parse(value);
         scope.device = value;
-        getType(scope.device.type.id)
+        getType(scope.device.type.id);
       }
     });
 
@@ -108,7 +108,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       Type.get({ id: id }).$promise.then(
         function(response) {
           scope.type = response;
-          getPrivates(scope.device.id);
+          loadingCompleted();
         }
       )
     }
@@ -119,7 +119,6 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       Device.privates({ id: id }).$promise.then(
         function(response) {
           scope.privates = response;
-          loadingCompleted();
         }
       )
     }
@@ -127,7 +126,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* completes the loading phase and starts with the initialization */
     var loadingCompleted = function() {
-      visualize();
+      scope.visualization();
       scope.initialize();
       scope.view.path = '/default';
     }
@@ -138,19 +137,34 @@ angular.module('lelylan.directives.device.directive').directive('device', [
      * FEATURES
      */
 
-    /* sensor or device visualization */
-    var visualize = function() {
-      scope.hasStatus    = (scope.type.statuses.length  != 0)
-      scope.hasFunctions = (scope.type.functions.length != 0)
-    };
-
-
     /* Initialization */
     scope.initialize = function() {
       DeviceProperties.extend(scope);
       DeviceFunction.setForms(scope);
       DeviceStatuses.set(scope);
     };
+
+
+    /* Full device or sensor visualization */
+    scope.visualization = function() {
+      scope.hasStatus    = (scope.type.statuses.length  != 0)
+      scope.hasFunctions = (scope.type.functions.length != 0)
+    };
+
+
+    /* Default device visualization */
+    scope.showDefault = function() {
+      scope.view.path='/default';
+    }
+
+
+    /* Settings visualization */
+    scope.showSettings = function() {
+      scope.view.path='/settings';
+      if (!scope.privates) {
+        getPrivates(scope.device.id);
+      }
+    }
 
 
     /* Function execution */

@@ -175,21 +175,6 @@ describe('<device>', function() {
         });
       });
 
-      describe('when GET /devices/:id/privates', function() {
-
-        it('makes the request', function() {
-          $httpBackend.expect('GET', 'http://api.lelylan.com/devices/1/privates');
-          compile($rootScope, $compile);
-          $httpBackend.flush();
-        });
-
-        it('sets scope.private', function() {
-          compile($rootScope, $compile);
-          scope = element.scope().$$childTail;
-          $httpBackend.flush();
-          expect(scope.privates.secret).toBe('secret');
-        });
-      });
 
       describe('when all requests are resolved', function() {
 
@@ -207,6 +192,7 @@ describe('<device>', function() {
         });
       });
     });
+
 
 
     describe('#initialize', function() {
@@ -229,6 +215,50 @@ describe('<device>', function() {
         expect(DeviceStatuses.set).toHaveBeenCalled();
       });
     });
+
+
+
+    describe('when #showSettings', function() {
+
+      beforeEach(function() {
+        compile($rootScope, $compile);
+        $httpBackend.flush();
+      });
+
+      beforeEach(function() {
+        scope = element.scope().$$childTail;
+        scope.showSettings();
+      });
+
+      describe('when privates are not loaded', function() {
+
+        it('makes the request', function() {
+          $httpBackend.expect('GET', 'http://api.lelylan.com/devices/1/privates');
+          compile($rootScope, $compile);
+          $httpBackend.flush();
+        });
+
+        it('sets scope.private', function() {
+          compile($rootScope, $compile);
+          scope = element.scope().$$childTail;
+          $httpBackend.flush();
+          expect(scope.privates).toBeNull;
+        });
+
+        describe('when privates are already loaded', function() {
+
+          beforeEach(function() {
+            scope.showDefault();
+            scope.showSettings();
+          });
+
+          it('already has scope.private', function() {
+            expect(scope.privates).toBeNull;
+          });
+        });
+      });
+    });
+
 
 
     describe('#execute', function() {
