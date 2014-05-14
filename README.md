@@ -1,6 +1,5 @@
 # Lelylan Device Component
 
-AngularJS directive (aka Web Component) for [Lelylan](http://lelylan.com).
 Building HTML5 Apps for the Connected Home.
 
 
@@ -9,7 +8,8 @@ Building HTML5 Apps for the Connected Home.
 ### What is Lelylan
 
 [Lelylan](http://lelylan.com) makes it easy for developers to monitor and control all devices
-in your house providing a simple, open and consistent REST API.
+in your house providing a simple, open and consistent REST API. Lelylan Device Component is an
+AngularJS directive (aka Web Component) to easily monitor and control your devices in realtime.
 
 ### What is a Device
 
