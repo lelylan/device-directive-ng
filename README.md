@@ -1,7 +1,7 @@
 # Lelylan Device Component
 
 AngularJS directive (aka Web Component) for [Lelylan](http://lelylan.com).
-Start building advanced web app for the Connected Home and the Internet of Things.
+Build HTML5 web apps for the Connected Home and the Internet of Things.
 
 [See Documentation]()
 
@@ -12,7 +12,7 @@ Start building advanced web app for the Connected Home and the Internet of Thing
 ### What is Lelylan
 
 [Lelylan](http://lelylan.com) makes it easy for developers to monitor and control all devices
-in your house providing a simple and consistent REST API.
+in your house providing a simple, open and consistent REST API.
 
 ### What is a Device
 
@@ -38,6 +38,28 @@ In this case you'll have to manually install the following libraries.
 * [Underscore](http://documentcloud.github.com/underscore)
 * [Lelylan Client](https://github.com/lelylan/lelylan-ng)
 
+
+## Attributes
+
+The Device Component accepts the following configurations.
+
+* `device-id` - The device ID.
+
+```html
+<device device-id="5042344b95fc4410000001"></device>
+```
+
+* `device-json` - The device JSON representation.
+
+```html
+<device device-json="deviceJSON"></device>
+```
+
+* `device-template` - The device HTML template.
+
+```html
+<device device-id="5042344b95fc4410000001" device-template="views/templates/custom.html"></device>
+```
 
 
 ## Events
