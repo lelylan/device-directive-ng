@@ -38,7 +38,6 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     scope: {
       deviceId: '@',
       deviceJson: '@',
-      deviceType: '@',
       deviceTemplate: '@'
     }
   };
@@ -97,6 +96,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     /* whatches the device JSON and starts the loading phase and calls the type API */
     scope.$watch('deviceJson', function(value) {
       if (value) {
+        value = JSON.parse(value);
         scope.device = value;
         getType(scope.device.type.id)
       }

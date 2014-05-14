@@ -39,7 +39,7 @@ describe('<device>', function() {
 
 
 
-  describe('when has functions', function() {
+  describe('when not a sensor', function() {
 
     beforeEach(function() {
       device   = JSON.parse(readFixtures('device.json'));
@@ -55,7 +55,7 @@ describe('<device>', function() {
 
 
 
-    describe('when configures the directive', function() {
+    describe('when configuring', function() {
 
       beforeEach(function() {
         compile($rootScope, $compile);
@@ -68,11 +68,11 @@ describe('<device>', function() {
       it('sets view.path to /loading', function() {
         expect(scope.view.path).toBe('/loading')
       });
-    })
+    });
 
 
 
-    describe('when sets the template', function() {
+    describe('when sets "device-template"', function() {
 
       describe('when the template is not defined', function() {
 
@@ -115,6 +115,27 @@ describe('<device>', function() {
           $httpBackend.flush();
           expect(element.text()).toBe('Example')
         });
+      });
+    });
+
+
+
+    describe('when sets the "device-json"', function() {
+
+      beforeEach(function() {
+        element = angular.element('<device device-json=\'' + JSON.stringify(device) + '\'></div>');
+      });
+
+      beforeEach(function() {
+        compile($rootScope, $compile);
+      });
+
+      beforeEach(function() {
+        scope = element.scope().$$childTail;
+      });
+
+      it('sets scope.device', function() {
+        expect(scope.device.name).toBe('Closet dimmer');
       });
     });
 
