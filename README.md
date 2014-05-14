@@ -9,13 +9,13 @@ Building HTML5 Apps for the Connected Home.
 
 [Lelylan](http://lelylan.com) makes it easy for developers to monitor and control all devices
 in your house providing a simple, open and consistent REST API. Lelylan Device Component is an
-AngularJS directive (aka Web Component) to easily monitor and control your devices in realtime.
+AngularJS directive to easily monitor and control your devices in realtime.
 
 ### What is a Device
 
 A device is everything you interact with everyday of your life like lights, appliances, alarms,
-cooling and heating systems, windows, gates, multimedia and much more. In Lelylan a Device is a
-set of services you can use to monitor and control any object in the real world.
+heating systems, windows, gates, multimedia and much more. In Lelylan a Device is a set of services
+you can use to monitor and control any object in the real world.
 
 
 
