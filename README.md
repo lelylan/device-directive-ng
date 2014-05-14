@@ -1,10 +1,7 @@
 # Lelylan Device Component
 
 AngularJS directive (aka Web Component) for [Lelylan](http://lelylan.com).
-Build HTML5 web apps for the Connected Home and the Internet of Things.
-
-[See Documentation]()
-
+Building HTML5 Apps for the Connected Home.
 
 
 ## Introduction
