@@ -142,7 +142,8 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       DeviceProperties.extend(scope);
       DeviceFunction.setForms(scope);
       DeviceStatuses.set(scope);
-    };
+      scope.animateStatus();
+   };
 
 
     /* Full device or sensor visualization */
@@ -177,7 +178,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Properties update */
     scope.updateProperties = function(properties) {
-      DeviceProperties.update(scope, properties);
+      DeviceProperties.update(scope, properties, element);
       scope.initialize();
     }
 
@@ -205,6 +206,15 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       scope.device.name         = scope.deviceCopy.name;
       scope.device.physical.uri = scope.device.physical.uri;
     }
+
+    /* Animate status change */
+    // TODO must live in another place and be working when the value changes, not the expected
+    scope.animateStatus = function() {
+      var effect = 'flipInX';
+      element.find('.ly-status .ly-description .ly-name').addClass('animated ' + effect);
+      $timeout(function() { element.find('.ly-status .ly-description .ly-name').removeClass('animated ' + effect); }, 500);
+    }
+
   }
 
   return definition

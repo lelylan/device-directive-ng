@@ -267,11 +267,11 @@ div.center {
 }
 
 .ly-status-disabled .ly-description .ly-name {
-  color: #ccc;
+  color: #666;
 }
 
 .ly-status-disabled .ly-execute .ly-button {
-  border: 2px solid #ccc;
+  border: 2px solid #aaa;
   cursor: default !important;
 }
 
@@ -453,13 +453,13 @@ div.center {
   font-size: 0.9em;
 }
 
-.ly-sensor .ly-properties .ly-property {
-  padding-left: 0.8em;
-}
+/*.ly-sensor .ly-properties .ly-property {*/
+  /*padding-left: 0.8em;*/
+/*}*/
 
-.ly-sensor .ly-properties .ly-description {
-  margin-left: 2.0em;
-}
+/*.ly-sensor .ly-properties .ly-description {*/
+  /*margin-left: 2.0em;*/
+/*}*/
 
 
 /*
@@ -603,3 +603,11 @@ input:focus {
 .ly-animation-fast.ng-enter.ng-enter-active {
   opacity:1;
 }
+
+/* Override animated.css */
+
+.animated {
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+}
+

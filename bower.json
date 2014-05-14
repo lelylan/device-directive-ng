@@ -12,7 +12,8 @@
     "jasmine": "~2.0.0",
     "moment": "~2.5.1",
     "angular-moment": "~0.6.2",
-    "angular-animate": "~1.2.14"
+    "angular-animate": "~1.2.14",
+    "animate.css": "~3.1.1"
   },
   "devDependencies": {
     "angular-mocks": "1.2.14",

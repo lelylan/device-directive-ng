@@ -24,7 +24,7 @@
     <![endif]-->
 
     <div class="center">
-      <device device-id="2"></device>
+      <device device-id="1"></device>
     </div>
 
     <!--[if lt IE 9]>
@@ -72,7 +72,7 @@
 
         deviceSensor = JSON.parse(readFixtures('device-sensor.json'));
         typeSensor   = JSON.parse(readFixtures('type-sensor.json'));
-        privates = JSON.parse(readFixtures('privates.json'));
+        privates     = JSON.parse(readFixtures('privates.json'));
 
         $httpBackend.when('GET', /\/templates\//).passThrough();
         $httpBackend.whenGET('http://api.lelylan.com/devices/1').respond(deviceSensor);
