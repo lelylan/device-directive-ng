@@ -62,8 +62,8 @@ describe('<device>', function() {
         scope = element.scope().$$childTail;
       })
 
-      it('sets scope.hasStatus to false', function() {
-        expect(scope.hasStatus).toBe(false);
+      it('sets scope.hasStatuses to false', function() {
+        expect(scope.hasStatuses).toBe(false);
       });
 
       it('sets scope.hasFunctions to false', function() {
