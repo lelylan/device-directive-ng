@@ -21,6 +21,7 @@ module.exports = function(config) {
       'app/bower_components/lelylan-ng/lelylan-ng.js',
       'app/bower_components/jasmine-jquery/lib/jasmine-jquery.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
+      'app/bower_components/angular-touch/angular-touch.js',
       'app/views/**/*.html',
       'app/scripts/*.js',
       'app/scripts/**/*.js',

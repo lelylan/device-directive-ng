@@ -9,7 +9,7 @@ describe('<device>', function() {
 
     beforeEach(function() {
       $('.ly-menu .ly-menu-settings').click();
-      $('.ly-settings .ly-delete-button').click();
+      $('.ly-settings .ly-delete-link').click();
     });
 
 
@@ -59,7 +59,6 @@ describe('<device>', function() {
         });
       });
 
-
       describe('with no name', function() {
 
         beforeEach(function() {
@@ -78,18 +77,6 @@ describe('<device>', function() {
 
           beforeEach(function() {
             $('.ly-delete .ly-close').click();
-          });
-
-          it('closes the settings window', function() {
-            expect($('.ly-content').isPresent()).toBe(true);
-            expect($('.ly-delete').isPresent()).toBe(false);
-          });
-        });
-
-        describe('with the cancel button', function() {
-
-          beforeEach(function() {
-            $('.ly-delete .ly-cancel-button').click();
           });
 
           it('closes the settings window', function() {

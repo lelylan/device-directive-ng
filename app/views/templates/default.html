@@ -5,9 +5,9 @@
   <!--  Deleted message  -->
   <!-- ----------------- -->
 
-  <div class="ly-message ly-generic-message ly-animation-fast" ng-if="view.path=='/message-deleted'">
-    <p class="ly-description">Device deleted</p>
-    <p class="ly-description-sub">Reload the page to update the view</p>
+  <div class="ly-message ly-generic-message ly-animation-fast" ng-if="view.path=='/message'">
+    <p class="ly-description">{{message.title}}</p>
+    <p class="ly-description-sub">{{message.description}}</p>
   </div>
 
 
@@ -29,7 +29,7 @@
   <!--  Device Content  -->
   <!-- ---------------- -->
 
-  <div class="ly-content" ng-class="{'ly-animation': view.path=='/default'}" ng-if="view.path!='/loading' && view.path!='/message-deleted'">
+  <div class="ly-content" ng-class="{'ly-animation': view.path=='/default'}" ng-if="view.path!='/loading' && view.path!='/message'">
 
 
     <!-- ------------- -->
@@ -130,7 +130,7 @@
                 </div>
               </div>
               <div class="ly-actions">
-                <a class="ly-button ly-update-button" ng-click="execute(function)">Execute</a>
+                <button class="ly-button ly-update-button" ng-click="execute(function)">Execute</button>
               </div>
             </form>
           </div>
@@ -149,7 +149,10 @@
         <button class="ly-button"></button>
         <p class="ly-description">
           <span class="ly-name">{{property.name}}</span>
-          <span class="ly-value" ng-if="property.type!='password'">{{property.expected}}</span>
+          <span class="ly-value" ng-if="property.type!='password'">
+            <span>{{property.expected}}</span>
+            <span class="ly-color-ball" style="border-color:{{property.expected}}" ng-if="property.type=='color'"></span>
+          </span>
           <span class="ly-value" ng-if="property.type=='password'" style="padding-top:1em">********</span>
         </p>
       </div>
@@ -197,7 +200,9 @@
             </div>
             <div class="ly-actions">
               <button class="ly-button ly-update-button" ng-class="{'ly-disabled-button': !form.$valid}">save</button>
-              <a class="ly-button ly-delete-button" ng-click="view.path='/delete'">delete</a>
+              <div class="ly-delete-action">
+                <a class="ly-delete-link" href="" ng-click="view.path='/delete'">Delete your device?</a>
+              </div>
             </div>
           </form>
         </div>
@@ -229,7 +234,6 @@
               <input class="ly-value ly-name" type="text" autofocus placeholder="Device name" ng-model="confirm"></input>
             </div>
             <div class="ly-actions">
-              <a class="ly-button ly-cancel-button" ng-click="showDefault()">cancel</a>
               <button class="ly-button ly-delete-button" ng-class="{'ly-disabled-button': confirm!=device.name}">delete</button>
             </div>
           </form>

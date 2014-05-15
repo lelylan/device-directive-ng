@@ -3,6 +3,7 @@
 angular.module('lelylan.directives.device', [
   'angularMoment',
   'ngAnimate',
+  'ngTouch',
   'lelylan',
   'lelylan.directives.device.services.properties',
   'lelylan.directives.device.services.functions',

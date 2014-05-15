@@ -28,7 +28,6 @@ describe('<device>', function() {
   beforeEach(inject(function($injector) { DeviceStatuses   = $injector.get('DeviceStatuses') }));
   beforeEach(inject(function($injector) { callback         = jasmine.createSpy('callback') }));
 
-
   beforeEach(function() {
     element = angular.element('<device device-id="1"></div>');
   });
@@ -39,7 +38,43 @@ describe('<device>', function() {
 
 
 
-  describe('when not a sensor', function() {
+  describe('when sensor', function() {
+
+    beforeEach(function() {
+      device = JSON.parse(readFixtures('device-sensor.json'));
+      type   = JSON.parse(readFixtures('type-sensor.json'));
+    });
+
+    beforeEach(function() {
+      $httpBackend.whenGET('http://api.lelylan.com/devices/1').respond(device);
+      $httpBackend.whenGET('http://api.lelylan.com/types/1').respond(type);
+      $httpBackend.whenGET('http://api.lelylan.com/devices/1/privates').respond(privates);
+    });
+
+    describe('when all requests are resolved', function() {
+
+      beforeEach(function() {
+        compile($rootScope, $compile);
+        $httpBackend.flush();
+      })
+
+      beforeEach(function() {
+        scope = element.scope().$$childTail;
+      })
+
+      it('sets scope.hasStatus to false', function() {
+        expect(scope.hasStatus).toBe(false);
+      });
+
+      it('sets scope.hasFunctions to false', function() {
+        expect(scope.hasFunctions).toBe(false);
+      });
+    });
+  });
+
+
+
+  describe('when not sensor', function() {
 
     beforeEach(function() {
       device   = JSON.parse(readFixtures('device.json'));
@@ -63,7 +98,7 @@ describe('<device>', function() {
 
       beforeEach(function() {
         scope = element.scope().$$childTail;
-      })
+      });
 
       it('sets view.path to /loading', function() {
         expect(scope.view.path).toBe('/loading')
@@ -384,39 +419,40 @@ describe('<device>', function() {
 
 
 
-  describe('when sensor', function() {
+  //describe('when raises an error', function() {
 
-    beforeEach(function() {
-      device = JSON.parse(readFixtures('device-sensor.json'));
-      type   = JSON.parse(readFixtures('type-sensor.json'));
-    });
+    //beforeEach(function() {
+      //device   = JSON.parse(readFixtures('device.json'));
+      //type     = JSON.parse(readFixtures('type.json'));
+    //});
 
-    beforeEach(function() {
-      $httpBackend.whenGET('http://api.lelylan.com/devices/1').respond(device);
-      $httpBackend.whenGET('http://api.lelylan.com/types/1').respond(type);
-      $httpBackend.whenGET('http://api.lelylan.com/devices/1/privates').respond(privates);
-    });
+    //describe('with unauthorized device', function() {
 
+      //beforeEach(function() {
+        //$httpBackend.whenGET('http://api.lelylan.com/devices/1').respond(401);
+        //$httpBackend.whenGET('http://api.lelylan.com/types/1').respond(type);
+      //});
 
+      //describe('when all requests are resolved', function() {
 
-    describe('when all requests are resolved', function() {
+        //beforeEach(function() {
+          //compile($rootScope, $compile);
+          //$httpBackend.flush();
+        //})
 
-      beforeEach(function() {
-        compile($rootScope, $compile);
-        $httpBackend.flush();
-      })
+        //beforeEach(function() {
+          //scope = element.scope().$$childTail;
+        //})
 
-      beforeEach(function() {
-        scope = element.scope().$$childTail;
-      })
+        //it('shows the message box', function() {
+          //expect(scope.view.path).toBe('/message');
+        //});
 
-      it('sets scope.hasStatus to false', function() {
-        expect(scope.hasStatus).toBe(false);
-      });
-
-      it('sets scope.hasFunctions to false', function() {
-        expect(scope.hasFunctions).toBe(false);
-      });
-    });
-  });
+        //it('shows the unauthorized message', function() {
+          //expect(scope.message.title).toBe('Unauthorized Access');
+        //});
+      //});
+    //});
+  //});
 });
+

@@ -138,7 +138,9 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Full device or sensor visualization */
     scope.visualization = function() {
-      scope.hasStatus    = (scope.type.statuses.length  != 0)
+      console.log(scope.type.functions.length);
+      console.log(scope.type.statuses.length);
+      scope.hasStatuses  = (scope.type.statuses.length  != 0)
       scope.hasFunctions = (scope.type.functions.length != 0)
     };
 
@@ -194,7 +196,8 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     /* Delete device */
     scope.destroy = function(confirm) {
       if (confirm == scope.device.name) {
-        scope.view.path = '/message-deleted';
+        scope.view.path = '/message';
+        scope.message = { title: 'Device deleted', description: 'Reload the page to update the view' }
         scope.device.$delete(function(device) {
           $rootScope.$broadcast('lelylan:device:delete', device);
         });

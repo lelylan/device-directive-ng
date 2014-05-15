@@ -175,11 +175,10 @@ div.center {
  */
 
 .ly-header {
-  background-color: #ddd;
+  /*background-color: #ddd;*/
 }
 
 .ly-header {
-  height: 3.7em;
   padding: 0.6em;
   border-bottom: 1px solid #f8f8f8;
 }
@@ -212,7 +211,7 @@ div.center {
  */
 
 .ly-status {
-  background-color: #e5e5e5;
+  /*background-color: #e5e5e5;*/
 }
 
 .ly-status {
@@ -281,7 +280,7 @@ div.center {
  */
 
 .ly-functions {
-  background-color: #eee;
+  /*background-color: #eee;*/
 }
 
 .ly-functions {
@@ -327,7 +326,7 @@ div.center {
   height:100%;
   z-index: 2000;
   opacity: 0.9;
-  background-color: #ddd;
+  background-color: #eee;
 }
 
 .ly-modal .ly-modal-window {
@@ -355,6 +354,10 @@ div.center {
 /*
  * Function form
  */
+
+.ly-function-form .ly-actions {
+  height: 4.5em !important;
+}
 
 .ly-form .ly-head {
   padding: 0.6em;
@@ -401,7 +404,7 @@ div.center {
 }
 
 .ly-form .ly-field input[type="range"] {
-  width: 95%
+  width: 93%
 }
 
 .ly-form .ly-field .ly-color {
@@ -420,7 +423,7 @@ div.center {
  */
 
 .ly-properties {
-  background-color: #f4f4f4;
+  /*background-color: #f4f4f4;*/
 }
 
 .ly-properties {
@@ -452,6 +455,12 @@ div.center {
   color: #aaa;
   text-transform: uppercase;
   font-size: 0.7em;
+}
+
+.ly-property  .ly-description .ly-color-ball {
+  border: 10px solid;
+  border-radius: 100%;
+  float: right;
 }
 
 /*.ly-sensor .ly-properties .ly-property {*/
@@ -488,7 +497,7 @@ div.center {
 
 .ly-form .ly-field .ly-description {
   position: absolute;
-  padding: 1em 0.7em 0;
+  padding: 1em 1em 0;
   color: #bbb;
   font-size: 0.8em;
   text-transform: uppercase;
@@ -500,7 +509,7 @@ div.center {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1em;
   width: 92%;
-  margin: 2em 0.6em 0.8em;
+  margin: 2em 0.8em 0.8em;
 }
 
 .ly-form .ly-editable .ly-value {
@@ -508,18 +517,29 @@ div.center {
   border-bottom: 1px dashed #ddd;
 }
 
-.ly-settings .ly-form .ly-actions .ly-button {
-  width: 50%;
+.ly-form .ly-actions {
+  height: 9em;
 }
 
-.ly-settings .ly-form .ly-actions .ly-delete-button {
-  right: 0;
+.ly-form .ly-actions .ly-button {
+  margin-left: 3.5%;
+  width: 93%;
+  position: relative;
+}
+
+.ly-form .ly-actions .ly-delete-action {
+  margin-top: 2em;
+  text-align: center;
+  padding-top: 1em;
+  border-top: 1px solid #eee;
+}
+
+.ly-form .ly-actions .ly-delete-button,
+.ly-form .ly-actions .ly-delete-button:hover {
   background-color: rgb(211, 0, 0);
 }
 
-.ly-settings .ly-form .ly-actions .ly-delete-button:hover {
-  background-color: rgb(211, 0, 0);
-}
+
 
 .ly-form .ly-field ::-webkit-input-placeholder { color:#ddd; font-weight: 100; }
 .ly-form .ly-field ::-moz-placeholder { color:#ddd; } /* firefox 19+ */
@@ -544,7 +564,7 @@ input:focus {
 
 .ly-modal .ly-info {
   color: rgb(223, 0, 0);
-  font-size: 1.3em;
+  font-size: 1.2em;
   padding: 0.5em;
   padding-top: 1em;
 }
@@ -555,7 +575,11 @@ input:focus {
 }
 
 .ly-delete .ly-field {
-  height: 10.5em;
+  height: 5.5em;
+}
+
+.ly-delete .ly-form .ly-actions{
+  height: 4.5em !important;
 }
 
 .ly-delete .ly-actions .ly-cancel-button {

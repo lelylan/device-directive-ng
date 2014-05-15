@@ -15,7 +15,7 @@ describe('<device>', function() {
 
       it('turns on the device', function() {
         expect($('.ly-status .ly-name').getText()).toBe('On');
-        expect($('.ly-property:nth-child(1) .ly-expected').getText()).toBe('on');
+        expect($('.ly-property:nth-child(1) .ly-value').getText()).toBe('on');
       });
     });
 
@@ -38,7 +38,7 @@ describe('<device>', function() {
         });
 
         it('sets the device intensity', function() {
-          expect($('.ly-property:nth-child(6) .ly-expected').getText()).toBe('http://example.com/updated');
+          expect($('.ly-property:nth-child(6) .ly-value').getText()).toBe('http://example.com/updated');
         });
       });
 

@@ -11,7 +11,7 @@ app.run(function($httpBackend, $timeout) {
   $httpBackend.when('GET', /\/templates\//).passThrough();
   $httpBackend.whenGET('http://api.lelylan.com/devices/1').respond(device);
   $httpBackend.whenPUT('http://api.lelylan.com/devices/1')
-    .respond(function(method, url, data, headers) { return [200,  updateDevice(data), {}]; });
+    .respond(function(method, url, data, headers) { return [200, updateDevice(data), {}]; });
   $httpBackend.whenPUT('http://api.lelylan.com/devices/1/properties')
     .respond(function(method, url, data, headers) { return [200,  updateDeviceProperties(data), {}]; });
   $httpBackend.whenDELETE('http://api.lelylan.com/devices/1').respond(device);
