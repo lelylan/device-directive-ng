@@ -164,7 +164,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Gets the device privates info */
     var getPrivates = function(id) {
-      if (maker()) {
+      if (scope.isMaker()) {
         Device.privates(id).
           success(function(response) {
             scope.privates = response;
@@ -177,7 +177,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     }
 
     // returns true if the logged user (if any) is the maker of the device
-    var maker = function() {
+    scope.isMaker = function() {
       var profile = Profile.get();
       return (profile && profile.id == scope.device.maker.id);
     }

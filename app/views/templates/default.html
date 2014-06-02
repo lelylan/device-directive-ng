@@ -178,7 +178,7 @@
                 <p class="ly-description">ID {{form.$valid}}</p>
                 <input class="ly-value ly-id" type="text" disabled ng-model="device.id"></input>
               </div>
-              <div class="ly-field">
+              <div class="ly-field" ng-show="isMaker()">
                 <p class="ly-description">Secret</p>
                 <input class="ly-value ly-secret" type="text" disabled ng-model="privates.secret"></input>
               </div>
@@ -193,14 +193,14 @@
                 <input class="ly-value ly-name" type="text" placeholder="Device name" name="name" ng-model="device.name" required></input>
 
               </div>
-              <div class="ly-field ly-editable">
+              <div class="ly-field ly-editable" ng-show="isMaker()">
                 <p class="ly-description">Physical URI <a href="http://dev.lelylan.com/makers#mqtt-set-the-physical-uri" target="blank">(what is this?)</a></p>
                 <input class="ly-value ly-physical" type="text" placeholder="http://nodes.lelylan.com/mqtt/devices/1" ng-model="device.physical.uri"></input>
               </div>
             </div>
             <div class="ly-actions">
               <button class="ly-button ly-update-button" ng-class="{'ly-disabled-button': !form.$valid}">save</button>
-              <div class="ly-delete-action">
+              <div class="ly-delete-action" ng-show="isMaker()">
                 <a class="ly-delete-link" href="" ng-click="view.path='/delete'">Delete your device?</a>
               </div>
             </div>

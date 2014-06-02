@@ -517,18 +517,16 @@ div.center {
   border-bottom: 1px dashed #ddd;
 }
 
-.ly-form .ly-actions {
-  height: 9em;
-}
-
 .ly-form .ly-actions .ly-button {
   margin-left: 3.5%;
+  margin-bottom: 0.6em;
   width: 93%;
   position: relative;
 }
 
 .ly-form .ly-actions .ly-delete-action {
-  margin-top: 2em;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
   text-align: center;
   padding-top: 1em;
   border-top: 1px solid #eee;
