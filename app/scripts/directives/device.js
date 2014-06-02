@@ -176,7 +176,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       }
     }
 
-    // returns true if the logged user (if any) is the maker of the device
+    /* returns true if the logged user (if any) is the maker of the device */
     scope.isMaker = function() {
       var profile = Profile.get();
       return (profile && profile.id == scope.device.maker.id);
