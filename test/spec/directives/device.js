@@ -432,8 +432,42 @@ describe('<device>', function() {
         expect(callback).toHaveBeenCalledWith(event, scope.device);
       });
     });
-  });
 
+    describe('with no custom template', function() {
+
+      beforeEach(function() {
+        compile($rootScope, $compile);
+      });
+
+      beforeEach(function() {
+        scope = element.scope().$$childTail;
+      });
+
+      it('shows the default template', function() {
+        expect(scope.template).toBe('views/templates/default.html');
+      });
+    });
+
+    describe('with custom template', function() {
+
+      beforeEach(function() {
+        compile($rootScope, $compile);
+      });
+
+      beforeEach(function() {
+        scope = element.scope().$$childTail;
+      });
+
+      beforeEach(function() {
+        $rootScope.$broadcast('lelylan:device:template:update', { id: '1', template: 'views/templates/new.html' });
+        $rootScope.$apply();
+      });
+
+      it('shows the default template', function() {
+        expect(scope.template).toBe('views/templates/new.html');
+      });
+    });
+  });
 
 
   describe('when raises an error', function() {

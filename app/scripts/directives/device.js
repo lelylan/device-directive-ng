@@ -54,10 +54,10 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     // active view
     scope.view = { path: '/loading' }
 
-    // template setting
+    // template
     scope.template = attrs.deviceTemplate || 'views/templates/default.html';
 
-    // structure settings
+    // structure (statuses and functions) and typology (sensor or not)
     scope.hasStatuses  = true;
     scope.hasFunctions = true;
 
@@ -232,6 +232,13 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       element.find('.ly-status .ly-description .ly-name').addClass('animated ' + effect);
       $timeout(function() { element.find('.ly-status .ly-description .ly-name').removeClass('animated ' + effect); }, 500);
     }
+
+
+    /* Updates the template at runtime */
+    scope.$on('lelylan:device:template:update', function(event, data) {
+      scope.template = data.template;
+      compile(scope);
+    });
 
   }
 
