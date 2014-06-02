@@ -236,8 +236,10 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Updates the template at runtime */
     scope.$on('lelylan:device:template:update', function(event, data) {
-      scope.template = data.template;
-      compile(scope);
+      if (!data.id || data.id == scope.device.id) {
+        scope.template = data.template;
+        compile(scope);
+      }
     });
 
   }

@@ -108,9 +108,9 @@ describe('<device>', function() {
 
 
 
-    describe('when sets "device-template"', function() {
+    describe('when sets the template', function() {
 
-      describe('when the template is not defined', function() {
+      describe('with no settings', function() {
 
         beforeEach(function() {
           compile($rootScope, $compile);
@@ -125,7 +125,7 @@ describe('<device>', function() {
         });
       })
 
-      describe('when the template is defined', function() {
+      describe('with device-template', function() {
 
         beforeEach(function() {
           $httpBackend.whenGET('/new.html').respond('<div>Example</div>');
@@ -151,6 +151,82 @@ describe('<device>', function() {
           $httpBackend.flush();
           expect(element.text()).toBe('Example')
         });
+      });
+
+      describe('with template event', function() {
+
+        describe('when targets all devices', function() {
+
+          beforeEach(function() {
+            compile($rootScope, $compile);
+          });
+
+          beforeEach(function() {
+            scope = element.scope().$$childTail;
+          });
+
+          beforeEach(function() {
+            $httpBackend.flush();
+          });
+
+          beforeEach(function() {
+            $rootScope.$broadcast('lelylan:device:template:update', { template: 'views/templates/new.html' });
+            $rootScope.$apply();
+          });
+
+          it('shows the default template', function() {
+            expect(scope.template).toBe('views/templates/new.html');
+          });
+        });
+
+        describe('when targets not existing device', function() {
+
+          beforeEach(function() {
+            compile($rootScope, $compile);
+          });
+
+          beforeEach(function() {
+            scope = element.scope().$$childTail;
+          });
+
+          beforeEach(function() {
+            $httpBackend.flush();
+          });
+
+          beforeEach(function() {
+            $rootScope.$broadcast('lelylan:device:template:update', { id: '1', template: 'views/templates/new.html' });
+            $rootScope.$apply();
+          });
+
+          it('shows the default template', function() {
+            expect(scope.template).toBe('views/templates/new.html');
+          });
+        });
+
+        describe('when targets and existing device', function() {
+
+          beforeEach(function() {
+            compile($rootScope, $compile);
+          });
+
+          beforeEach(function() {
+            scope = element.scope().$$childTail;
+          });
+
+          beforeEach(function() {
+            $httpBackend.flush();
+          });
+
+          beforeEach(function() {
+            $rootScope.$broadcast('lelylan:device:template:update', { id: '2', template: 'views/templates/new.html' });
+            $rootScope.$apply();
+          });
+
+          it('shows the default template', function() {
+            expect(scope.template).toBe('views/templates/default.html');
+          });
+        });
+
       });
     });
 
@@ -430,41 +506,6 @@ describe('<device>', function() {
         $httpBackend.flush();
         var event = jasmine.any(Object);
         expect(callback).toHaveBeenCalledWith(event, scope.device);
-      });
-    });
-
-    describe('with no custom template', function() {
-
-      beforeEach(function() {
-        compile($rootScope, $compile);
-      });
-
-      beforeEach(function() {
-        scope = element.scope().$$childTail;
-      });
-
-      it('shows the default template', function() {
-        expect(scope.template).toBe('views/templates/default.html');
-      });
-    });
-
-    describe('with custom template', function() {
-
-      beforeEach(function() {
-        compile($rootScope, $compile);
-      });
-
-      beforeEach(function() {
-        scope = element.scope().$$childTail;
-      });
-
-      beforeEach(function() {
-        $rootScope.$broadcast('lelylan:device:template:update', { id: '1', template: 'views/templates/new.html' });
-        $rootScope.$apply();
-      });
-
-      it('shows the default template', function() {
-        expect(scope.template).toBe('views/templates/new.html');
       });
     });
   });
