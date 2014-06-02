@@ -5,7 +5,7 @@
 describe('<device>', function() {
 
   var $rootScope, $compile, $location, $timeout, $httpBackend, $scope, scope = {}, element;
-  var DeviceFunction, DeviceProperties, DeviceStatuses;
+  var Profile, DeviceFunction, DeviceProperties, DeviceStatuses;
   var device, type, privates;
   var callback;
 
@@ -23,6 +23,7 @@ describe('<device>', function() {
   beforeEach(inject(function($injector) { $rootScope       = $injector.get('$rootScope') }));
   beforeEach(inject(function($injector) { $compile         = $injector.get('$compile') }));
   beforeEach(inject(function($injector) { $timeout         = $injector.get('$timeout') }));
+  beforeEach(inject(function($injector) { Profile          = $injector.get('Profile') }));
   beforeEach(inject(function($injector) { DeviceProperties = $injector.get('DeviceProperties') }));
   beforeEach(inject(function($injector) { DeviceFunction   = $injector.get('DeviceFunction') }));
   beforeEach(inject(function($injector) { DeviceStatuses   = $injector.get('DeviceStatuses') }));
@@ -253,47 +254,63 @@ describe('<device>', function() {
 
 
 
-    describe('when #showSettings', function() {
+    describe('when logs in', function() {
 
-      beforeEach(function() {
-        compile($rootScope, $compile);
-        $httpBackend.flush();
-      });
+      describe('when maker', function() {
 
-      beforeEach(function() {
-        scope = element.scope().$$childTail;
-        scope.showSettings();
-      });
-
-      describe('when privates are not loaded', function() {
-
-        it('makes the request', function() {
-          $httpBackend.expect('GET', 'http://api.lelylan.com/devices/1/privates');
-          compile($rootScope, $compile);
-          $httpBackend.flush();
+        beforeEach(function() {
+          Profile.set({ id: 1 });
         });
 
-        it('sets scope.private', function() {
-          compile($rootScope, $compile);
-          scope = element.scope().$$childTail;
-          $httpBackend.flush();
-          expect(scope.privates).toBeNull;
-        });
-
-        describe('when privates are already loaded', function() {
-
+        describe('when #showSettings', function() {
           beforeEach(function() {
-            scope.showDefault();
+            compile($rootScope, $compile);
+            $httpBackend.flush();
+            scope = element.scope().$$childTail;
             scope.showSettings();
           });
 
-          it('already has scope.private', function() {
-            expect(scope.privates).toBeNull;
+          describe('when privates are not loaded', function() {
+
+            it('makes the request', function() {
+              $httpBackend.expect('GET', 'http://api.lelylan.com/devices/1/privates');
+              $httpBackend.flush();
+            });
+
+            it('sets scope.private', function() {
+              scope = element.scope().$$childTail;
+              $httpBackend.flush();
+              expect(scope.privates).not.toBe(undefined);
+            });
+          });
+        });
+      });
+
+
+      describe('when not maker', function() {
+
+        beforeEach(function() {
+          Profile.set({ id: 2 });
+        });
+
+        describe('when #showSettings', function() {
+          beforeEach(function() {
+            compile($rootScope, $compile);
+            $httpBackend.flush();
+            scope = element.scope().$$childTail;
+            scope.showSettings();
+          });
+
+          describe('when privates are not loaded', function() {
+
+            it('sets scope.private', function() {
+              scope = element.scope().$$childTail;
+              expect(scope.privates).toBe(undefined);
+            });
           });
         });
       });
     });
-
 
 
     describe('#execute', function() {

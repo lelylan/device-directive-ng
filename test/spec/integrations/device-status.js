@@ -9,7 +9,7 @@ describe('<device>', function() {
 
     it('sets the current one', function() {
       expect($('.ly-status .ly-name').getText()).toBe('Off');
-      expect($('.ly-status .ly-extras').getText()).toContain('days ago');
+      expect($('.ly-status .ly-extras').getText()).toContain('years ago');
     });
 
 
@@ -21,7 +21,7 @@ describe('<device>', function() {
 
       it('turns on', function() {
         expect($('.ly-status .ly-name').getText()).toBe('On');
-        expect($('.ly-status .ly-extras').getText()).toContain('few seconds ago');
+        expect($('.ly-status .ly-extras').getText()).toContain('few seconds');
       });
 
       describe('when twice', function() {

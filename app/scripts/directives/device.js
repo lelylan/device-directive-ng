@@ -13,6 +13,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
   '$compile',
   '$templateCache',
   '$http',
+  'Profile',
   'Device',
   'Type',
   'DeviceProperties',
@@ -25,6 +26,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     $compile,
     $templateCache,
     $http,
+    Profile,
     Device,
     Type,
     DeviceProperties,
@@ -83,10 +85,15 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     /* watches the device ID and gets the device representation and calls the type API */
     scope.$watch('deviceId', function(value) {
       if (value) {
-        Device.find(value).success(function(response) {
-          scope.device = response;
-          getType(response.type.id);
-        });
+        Device.find(value).
+          success(function(response) {
+            scope.device = response;
+            getType(response.type.id);
+          }).
+          error(function(data, status) {
+            scope.view.path = '/message';
+            scope.message = { title: 'Unauthorized Access', description: 'You have not the rights to access this device' }
+          });
       }
     });
 
@@ -157,9 +164,22 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Gets the device privates info */
     var getPrivates = function(id) {
-      Device.privates(id).success(function(response) {
-        scope.privates = response;
-      });
+      if (maker()) {
+        Device.privates(id).
+          success(function(response) {
+            scope.privates = response;
+          }).
+          error(function(data, status) {
+            scope.view.path = '/message';
+            scope.message = { title: 'Unauthorized Access', description: 'You have not the rights to access this device' }
+          });
+      }
+    }
+
+    // returns true if the logged user (if any) is the maker of the device
+    var maker = function() {
+      var profile = Profile.get();
+      return (profile && profile.id == scope.device.maker.id);
     }
 
 
@@ -179,8 +199,9 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     /* Device update */
     scope.update = function() {
       scope.view.path = '/default';
-      Device.update(function(device) {
-        $rootScope.$broadcast('lelylan:device:update', device);
+      Device.update(scope.device.id, scope.device).success(function(response) {
+        scope.device = response;
+        $rootScope.$broadcast('lelylan:device:update', response);
       });
     }
 
@@ -190,8 +211,9 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       if (confirm == scope.device.name) {
         scope.view.path = '/message';
         scope.message = { title: 'Device deleted', description: 'Reload the page to update the view' }
-        scope.device.$delete(function(device) {
-          $rootScope.$broadcast('lelylan:device:delete', device);
+        Device.delete(scope.device.id).success(function(response) {
+          scope.device = response;
+          $rootScope.$broadcast('lelylan:device:delete', response);
         });
       }
     }
