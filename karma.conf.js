@@ -11,17 +11,22 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'app/bower_components/jquery/dist/jquery.js',
+
       'app/bower_components/angular/angular.js',
-      'app/bower_components/angular-resource/angular-resource.js', // TODO remove
-      'app/bower_components/underscore/underscore.js',
+      'app/bower_components/angular-animate/angular-animate.js',
+      'app/bower_components/angular-touch/angular-touch.js',
+      'app/bower_components/base64/base64.js',
+      'app/bower_components/ngstorage/ngStorage.js',
+      'app/bower_components/oauth-ng/dist/oauth-ng.js',
+      'app/bower_components/lelylan-ng/dist/lelylan-ng.js',
       'app/bower_components/moment/moment.js',
       'app/bower_components/angular-moment/angular-moment.js',
-      'app/bower_components/angular-animate/angular-animate.js',
-      'app/bower_components/lelylan-ng/lelylan-ng.js',
+      'app/bower_components/underscore/underscore.js',
+
+      'app/bower_components/jquery/dist/jquery.js',
       'app/bower_components/jasmine-jquery/lib/jasmine-jquery.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/bower_components/angular-touch/angular-touch.js',
+
       'app/views/**/*.html',
       'app/scripts/*.js',
       'app/scripts/**/*.js',

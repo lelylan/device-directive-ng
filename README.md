@@ -121,7 +121,7 @@ Use the [issue tracker](http://github.com/lelylan/device-component-ng/issues) fo
 * [GIT Repository](http://github.com/lelylan/device-component-ng)
 * [Lelylan Angular Client](http://lelylan.github.com/lelylan-ng)
 * [Lelylan Dev Center](http://dev.lelylan.com)
-* [Lelylan Dashboard](http://d.lelylan.com)
+* [Lelylan Dashboard](http://manage.lelylan.com)
 
 ## Authors
 

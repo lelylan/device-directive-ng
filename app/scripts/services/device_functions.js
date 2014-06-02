@@ -2,7 +2,7 @@
 
 var client = angular.module('lelylan.directives.device.services.functions', [])
 
-client.factory('DeviceFunction', ['Device', 'Utils', 'DeviceProperties', function(Device, Utils, DeviceProperties) {
+client.factory('DeviceFunction', ['Utils', function(Utils) {
 
   var service = {};
   var referenceScope;
@@ -126,7 +126,6 @@ client.factory('DeviceFunction', ['Device', 'Utils', 'DeviceProperties', functio
         property.expected = parseFloat(property.expected);
     });
   }
-
 
 
   return service;

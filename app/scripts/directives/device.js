@@ -83,12 +83,10 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     /* watches the device ID and gets the device representation and calls the type API */
     scope.$watch('deviceId', function(value) {
       if (value) {
-        Device.get({ id: value }).$promise.then(
-          function(response) {
-            scope.device = response;
-            getType(scope.device.type.id);
-          }
-        )
+        Device.find(value).success(function(response) {
+          scope.device = response;
+          getType(response.type.id);
+        });
       }
     });
 
@@ -98,19 +96,17 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       if (value) {
         value = JSON.parse(value);
         scope.device = value;
-        getType(scope.device.type.id);
+        getType(value.type.id);
       }
     });
 
 
     /* gets the type representation */
     var getType = function(id) {
-      Type.get({ id: id }).$promise.then(
-        function(response) {
-          scope.type = response;
-          loadingCompleted();
-        }
-      )
+      Type.find(id).success(function(response) {
+        scope.type = response;
+        loadingCompleted();
+      });
     }
 
 
@@ -138,8 +134,6 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Full device or sensor visualization */
     scope.visualization = function() {
-      console.log(scope.type.functions.length);
-      console.log(scope.type.statuses.length);
       scope.hasStatuses  = (scope.type.statuses.length  != 0)
       scope.hasFunctions = (scope.type.functions.length != 0)
     };
@@ -163,11 +157,9 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Gets the device privates info */
     var getPrivates = function(id) {
-      Device.privates({ id: id }).$promise.then(
-        function(response) {
-          scope.privates = response;
-        }
-      )
+      Device.privates(id).success(function(response) {
+        scope.privates = response;
+      });
     }
 
 
@@ -187,7 +179,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     /* Device update */
     scope.update = function() {
       scope.view.path = '/default';
-      scope.device.$update(function(device) {
+      Device.update(function(device) {
         $rootScope.$broadcast('lelylan:device:update', device);
       });
     }

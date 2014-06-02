@@ -6,7 +6,7 @@
 
 var client = angular.module('lelylan.directives.device.services.statuses', [])
 
-client.factory('DeviceStatuses', ['Device', 'Utils', function(Device, Utils) {
+client.factory('DeviceStatuses', ['Utils', function(Utils) {
 
   var service = {};
 

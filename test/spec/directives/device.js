@@ -419,40 +419,40 @@ describe('<device>', function() {
 
 
 
-  //describe('when raises an error', function() {
+  describe('when raises an error', function() {
 
-    //beforeEach(function() {
-      //device   = JSON.parse(readFixtures('device.json'));
-      //type     = JSON.parse(readFixtures('type.json'));
-    //});
+    beforeEach(function() {
+      device   = JSON.parse(readFixtures('device.json'));
+      type     = JSON.parse(readFixtures('type.json'));
+    });
 
-    //describe('with unauthorized device', function() {
+    describe('with unauthorized device', function() {
 
-      //beforeEach(function() {
-        //$httpBackend.whenGET('http://api.lelylan.com/devices/1').respond(401);
-        //$httpBackend.whenGET('http://api.lelylan.com/types/1').respond(type);
-      //});
+      beforeEach(function() {
+        $httpBackend.whenGET('http://api.lelylan.com/devices/1').respond(401);
+        $httpBackend.whenGET('http://api.lelylan.com/types/1').respond(type);
+      });
 
-      //describe('when all requests are resolved', function() {
+      describe('when all requests are resolved', function() {
 
-        //beforeEach(function() {
-          //compile($rootScope, $compile);
-          //$httpBackend.flush();
-        //})
+        beforeEach(function() {
+          compile($rootScope, $compile);
+          $httpBackend.flush();
+        })
 
-        //beforeEach(function() {
-          //scope = element.scope().$$childTail;
-        //})
+        beforeEach(function() {
+          scope = element.scope().$$childTail;
+        })
 
-        //it('shows the message box', function() {
-          //expect(scope.view.path).toBe('/message');
-        //});
+        it('shows the message box', function() {
+          expect(scope.view.path).toBe('/message');
+        });
 
-        //it('shows the unauthorized message', function() {
-          //expect(scope.message.title).toBe('Unauthorized Access');
-        //});
-      //});
-    //});
-  //});
+        it('shows the unauthorized message', function() {
+          expect(scope.message.title).toBe('Unauthorized Access');
+        });
+      });
+    });
+  });
 });
 

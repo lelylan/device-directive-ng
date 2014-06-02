@@ -81,7 +81,7 @@ describe('DeviceProperties', function() {
     describe('.sendProperties', function() {
 
       beforeEach(function() {
-        payload = { id: '1', properties: [{ id: '1', pending: true, expected: 'on' }]};
+        payload = { properties: [{ id: '1', pending: true, expected: 'on' }]};
       });
 
       beforeEach(function() {
