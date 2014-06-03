@@ -162,6 +162,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       }
     }
 
+
     /* Gets the device privates info */
     var getPrivates = function(id) {
       if (scope.isMaker()) {
@@ -176,10 +177,10 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       }
     }
 
-    /* returns true if the logged user (if any) is the maker of the device */
+
+    /* Returns true if the logged user (if any) is the maker of the device */
     scope.isMaker = function() {
-      var profile = Profile.get();
-      return (profile && profile.id == scope.device.maker.id);
+      return (Profile.get() && Profile.get().id == scope.device.maker.id);
     }
 
 
@@ -231,6 +232,15 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       var effect = 'flipInX';
       element.find('.ly-status .ly-description .ly-name').addClass('animated ' + effect);
       $timeout(function() { element.find('.ly-status .ly-description .ly-name').removeClass('animated ' + effect); }, 500);
+    }
+
+
+    /* Device opening event.
+     * This event does not do anything but fires an open event that can be catched
+     *to do some other stuff (like opening a detailed view).
+     */
+    scope.fire = function(event) {
+      $rootScope.$broadcast('lelylan:device:' + event, scope.device);
     }
 
 

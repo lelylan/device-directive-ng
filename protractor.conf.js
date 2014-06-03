@@ -9,18 +9,20 @@ exports.config = {
     'browserName': 'chrome'
   },
 
+  // Test suites (protractor protractor.conf.js --suite=sensor)
   suites: {
-    sensor:    'test/spec/integrations/device-sensor.js',
-    header:    'test/spec/integrations/device-header.js',
-    status:    'test/spec/integrations/device-status.js',
-    functions: 'test/spec/integrations/device-functions.js',
-    settings:  'test/spec/integrations/device-settings.js',
-    delete:    'test/spec/integrations/device-delete.js',
+    sensor:    'test/protractor/device-sensor.js',
+    header:    'test/protractor/device-header.js',
+    status:    'test/protractor/device-status.js',
+    functions: 'test/protractor/device-functions.js',
+    settings:  'test/protractor/device-settings.js',
+    delete:    'test/protractor/device-delete.js',
   },
 
-  // bypass the need of a selenium server
+  // Bypass the need of a selenium server
   chromeOnly: true,
 
+  // Running server
   baseUrl: 'http://localhost:9000',
 
   jasmineNodeOpts: {

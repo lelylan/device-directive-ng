@@ -508,6 +508,29 @@ describe('<device>', function() {
         expect(callback).toHaveBeenCalledWith(event, scope.device);
       });
     });
+
+
+    describe('when fires a custom event', function() {
+
+      beforeEach(function() {
+        $rootScope.$on('lelylan:device:open', callback);
+      });
+
+      beforeEach(function() {
+        compile($rootScope, $compile);
+        scope = element.scope().$$childTail;
+        $httpBackend.flush();
+      });
+
+      beforeEach(function() {
+        scope.fire('open');
+      });
+
+      it('fires the update device event', function() {
+        var event = jasmine.any(Object);
+        expect(callback).toHaveBeenCalledWith(event, scope.device);
+      });
+    });
   });
 
 
