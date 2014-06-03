@@ -66,10 +66,6 @@ div.center {
   color: #239cbb
 }
 
-/*.ly-device a:hover {*/
-  /*color: #01cf9e;*/
-/*}*/
-
 
 /*
  * Buttons
@@ -184,7 +180,7 @@ div.center {
 }
 
 .ly-header .ly-name {
-  font-size: 2.2em;
+  font-size: 1.5em;
 }
 
 .ly-header .ly-menu {
@@ -346,7 +342,7 @@ div.center {
   font-size: 2.5em;
   line-height: 1em;
   right: 0.3em;
-  top: 0.15em;
+  top: 0em;
   z-index: 2000;
 }
 
@@ -356,7 +352,7 @@ div.center {
  */
 
 .ly-function-form .ly-actions {
-  height: 4.5em !important;
+  height: 3.7em !important;
 }
 
 .ly-form .ly-head {
@@ -518,6 +514,7 @@ div.center {
 }
 
 .ly-form .ly-actions .ly-button {
+  font-size: 1.2em;
   margin-left: 3.5%;
   margin-bottom: 0.6em;
   width: 93%;
@@ -532,9 +529,9 @@ div.center {
   border-top: 1px solid #eee;
 }
 
-.ly-form .ly-actions .ly-delete-button,
-.ly-form .ly-actions .ly-delete-button:hover {
-  background-color: rgb(211, 0, 0);
+.ly-form .ly-actions .ly-delete-link,
+.ly-form .ly-actions .ly-delete-link:hover {
+  color: rgb(233, 0, 0);
 }
 
 
@@ -577,7 +574,7 @@ input:focus {
 }
 
 .ly-delete .ly-form .ly-actions{
-  height: 4.5em !important;
+  height: 3.7em !important;
 }
 
 .ly-delete .ly-actions .ly-cancel-button {
@@ -632,5 +629,17 @@ input:focus {
 .animated {
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
+}
+
+
+
+/*
+ * Compact personalizations
+ */
+
+
+.ly-compact .ly-functions {
+  padding: 0em;
+  border-bottom: none;
 }
 

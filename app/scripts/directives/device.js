@@ -230,8 +230,8 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     /* Animate status change */
     scope.animateStatus = function() {
       var effect = 'flipInX';
-      element.find('.ly-status .ly-description .ly-name').addClass('animated ' + effect);
-      $timeout(function() { element.find('.ly-status .ly-description .ly-name').removeClass('animated ' + effect); }, 500);
+      element.find('.ly-updated-animation').addClass('animated ' + effect);
+      $timeout(function() { element.find('.ly-updated-animation').removeClass('animated ' + effect); }, 500);
     }
 
 

@@ -1,9 +1,9 @@
 <div class="ly-device ly-device-{{device.id}} ly-type-{{type.id}}" ng-class="{'ly-sensor': !hasFunctions}">
 
 
-  <!-- ----------------- -->
-  <!--  Deleted message  -->
-  <!-- ----------------- -->
+  <!-- ---------------- -->
+  <!--  Device message  -->
+  <!-- ---------------- -->
 
   <div class="ly-message ly-generic-message ly-animation-fast" ng-if="view.path=='/message'">
     <p class="ly-description">{{message.title}}</p>
@@ -69,7 +69,7 @@
       <!-- Description -->
 
       <div class="ly-description">
-        <p class="ly-name">{{status.name || 'Undefined status'}}</p>
+        <p class="ly-name ly-updated-animation">{{status.name || 'Undefined status'}}</p>
         <p class="ly-extras"><span am-time-ago="device.updated_at"></span> from {{device.updated_from}}</p>
       </div>
     </div>

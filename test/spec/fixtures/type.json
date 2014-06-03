@@ -92,7 +92,7 @@
     },
     {
         "uri": "http://www.example.com/functions/50042612d033a9b4ac0007f5",
-        "id": "50042612d033a9b4ac0007f5",
+        "id": "3",
         "name": "Set intensity",
         "created_at": "2012-07-16T14:32:50Z",
         "updated_at": "2012-07-16T14:32:50Z",
@@ -109,7 +109,7 @@
     },
     {
         "uri": "http://www.example.com/functions/50042612d033a9b4ac0007f7",
-        "id": "50042612d033a9b4ac0007f7",
+        "id": "4",
         "name": "Set all values",
         "created_at": "2012-07-16T14:32:50Z",
         "updated_at": "2012-07-16T14:32:50Z",
