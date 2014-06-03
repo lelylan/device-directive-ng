@@ -513,7 +513,7 @@ describe('<device>', function() {
     describe('when fires a custom event', function() {
 
       beforeEach(function() {
-        $rootScope.$on('lelylan:device:open', callback);
+        $rootScope.$on('lelylan:device:custom:open', callback);
       });
 
       beforeEach(function() {
