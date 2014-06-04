@@ -27,8 +27,8 @@ app/bower_components
 .jshintrc
 .tmp/
 
-# Dist
-dist/
-
 # Coverage
 coverage/
+
+# Test page
+index-test.html

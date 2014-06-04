@@ -1,3 +1,5 @@
+/* device-component-ng - v0.2.0-beta - 2014-06-04 */
+
 /*
  * Device component reset
  */
@@ -164,10 +166,6 @@
 
 .ly-header .ly-name {
   font-size: 1.5em;
-}
-
-.ly-header .ly-device-name {
-  font-size: 2.2em;
 }
 
 .ly-header .ly-menu {
@@ -637,3 +635,15 @@ input:focus {
   font-size: 4.2em;
 }
 
+
+body {
+  background-color: #F8F8F8;
+}
+
+div.center {
+  width: 22em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:50px;
+}
