@@ -637,9 +637,16 @@ input:focus {
  * Compact personalizations
  */
 
-
 .ly-compact .ly-functions {
   padding: 0em;
   border-bottom: none;
+}
+
+.ly-compact .ly-open-button {
+  color: #239cbb;
+  position: absolute;
+  top: -0.05em;
+  right: 0.1em;
+  font-size: 4.2em;
 }
 

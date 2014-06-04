@@ -9,7 +9,8 @@
     "moment": "~2.5.1",
     "angular-moment": "~0.6.2",
     "animate.css": "~3.1.1",
-    "underscore": "~1.6.0"
+    "underscore": "~1.6.0",
+    "fontawesome": "~4.1.0"
   },
   "devDependencies": {
     "json3": "~3.2.6",
@@ -19,8 +20,5 @@
     "angular-scenario": "1.2.16",
     "jquery": "~2.1.0",
     "jasmine-jquery": "~2.0.3"
-  },
-  "resolutions": {
-    "jasmine": "v1.3.1"
   }
 }

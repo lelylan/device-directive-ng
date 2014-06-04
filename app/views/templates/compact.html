@@ -47,10 +47,13 @@
 
       <!-- Description -->
 
-      <div class="ly-description">
+      <div class="ly-description" ng-click="fire('open')">
         <p class="ly-name">{{device.name}}</p>
         <p class="ly-extras ly-updated-animation">
         {{status.name || 'Undefined status'}}
+        </p>
+        <p class="ly-open-button">
+        <i class="fa fa-angle-right"></i>
         </p>
       </div>
     </div>
