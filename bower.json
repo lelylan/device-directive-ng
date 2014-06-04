@@ -1,6 +1,6 @@
 {
-  "name": "device",
-  "version": "0.1.0-beta",
+  "name": "device-component-ng",
+  "version": "0.2.0-beta",
   "dependencies": {
     "angular": "1.2.16",
     "angular-animate": "~1.2.16",

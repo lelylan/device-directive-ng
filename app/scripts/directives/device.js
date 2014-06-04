@@ -240,7 +240,6 @@ angular.module('lelylan.directives.device.directive').directive('device', [
      *to do some other stuff (like opening a detailed view).
      */
     scope.fire = function(event) {
-      console.log('lelylan:device:custom:' + event)
       $rootScope.$broadcast('lelylan:device:custom:' + event, scope.device);
     }
 

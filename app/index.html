@@ -9,15 +9,13 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">-->
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css styles/vendor.css -->
+    <link rel="stylesheet" href="styles/page.css">
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
     <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css({.tmp,app}) styles/main.css -->
+    <!-- build:css({.tmp,app}) device-component-ng.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
@@ -27,7 +25,8 @@
     <![endif]-->
 
     <div class="center">
-      <device device-id="1" device-template="views/templates/compact.html"></device>
+      <device device-id="1"></device>
+      <!--<device device-id="1" device-template="views/templates/compact.html"></device>-->
     </div>
 
     <!-- TODO install jasmine with bower -->
@@ -35,7 +34,6 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/jasmine-jquery/lib/jasmine-jquery.js"></script>
 
-    <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -48,9 +46,8 @@
     <script src="bower_components/angular-moment/angular-moment.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <!-- endbower -->
-    <!-- endbuild -->
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <!-- build:js({.tmp,app}) device-component-ng.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/services/device_properties.js"></script>
     <script src="scripts/services/device_functions.js"></script>

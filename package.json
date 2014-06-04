@@ -42,7 +42,8 @@
     "karma-phantomjs-launcher": "~0.1.2",
     "karma-chrome-launcher": "~0.1.2",
     "karma-coverage": "~0.2.1",
-    "grunt-protractor-runner": "~0.2.4"
+    "grunt-protractor-runner": "~0.2.4",
+    "grunt-string-replace": "~0.2.7"
   },
   "engines": {
     "node": ">=0.8.0"
