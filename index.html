@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>device-ng | AngularJS directive to control your devices, on web and mobile</title>
+    <link rel="stylesheet" href="public/style.css">
+    <link rel="stylesheet" href="public/icons/css/slate.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Italiana&amp;subset=latin">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  </head>
+  <body>
+
+    <section id="top">
+    <div id="menu">
+      <a id="toggle" href="#">
+        <i class="icon-menu"></i>
+      </a>
+      <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#getting-started">Getting Started</a></li>
+        <li><a href="#howto">How To</a></li>
+        <li><a href="#configurations">Configurations</a></li>
+        <li><a href="#customizations">Customizations</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#links">Links</a></li>
+        <li><a href="#thanks">Thanks To</a></li>
+      </ul>
+    </div>
+    <div id="heading">
+      <div id="logo">&lt;device&gt;</div>
+      <div id="tagline">The best way to control your devices, on web and mobile</a></div>
+      <p class="btn-group">
+      <a href="#" class="btn" target="_blank">Show me &gt;</a>
+      </p>
+    </div>
+    </section>
+
+    <section>
+    <div class="content">
+      <h1 id="introduction">Introduction</h1>
+      <p>
+      Device is an AngularJS directive that makes it easy to monitor and control your
+      devices (e.g. lights, locks, thermostats) from web, tablet, and mobile devices.
+      </p>
+
+      <p class="notice">
+      To make this possible it uses <a href="http://lelylan.com/" target="_blank">Lelylan</a>,
+      a simple, open and robust REST API for the Connected Home.
+      </p>
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+      <h1 id="getting-started">Getting Started</h1>
+
+      <h2>Installation</h2>
+
+      <p>
+      Install oauth-ng using <a href="http://bower.io/" target="_blank">Bower</a>
+      </p>
+
+      <pre><code>$ bower install oauth-ng --save</code></pre>
+
+      <h2>Basic Example</h2>
+
+      <p>
+      This example shows you how the directive works.
+      </p>
+
+      <pre><code><xmp><body ng-app="app">
+  <oauth
+    site="OAUTH_SERVER_URI_HERE"
+    client-id="CLIENT_ID_HERE"
+    redirect-uri="REDIRECT_URI_HERE"
+    profile-uri="PROFILE_URI_HERE"
+    scope="SCOPE_HERE">
+  </oauth>
+
+  <script>angular.module('app', ['oauth-ng']);</script>
+</body></xmp></code></pre>
+
+      <p>
+      To fully understand how it works read the <a href="#howto">next section</a>.
+      </p>
+
+      <h2>What does it do?</h2>
+
+      <p>
+      It renders a Login link that lets you authorize a third party app through OAuth 2.0.
+      When the flow is completed, the access token is saved in the <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage#sessionStorage" target="_blank">SessionStorage</a>.
+      </p>
+
+      <p class="notice">
+      The oauth directive only works in HTML5 mode (automatically activated). <br>
+      We are working on fixing this <a href="https://github.com/andreareginato/oauth-ng/issues/13">bug</a>.
+      </p>
+
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+
+
+      <h1 id="howto">Create your first app with oauth-ng</h1>
+      <p>
+      In this section you will learn how to use the directive to authorize an OAuth 2.0 server
+      through the creation of a real project. It will take less than 10 minutues.
+      </p>
+
+      <p class="btn-group">
+      <a href="https://oauth-ng-demo.herokuapp.com/" class="btn" target="_blank">View Demo</a>
+      <a href="https://github.com/andreareginato/oauth-ng-demo" class="btn" target="_blank">Download Source</a>
+      </p>
+
+
+      <h2 id="setup">Setup</h2>
+
+      <p>
+      To build our app we'll use <a href="http://yeoman.io" target="blank">Yeoman</a>, a collection of tools
+      and frameworks helping developers to quickly build web applications.
+      </p>
+
+      <ul>
+        <li>
+        <strong>yo</strong> - perform ripetitive tasks.
+        </li>
+        <li>
+        <strong>grunt</strong> - build, preview and test your project.
+        </li>
+        <li>
+        <strong>bower</strong> - solve the frontend package management.
+        </li>
+      </ul>
+
+
+      <h2>Installation</h2>
+
+      <p>
+      With a recent version of Node.js installed, install the <code>yo</code> package.
+      In this way you have Yo, Grunt and Bower and can run them directly from the command-line.
+      </p>
+
+      <pre><code>$ npm install -g yo</code></pre>
+
+      <p>
+      With Yeoman you can install additional generators with npm. For this tutorial you need
+      to install the AngularJS generator.
+      </p>
+
+      <pre><code>$ npm install -g generator-angular</code></pre>
+
+
+      <h2>Create your AngularJS app</h2>
+
+      <p>
+      To begin, go to the terminal, make a new directory and cd into it.
+      </p>
+
+      <pre><code>$ mkdir new-project && cd $_</code></pre>
+
+      <p>
+      You can now kick-start your AngularJS app.
+      </p>
+
+      <pre><code>$ yo angular</code></pre>
+
+      <p>
+      It will also ask you if you would like to include Twitter Bootstrap and other stuff.
+      Once you've decided, just hit Enter. It will take a while to complete.
+      </p>
+
+      <p>
+      To preview what the app looks like run the serve command.
+      </p>
+
+      <pre><code>$ grunt serve</code></pre>
+
+      <p>
+      The server supports LiveReload, meaning you can fire up a text editor, edit a custom
+      element and the browser will reload on save.
+      </p>
+
+
+      <h2>Install oauth-ng</h2>
+
+      <p>
+      Install oauth-ng using <a href="http://bower.io/">Bower</a>.
+      </p>
+
+      <pre><code>$ bower install oauth-ng --save</code></pre>
+
+      <p>
+      Now you have <code>oauth-ng</code> and all its dependencies ready to be used.
+      Restart the server to automatically add them to your index page.
+      </p>
+
+      <pre><code>$ grunt serve</code></pre>
+
+      <p>
+      The setup is now completed.
+      </p>
+
+
+      <h2>AngularJS app definition</h2>
+
+      <p>
+      Inject the oauth-ng module into your application.
+      </p>
+
+      <pre><code><xmp>// app/scripts/app.js
+angular.module('newProjectApp', ['oauth', ... ])</xmp></code></pre>
+
+      <h2 id="server">OAuth 2.0 Server</h2>
+
+      <p>
+      To test the directive we created a basic OAuth 2.0 authorization server at the address
+      <code>http://oauth-ng-server.herokuapp.com</code>.
+      </p>
+
+
+      <h2>Identify your application</h2>
+
+      <p>
+      To make the directive work you need a registered application to get its
+      <code>client-id</code> and <code>redirect-uri</code>. For this example we
+      created a demo app with the following credentials.
+      </p>
+
+      <ul>
+        <li><strong>client-id</strong> - 017b9f702a904869a6e52bd39b147bb912</li>
+        <li><strong>redirect-uri</strong> - http://localhost:9000</li>
+      </ul>
+
+
+      <h2>Add the oauth-ng directive</h2>
+
+      <p>
+      Open your main.html view and place the <code>oauth</code> tag with the needed configurations.
+      </p>
+
+      <pre><code><xmp><oauth
+  site="http://oauth-ng-server.herokuapp.com"
+  client-id="d6d2b510d18471d2e22aa202216e86c42beac80f9a6ac2da505dcb79c7b2fd99"
+  redirect-uri="http://localhost:9000"
+  profile-uri="http://oauth-ng-server.herokuapp.com/api/v1/me"
+  scope="public">
+</oauth></xmp></code></pre>
+
+      <p>
+      Here a description for what these settings are about.
+      </p>
+
+      <table class="table table-labeled">
+        <tbody class="smaller-titles">
+          <tr>
+            <td class="parameter">
+              <span>site</span>
+            </td>
+            <td>
+               OAuth 2.0 authorization server URI.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>client-id</span>
+            </td>
+            <td>
+              Registered Client ID.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>redirect-uri</span>
+            </td>
+            <td>
+              Registered application URI. <br>Where the user is redirected after the authorization.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>profile-uri</span>
+            </td>
+            <td>
+              API endpoint to get the authenticated profile resource.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>scope</span>
+            </td>
+            <td>
+              Application privileges.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <h2>You're done!</h2>
+
+      <p>
+      Open your index page, click to the Login link and authorize your application
+      to get a new access token. You are now ready to access your API using OAuth
+      2.0 and AngularJS.
+      </p>
+
+      <p class="btn-group">
+      <a href="https://oauth-ng-demo.herokuapp.com/" class="btn" target="_blank">View Demo</a>
+      <a href="https://github.com/andreareginato/oauth-ng-demo" class="btn" target="_blank">Download Source</a>
+      </p>
+
+      <a href="https://oauth-ng-demo.herokuapp.com/"target="_blank">
+        <img src="public/images/demo.png"></img>
+      </a>
+
+    </div>
+    </section>
+
+
+
+    <section>
+    <div class="content">
+      <h1 id="configurations">Configurations</h1>
+
+      <p>
+      The directive accepts the following attributes.
+      </p>
+
+      <table class="table">
+        <tbody class="smaller-titles">
+          <tr>
+            <td class="parameter">
+              <span>site</span>
+              <span class="info">required</span>
+            </td>
+            <td>
+              A string that represents the authorization endpoint.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>client-id</span>
+              <span class="info">required</span>
+            </td>
+            <td>
+              Registered Client ID.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>redirect-uri</span>
+              <span class="info">required</span>
+            </td>
+            <td>
+              Registered application URI where the user is redirected after the authorization.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>scope</span>
+              <span class="info">optional</span>
+            </td>
+            <td>
+              Application privileges.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>profile-uri</span>
+              <span class="info">optional</span>
+            </td>
+            <td>
+              API endpoint returning the authenticated profile resource.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>state</span>
+              <span class="info">optional</span>
+            </td>
+            <td>
+              Optional opaque value used by the client to maintain state between the request and callback.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>template</span>
+              <span class="info">optional</span>
+            </td>
+            <td>
+              Custom template you want to render. <br>
+              Default to <code>default.html</code>.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>authorize-path</span>
+              <span class="info">optional</span>
+            </td>
+            <td>
+              Authorization URL for the OAuth2 Implicit Flow. <br>
+              Default to <code>/oauth/authorize</code>.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>text</span>
+              <span class="info">optional</span>
+            </td>
+            <td>
+              Visible text when the user has to login.<br>
+              Default to <code>Sign in</code>.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+      <h1 id="customizations">Customizations</h1>
+
+      <p>
+        The oauth directive comes to life with customization in mind. You can easily define
+        personalized CSS styles or create brand new templates.
+      </p>
+
+      <h1 id="curstomization-css">Custom CSS</h1>
+
+      <p>
+      By default the directive is shown as a simple link. To improve its visual style
+      add some CSS rules.
+      </p>
+
+      <table class="table button">
+        <tbody>
+          <tr>
+            <td class="parameter">
+              <span class="title">
+                Default
+              </span>
+            </td>
+            <td class="parameter" style="text-align:right;">
+              <span>
+                 (no extra CSS required)
+               </span>
+             </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>Logged out</span>
+            </td>
+            <td>
+              <span class="oauth">
+                <a href="javascript:void(0)" class="logged-out">Sign In</a> <br>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>Logged in</span>
+            </td>
+            <td>
+              <span class="oauth">
+                <a href="javascript:void(0)" class="logged-in">Logout Alice</a>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>Access denied</span>
+            </td>
+            <td>
+              <span class="oauth">
+                <a href="javascript:void(0)" class="denied">Access denied. Try again.</a>
+              </span>
+            </td>
+          </tr>
+         </tbody>
+       </table>
+
+       <table class="table button blue-button">
+         <tbody>
+           <tr>
+             <td class="parameter">
+               <span class="title">
+                 Blue button style
+               </span>
+             </td>
+             <td class="parameter" style="text-align:right;">
+               <span>
+                 <a href="https://gist.github.com/andreareginato/06a454d76ad619bb4f9f" target="blank">&lt;Download CSS&gt;</a>
+               </span>
+             </td>
+           </tr>
+           <tr>
+             <td class="parameter">
+               <span>Logged out</span>
+             </td>
+             <td>
+               <span class="oauth">
+                 <a href="javascript:void(0)" class="logged-out">Sign In</a>
+               </span>
+             </td>
+           </tr>
+           <tr>
+             <td class="parameter">
+               <span>Logged in</span>
+             </td>
+             <td>
+               <span class="oauth">
+                 <a href="javascript:void(0)" class="logged-in">Logout Alice</a> <br>
+               </span>
+             </td>
+           </tr>
+           <tr>
+             <td class="parameter">
+               <span>Access denied</span>
+             </td>
+             <td>
+               <span class="oauth">
+                 <a href="javascript:void(0)" class="denied">Access denied. Try again.</a>
+               </span>
+             </td>
+           </tr>
+         </tbody>
+       </table>
+
+      <p>
+      All CSS rules applies to the following HTML structure.
+      </p>
+
+      <pre><code><xmp><span class="oauth">
+  <a href="#" class="logged-out">Sign In</a>
+  <a href="#" class="logged-in">Logout Alice</a>
+  <a href="#" class="denied">Access denied. Try again.</a>
+</span></xmp></code></pre>
+
+      <p>
+      It's easy to create your own. Base all of your rules on the <code>oauth</code> class
+      or checkout existing CSS definitions to better understand how it works
+      (e.g. the <a href="https://gist.github.com/andreareginato/06a454d76ad619bb4f9f" target="blank">blue button CSS</a>).
+      </p>
+
+      <p class="notice">
+      <a href="mailto:andrea.reginato@gmail.com">Mail</a> or <a href="http://twitter.com/andreareginato">Tweet</a>
+      me if you make new CSS buttons so that we can add them do the docs.</p>
+      </p>
+
+
+      <h1 id="customization-template">Custom Template</h1>
+
+      <p>
+      When the custom template does not satisfy your needs (e.g. you want to show the user email
+      when logged in), you can create a new one. To have an idea of what a template looks like,
+      see the code below (related to the default template).
+      </p>
+
+      <pre><code><xmp><span class="oauth">
+  <a href="#" class="logged-out" ng-show="show=='logged-out'" ng-click="login()">{{text}}</a>
+  <a href="#" class="logged-in"  ng-show="show=='logged-in'"  ng-click="logout()">Logout {{profile.email}}</a>
+  <a href="#" class="denied"     ng-show="show=='denied'"     ng-click="login()">Access denied. Try again.</a>
+</span></xmp></code></pre>
+
+      <p>
+      To create your new template, define the HTML and make it work using the following internal API.
+      </p>
+
+      <table class="table smaller-titles">
+        <tbody class="smaller-titles">
+          <tr>
+            <td class="parameter">
+              <span>show</span>
+              <span class="info">variable</span>
+            </td>
+            <td>
+              Defines the oauth status. <br>
+              Valid values are <code>logged-out</code>, <code>logged-in</code> and <code>denied</code>.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>text</span>
+              <span class="info">variable</span>
+            </td>
+            <td>
+              Visible text when the widget is logged out.<br>
+              Default to <code>Sign in</code>.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>login()</span>
+              <span class="info">method</span>
+            </td>
+            <td>
+              Logs in redirecting the app to the OAuth 2.0 authorization server.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>logout()</span>
+              <span class="info">method</span>
+            </td>
+            <td>
+              Logs out deleting the access token.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+      Now, supposing you have defined a new template in <code>views/templates/custom.html</code>,
+      you need to let the directive know about its existence. You can do this in two ways.
+      </p>
+
+      <ul>
+        <li>Setting the template attribute</li>
+        <li>Firing the template event</li>
+      </ul>
+
+      <h2>1 - Template attribute</h2>
+
+      <p>
+      Set the template path (or uri) as value for the template attribute.
+      </p>
+
+      <pre><code><xmp><oauth
+  template="views/templates/custom.html"
+  client-id="<client-id>"
+  redirect-uri="<redirect-uri>"
+  profile-uri="<profile-uri>"
+  scope="<your-scope>">
+</oauth></xmp></code></pre>
+
+      <h2>2 - Template event</h2>
+
+      <p>
+      Fires the update template event passing the template path (or uri) as param.
+      </p>
+
+      <pre><code><xmp>$rootScope.$broadcast('oauth:template:update', 'views/templates/custom.html');</xmp></code></pre>
+
+      <p>
+      Use this solution when you need to update the directive at runtime. For all
+      other cases, use the template attribute.
+      </p>
+
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+      <h1 id="events">Events</h1>
+
+      <p>
+      The events related to the oauth directive are the following.
+      </p>
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="parameter">
+              <span>oauth:login(token)</span>
+              <span class="info">fired</span>
+            </td>
+            <td>
+              Fired when the user has authorized the third party app.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>oauth:logout</span>
+              <span class="info">fired</span>
+            </td>
+            <td>
+              Fired when the user logs out.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>oauth:denied</span>
+              <span class="info">fired</span>
+            </td>
+            <td>
+              Fired when the user denies the access to the third party app.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>oauth:expired</span>
+              <span class="info">fired</span>
+            </td>
+            <td>
+              Fired when the access token is expired.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>oauth:template:update(uri)</span>
+              <span class="info">listening</span>
+            </td>
+            <td>
+              Listening for runtime the template change.<br>
+              See examples in the <a href="#customizations">customization</a> section.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+      Here some examples.
+      </p>
+
+      <pre><code><xmp>$scope.$on('oauth:login', function(event, token) {
+  console.log('Authorized third party app with token', token.access_token);
+});
+
+$scope.$on('oauth:logout', function(event) {
+  console.log('The user has signed out');
+});
+
+$scope.$on('oauth:denied', function(event) {
+  console.log('The user did not authorize the third party app');
+});
+
+$scope.$on('oauth:expired', function(event) {
+  console.log('The access token is expired. Please refresh.');
+});</xmp></code></pre>
+
+
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+      <h1 id="logged">Logged in or logged out?</h1>
+
+      <p>
+      Inject the <code>AccessToken.get()</code> service to understand if the user is logged in or out.
+      </p>
+
+      <pre><code><xmp>$scope.logged = !!AccessToken.get();</xmp></code></pre>
+
+      <p>
+      The <code>AccessToken.get()</code> method returns <code>null</code> when the user is logged
+      out and the access token representation when the user is logged in (see below).
+      </p>
+
+
+<pre><code><xmp>{
+  "access_token": "9ce03e06f037180c2dcfa8b278217eb56d747730c69xxx",
+  "token_type": "bearer",
+  "expires_in": 7200,
+  "state": "remember-me"
+}</xmp></code></pre>
+
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+      <h1 id="profile">Profile resource</h1>
+
+      <p>
+      When a user signs in, the profile is accessible through the <code>Profile</code> service.
+      </p>
+
+      <pre><code><xmp>$scope.profile = Profile.get();</xmp></code></pre>
+
+      <p>
+      This profile is accessible only when the <code>profile-uri</code> attribute is defined and
+      it sets the Authorization header with the access token to authenticate the request.
+      </p>
+
+      <pre><code><xmp>Authorization:Bearer {token}</xmp></code></pre>
+
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+      <h1 id="links">Links</h1>
+
+      <ul>
+        <li>
+        <a href="https://github.com/andreareginato/oauth-ng/" target="blank">Github Repository</a>
+        </li>
+        <li>
+        <a href="https://twitter.com/andreareginato" target="blank">@andreareginato</a>
+        </li>
+      </ul>
+
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+      <h1 id="thanks">Thanks</h1>
+
+      <p>
+      <a href="mailto:andrea.reginato@gmail.com" target="_blank">Mail</a> or
+      <a href="http://twitter.com/andreareginato" target="_blank">Tweet</a>
+      me for any idea that can improve the project.
+      </p>
+
+      <p>
+      This project was created and released as open-source thanks to <a href="http://lelylan.com" target="_blank">Lelylan</a>,
+      a new platform to monitor and control your devices through a simple, open and robust REST API.
+      </p>
+
+      <p>
+      If you like what I'm doing offer me a coffe
+<script data-gittip-username="andreareginato"
+        data-gittip-widget="button"
+        src="//gttp.co/v1.js"></script>
+      </p>
+
+    </div>
+    </section>
+  </body>
+</html>
