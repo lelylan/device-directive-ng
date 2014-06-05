@@ -1,0 +1,37 @@
+{
+  "name": "lelylan-ng",
+  "version": "0.2.0-beta",
+  "main": [
+    "dist/lelylan-ng.js"
+  ],
+  "ignore": [
+    "app",
+    "test",
+    "bower.json",
+    "Gruntfile.js",
+    "karma.conf.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "angular": "1.2.16",
+    "base64": "~0.3.0",
+    "oauth-ng": "~0.2.0-beta.1"
+  },
+  "devDependencies": {
+    "jquery": "~2.1.0",
+    "jasmine": "~2.0.0",
+    "jasmine-jquery": "~2.0.3",
+    "angular-mocks": "1.2.16",
+    "angular-scenario": "1.2.16"
+  },
+  "homepage": "https://github.com/lelylan/lelylan-ng",
+  "_release": "0.2.0-beta",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.2.0-beta",
+    "commit": "9bb560af318a9e3f79bf9f09dd44409152df0c04"
+  },
+  "_source": "git://github.com/lelylan/lelylan-ng.git",
+  "_target": "~0.2.0-beta",
+  "_originalSource": "lelylan-ng"
+}

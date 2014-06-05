@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Italiana&amp;subset=latin">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
   </head>
-  <body>
+  <body ng-app="app">
 
     <section id="top">
     <div id="menu">
@@ -822,12 +822,39 @@ $scope.$on('oauth:expired', function(event) {
 
       <p>
       If you like what I'm doing offer me a coffe
-<script data-gittip-username="andreareginato"
+      <script data-gittip-username="andreareginato"
         data-gittip-widget="button"
         src="//gttp.co/v1.js"></script>
       </p>
 
     </div>
     </section>
+
+    <!-- strict dependencies -->
+    <script src="public/bower_components/angular/angular.js"></script>
+    <script src="public/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="public/bower_components/angular-touch/angular-touch.js"></script>
+    <script src="public/bower_components/base64/base64.js"></script>
+    <script src="public/bower_components/ngstorage/ngStorage.js"></script>
+    <script src="public/bower_components/oauth-ng/dist/oauth-ng.js"></script>
+    <script src="public/bower_components/lelylan-ng/dist/lelylan-ng.js"></script>
+    <script src="public/bower_components/moment/moment.js"></script>
+    <script src="public/bower_components/angular-moment/angular-moment.js"></script>
+    <script src="public/bower_components/underscore/underscore.js"></script>
+
+    <!-- test dependencies -->
+    <script src="public/bower_components/jasmine/lib/jasmine-core/jasmine.js"></script>
+    <script src="public/bower_components/jquery/dist/jquery.js"></script>
+    <script src="public/bower_components/jasmine-jquery/lib/jasmine-jquery.js"></script>
+
+    <!-- mock lib -->
+    <script src="public/bower_components/angular-mocks/angular-mocks.js"></script>
+
+    <!-- app test -->
+    <script src="public/scripts/vendors/app-test.js"></script>
+    <script src="public/scripts/vendors/delayed-responses.js"></script>
+
+
+    <script src="public/bower_components/device-directive-ng/dist/device-component-ng.js"></script>
   </body>
 </html>

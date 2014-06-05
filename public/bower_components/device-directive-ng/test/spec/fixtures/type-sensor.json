@@ -1,0 +1,71 @@
+{
+    "id": "1",
+    "uri": "http://www.example.com/types/1",
+    "name": "Sensor",
+    "description": "Sensor description",
+    "categories": ["sensors"],
+    "owner": {
+      "id": "1",
+      "uri": "http://api.lelylan.com/people/1"
+    },
+    "created_at": "2012-07-16T14:32:50Z",
+    "updated_at": "2012-07-16T14:32:50Z",
+    "properties": [{
+      "id": "1",
+      "uri": "http://www.example.com/properties/status",
+      "name": "Status",
+      "type": "text",
+      "default": "0",
+      "accepted": { "on": "On", "off": "Off" },
+      "created_at": "2012-07-16T14:32:50Z",
+      "updated_at": "2012-07-16T14:32:50Z"
+    },
+    {
+      "uri": "http://www.example.com/properties/intensity",
+      "id": "2",
+      "name": "Intensity",
+      "type": "range",
+      "range": { "min": "0", "max": "100", "step": "1" },
+      "default": "0",
+      "created_at": "2012-07-16T14:32:50Z",
+      "updated_at": "2012-07-16T14:32:50Z"
+    },
+    {
+      "uri": "http://www.example.com/properties/duration",
+      "id": "3",
+      "name": "Interval",
+      "type": "number",
+      "default": "0",
+      "created_at": "2012-07-16T14:32:50Z",
+      "updated_at": "2012-07-16T14:32:50Z"
+    },
+    {
+      "uri": "http://www.example.com/properties/color",
+      "id": "4",
+      "name": "Color",
+      "type": "color",
+      "default": "#00000",
+      "created_at": "2012-07-16T14:32:50Z",
+      "updated_at": "2012-07-16T14:32:50Z"
+    },
+    {
+      "uri": "http://www.example.com/properties/password",
+      "id": "5",
+      "name": "Password",
+      "type": "password",
+      "default": "",
+      "created_at": "2012-07-16T14:32:50Z",
+      "updated_at": "2012-07-16T14:32:50Z"
+    },
+    {
+      "uri": "http://www.example.com/properties/url",
+      "id": "6",
+      "name": "URL",
+      "type": "url",
+      "default": "",
+      "created_at": "2012-07-16T14:32:50Z",
+      "updated_at": "2012-07-16T14:32:50Z"
+    }],
+    "functions": [],
+    "statuses": []
+}

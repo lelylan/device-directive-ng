@@ -1,0 +1,11 @@
+body {
+  background-color: #F8F8F8;
+}
+
+div.center {
+  width: 22em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:50px;
+}

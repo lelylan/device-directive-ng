@@ -1,0 +1,245 @@
+<div class="ly-device ly-device-{{device.id}} ly-type-{{type.id}}" ng-class="{'ly-sensor': !hasFunctions}">
+
+
+  <!-- ---------------- -->
+  <!--  Device message  -->
+  <!-- ---------------- -->
+
+  <div class="ly-message ly-generic-message ly-animation-fast" ng-if="view.path=='/message'">
+    <p class="ly-description">{{message.title}}</p>
+    <p class="ly-description-sub">{{message.description}}</p>
+  </div>
+
+
+  <!-- ----------------- -->
+  <!--  Loading message  -->
+  <!-- ----------------- -->
+
+  <div class="ly-message ly-loading" ng-if="view.path=='/loading'">
+    <p class="ly-description">Loading Device</p>
+    <div class="ly-spinner">
+      <div class="ly-bounce-1"></div>
+      <div class="ly-bounce-2"></div>
+      <div class="ly-bounce-3"></div>
+    </div>
+  </div>
+
+
+  <!-- ---------------- -->
+  <!--  Device Content  -->
+  <!-- ---------------- -->
+
+  <div class="ly-content" ng-class="{'ly-animation': view.path=='/default'}" ng-if="view.path!='/loading' && view.path!='/message'">
+
+
+    <!-- ------------- -->
+    <!-- Device header -->
+    <!-- ------------- -->
+
+    <div class="ly-header">
+
+      <!-- Name -->
+
+      <p class="ly-name ly-device-name">{{device.name}}</p>
+
+      <!-- Top menu -->
+
+      <ul class="ly-menu">
+        <li><a class="ly-menu-settings" href="#" ng-click="showSettings()"></i> Settings</a></li>
+      </ul>
+
+    </div>
+
+    <!-- Device status -->
+
+    <div class="ly-status" ng-class="{'ly-status-disabled': !status.function}" ng-if="hasStatuses" ng-click="execute(status.function)">
+
+      <!-- Default function button -->
+
+      <div class="ly-execute">
+        <button class="ly-button"></button>
+        <div class="ly-spinner ly-animation" ng-if="device.pending">
+          <div class="ly-bounce-1"></div>
+          <div class="ly-bounce-2"></div>
+          <div class="ly-bounce-3"></div>
+        </div>
+      </div>
+
+
+      <!-- Description -->
+
+      <div class="ly-description">
+        <p class="ly-name ly-updated-animation">{{status.name || 'Undefined status'}}</p>
+        <p class="ly-extras"><span am-time-ago="device.updated_at"></span> from {{device.updated_from}}</p>
+      </div>
+    </div>
+
+
+    <!-- ---------------- -->
+    <!-- Device functions -->
+    <!-- ---------------- -->
+
+    <div class="ly-functions" ng-if="hasFunctions">
+      <div class="ly-function-container" ng-repeat="function in functions">
+        <div class="ly-function ly-function-{{function.id}}" ng-click="execute(function)">
+
+          <!-- Function button -->
+
+          <div class="ly-execute">
+            <button class="ly-button"></button>
+            <p class="ly-name">{{function.name}}</p>
+          </div>
+        </div>
+
+        <!-- Function form -->
+
+        <div class="ly-function-form ly-modal ly-animation-fast" ng-if="function.visibleForm">
+          <div class="ly-modal-backdrop" ng-click="function.visibleForm=false"></div>
+          <div class="ly-modal-window">
+            <a class="ly-close" href="" ng-click="function.visibleForm=false">×</a>
+            <div class="ly-header">
+              <p class="ly-name">{{function.name}}</p>
+            </div>
+            <form class="ly-form" ng-submit="execute(function)">
+              <div class="ly-fields">
+                <div class="ly-field ly-editable"
+                  ng-repeat="property in function.properties"
+                  ng-class="{'ly-no-underline': (property.type=='range' || property.type=='color') }"
+                  ng-if="property.toFill">
+
+                  <p class="ly-description">
+                    <span>Set {{property.name | lowercase}}</span>
+                    <span ng-if="property.type=='range'">to {{property.expected}}</span>
+                  </p>
+
+                  <input class="ly-value ly-{{property.type}}"
+                    type="{{property.type}}"
+                    min="{{property.range.min}}"
+                    max="{{property.range.max}}"
+                    step="{{property.range.step}}"
+                    ng-if="property.accepted==null"
+                    ng-model="property.expected">
+                  </input>
+
+                  <select class="ly-value"
+                    ng-model="property.expected"
+                    ng-options="key as value for (key , value) in property.accepted"
+                    ng-if="property.accepted && property.type=='text'">
+                  </select>
+
+                </div>
+              </div>
+              <div class="ly-actions">
+                <button class="ly-button ly-update-button" ng-click="execute(function)">Execute</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ----------------- -->
+    <!-- Device properties -->
+    <!-- ----------------- -->
+
+    <div class="ly-properties">
+      <div class="ly-property ly-property-{{property.id}}" ng-repeat="property in device.properties">
+        <button class="ly-button"></button>
+        <p class="ly-description">
+          <span class="ly-name">{{property.name}}</span>
+          <span class="ly-value" ng-if="property.type!='password'">
+            <span>{{property.expected}}</span>
+            <span class="ly-color-ball" style="border-color:{{property.expected}}" ng-if="property.type=='color'"></span>
+          </span>
+          <span class="ly-value" ng-if="property.type=='password'" style="padding-top:1em">********</span>
+        </p>
+      </div>
+    </div>
+
+
+    <!-- ----------------- -->
+    <!--  Device Settings  -->
+    <!-- ----------------- -->
+
+    <div class="ly-settings ly-modal ly-animation-fast" ng-if="view.path=='/settings'">
+      <div class="ly-modal-backdrop" ng-click="showDefault() || resetForm()"></div>
+      <div class="ly-modal-window">
+        <a class="ly-close" href="" ng-click="showDefault() || resetForm()">×</a>
+
+        <div class="ly-settings-device">
+          <div class="ly-header">
+            <p class="ly-name">Settings</p>
+          </div>
+          <form class="ly-form" name="form" ng-submit="form.$valid && update()">
+            <div class="ly-fields">
+              <div class="ly-field">
+                <p class="ly-description">ID {{form.$valid}}</p>
+                <input class="ly-value ly-id" type="text" disabled ng-model="device.id"></input>
+              </div>
+              <div class="ly-field" ng-show="isMaker()">
+                <p class="ly-description">Secret</p>
+                <input class="ly-value ly-secret" type="text" disabled ng-model="privates.secret"></input>
+              </div>
+              <div class="ly-field">
+                <p class="ly-description">Type</p>
+                <p class="ly-value">
+                <a class="ly-type" href="http://types.lelylan.com/types/{{type.id}}" target="blank">{{type.name}}</a>
+                </p>
+              </div>
+              <div class="ly-field ly-editable">
+                <p class="ly-description" ng-class="{'ly-error': form.name.$error.required}">Name (required)</p>
+                <input class="ly-value ly-name" type="text" placeholder="Device name" name="name" ng-model="device.name" required></input>
+
+              </div>
+              <div class="ly-field ly-editable" ng-show="isMaker()">
+                <p class="ly-description">Physical URI <a href="http://dev.lelylan.com/makers#mqtt-set-the-physical-uri" target="blank">(what is this?)</a></p>
+                <input class="ly-value ly-physical" type="text" placeholder="http://nodes.lelylan.com/mqtt/devices/1" ng-model="device.physical.uri"></input>
+              </div>
+            </div>
+            <div class="ly-actions">
+              <button class="ly-button ly-update-button" ng-class="{'ly-disabled-button': !form.$valid}">save</button>
+              <div class="ly-delete-action" ng-show="isMaker()">
+                <a class="ly-delete-link" href="" ng-click="view.path='/delete'">Delete your device?</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ------------- -->
+    <!-- Device Delete -->
+    <!-- ------------- -->
+
+    <div class="ly-settings ly-delete ly-modal ly-animation-fast" ng-if="view.path=='/delete'">
+      <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
+      <div class="ly-modal-window">
+        <a class="ly-close" href="" ng-click="showDefault()">×</a>
+        <div class="ly-settings-delete">
+          <div class="ly-header">
+            <p class="ly-name">Delete</p>
+          </div>
+          <form class="ly-form" ng-submit="destroy(confirm)">
+            <div>
+              <p class="ly-info">
+              Deleting your device is irreversible.
+              Enter the device name to confirm you want to permanently delete it.
+              </p>
+            </div>
+
+            <div class="ly-field ly-editable">
+              <input class="ly-value ly-name" type="text" autofocus placeholder="Device name" ng-model="confirm"></input>
+            </div>
+            <div class="ly-actions">
+              <button class="ly-button ly-delete-button" ng-class="{'ly-disabled-button': confirm!=device.name}">delete</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

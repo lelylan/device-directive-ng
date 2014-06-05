@@ -1,0 +1,69 @@
+{
+  "id": "1",
+  "uri": "http://www.example.com/devices/1",
+  "name": "Closet dimmer",
+  "categories": ["lights"],
+  "pending": false,
+  "activated": true,
+  "type": {
+    "id": "1",
+    "uri": "https://type.lelylan.com/types/dimmer"
+  },
+  "properties": [{
+    "id": "1",
+    "uri": "https://type.lelylan.com/properties/status",
+    "value": "off",
+    "expected": "off",
+    "pending": false,
+    "accepted": null
+  }, {
+    "id": "2",
+    "uri": "https://type.lelylan.com/properties/intensity",
+    "expected": "0",
+    "value": "0",
+    "pending": false,
+    "accepted": null
+  }, {
+    "id": "3",
+    "uri": "https://type.lelylan.com/properties/duration",
+    "expected": "10",
+    "value": "10",
+    "pending": false,
+    "accepted": null
+  }, {
+    "id": "4",
+    "uri": "https://type.lelylan.com/properties/color",
+    "expected": "#239cbb",
+    "value": "#239cbb",
+    "pending": false,
+    "accepted": null
+  }, {
+    "id": "5",
+    "uri": "https://type.lelylan.com/properties/password",
+    "expected": "secret",
+    "value": "secret",
+    "pending": false,
+    "accepted": null
+  }, {
+    "id": "6",
+    "uri": "https://type.lelylan.com/properties/url",
+    "expected": "http://example.com",
+    "value": "http://example.com",
+    "pending": false,
+    "accepted": null
+  }],
+  "physical": {
+    "uri": "https://node.lelylan.com/mqtt/devices/1"
+  },
+  "maker": {
+    "id": "1",
+    "uri": "http://api.lelylan.com/people/1"
+  },
+  "owner": {
+    "id": "2",
+    "uri": "http://api.lelylan.com/people/2"
+  },
+  "created_at": "2011-06-20T15:54:42Z",
+  "updated_at": "2011-04-23T15:55:31Z",
+  "updated_from": "you"
+}

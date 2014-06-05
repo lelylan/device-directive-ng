@@ -3,5 +3,11 @@
   "version": "0.1.0",
   "main": [],
   "dependencies": {
+    "device-directive-ng": "~0.2.0-beta",
+    "jasmine": "v1.3.1",
+    "angular-mocks": "1.2.16",
+    "angular-scenario": "1.2.16",
+    "jquery": "~2.1.0",
+    "jasmine-jquery": "~2.0.3"
   }
 }

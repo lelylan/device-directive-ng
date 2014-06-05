@@ -1,0 +1,38 @@
+{
+  "name": "oauth-ng",
+  "version": "0.2.0-beta.2",
+  "main": [
+    "dist/oauth-ng.js",
+    "dist/views/templates/default"
+  ],
+  "ignore": [
+    "app",
+    "test",
+    "bower.json",
+    "Gruntfile.js",
+    "karma.conf.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "angular": "~1.2.16",
+    "ngstorage": "~0.3.0"
+  },
+  "devDependencies": {
+    "json3": "~3.2.4",
+    "es5-shim": "~2.0.8",
+    "timecop": "~0.1.1",
+    "bootstrap-sass": "~3.0.2",
+    "jquery": "~1.9.1",
+    "angular-mocks": "~1.2.16"
+  },
+  "homepage": "https://github.com/andreareginato/oauth-ng",
+  "_release": "0.2.0-beta.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.2.0-beta.2",
+    "commit": "76cd4fa325a5fe30b4f1ceb82425f5e169bfeba6"
+  },
+  "_source": "git://github.com/andreareginato/oauth-ng.git",
+  "_target": "~0.2.0-beta.1",
+  "_originalSource": "oauth-ng"
+}

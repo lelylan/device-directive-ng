@@ -1,0 +1,24 @@
+{
+  "name": "device-component-ng",
+  "version": "0.2.0-beta",
+  "dependencies": {
+    "angular": "1.2.16",
+    "angular-animate": "~1.2.16",
+    "angular-touch": "~1.2.16",
+    "lelylan-ng": "~0.2.0-beta",
+    "moment": "~2.5.1",
+    "angular-moment": "~0.6.2",
+    "animate.css": "~3.1.1",
+    "underscore": "~1.6.0",
+    "fontawesome": "~4.1.0"
+  },
+  "devDependencies": {
+    "json3": "~3.2.6",
+    "es5-shim": "~2.1.0",
+    "jasmine": "v1.3.1",
+    "angular-mocks": "1.2.16",
+    "angular-scenario": "1.2.16",
+    "jquery": "~2.1.0",
+    "jasmine-jquery": "~2.0.3"
+  }
+}

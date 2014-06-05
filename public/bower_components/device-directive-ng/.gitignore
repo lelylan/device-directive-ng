@@ -1,0 +1,34 @@
+# Ignore temporary files
+*.swp
+*.swo
+*.DS_Store
+
+# Ignore dependency libraries
+node_modules
+
+# Ignore logs
+*.log
+
+# Procfile env
+*.env
+
+# Documentation
+docs/
+
+# Temporary files
+.sass-cache/
+
+# Bower components
+app/bower_components
+
+# Yeoman
+.editorconfig
+.gitattributes
+.jshintrc
+.tmp/
+
+# Coverage
+coverage/
+
+# Test page
+index-test.html

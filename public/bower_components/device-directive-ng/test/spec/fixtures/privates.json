@@ -1,0 +1,7 @@
+{
+  "uri": "http://api.lelylan.com/devices/5042344b95fc441000000001",
+  "id": "1",
+  "name": "Closet dimmer",
+  "secret": "secret",
+  "activation_code": "activation_code"
+}
