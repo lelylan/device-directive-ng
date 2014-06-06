@@ -341,7 +341,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       </table>
 
       <p>
-      Here few examples.
+      Here a few examples.
       </p>
 
       <table class="table">
@@ -386,8 +386,8 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       <h1 id="curstomization-css">Custom CSS</h1>
 
       <p>
-      By default the directive is shown as a simple link. To improve its visual style
-      add some CSS rules.
+      The device directive comes to life with a default template. To improve its visual style
+      you need to add the custom CSS.
       </p>
 
       <table class="table button">
@@ -395,114 +395,55 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
           <tr>
             <td class="parameter">
               <span class="title">
-                Default
+                Default style
               </span>
             </td>
-            <td class="parameter" style="text-align:right;">
-              <span>
-                 (no extra CSS required)
-               </span>
-             </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>Logged out</span>
-            </td>
-            <td>
-              <span class="oauth">
-                <a href="javascript:void(0)" class="logged-out">Sign In</a> <br>
-              </span>
+            <td style="text-align: right;">
+              (no extra CSS required)
             </td>
           </tr>
           <tr>
             <td class="parameter">
-              <span>Logged in</span>
+              <img src="public/images/device.png" style="width:auto"></img>
             </td>
-            <td>
-              <span class="oauth">
-                <a href="javascript:void(0)" class="logged-in">Logout Alice</a>
-              </span>
-            </td>
+            <td></td>
           </tr>
-          <tr>
-            <td class="parameter">
-              <span>Access denied</span>
-            </td>
-            <td>
-              <span class="oauth">
-                <a href="javascript:void(0)" class="denied">Access denied. Try again.</a>
-              </span>
-            </td>
-          </tr>
-         </tbody>
+        </tbody>
        </table>
 
-       <table class="table button blue-button">
-         <tbody>
-           <tr>
-             <td class="parameter">
-               <span class="title">
-                 Blue button style
-               </span>
-             </td>
-             <td class="parameter" style="text-align:right;">
-               <span>
-                 <a href="https://gist.github.com/andreareginato/06a454d76ad619bb4f9f" target="blank">&lt;Download CSS&gt;</a>
-               </span>
-             </td>
-           </tr>
-           <tr>
-             <td class="parameter">
-               <span>Logged out</span>
-             </td>
-             <td>
-               <span class="oauth">
-                 <a href="javascript:void(0)" class="logged-out">Sign In</a>
-               </span>
-             </td>
-           </tr>
-           <tr>
-             <td class="parameter">
-               <span>Logged in</span>
-             </td>
-             <td>
-               <span class="oauth">
-                 <a href="javascript:void(0)" class="logged-in">Logout Alice</a> <br>
-               </span>
-             </td>
-           </tr>
-           <tr>
-             <td class="parameter">
-               <span>Access denied</span>
-             </td>
-             <td>
-               <span class="oauth">
-                 <a href="javascript:void(0)" class="denied">Access denied. Try again.</a>
-               </span>
-             </td>
-           </tr>
-         </tbody>
+      <table class="table button">
+        <tbody>
+          <tr>
+            <td class="parameter">
+              <span class="title">Black style</span>
+            </td>
+            <td style="text-align: right;">
+              &lt;Download CSS&gt;
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <img src="public/images/device.png" style="width:auto"></img>
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
        </table>
 
       <p>
-      All CSS rules applies to the following HTML structure.
+      All CSS rules applies to the default
+      <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/default.html">HTML template</a>
+      and <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/styles/main.css">CSS rules</a>.
       </p>
 
-      <pre><code><xmp><span class="oauth">
-  <a href="#" class="logged-out">Sign In</a>
-  <a href="#" class="logged-in">Logout Alice</a>
-  <a href="#" class="denied">Access denied. Try again.</a>
-</span></xmp></code></pre>
-
       <p>
-      It's easy to create your own. Base all of your rules on the <code>oauth</code> class
-      or checkout existing CSS definitions to better understand how it works
-      (e.g. the <a href="https://gist.github.com/andreareginato/06a454d76ad619bb4f9f" target="blank">blue button CSS</a>).
+      It's easy to create your own. Base all of your rules on the <code>ly-*</code> classes
+      or checkout existing CSS definitions to better understand how it works.
       </p>
 
       <p class="notice">
       <a href="mailto:andrea.reginato@gmail.com">Mail</a> or <a href="http://twitter.com/andreareginato">Tweet</a>
-      me if you make new CSS buttons so that we can add them do the docs.</p>
+      me about new CSS personalizations so that we can add them to the doc.</p>
       </p>
 
 
