@@ -310,90 +310,65 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
         <tbody class="smaller-titles">
           <tr>
             <td class="parameter">
-              <span>site</span>
-              <span class="info">required</span>
-            </td>
-            <td>
-              A string that represents the authorization endpoint.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>client-id</span>
-              <span class="info">required</span>
-            </td>
-            <td>
-              Registered Client ID.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>redirect-uri</span>
-              <span class="info">required</span>
-            </td>
-            <td>
-              Registered application URI where the user is redirected after the authorization.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>scope</span>
+              <span>device-json</span>
               <span class="info">optional</span>
             </td>
             <td>
-              Application privileges.
+              Device JSON (learn more about the device <a href="http://dev.lelylan.com/developers#get-a-device">representation</a>).
+              <span class="info">(required if device-id is not used)</span>
             </td>
           </tr>
           <tr>
             <td class="parameter">
-              <span>profile-uri</span>
+              <span>device-id</span>
               <span class="info">optional</span>
             </td>
             <td>
-              API endpoint returning the authenticated profile resource.
+              Device ID.
+              <span class="info">(required if device-json is not used)</span>
             </td>
           </tr>
           <tr>
             <td class="parameter">
-              <span>state</span>
+              <span>device-template</span>
               <span class="info">optional</span>
             </td>
             <td>
-              Optional opaque value used by the client to maintain state between the request and callback.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>template</span>
-              <span class="info">optional</span>
-            </td>
-            <td>
-              Custom template you want to render. <br>
-              Default to <code>default.html</code>.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>authorize-path</span>
-              <span class="info">optional</span>
-            </td>
-            <td>
-              Authorization URL for the OAuth2 Implicit Flow. <br>
-              Default to <code>/oauth/authorize</code>.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>text</span>
-              <span class="info">optional</span>
-            </td>
-            <td>
-              Visible text when the user has to login.<br>
-              Default to <code>Sign in</code>.
+              Custom template to render.<br>
             </td>
           </tr>
         </tbody>
       </table>
+
+      <p>
+      Here few examples.
+      </p>
+
+      <table class="table">
+        <tbody class="smaller-titles">
+          <tr>
+            <td>
+              <code><xmp><device device-id="DEVICE_ID"></device></xmp></code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code><xmp><device device-json="DEVICE_JSON"></device></xmp></code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code><xmp><device device-template="TEMPLATE_URI"></device></xmp></code>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="notice">
+      A good habit is to fetch the devices you need first and then render them usig the
+      <code>device-json</code> attribute. This will make the system more efficient than
+      using the <code>device-id</code> attribute because it fires an HTTP request per device.
+      </p>
 
     </div>
     </section>
