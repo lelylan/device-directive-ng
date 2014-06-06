@@ -5,6 +5,9 @@
     <link rel="stylesheet" href="public/style.css">
     <link rel="stylesheet" href="public/icons/css/slate.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Italiana&amp;subset=latin">
+    <link rel="stylesheet" href="public/bower_components/animate.css/animate.css" />
+    <link rel="stylesheet" href="public/bower_components/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="public/bower_components/device-directive-ng/dist/device-component-ng.css">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
   </head>
   <body ng-app="app">
@@ -25,12 +28,17 @@
         <li><a href="#thanks">Thanks To</a></li>
       </ul>
     </div>
+
     <div id="heading">
       <div id="logo">&lt;device&gt;</div>
-      <div id="tagline">The best way to control your devices, on web and mobile</a></div>
-      <p class="btn-group">
-      <a href="#" class="btn" target="_blank">Show me &gt;</a>
-      </p>
+      <div id="tagline">The new HTML5 tag to control your devices, on web and mobile</a></div>
+      <p><img src="public/images/device.png" style="width:auto"></img></p>
+      <!--<div id="device">-->
+        <!--<device-->
+          <!--device-id="1"-->
+          <!--device-template="public/bower_components/device-directive-ng/dist/views/templates/default.html">-->
+        <!--</device>-->
+      <!--<div>-->
     </div>
     </section>
 
@@ -39,13 +47,13 @@
       <h1 id="introduction">Introduction</h1>
       <p>
       Device is an AngularJS directive that makes it easy to monitor and control your
-      devices (e.g. lights, locks, thermostats) from web, tablet, and mobile devices.
-      </p>
-
-      <p class="notice">
+      physical devices (e.g. lights, locks, thermostats) from desktop, tablet, and mobile.
       To make this possible it uses <a href="http://lelylan.com/" target="_blank">Lelylan</a>,
       a simple, open and robust REST API for the Connected Home.
       </p>
+
+      <p class="btn-group"><a href="#" class="btn" target="_blank">See on Github</a></p>
+
     </div>
     </section>
 
@@ -57,43 +65,21 @@
       <h2>Installation</h2>
 
       <p>
-      Install oauth-ng using <a href="http://bower.io/" target="_blank">Bower</a>
+      Install the device directive using <a href="http://bower.io/" target="_blank">Bower</a>.
       </p>
 
-      <pre><code>$ bower install oauth-ng --save</code></pre>
+      <pre><code>$ bower install device-directive-ng --save</code></pre>
 
       <h2>Basic Example</h2>
 
       <p>
-      This example shows you how the directive works.
+      Use the &lt;device&gt; directive and set the desired device ID.
       </p>
 
-      <pre><code><xmp><body ng-app="app">
-  <oauth
-    site="OAUTH_SERVER_URI_HERE"
-    client-id="CLIENT_ID_HERE"
-    redirect-uri="REDIRECT_URI_HERE"
-    profile-uri="PROFILE_URI_HERE"
-    scope="SCOPE_HERE">
-  </oauth>
-
-  <script>angular.module('app', ['oauth-ng']);</script>
-</body></xmp></code></pre>
+      <pre><code><xmp><device device-id="DEVICE_ID"></device></xmp></code></pre>
 
       <p>
       To fully understand how it works read the <a href="#howto">next section</a>.
-      </p>
-
-      <h2>What does it do?</h2>
-
-      <p>
-      It renders a Login link that lets you authorize a third party app through OAuth 2.0.
-      When the flow is completed, the access token is saved in the <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage#sessionStorage" target="_blank">SessionStorage</a>.
-      </p>
-
-      <p class="notice">
-      The oauth directive only works in HTML5 mode (automatically activated). <br>
-      We are working on fixing this <a href="https://github.com/andreareginato/oauth-ng/issues/13">bug</a>.
       </p>
 
     </div>
@@ -104,7 +90,7 @@
     <div class="content">
 
 
-      <h1 id="howto">Create your first app with oauth-ng</h1>
+      <h1 id="howto">Create your first app with &lt;device&gt;</h1>
       <p>
       In this section you will learn how to use the directive to authorize an OAuth 2.0 server
       through the creation of a real project. It will take less than 10 minutues.

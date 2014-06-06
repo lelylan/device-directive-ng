@@ -11,9 +11,8 @@ var app = angular.module('oauth', [
   'oauth.interceptor'     // bearer token interceptor
 ])
 
-angular.module('oauth').config(['$locationProvider','$httpProvider',
-  function($locationProvider, $httpProvider) {
-    $locationProvider.html5Mode(true).hashPrefix('!');
+angular.module('oauth').config(['$httpProvider',
+  function($httpProvider) {
     $httpProvider.interceptors.push('ExpiredInterceptor');
   }]);
 

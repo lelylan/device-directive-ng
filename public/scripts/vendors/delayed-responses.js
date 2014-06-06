@@ -7,7 +7,7 @@ app.config(function($provide) {
         _arguments = arguments;
         setTimeout(function() {
           callback.apply(_this, _arguments);
-        }, 1000);
+        }, 700);
       };
       return $delegate.call(this, method, url, data, interceptor, headers);
     };

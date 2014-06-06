@@ -50,6 +50,7 @@ xmp {
   margin: 0;
 }
 
+#heading img,
 .content img {
   width: 100%;
   border: 1px solid #ddd;
@@ -111,7 +112,7 @@ section:nth-child(2n) {
 #heading {
   -webkit-user-select: none;
   position: absolute;
-  top: 35%;
+  top: 25%;
   margin-top: -150px;
   text-align: center;
   width: 100%;
@@ -299,4 +300,12 @@ table.button .parameter {
 
 .btn-group {
   margin-top: 2em;
+}
+
+div#device {
+  width: 22em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:50px;
 }

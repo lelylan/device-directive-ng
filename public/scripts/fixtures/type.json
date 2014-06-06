@@ -29,42 +29,6 @@
       "default": "0",
       "created_at": "2012-07-16T14:32:50Z",
       "updated_at": "2012-07-16T14:32:50Z"
-    },
-    {
-      "uri": "http://www.example.com/properties/duration",
-      "id": "3",
-      "name": "Interval",
-      "type": "number",
-      "default": "0",
-      "created_at": "2012-07-16T14:32:50Z",
-      "updated_at": "2012-07-16T14:32:50Z"
-    },
-    {
-      "uri": "http://www.example.com/properties/color",
-      "id": "4",
-      "name": "Color",
-      "type": "color",
-      "default": "#00000",
-      "created_at": "2012-07-16T14:32:50Z",
-      "updated_at": "2012-07-16T14:32:50Z"
-    },
-    {
-      "uri": "http://www.example.com/properties/password",
-      "id": "5",
-      "name": "Password",
-      "type": "password",
-      "default": "",
-      "created_at": "2012-07-16T14:32:50Z",
-      "updated_at": "2012-07-16T14:32:50Z"
-    },
-    {
-      "uri": "http://www.example.com/properties/url",
-      "id": "6",
-      "name": "URL",
-      "type": "url",
-      "default": "",
-      "created_at": "2012-07-16T14:32:50Z",
-      "updated_at": "2012-07-16T14:32:50Z"
     }],
     "functions": [{
         "uri": "http://www.example.com/functions/50042612d033a9b4ac0007f0",
@@ -104,43 +68,6 @@
         {
           "id": "2",
           "uri": "http://www.example.com/properties/intensity",
-          "expected": null
-        }]
-    },
-    {
-        "uri": "http://www.example.com/functions/50042612d033a9b4ac0007f7",
-        "id": "4",
-        "name": "Set all values",
-        "created_at": "2012-07-16T14:32:50Z",
-        "updated_at": "2012-07-16T14:32:50Z",
-        "properties": [{
-          "id": "1",
-          "uri": "http://www.example.com/properties/status",
-          "expected": null
-        },
-        {
-          "id": "2",
-          "uri": "http://www.example.com/properties/intensity",
-          "expected": null
-        },
-        {
-          "id": "3",
-          "uri": "http://www.example.com/properties/duration",
-          "expected": null
-        },
-        {
-          "id": "4",
-          "uri": "http://www.example.com/properties/color",
-          "expected": null
-        },
-        {
-          "id": "5",
-          "uri": "http://www.example.com/properties/password",
-          "expected": null
-        },
-        {
-          "id": "6",
-          "uri": "http://www.example.com/properties/url",
           "expected": null
         }]
     }],

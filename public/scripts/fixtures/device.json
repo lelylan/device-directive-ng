@@ -23,34 +23,6 @@
     "value": "0",
     "pending": false,
     "accepted": null
-  }, {
-    "id": "3",
-    "uri": "https://type.lelylan.com/properties/duration",
-    "expected": "10",
-    "value": "10",
-    "pending": false,
-    "accepted": null
-  }, {
-    "id": "4",
-    "uri": "https://type.lelylan.com/properties/color",
-    "expected": "#239cbb",
-    "value": "#239cbb",
-    "pending": false,
-    "accepted": null
-  }, {
-    "id": "5",
-    "uri": "https://type.lelylan.com/properties/password",
-    "expected": "secret",
-    "value": "secret",
-    "pending": false,
-    "accepted": null
-  }, {
-    "id": "6",
-    "uri": "https://type.lelylan.com/properties/url",
-    "expected": "http://example.com",
-    "value": "http://example.com",
-    "pending": false,
-    "accepted": null
   }],
   "physical": {
     "uri": "https://node.lelylan.com/mqtt/devices/1"
