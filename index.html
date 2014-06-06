@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="public/bower_components/device-directive-ng/dist/device-component-ng.css">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
   </head>
-  <body ng-app="app">
+  <body>
 
     <section id="top">
     <div id="menu">
@@ -167,17 +167,18 @@
       </p>
 
 
-      <h2>Install oauth-ng</h2>
+      <h2>Install the device directive</h2>
 
       <p>
-      Install oauth-ng using <a href="http://bower.io/">Bower</a>.
+      Install the device directive using <a href="http://bower.io/">Bower</a>.
       </p>
 
-      <pre><code>$ bower install oauth-ng --save</code></pre>
+      <pre><code>$ bower install device-directive-ng --save</code></pre>
 
       <p>
-      Now you have <code>oauth-ng</code> and all its dependencies ready to be used.
-      Restart the server to automatically add them to your index page.
+      Now you have <code>&lt;device&gt;</code> directive and all its dependencies ready to be
+      used. Restart the server to automatically add the needed javascript files to your index
+      page.
       </p>
 
       <pre><code>$ grunt serve</code></pre>
@@ -187,117 +188,110 @@
       </p>
 
 
-      <h2>AngularJS app definition</h2>
+      <h2>Add the device directive</h2>
 
       <p>
-      Inject the oauth-ng module into your application.
+      Inject the device directive into your AngularJS application.
       </p>
 
       <pre><code><xmp>// app/scripts/app.js
-angular.module('newProjectApp', ['oauth', ... ])</xmp></code></pre>
+angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
       <h2 id="server">OAuth 2.0 Server</h2>
 
       <p>
-      To test the directive we created a basic OAuth 2.0 authorization server at the address
-      <code>http://oauth-ng-server.herokuapp.com</code>.
+      Lelylan uses an OAuth 2.0 server for authentication and authorization.
+      <a href="http://people.lelylan.com/oauth/applications">Register</a> a new application
+      and take the generated credentials (Client ID and Redirect URI) before moving to the
+      next step.
       </p>
 
-
-      <h2>Identify your application</h2>
-
-      <p>
-      To make the directive work you need a registered application to get its
-      <code>client-id</code> and <code>redirect-uri</code>. For this example we
-      created a demo app with the following credentials.
-      </p>
-
-      <ul>
-        <li><strong>client-id</strong> - 017b9f702a904869a6e52bd39b147bb912</li>
-        <li><strong>redirect-uri</strong> - http://localhost:9000</li>
-      </ul>
+      <img src="public/images/application.png"></img>
 
 
       <h2>Add the oauth-ng directive</h2>
 
       <p>
-      Open your main.html view and place the <code>oauth</code> tag with the needed configurations.
+      To get an authorization token you need to use
+      <a href="http://andreareginato.github.io/oauth-ng/" target="blank">oauth-ng</a>,
+      an AngularJS directive for OAuth 2.0 (already installed as device directive dependency).
+      Open your main.html view and insert the oauth directive with the required configurations.
       </p>
 
       <pre><code><xmp><oauth
-  site="http://oauth-ng-server.herokuapp.com"
-  client-id="d6d2b510d18471d2e22aa202216e86c42beac80f9a6ac2da505dcb79c7b2fd99"
-  redirect-uri="http://localhost:9000"
-  profile-uri="http://oauth-ng-server.herokuapp.com/api/v1/me"
-  scope="public">
+  site="http://people.lelylan.com"
+  client-id="CLIENT_ID_HERE"
+  redirect-uri="REDIRECT_URI_HERE"
+  profile-uri="http://api.lelylan.com/me"
+  scope="devices">
 </oauth></xmp></code></pre>
 
-      <p>
-      Here a description for what these settings are about.
+      <p class="notice">
+      Check out the <a href="http://andreareginato.github.io/oauth-ng/" target="blank">oauth-ng</a>
+      docs if you want to better understand how it works.
       </p>
 
-      <table class="table table-labeled">
-        <tbody class="smaller-titles">
-          <tr>
-            <td class="parameter">
-              <span>site</span>
-            </td>
-            <td>
-               OAuth 2.0 authorization server URI.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>client-id</span>
-            </td>
-            <td>
-              Registered Client ID.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>redirect-uri</span>
-            </td>
-            <td>
-              Registered application URI. <br>Where the user is redirected after the authorization.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>profile-uri</span>
-            </td>
-            <td>
-              API endpoint to get the authenticated profile resource.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>scope</span>
-            </td>
-            <td>
-              Application privileges.
-            </td>
-          </tr>
-        </tbody>
-      </table>
 
+      <h2>Get your devices</h2>
+
+      <p>
+      To get all your devices you can use the
+      <a href="http://lelylan.github.io/lelylan-ng/" target="_blank">AngularJS client</a>
+      for Lelylan (already installed as dependency). Open the main controller
+      and place the <code>Device#all</code> method.
+      </p>
+
+      <pre><code><xmp>angular.module('newProjectApp')
+  .controller('MainCtrl', function ($scope, Device) {
+    Device.all()
+      .success(function(data) { $scope.devices = data })
+      .error(function(data)   { $scope.error   = 'Unauthorized request. Login first.' })
+  });</xmp></code></pre>
+
+      <p>
+      This is what happens. You inject the <code>Device</code> service and call
+      the <code>Device.all()</code> method to get all of your devices and save
+      them in <code>$scope.devices</code>.
+      </p>
+
+
+      <h2>Show your devices</h2>
+
+      <p>
+      Supposing you have created at least one device with Lelylan
+      you are ready to show them. Open the <code>main.html</code>
+      view and list your devices by using the device directive.
+      </p>
+
+      <p class="notice">
+      If you have no devices in Leylan, <a href="http://manage.lelylan.com/new">create</a>
+      your first one (it takes few seconds).
+      </p>
+
+      <pre><code><xmp><div ng-repeat="device in devices">
+  <device device-json="device"></device>
+<div></xmp></code></pre>
+
+      <p>
+      This is what happens. You iterate between all devices and show them using the device
+      directive. To let the directive know which device it has to render you use the attribute
+      <code>device-json</code> that accepts any valid device representation.
+      </p>
+
+      <p class="notice">
+        See the <a href="#configurations">configurations</a> section to see the
+        accepted attributes.
+      </p>
 
       <h2>You're done!</h2>
 
       <p>
       Open your index page, click to the Login link and authorize your application
-      to get a new access token. You are now ready to access your API using OAuth
-      2.0 and AngularJS.
+      to get a new access token. You are now ready to monitor and control all your
+      devices.
       </p>
 
-      <p class="btn-group">
-      <a href="https://oauth-ng-demo.herokuapp.com/" class="btn" target="_blank">View Demo</a>
-      <a href="https://github.com/andreareginato/oauth-ng-demo" class="btn" target="_blank">Download Source</a>
-      </p>
-
-      <a href="https://oauth-ng-demo.herokuapp.com/"target="_blank">
-        <img src="public/images/demo.png"></img>
-      </a>
+      <p><img src="public/images/device.png" style="width:auto"></img></p>
 
     </div>
     </section>
