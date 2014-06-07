@@ -73,11 +73,7 @@
       Use the &lt;device&gt; directive and set the desired device ID.
       </p>
 
-      <pre><code><xmp><device device-id="DEVICE_ID"></device></xmp></code></pre>
-
-      <p>
-      To fully understand how it works read the <a href="#howto">next section</a>.
-      </p>
+      <pre><code><xmp><device device-json="DEVICE_JSON"></device></xmp></code></pre>
 
     </div>
     </section>
@@ -375,20 +371,15 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
 
     <section>
+
     <div class="content">
-      <h1 id="customizations">Customizations</h1>
+
+      <h1 id="customization-css">Custom CSS</h1>
 
       <p>
-        The oauth directive comes to life with customization in mind. You can easily define
-        personalized CSS styles or create brand new templates.
-      </p>
+      The oauth directive comes to life with customization in mind. This means that you can
+      easily define your personalized CSS styles and create your own theme.
 
-      <h1 id="curstomization-css">Custom CSS</h1>
-
-      <p>
-      Check out the classes used for the default
-      <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/default.html">HTML template</a>
-      and customize the device directive adding your CSS.
       </p>
 
       <table class="table button">
@@ -405,7 +396,10 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
           </tr>
           <tr>
             <td colspan="2">
-              <img src="public/images/themes/default/controls.png" style="width:auto"></img>
+              <a href="public/images/themes/default/collection.png">
+                <p>See wireframes<p>
+                <img src="public/images/themes/default/controls.png" class="linked-image"></img>
+              </a>
             </td>
           </tr>
         </tbody>
@@ -418,12 +412,15 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
               <span class="title">Black style</span>
             </td>
             <td style="text-align: right;">
-              <a href="https://gist.github.com/andreareginato/cc4a8a05b6e0217ec741">&lt;Download CSS&gt;</a>
+              <a href="https://gist.github.com/andreareginato/cc4a8a05b6e0217ec741">&lt;Add this CSS&gt;</a>
             </td>
           </tr>
           <tr>
             <td colspan="2">
-              <img src="public/images/themes/black/controls.png" style="width:auto"></img>
+              <a href="public/images/themes/black/collection.png">
+                <p>See wireframes<p>
+                <img src="public/images/themes/black/controls.png" class="linked-image"></img>
+              </a>
             </td>
           </tr>
         </tbody>
@@ -432,9 +429,22 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       <p class="notice">
       <a href="mailto:dev@lelylan.com">Mail</a>
       or <a href="http://twitter.com/lelylan">Tweet</a>
-      us about new CSS personalizations that we can add here.</p>
+      us about new CSS customizations.</p>
       </p>
 
+      <h2>Defining a new style</h2>
+
+      <p>
+      To customize the device directive you first need to checkout the
+      <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/default.html">HTML structure</a>
+      and its CSS classes. Then start writing the new CSS rules overriding the existing ones.
+      </p>
+
+      <p>
+      Below you can see the few lines of CSS used to define the Black Style.
+      </p>
+
+      <script src="https://gist.github.com/andreareginato/cc4a8a05b6e0217ec741.js"></script>
 
       <h1 id="customization-template">Custom Template</h1>
 
