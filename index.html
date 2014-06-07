@@ -32,7 +32,7 @@
     <div id="heading">
       <div id="logo">&lt;device&gt;</div>
       <div id="tagline">The new HTML5 tag to control your devices, on web and mobile</a></div>
-      <p><img src="public/images/device.png" style="width:auto"></img></p>
+      <p><img src="public/images/themes/default/controls.png"></img></p>
       <!--<div id="device">-->
         <!--<device-->
           <!--device-id="1"-->
@@ -206,7 +206,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       next step.
       </p>
 
-      <img src="public/images/application.png"></img>
+      <img src="public/images/application.png" class="full-image"></img>
 
 
       <h2>Add the oauth-ng directive</h2>
@@ -291,7 +291,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       devices.
       </p>
 
-      <p><img src="public/images/device.png" style="width:auto"></img></p>
+      <p><img src="public/images/themes/default/controls.png"></img></p>
 
     </div>
     </section>
@@ -386,14 +386,15 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       <h1 id="curstomization-css">Custom CSS</h1>
 
       <p>
-      The device directive comes to life with a default template. To improve its visual style
-      you need to add the custom CSS.
+      Check out the classes used for the default
+      <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/default.html">HTML template</a>
+      and customize the device directive adding your CSS.
       </p>
 
       <table class="table button">
         <tbody>
           <tr>
-            <td class="parameter">
+            <td>
               <span class="title">
                 Default style
               </span>
@@ -403,10 +404,9 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
             </td>
           </tr>
           <tr>
-            <td class="parameter">
-              <img src="public/images/device.png" style="width:auto"></img>
+            <td colspan="2">
+              <img src="public/images/themes/default/controls.png" style="width:auto"></img>
             </td>
-            <td></td>
           </tr>
         </tbody>
        </table>
@@ -414,36 +414,25 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       <table class="table button">
         <tbody>
           <tr>
-            <td class="parameter">
+            <td>
               <span class="title">Black style</span>
             </td>
             <td style="text-align: right;">
-              &lt;Download CSS&gt;
+              <a href="https://gist.github.com/andreareginato/cc4a8a05b6e0217ec741">&lt;Download CSS&gt;</a>
             </td>
           </tr>
           <tr>
-            <td class="parameter">
-              <img src="public/images/device.png" style="width:auto"></img>
+            <td colspan="2">
+              <img src="public/images/themes/black/controls.png" style="width:auto"></img>
             </td>
-            <td></td>
           </tr>
         </tbody>
-       </table>
-
-      <p>
-      All CSS rules applies to the default
-      <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/default.html">HTML template</a>
-      and <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/styles/main.css">CSS rules</a>.
-      </p>
-
-      <p>
-      It's easy to create your own. Base all of your rules on the <code>ly-*</code> classes
-      or checkout existing CSS definitions to better understand how it works.
-      </p>
+      </table>
 
       <p class="notice">
-      <a href="mailto:andrea.reginato@gmail.com">Mail</a> or <a href="http://twitter.com/andreareginato">Tweet</a>
-      me about new CSS personalizations so that we can add them to the doc.</p>
+      <a href="mailto:dev@lelylan.com">Mail</a>
+      or <a href="http://twitter.com/lelylan">Tweet</a>
+      us about new CSS personalizations that we can add here.</p>
       </p>
 
 

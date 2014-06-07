@@ -52,12 +52,22 @@ xmp {
 
 #heading img,
 .content img {
-  width: 100%;
   border: 1px solid #ddd;
-  padding: 1em;
-  margin: 2em 0;
+  /*padding: 1em;*/
+  margin: 2em 0.2em;
   border-radius: 5px;
 }
+
+.content img.full-image {
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  img {
+    max-width: 95%;
+  }
+}
+
 
 p {
   font-weight: 300;
