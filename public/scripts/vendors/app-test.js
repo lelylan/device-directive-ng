@@ -3,7 +3,8 @@ var app = angular.module('app', ['lelylan.directives.device', 'ngMockE2E']);
 // mock all requests we need
 app.run(function($httpBackend, $timeout, Profile) {
   Profile.set({id: '1'});
-  jasmine.getFixtures().fixturesPath = 'public/scripts/fixtures';
+  //jasmine.getFixtures().fixturesPath = 'public/scripts/fixtures';
+  jasmine.getFixtures().fixturesPath = 'http://lelylan.github.io/device-directive-ng/public/scripts/fixtures/device.json';
 
   device   = JSON.parse(readFixtures('device.json'));
   type     = JSON.parse(readFixtures('type.json'));
