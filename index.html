@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="public/bower_components/device-directive-ng/dist/device-component-ng.css">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
   </head>
-  <body>
+  <body ng-app="app">
 
     <section id="top">
     <div id="menu">
@@ -32,13 +32,9 @@
     <div id="heading">
       <div id="logo">&lt;device&gt;</div>
       <div id="tagline">The new HTML5 tag to control your devices, on web and mobile</a></div>
-      <p><img src="public/images/themes/default/controls.png"></img></p>
-      <!--<div id="device">-->
-        <!--<device-->
-          <!--device-id="1"-->
-          <!--device-template="public/bower_components/device-directive-ng/dist/views/templates/default.html">-->
-        <!--</device>-->
-      <!--<div>-->
+      <div id="device">
+        <device device-id="1"></device>
+      <div>
     </div>
     </section>
 

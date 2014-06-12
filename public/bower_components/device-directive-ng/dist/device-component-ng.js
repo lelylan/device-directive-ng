@@ -71,7 +71,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     scope.view = { path: '/loading' }
 
     // template
-    scope.template = attrs.deviceTemplate || 'bower_components/device-component-ng/dist/views/templates/default.html';
+    scope.template = attrs.deviceTemplate || 'public/bower_components/device-directive-ng/dist/views/templates/default.html';
 
     // structure (statuses and functions) and typology (sensor or not)
     scope.hasStatuses  = true;
