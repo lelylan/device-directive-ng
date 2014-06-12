@@ -292,6 +292,473 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
     </div>
     </section>
 
+    <section>
+
+    <div class="content">
+
+      <h1 id="customization-css">Custom CSS</h1>
+
+      <p>
+      The oauth directive comes to life with customization in mind. This means that you can
+      easily define your personalized CSS styles and create your own theme.
+      </p>
+
+      <table class="table button">
+        <tbody>
+          <tr>
+            <td>
+              <span class="title">
+                Default style
+              </span>
+            </td>
+            <td style="text-align: right;">
+              (no extra CSS required)
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <a href="public/images/themes/default/collection.png">
+                <p>See wireframes<p>
+                <img src="public/images/themes/default/controls.png" class="linked-image"></img>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+       </table>
+
+      <table class="table button">
+        <tbody>
+          <tr>
+            <td>
+              <span class="title">Black style</span>
+            </td>
+            <td style="text-align: right;">
+              <a href="https://gist.github.com/andreareginato/cc4a8a05b6e0217ec741">&lt;Add this CSS&gt;</a>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <a href="public/images/themes/black/collection.png">
+                <p>See wireframes<p>
+                <img src="public/images/themes/black/controls.png" class="linked-image"></img>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="notice">
+      <a href="mailto:dev@lelylan.com">Mail</a>
+      or <a href="http://twitter.com/lelylan">Tweet</a>
+      us about new CSS customizations.</p>
+      </p>
+
+      <h2>Defining a new style</h2>
+
+      <p>
+      To customize the device directive you first need to checkout the
+      <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/default.html">HTML structure</a>
+      and its CSS classes. Then you can start writing the new CSS rules overriding the existing ones.
+      </p>
+
+      <p>
+      Below you can see the 8 lines of code used to define the Black Style.
+      </p>
+
+      <script src="https://gist.github.com/andreareginato/cc4a8a05b6e0217ec741.js"></script>
+
+    </div>
+    </section>
+
+    <section>
+    <div class="content">
+
+      <h1 id="customization-template">Custom Template</h1>
+
+      <p>
+      The device directive lets you define a custom template when the default one does not
+      satisty your needs (e.g. compact widget, light specific widget, etc.).
+      </p>
+
+      <h3>
+        Default Template |
+        <a href="">See HTML</a> |
+        <a href="public/images/themes/default/collection.png">See wireframes</a>
+      </h3>
+
+      <a href="public/images/themes/default/collection.png">
+        <img src="public/images/themes/default/controls.png" class="linked-image"></img>
+      </a>
+
+      <pre class="indent"><code><xmp>No config needed (it's the default one)</xmp></code></pre>
+
+
+      <h2>
+        Compact Template |
+        <a href="">See HTML</a> |
+        <a href="public/images/themes/default/collection.png">See wireframes</a>
+      </h2>
+
+      <a href="public/images/templates/compact/collection.png">
+        <img src="public/images/templates/compact/controls.png" class="linked-image"></img>
+      </a>
+
+      <pre class="indent"><code><xmp>Template: "bower_components/device-directive-ng/dist/views/templates/compact.html"</xmp></code></pre>
+
+      </br>
+
+      <p class="notice">
+      <a href="mailto:dev@lelylan.com">Mail</a>
+      or <a href="http://twitter.com/lelylan">Tweet</a>
+      us about new templates. We'll be happy to add them to the docs.</p>
+      </p>
+
+
+
+      <h1>Template configuration</h1>
+
+      <p>
+      The device directive offers two ways to change the template.
+      </p>
+
+      <h3>1. Template attribute (static)</h3>
+
+      <p>
+      Set the template path (or uri) as value for the <code>device-template</code> attribute.
+      </p>
+
+      <pre><code><xmp><device device-template="TEMPLATE_PATH" ... ></device></xmp></code></pre>
+
+      <h3>2. Template event (dynamic)</h3>
+
+      <p>
+      Fires the update template event passing an object with the template and, optionally,
+      with the device id to update.
+      </p>
+
+      <table class="table smaller-titles">
+        <tbody class="smaller-titles">
+          <tr>
+            <td class="parameter">
+              <span>template</span>
+              <span class="info">required</span>
+            </td>
+            <td>
+              Template path (or uri) value.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>id</span>
+              <span class="info">optional</span>
+            </td>
+            <td>
+              Device ID indicating the device targeted to update the template.</br>
+              (when missing all devices are targeted to update the template).
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+      Example.
+      </p>
+
+      <pre><code><xmp>$rootScope.$broadcast(
+  'lelylan:device:template:update',
+  { template: 'TEMPLATE_PATH', id: 'DEVICE_ID'}
+);</xmp></code></pre>
+
+
+
+      <h1>Create a basic template</h1>
+
+      <p>
+      When the existing templates does not satisfy your needs, you can create a new one to
+      satisfy your desired representation. In this section we explain how to create a new
+      template that will looks like the image below.
+      </p>
+
+      <p><img src="public/images/templates/custom/controls.png"></img></p>
+
+      <p>
+      The code that makes it possible is the one below.
+      </p>
+
+      <script src="https://gist.github.com/andreareginato/61766ae2cc904aa238b9.js"></script>
+
+      <p>
+      Let's understand step by step what this code does.
+      </p>
+
+      <h2>Default function</h2>
+
+      <pre><code><xmp><div class="ly-execute" ng-click="execute(status.function)">
+  ...
+</div></xmp></code></pre>
+
+      <p>
+      As convention, the blue circle is used to execute the device default function. What is
+      it you ask? Lets take the light example. When it's turned on the switch turns it off
+      and when it's turned off the the switch turns it on.
+      </p>
+
+      <p class="notice">
+      The defualt function is kind of a complex topic. You only need to get the general concept,
+      but if you want to dig in deep on how it works, check out the
+      <a href="http://dev.lelylan.com/types#statuses-api">Status API</a>.
+      </p>
+
+      <p>
+      To execute the defualt function use <code>execute(status.function)</code>. As you can get
+      from the naming it will execute the default function based on the current device status.
+      Taking the example back, it turns on the light when it is off and viceversa.
+      </p>
+
+      <h2>The blue circle</h2>
+
+      <p>
+      The blue circle is rendered by the device directive on every element with
+      <code>ly-button</code> class.
+      </p>
+
+      <pre><code><xmp><button class="ly-button"></button></xmp></code></pre>
+
+      <p>
+      In this example we also set a loader identified by the
+      <code>ly-spinner</code> class visible only when the device is in a pending status,
+      meaning that the request is sent to the physical device and you are waiting for its
+      execution to be completed.
+      </p>
+
+      <pre><code><xmp><div class="ly-spinner ly-animation" ng-if="device.pending">
+  <div class="ly-bounce-1"></div>
+  <div class="ly-bounce-2"></div>
+  <div class="ly-bounce-3"></div>
+</div></xmp></code></pre>
+
+      <h2>Device info</h2>
+
+      <p>
+      The last part lets you see the device name (e.g front door lock, kitchen thermostat, etc.)
+      and status, which will give you a descriptive overview of the device status in a specific
+      moment of its life (e.g. <code>on</code> and <code>off</code> for a basic light,
+      <code>open</code> and <code>close</code> for a lock, etc.).
+      </p>
+
+      <pre><code><xmp><div class="ly-description">
+  <p class="ly-name">{{device.name}}</p>
+  <p class="ly-extras ly-updated-animation">{{status.name}}</p>
+</div></xmp></code></pre>
+
+      <h2>You are done</h2>
+
+      <p>
+      Save the new template under your project and set the path using the
+      template attribute and you are done.
+      </p>
+
+      <pre><code><xmp><device device-json="DEVICE_JSON" device-template="TEMPLATE_PATH"></device></xmp></code></pre>
+
+      <p>
+      You have created your first custom template. Congrats.
+      </p>
+
+      <h2>Tips</h2>
+
+      <p>
+      1. To fully understand the power of custom templates check out the existing
+      <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/default.html">default</a>
+      and <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/compact.html">compact</a> templates
+      (use them as base to build your new template).
+      </p>
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+
+      <h1>Create a type specific template</h1>
+
+      <p>
+      The device directive defines a user interface that adapts to any device.
+      This means that you can control lights, locks, thermostats or any other device without
+      any effort.
+      While this flexibility is perfect for general purpose solutions, it becomes a weakness
+      when you want to monitor and control a specific device. Take a light for example. In the
+      real world we control it using a switch. Why should we change this convention?
+      </p>
+
+      <h2>Light switch</h2>
+
+      <p>
+      That said, we now want to build a template that can be used to control
+      a basic light having only the <code>turn on</code> and <code>turn off</code>
+      functionalities. Thanks to the Billy Crist
+      <a href="http://codepen.io/billycrist/pen/CHmiE">CSS switches</a>
+      the final result will be this.
+      </p>
+
+        <img src="public/images/templates/switch/on.png"></img>
+
+
+      <h2>Template</h2>
+
+      <p>
+      The HTML code that makes it possible is simple. You have a checkbox that when clicked
+      executes the default function. This means that when the light is on the switch turns it off
+      and when the light is off the switch turns it on.
+      </p>
+
+      <script src="https://gist.github.com/andreareginato/00a120b314523b690e2c.js"></script>
+
+      <p>
+      You also have a loader identified by the <code>ly-spinner</code> class visible only when the
+      device is in a pending status, meaning that the request is sent to the physical device and
+      you are waiting for its execution to be completed.
+      </p>
+
+      <h2>CSS</h2>
+
+      <p>
+      To get the final result siply copy (or link) the CSS above.
+      </p>
+
+      <script src="https://gist.github.com/andreareginato/168ddfb68dbde6f4a6ea.js"></script>
+
+      <p class="notice">
+      Check out the <a href="http://codepen.io/billycrist/pen/CHmiE">Billy Crist Pen</a>
+      to understand how the Light Switch CSS is defined.
+      </p>
+
+      <h2>Assigning the new template</h2>
+
+      <p>
+      Save the new HTML and CSS template files under your project and apply it to all basic lights.
+      To do so you need to follow these steps.
+      </p>
+
+      <h3>Get your lights</h3>
+
+      <p>To get all devices of a specific type (in this case all lights) you have two solutions.</p>
+
+      <ul>
+        <li>
+          Use the <a href="http://dev.lelylan.com/developers#get-all-devices">device API</a>
+          passing the Type ID in the query string.
+        </li>
+        <li>
+        Get all devices and filter them checking each device JSON Type ID.
+        </li>
+      </ul>
+
+      <pre><code><xmp>// Using Device API
+Device.all({ type: TYPE_ID }).success(function(devices) {
+  scope.devices = devices;
+})
+
+// Using JSON filtering (this example uses underscore)
+Device.all().success(function(devices) {
+  scope.devices = _.where(devices, { type.id: TYPE_ID }
+});
+</xmp></code></pre>
+
+
+      <p class="notice">
+      Every device has a type identifying its structure (properties, functions and statuses).
+      <a href="http://dev.lelylan.com/types">Learn more about</a>.
+      </p>
+
+      <h3>Assign the new template</h3>
+
+      <p>
+      Now use the template event to set the new template to all previously filtered devices.
+      </p>
+
+      <pre><code><xmp>
+_.each(scope.devices, function(device) {
+  $rootScope.$broadcast(
+    'lelylan:device:template:update',
+    { template: 'TEMPLATE_PATH', id: device.id}
+  );
+});</xmp></code></pre>
+
+      <h2>You are done</h2>
+
+      <p>
+      You have created your first custom type template. Congrats!
+      </p>
+
+
+      <iframe width="100%" height="500" src="http://jsfiddle.net/blazeeboy/fNPvf/embedded/result,html,css/" frameborder="0"></iframe>
+
+      <br><br>
+      <br><br>
+      <br><br>
+      <br><br>
+
+
+
+
+
+
+
+
+
+
+
+      <p>
+      As you can see it's a mix of HTML (structure) and AngularJS (content). We now describe
+      in the most detailed way the internal API that the widget offers to create powerful
+      customized templates.
+      </p>
+
+      <table class="table smaller-titles">
+        <tbody class="smaller-titles">
+          <tr>
+            <td class="parameter">
+              <span>show</span>
+              <span class="info">variable</span>
+            </td>
+            <td>
+              Defines the oauth status. <br>
+              Valid values are <code>logged-out</code>, <code>logged-in</code> and <code>denied</code>.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>text</span>
+              <span class="info">variable</span>
+            </td>
+            <td>
+              Visible text when the widget is logged out.<br>
+              Default to <code>Sign in</code>.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>login()</span>
+              <span class="info">method</span>
+            </td>
+            <td>
+              Logs in redirecting the app to the OAuth 2.0 authorization server.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>logout()</span>
+              <span class="info">method</span>
+            </td>
+            <td>
+              Logs out deleting the access token.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    </section>
 
 
     <section>
@@ -364,184 +831,6 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       A good habit is to fetch the devices you need first and then render them usig the
       <code>device-json</code> attribute. This will make the system more efficient than
       using the <code>device-id</code> attribute because it fires an HTTP request per device.
-      </p>
-
-    </div>
-    </section>
-
-
-    <section>
-
-    <div class="content">
-
-      <h1 id="customization-css">Custom CSS</h1>
-
-      <p>
-      The oauth directive comes to life with customization in mind. This means that you can
-      easily define your personalized CSS styles and create your own theme.
-
-      </p>
-
-      <table class="table button">
-        <tbody>
-          <tr>
-            <td>
-              <span class="title">
-                Default style
-              </span>
-            </td>
-            <td style="text-align: right;">
-              (no extra CSS required)
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <a href="public/images/themes/default/collection.png">
-                <p>See wireframes<p>
-                <img src="public/images/themes/default/controls.png" class="linked-image"></img>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-       </table>
-
-      <table class="table button">
-        <tbody>
-          <tr>
-            <td>
-              <span class="title">Black style</span>
-            </td>
-            <td style="text-align: right;">
-              <a href="https://gist.github.com/andreareginato/cc4a8a05b6e0217ec741">&lt;Add this CSS&gt;</a>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <a href="public/images/themes/black/collection.png">
-                <p>See wireframes<p>
-                <img src="public/images/themes/black/controls.png" class="linked-image"></img>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p class="notice">
-      <a href="mailto:dev@lelylan.com">Mail</a>
-      or <a href="http://twitter.com/lelylan">Tweet</a>
-      us about new CSS customizations.</p>
-      </p>
-
-      <h2>Defining a new style</h2>
-
-      <p>
-      To customize the device directive you first need to checkout the
-      <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/default.html">HTML structure</a>
-      and its CSS classes. Then start writing the new CSS rules overriding the existing ones.
-      </p>
-
-      <p>
-      Below you can see the few lines of CSS used to define the Black Style.
-      </p>
-
-      <script src="https://gist.github.com/andreareginato/cc4a8a05b6e0217ec741.js"></script>
-
-      <h1 id="customization-template">Custom Template</h1>
-
-      <p>
-      When the custom template does not satisfy your needs (e.g. you want to show the user email
-      when logged in), you can create a new one. To have an idea of what a template looks like,
-      see the code below (related to the default template).
-      </p>
-
-      <pre><code><xmp><span class="oauth">
-  <a href="#" class="logged-out" ng-show="show=='logged-out'" ng-click="login()">{{text}}</a>
-  <a href="#" class="logged-in"  ng-show="show=='logged-in'"  ng-click="logout()">Logout {{profile.email}}</a>
-  <a href="#" class="denied"     ng-show="show=='denied'"     ng-click="login()">Access denied. Try again.</a>
-</span></xmp></code></pre>
-
-      <p>
-      To create your new template, define the HTML and make it work using the following internal API.
-      </p>
-
-      <table class="table smaller-titles">
-        <tbody class="smaller-titles">
-          <tr>
-            <td class="parameter">
-              <span>show</span>
-              <span class="info">variable</span>
-            </td>
-            <td>
-              Defines the oauth status. <br>
-              Valid values are <code>logged-out</code>, <code>logged-in</code> and <code>denied</code>.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>text</span>
-              <span class="info">variable</span>
-            </td>
-            <td>
-              Visible text when the widget is logged out.<br>
-              Default to <code>Sign in</code>.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>login()</span>
-              <span class="info">method</span>
-            </td>
-            <td>
-              Logs in redirecting the app to the OAuth 2.0 authorization server.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>logout()</span>
-              <span class="info">method</span>
-            </td>
-            <td>
-              Logs out deleting the access token.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>
-      Now, supposing you have defined a new template in <code>views/templates/custom.html</code>,
-      you need to let the directive know about its existence. You can do this in two ways.
-      </p>
-
-      <ul>
-        <li>Setting the template attribute</li>
-        <li>Firing the template event</li>
-      </ul>
-
-      <h2>1 - Template attribute</h2>
-
-      <p>
-      Set the template path (or uri) as value for the template attribute.
-      </p>
-
-      <pre><code><xmp><oauth
-  template="views/templates/custom.html"
-  client-id="<client-id>"
-  redirect-uri="<redirect-uri>"
-  profile-uri="<profile-uri>"
-  scope="<your-scope>">
-</oauth></xmp></code></pre>
-
-      <h2>2 - Template event</h2>
-
-      <p>
-      Fires the update template event passing the template path (or uri) as param.
-      </p>
-
-      <pre><code><xmp>$rootScope.$broadcast('oauth:template:update', 'views/templates/custom.html');</xmp></code></pre>
-
-      <p>
-      Use this solution when you need to update the directive at runtime. For all
-      other cases, use the template attribute.
       </p>
 
     </div>

@@ -46,6 +46,10 @@ pre {
   overflow-x: auto;
 }
 
+pre.indent {
+  padding-left: 0;
+}
+
 xmp {
   margin: 0;
 }
@@ -63,9 +67,9 @@ xmp {
 }
 
 .content img.linked-image {
-  margin-top: 0px;
+  margin-top: 1em;
+  margin-bottom: 0px;
 }
-
 
 @media (max-width: 800px) {
   img {
@@ -325,7 +329,19 @@ div#device {
   margin-top:50px;
 }
 
+.gist-file {
+  margin: 3em 0 !important;
+}
+
 .gist-file table {
   margin: 0;
   font-size: 0.8em;
+}
+
+.gist-syntax .nc,
+.gist-syntax .k,
+.gist-syntax .o,
+.gist-syntax .s,
+.gist-syntax .na {
+  font-weight: normal !important;
 }
