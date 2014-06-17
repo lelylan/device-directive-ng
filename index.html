@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="public/bower_components/fontawesome/css/font-awesome.css" />
     <link rel="stylesheet" href="public/bower_components/device-directive-ng/dist/device-component-ng.css">
     <link rel="stylesheet" href="public/views/templates/switch/switch.css" />
+    <link rel="stylesheet" href="public/views/templates/black/black.css" />
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
   </head>
   <body ng-app="app">
@@ -299,49 +300,25 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       easily define your personalized CSS styles and create your own theme.
       </p>
 
-      <table class="table button">
-        <tbody>
-          <tr>
-            <td>
-              <span class="title">
-                Default style
-              </span>
-            </td>
-            <td style="text-align: right;">
-              (no extra CSS required)
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <a href="public/images/themes/default/collection.png">
-                <p>See wireframes<p>
-                <img src="public/images/themes/default/controls.png" class="linked-image"></img>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-       </table>
+      <h3>
+        Default Style
+      </h3>
 
-      <table class="table button">
-        <tbody>
-          <tr>
-            <td>
-              <span class="title">Black style</span>
-            </td>
-            <td style="text-align: right;">
-              <a href="https://gist.github.com/andreareginato/cc4a8a05b6e0217ec741">&lt;Add this CSS&gt;</a>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <a href="public/images/themes/black/collection.png">
-                <p>See wireframes<p>
-                <img src="public/images/themes/black/controls.png" class="linked-image"></img>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="device compact"><device device-id="1"></device></div>
+
+
+
+      <h3>
+        Black Style |
+        <a href="https://gist.github.com/andreareginato/cc4a8a05b6e0217ec741">
+        <i class="fa fa-cloud-download fa-2x"></i>Download CSS
+        </a>
+      </h3>
+
+
+      <div class="device compact ly-black"><device device-id="1"></device></div>
+
+
 
       <p class="notice">
       <a href="mailto:dev@lelylan.com">Mail</a>
@@ -352,13 +329,13 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       <h2>Defining a new style</h2>
 
       <p>
-      To customize the device directive you first need to checkout the
-      <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/default.html">HTML structure</a>
-      and its CSS classes. Then you can start writing the new CSS rules overriding the existing ones.
+      Customizing the device directive is easy. Simply study the CSS classes defining the
+      <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/default.html">default template</a>
+      and override the existing CSS rules with new ones.
       </p>
 
       <p>
-      Below you can see the 8 lines of code used to define the Black Style.
+      Below you can see the code used to define the Black Style.
       </p>
 
       <script src="https://gist.github.com/andreareginato/cc4a8a05b6e0217ec741.js"></script>
@@ -433,7 +410,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
 
 
-      <h1 id="exisiting-template">Existing Templates</h1>
+      <h1 id="templates">Templates</h1>
 
       <p>
       Lelylan comes to life with few templates (check them out before building a new one).
@@ -447,33 +424,28 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
       <h3>
         Default Template |
-        <a href="https://github.com/lelylan/device-directive-ng/blob/master/dist/views/templates/default.html">See HTML</a> |
-        <a href="public/images/themes/default/collection.png">See wireframes</a>
+        <a href="https://github.com/lelylan/device-directive-ng/blob/master/dist/views/templates/default.html">
+          <i class="fa fa-html5 fa-2x"></i>See HTML
+        </a>
       </h3>
 
       <div class="device compact"><device device-id="1"></device></div>
 
-      <pre class="indent"><code><xmp>// No config needed (it's the default one)
-<device device-json="DEVICE_JSON"></device></xmp></code></pre>
-
 
       <h3>
         Compact Template |
-        <a href="https://github.com/lelylan/device-directive-ng/blob/master/dist/views/templates/compact.html">See HTML</a> |
-        <a href="public/images/themes/default/collection.png">See wireframes</a>
+        <a href="https://github.com/lelylan/device-directive-ng/blob/master/dist/views/templates/compact.html">
+          <i class="fa fa-html5 fa-2x"></i>See HTML
+        </a>
       </h3>
 
+      <pre class="indent"><code><xmp >Template: "bower_components/device-directive-ng/dist/views/templates/compact.html"</xmp></code></pre>
+
       <div class="device compact">
-      <device device-id="1" device-template="public/bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
+        <device device-id="1" device-template="public/bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
       </div>
 
-      <pre class="indent"><code><xmp>// Set the compact.html template
-<device device-json="DEVICE_JSON"
-  device-template="bower_components/device-directive-ng/dist/views/templates/compact.html">
-</device>
-</xmp></code></pre>
-
-      </br>
+      </br></br>
 
 
 
@@ -483,7 +455,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       <p>
       When the existing templates does not satisfy your needs, you can create a new one to
       satisfy your desired representation. In this section we explain how to create a new
-      template that will looks like the image below.
+      template that will looks like this.
       </p>
 
       <div class="device">
@@ -525,7 +497,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       </p>
 
 
-      <h2>The blue circle</h2>
+      <h2>Lelylan circle</h2>
 
       <p>
       The blue circle is rendered by the device directive on every element with
@@ -570,8 +542,10 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
       <pre><code><xmp><device device-json="DEVICE_JSON" device-template="TEMPLATE_PATH"></device></xmp></code></pre>
 
+      <h2>Tips</h2>
+
       <p class="notice">
-      To fully understand the power of custom templates check out the existing
+      1. To fully understand the power of custom templates check out the existing
       <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/default.html">default</a>
       and <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/compact.html">compact</a> ones.
       Using them as base to build your new template will save you time.
@@ -601,7 +575,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       </p>
 
       <div class="device" style="width:8.8em;">
-      <device device-id="1" device-template="public/views/templates/switch/switch.html"></device>
+        <device device-id="1" device-template="public/views/templates/switch/switch.html"></device>
       </div>
 
       <h2>Switch Template</h2>
@@ -672,7 +646,7 @@ Device.all().success(function(devices) {
       <a href="http://dev.lelylan.com/types">Learn more about</a>.
       </p>
 
-      <h3>Assign the new template</h3>
+      <h3>Set the template</h3>
 
       <p>
       Now use the template event to set the new template to all previously filtered devices.

@@ -1,0 +1,62 @@
+.ly-black .ly-device * {
+  background-color: #222;
+  color: #eee;
+}
+
+.ly-black .ly-device,
+.ly-black .ly-modal-window {
+  border: 1px solid #555;
+}
+
+.ly-black .ly-functions,
+.ly-black .ly-status,
+.ly-black .ly-header,
+.ly-black .ly-action {
+  border-bottom: 1px solid #555;
+}
+
+.ly-black .ly-form .ly-field .ly-value,
+.ly-black .ly-status .ly-description .ly-extras {
+  color: #eee;
+}
+
+.ly-black .ly-form .ly-actions .ly-delete-action {
+  border-top: 1px solid #555;
+}
+
+.ly-black .ly-modal .ly-modal-backdrop {
+  background-color: #666;
+}
+
+.ly-black .ly-form .ly-button {
+  box-shadow: none;
+}
+
+.ly-black .ly-device a,
+.ly-black .ly-status .ly-description .ly-name,
+.ly-black .ly-compact .ly-open-button {
+  color: #FFFA00;
+}
+
+.ly-black .ly-device .ly-modal .ly-button,
+.ly-black .ly-status .ly-execute .ly-spinner > div {
+  background-color: #FFFA00;
+  color: #333;
+}
+
+.ly-black .ly-status .ly-execute .ly-button {
+  border: 3px solid #FFFA00;
+}
+
+.ly-black .ly-function .ly-execute .ly-button {
+  border: 2.5px solid #FFFA00;
+}
+
+.ly-black .ly-property .ly-button {
+  border: 1.5px solid #eee;
+}
+
+.ly-black .ly-property .ly-description .ly-name {
+  color: #ccc;
+}
+

@@ -108,9 +108,15 @@ h3 {
   font-size: 1em;
 }
 
-h3 a {
+h3 a,
+h3 span {
   font-weight: 200;
 }
+
+h3 .fa {
+  padding-right:6px;
+}
+
 
 ul li {
   padding: 0.1em 0;
@@ -361,6 +367,8 @@ div.compact {
 .gist-syntax .na {
   font-weight: normal !important;
 }
+
+
 
 /* Switch personalization */
 
