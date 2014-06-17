@@ -292,6 +292,143 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
     <section>
     <div class="content">
+      <h1 id="configurations">Configurations</h1>
+
+      <p>
+      The directive accepts the following attributes.
+      </p>
+
+      <table class="table">
+        <tbody class="smaller-titles">
+          <tr>
+            <td class="parameter">
+              <span>device-json</span>
+              <span class="info">optional</span>
+            </td>
+            <td>
+              Device JSON (learn more about the device <a href="http://dev.lelylan.com/developers#get-a-device">representation</a>).
+              <span class="info">(required if device-id is not used)</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>device-id</span>
+              <span class="info">optional</span>
+            </td>
+            <td>
+              Device ID.
+              <span class="info">(required if device-json is not used)</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>device-template</span>
+              <span class="info">optional</span>
+            </td>
+            <td>
+              Custom template to render.<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+      Here a few examples.
+      </p>
+
+      <table class="table">
+        <tbody class="smaller-titles">
+          <tr>
+            <td>
+              <code><xmp><device device-id="DEVICE_ID"></device></xmp></code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code><xmp><device device-json="DEVICE_JSON"></device></xmp></code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code><xmp><device device-json="DEVICE_JSON" device-template="TEMPLATE_URI"></device></xmp></code>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="notice">
+      A good habit is to fetch the devices you need first and then render them usig the
+      <code>device-json</code> attribute. This will make the system more efficient than
+      using the <code>device-id</code> attribute (it fires an HTTP request per device).
+      </p>
+
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+      <h1 id="events">Events</h1>
+
+      <p>
+      The events related to the device directive are the following.
+      </p>
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="parameter">
+              <code>lelylan:device:update(device)</code><br>
+              Fired when the user updates the device name or physical uri.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <code>lelylan:device:delete(device)</code><br>
+              Fired when the user deletes the device.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <code>lelylan:device:function:start(device)</code><br>
+              Fired when a function execution starts (device is pending).
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <code>lelylan:device:function:end</code><br>
+              Fired when a function execution is completed.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <code>lelylan:device:template:update({template: "TEMPLATE_PATH", id: "DEVICE_ID"})</code><br>
+              Listen for runtime template change.
+              See the <a href="#template">templates</a> section for more details.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+      Here some examples.
+      </p>
+
+      <pre><code><xmp>$scope.$on('lelylan:device:function:start', function(event, device) {
+  console.log('Function execution started for', device.name');
+});
+
+$scope.$on('lelylan:device:function:end', function(event, device) {
+  console.log('Function execution completed for', device.name);
+});</xmp></code></pre>
+
+
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
 
       <h1 id="customization-css">Custom CSS</h1>
 
@@ -660,30 +797,22 @@ _.each(scope.devices, function(device) {
   );
 });</xmp></code></pre>
 
-      <h2>Done</h2>
+
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+
+      <h1>Internal API</h1>
 
       <p>
-      You are done. You have created your first switch template.
-      </p>
-
-
-
-
-      <br><br>
-      <br><br>
-      <br><br>
-      <br><br>
-
-
-
-
-
-
-
-      <p>
-      As you can see it's a mix of HTML (structure) and AngularJS (content). We now describe
-      in the most detailed way the internal API that the widget offers to create powerful
-      customized templates.
+      Any template is composed by mix of HTML (structure), CSS (visual) and AngularJS (logic).
+      In the previous section you saw the template using some JavaScript functions (e.g.
+      <code>execute(status.function)</code>) or varialbles (e.g <code>device.pending</code>).
+      To give you full control during the template definition we now describe the internal
+      API offered by the directive.
       </p>
 
       <table class="table smaller-titles">
@@ -711,7 +840,7 @@ _.each(scope.devices, function(device) {
           <tr>
             <td class="parameter">
               <span>login()</span>
-              <span class="info">method</span>
+              <span class="info">function</span>
             </td>
             <td>
               Logs in redirecting the app to the OAuth 2.0 authorization server.
@@ -720,7 +849,7 @@ _.each(scope.devices, function(device) {
           <tr>
             <td class="parameter">
               <span>logout()</span>
-              <span class="info">method</span>
+              <span class="info">function</span>
             </td>
             <td>
               Logs out deleting the access token.
@@ -728,214 +857,6 @@ _.each(scope.devices, function(device) {
           </tr>
         </tbody>
       </table>
-
-    </div>
-    </section>
-
-
-    <section>
-    <div class="content">
-      <h1 id="configurations">Configurations</h1>
-
-      <p>
-      The directive accepts the following attributes.
-      </p>
-
-      <table class="table">
-        <tbody class="smaller-titles">
-          <tr>
-            <td class="parameter">
-              <span>device-json</span>
-              <span class="info">optional</span>
-            </td>
-            <td>
-              Device JSON (learn more about the device <a href="http://dev.lelylan.com/developers#get-a-device">representation</a>).
-              <span class="info">(required if device-id is not used)</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>device-id</span>
-              <span class="info">optional</span>
-            </td>
-            <td>
-              Device ID.
-              <span class="info">(required if device-json is not used)</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>device-template</span>
-              <span class="info">optional</span>
-            </td>
-            <td>
-              Custom template to render.<br>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>
-      Here a few examples.
-      </p>
-
-      <table class="table">
-        <tbody class="smaller-titles">
-          <tr>
-            <td>
-              <code><xmp><device device-id="DEVICE_ID"></device></xmp></code>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <code><xmp><device device-json="DEVICE_JSON"></device></xmp></code>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <code><xmp><device device-template="TEMPLATE_URI"></device></xmp></code>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p class="notice">
-      A good habit is to fetch the devices you need first and then render them usig the
-      <code>device-json</code> attribute. This will make the system more efficient than
-      using the <code>device-id</code> attribute because it fires an HTTP request per device.
-      </p>
-
-    </div>
-    </section>
-
-
-    <section>
-    <div class="content">
-      <h1 id="events">Events</h1>
-
-      <p>
-      The events related to the oauth directive are the following.
-      </p>
-
-      <table class="table">
-        <tbody>
-          <tr>
-            <td class="parameter">
-              <span>oauth:login(token)</span>
-              <span class="info">fired</span>
-            </td>
-            <td>
-              Fired when the user has authorized the third party app.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>oauth:logout</span>
-              <span class="info">fired</span>
-            </td>
-            <td>
-              Fired when the user logs out.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>oauth:denied</span>
-              <span class="info">fired</span>
-            </td>
-            <td>
-              Fired when the user denies the access to the third party app.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>oauth:expired</span>
-              <span class="info">fired</span>
-            </td>
-            <td>
-              Fired when the access token is expired.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>oauth:template:update(uri)</span>
-              <span class="info">listening</span>
-            </td>
-            <td>
-              Listening for runtime the template change.<br>
-              See examples in the <a href="#customizations">customization</a> section.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>
-      Here some examples.
-      </p>
-
-      <pre><code><xmp>$scope.$on('oauth:login', function(event, token) {
-  console.log('Authorized third party app with token', token.access_token);
-});
-
-$scope.$on('oauth:logout', function(event) {
-  console.log('The user has signed out');
-});
-
-$scope.$on('oauth:denied', function(event) {
-  console.log('The user did not authorize the third party app');
-});
-
-$scope.$on('oauth:expired', function(event) {
-  console.log('The access token is expired. Please refresh.');
-});</xmp></code></pre>
-
-
-    </div>
-    </section>
-
-
-    <section>
-    <div class="content">
-      <h1 id="logged">Logged in or logged out?</h1>
-
-      <p>
-      Inject the <code>AccessToken.get()</code> service to understand if the user is logged in or out.
-      </p>
-
-      <pre><code><xmp>$scope.logged = !!AccessToken.get();</xmp></code></pre>
-
-      <p>
-      The <code>AccessToken.get()</code> method returns <code>null</code> when the user is logged
-      out and the access token representation when the user is logged in (see below).
-      </p>
-
-
-<pre><code><xmp>{
-  "access_token": "9ce03e06f037180c2dcfa8b278217eb56d747730c69xxx",
-  "token_type": "bearer",
-  "expires_in": 7200,
-  "state": "remember-me"
-}</xmp></code></pre>
-
-    </div>
-    </section>
-
-
-    <section>
-    <div class="content">
-      <h1 id="profile">Profile resource</h1>
-
-      <p>
-      When a user signs in, the profile is accessible through the <code>Profile</code> service.
-      </p>
-
-      <pre><code><xmp>$scope.profile = Profile.get();</xmp></code></pre>
-
-      <p>
-      This profile is accessible only when the <code>profile-uri</code> attribute is defined and
-      it sets the Authorization header with the access token to authenticate the request.
-      </p>
-
-      <pre><code><xmp>Authorization:Bearer {token}</xmp></code></pre>
 
     </div>
     </section>

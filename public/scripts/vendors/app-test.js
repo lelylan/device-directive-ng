@@ -46,3 +46,8 @@ app.run(function($httpBackend, $timeout, Profile) {
     return device;
   }
 });
+
+app.config(['$locationProvider', function ($locationProvider) {
+  $locationProvider.html5Mode(true);
+  $locationProvider.hashPrefix('!');
+}]);
