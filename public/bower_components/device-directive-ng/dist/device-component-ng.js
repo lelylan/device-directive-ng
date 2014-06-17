@@ -67,7 +67,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
      */
 
     // active view
-    scope.view = { path: '/loading' }
+    scope.view = '/loading'
 
     // template
     scope.template = attrs.deviceTemplate || 'public/bower_components/device-directive-ng/dist/views/templates/default.html';
@@ -106,7 +106,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
             getType(response.type.id);
           }).
           error(function(data, status) {
-            scope.view.path = '/message';
+            scope.view = '/message';
             scope.message = { title: 'Unauthorized Access', description: 'You have not the rights to access this device' }
           });
       }
@@ -136,7 +136,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     var loadingCompleted = function() {
       scope.visualization();
       scope.initialize();
-      scope.view.path = '/default';
+      scope.view = '/default';
     }
 
 
@@ -163,14 +163,14 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Default device visualization */
     scope.showDefault = function() {
-      scope.view.path='/default';
+      scope.view ='/default';
     }
 
 
     /* Settings visualization */
     scope.showSettings = function() {
       scope.deviceCopy = angular.copy(scope.device);
-      scope.view.path  = '/settings';
+      scope.view = '/settings';
 
       if (!scope.privates) {
         getPrivates(scope.device.id);
@@ -186,7 +186,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
             scope.privates = response;
           }).
           error(function(data, status) {
-            scope.view.path = '/message';
+            scope.view = '/message';
             scope.message = { title: 'Unauthorized Access', description: 'You have not the rights to access this device' }
           });
       }
@@ -201,14 +201,12 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Function execution */
     scope.execute = function(_function) {
-      console.log('execute', scope.$id);
       DeviceFunction.execute(_function, scope.updateProperties);
     };
 
 
     /* Properties update */
     scope.updateProperties = function(properties) {
-      console.log('Wrong scope in updateProperties', scope.$id);
       DeviceProperties.update(scope, properties, element);
       scope.initialize();
     }
@@ -216,8 +214,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Device update */
     scope.update = function() {
-      console.log('Update device', scope.$id);
-      scope.view.path = '/default';
+      scope.view = '/default';
       Device.update(scope.device.id, scope.device).success(function(response) {
         scope.device = response;
         $rootScope.$broadcast('lelylan:device:update', response);
@@ -228,7 +225,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     /* Delete device */
     scope.destroy = function(confirm) {
       if (confirm == scope.device.name) {
-        scope.view.path = '/message';
+        scope.view = '/message';
         scope.message = { title: 'Device deleted', description: 'Reload the page to update the view' }
         Device.delete(scope.device.id).success(function(response) {
           scope.device = response;

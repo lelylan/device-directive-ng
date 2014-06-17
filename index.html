@@ -805,7 +805,7 @@ _.each(scope.devices, function(device) {
     <section>
     <div class="content">
 
-      <h1>Internal API</h1>
+      <h1>Internal API (Advanced)</h1>
 
       <p>
       Any template is composed by mix of HTML (structure), CSS (visual) and AngularJS (logic).
@@ -819,40 +819,150 @@ _.each(scope.devices, function(device) {
         <tbody class="smaller-titles">
           <tr>
             <td class="parameter">
-              <span>show</span>
+              <span>device</span>
               <span class="info">variable</span>
             </td>
             <td>
-              Defines the oauth status. <br>
-              Valid values are <code>logged-out</code>, <code>logged-in</code> and <code>denied</code>.
+              JSON object representing a <a href="http://dev.lelylan.com/developers#get-a-device">device</a>.
+              Keys used quite often are.
+              <ul>
+                <li><code>device.id</code> - device identifier</li>
+                <li><code>device.name</code> - device name</li>
+                <li><code>device.pending</code> - true when requests are being resolved</li>
+              </ul>
             </td>
           </tr>
           <tr>
             <td class="parameter">
-              <span>text</span>
+              <span>type</span>
               <span class="info">variable</span>
             </td>
             <td>
-              Visible text when the widget is logged out.<br>
-              Default to <code>Sign in</code>.
+              JSON object representing a device <a href="http://dev.lelylan.com/types#get-a-type">type</a>.
             </td>
           </tr>
           <tr>
             <td class="parameter">
-              <span>login()</span>
-              <span class="info">function</span>
+              <span>privates</span>
+              <span class="info">variable</span>
             </td>
             <td>
-              Logs in redirecting the app to the OAuth 2.0 authorization server.
+              JSON object representing a device <a href="http://dev.lelylan.com/developers#get-a-device-private-info">private info</a>.<br>
+              <p class="notice">
+              <code>privates</code> are loaded only when <code>showSettings()</code> is called
+              and the logged user is the device maker (aka creator).
+              </p>
             </td>
           </tr>
           <tr>
             <td class="parameter">
-              <span>logout()</span>
+              <span>functions</span>
+              <span class="info">variable</span>
+            </td>
+            <td>
+              JSON object representing the device <a href="http://dev.lelylan.com/types#get-a-function">functions</a>.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>status</span>
+              <span class="info">variable</span>
+            </td>
+            <td>
+              JSON object representing the current device <a href="http://dev.lelylan.com/types#get-a-type">status</a>.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>view.path</span>
+              <span class="info">variable</span>
+            </td>
+            <td>
+              String representing the active view. Above you can see the keys used by
+              the default template to switch between different views.
+              <ul>
+                <li><code>/loading</code> - directive is loading (resolving the API requests) </li>
+                <li><code>/default</code> - default view (control and monitoring)</li>
+                <li><code>/settings</code> - settings view (device info)</li>
+                <li><code>/message</code> - generic message</li>
+                <li><code>/delete</code> - directive deleted message</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>execute(function)</span>
               <span class="info">function</span>
             </td>
             <td>
-              Logs out deleting the access token.
+              This function wxecutes a function. When the function properties are all predefined
+              (e.g. turn on has the status property predefined to on) the update properties
+              request is fired to Lelylan.<br><br>
+
+              When not the <code>function.visibleForm</code>
+              variable is set to true. This let your template know that it has to show the
+              form that needs to be filled by the user. In this case you also need to know
+              which properties are predefined and which are not (e.g. set intesity has the
+              status predefined to on but needs the user to set the intensity value). This
+              info is given by <code>property.toFill</code> (the propery comes from the
+              <code>function.properties</code> list).<br><br>
+
+              The function object can be taken from:
+
+              <ul>
+                <li><code>functions</code></li>
+                <li><code>status.function</code></li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>update()</span>
+              <span class="info">function</span>
+            </td>
+            <td>
+              Update the device name and physical URI.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>update()</span>
+              <span class="info">function</span>
+            </td>
+            <td>
+              Update the device name and physical URI.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>destroy(name)</span>
+              <span class="info">function</span>
+            </td>
+            <td>
+              Delete the device passing the device name as security check.
+              <p class="notice">
+              This function is available only for the device maker. If you did not
+              create the device, you will not be able to delete the device.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>isMaker()</span>
+              <span class="info">function</span>
+            </td>
+            <td>
+              Returns true if the logged user is the creator of the device.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>showSettings()</span>
+              <span class="info">function</span>
+            </td>
+            <td>
+              Sets the path to <code>/settings</code> and load <code>privaetes</code>
+              if the logged user is the device maker (aka creator).
             </td>
           </tr>
         </tbody>
@@ -868,10 +978,24 @@ _.each(scope.devices, function(device) {
 
       <ul>
         <li>
-        <a href="https://github.com/andreareginato/oauth-ng/" target="blank">Github Repository</a>
+        <a href="https://github.com/lelylan/device-directive-ng" target="blank">
+          Github Repository
+        </a>
         </li>
         <li>
-        <a href="https://twitter.com/andreareginato" target="blank">@andreareginato</a>
+        <a href="andreareginato.github.io/oauth-ng" target="blank">
+          OAuth 2.0 Directive for AngularJS
+        </a>
+        </li>
+        <li>
+        <a href="http://lelylan.github.io/lelylan-ng" target="blank">
+          Lelylan Client for AngularJS
+        </a>
+        </li>
+        <li>
+        <a href="http://dev.lelylan.com" target="blank">
+          Lelylan Dev Center
+        </a>
         </li>
       </ul>
 
@@ -884,18 +1008,16 @@ _.each(scope.devices, function(device) {
       <h1 id="thanks">Thanks</h1>
 
       <p>
-      <a href="mailto:andrea.reginato@gmail.com" target="_blank">Mail</a> or
-      <a href="http://twitter.com/andreareginato" target="_blank">Tweet</a>
-      me for any idea that can improve the project.
+      <a href="mailto:dev@lelylan.com" target="_blank">Mail</a> or
+      <a href="http://twitter.com/lelylan" target="_blank">Tweet</a>
+      us for any idea that can improve the project.
       </p>
 
-      <p>
-      This project was created and released as open-source thanks to <a href="http://lelylan.com" target="_blank">Lelylan</a>,
-      a new platform to monitor and control your devices through a simple, open and robust REST API.
-      </p>
-
-      <p>
-      If you like what I'm doing offer me a coffe
+      <p class="notice">
+      This project exists and is released as open source thanks to the work of
+      <a href="http://twitter.com/andreareginato" target="_blank">Reggie</a> and all its
+      <a href="https://github.com/lelylan/device-directive-ng/graphs/contributors">contributors</a>.
+      If you like what he is doing offer him a coffe
       <script data-gittip-username="andreareginato"
         data-gittip-widget="button"
         src="//gttp.co/v1.js"></script>

@@ -5,7 +5,7 @@
   <!--  Device message  -->
   <!-- ---------------- -->
 
-  <div class="ly-message ly-generic-message ly-animation-fast" ng-if="view.path=='/message'">
+  <div class="ly-message ly-generic-message ly-animation-fast" ng-if="view=='/message'">
     <p class="ly-description">{{message.title}}</p>
     <p class="ly-description-sub">{{message.description}}</p>
   </div>
@@ -15,7 +15,7 @@
   <!--  Loading message  -->
   <!-- ----------------- -->
 
-  <div class="ly-message ly-loading" ng-if="view.path=='/loading'">
+  <div class="ly-message ly-loading" ng-if="view=='/loading'">
     <p class="ly-description">Loading Device</p>
     <div class="ly-spinner">
       <div class="ly-bounce-1"></div>
@@ -29,7 +29,7 @@
   <!--  Device Content  -->
   <!-- ---------------- -->
 
-  <div class="ly-content" ng-class="{'ly-animation': view.path=='/default'}" ng-if="view.path!='/loading' && view.path!='/message'">
+  <div class="ly-content" ng-class="{'ly-animation': view=='/default'}" ng-if="view!='/loading' && view.path!='/message'">
 
 
     <!-- ------------- -->
@@ -163,7 +163,7 @@
     <!--  Device Settings  -->
     <!-- ----------------- -->
 
-    <div class="ly-settings ly-modal ly-animation-fast" ng-if="view.path=='/settings'">
+    <div class="ly-settings ly-modal ly-animation-fast" ng-if="view=='/settings'">
       <div class="ly-modal-backdrop" ng-click="showDefault() || resetForm()"></div>
       <div class="ly-modal-window">
         <a class="ly-close" href="" ng-click="showDefault() || resetForm()">×</a>
@@ -201,7 +201,7 @@
             <div class="ly-actions">
               <button class="ly-button ly-update-button" ng-class="{'ly-disabled-button': !form.$valid}">save</button>
               <div class="ly-delete-action" ng-show="isMaker()">
-                <a class="ly-delete-link" href="" ng-click="view.path='/delete'">Delete your device?</a>
+                <a class="ly-delete-link" href="" ng-click="view='/delete'">Delete your device?</a>
               </div>
             </div>
           </form>
@@ -214,7 +214,7 @@
     <!-- Device Delete -->
     <!-- ------------- -->
 
-    <div class="ly-settings ly-delete ly-modal ly-animation-fast" ng-if="view.path=='/delete'">
+    <div class="ly-settings ly-delete ly-modal ly-animation-fast" ng-if="view=='/delete'">
       <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
       <div class="ly-modal-window">
         <a class="ly-close" href="" ng-click="showDefault()">×</a>
