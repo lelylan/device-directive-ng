@@ -32,9 +32,7 @@
     <div id="heading">
       <div id="logo">&lt;device&gt;</div>
       <div id="tagline">The new HTML5 tag to control your devices, on web and mobile</a></div>
-      <div class="device">
-        <device device-id="1"></device>
-      <div>
+      <div class="device"><device device-id="1"></device><div>
     </div>
     </section>
 
@@ -66,10 +64,10 @@
       <h2>Basic Example</h2>
 
       <p>
-      Use the &lt;device&gt; directive and set the desired device ID.
+      Use the <code>&lt;device&gt;</code> directive and set the desired device ID.
       </p>
 
-      <pre><code><xmp><device device-json="DEVICE_JSON"></device></xmp></code></pre>
+      <pre><code><xmp><device device-id="DEVICE_ID"></device></xmp></code></pre>
 
     </div>
     </section>
@@ -283,9 +281,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       devices.
       </p>
 
-      <p>
-        <device device-id="2"></device>
-      </p>
+      <div class="device"><device device-id="2"></device></div>
 
       <p><img src="public/images/themes/default/controls.png"></img></p>
 

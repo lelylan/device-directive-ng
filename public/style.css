@@ -322,13 +322,14 @@ table.button .parameter {
 }
 
 div.device {
-  background-color: #f6f6f6;
   width: 21em;
   padding: 1em;
   margin-top:50px;
+  background-color: #f6f6f6;
+  border: 1px solid #eee;
+  border-radius: 5px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 5px;
 }
 
 div#device .ly-device {

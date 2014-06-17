@@ -62,7 +62,6 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
   definition.link = function(scope, element, attrs) {
 
-
     /*
      * CONFIGURATIONS
      */
@@ -202,12 +201,14 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Function execution */
     scope.execute = function(_function) {
-      DeviceFunction.execute(_function);
+      console.log('execute', scope.$id);
+      DeviceFunction.execute(_function, scope.updateProperties);
     };
 
 
     /* Properties update */
     scope.updateProperties = function(properties) {
+      console.log('Wrong scope in updateProperties', scope.$id);
       DeviceProperties.update(scope, properties, element);
       scope.initialize();
     }
@@ -215,6 +216,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Device update */
     scope.update = function() {
+      console.log('Update device', scope.$id);
       scope.view.path = '/default';
       Device.update(scope.device.id, scope.device).success(function(response) {
         scope.device = response;
@@ -280,7 +282,6 @@ var client = angular.module('lelylan.directives.device.services.functions', [])
 client.factory('DeviceFunction', ['Utils', function(Utils) {
 
   var service = {};
-  var referenceScope;
 
 
   /*
@@ -288,8 +289,6 @@ client.factory('DeviceFunction', ['Utils', function(Utils) {
    */
 
   service.setForms = function(scope) {
-    referenceScope = scope;
-
     scope.functions = angular.copy(scope.type.functions);
     _.each(scope.functions, function(_function) {
       service.setForm(_function, scope);
@@ -307,14 +306,12 @@ client.factory('DeviceFunction', ['Utils', function(Utils) {
    */
 
   // TODO change visibleForm with isVisibleForm
-  // TODO fix the thing that we need to use referenceScope. We should not
-  service.execute = function(_function) {
+  service.execute = function(_function, callback) {
     if (_function ) {
       if (_function.toFill == false) {
-        referenceScope.updateProperties(_function.properties)
+        callback(_function.properties);
       } else {
-        if (_function.visibleForm == true)
-          referenceScope.updateProperties(_function.properties);
+        if (_function.visibleForm == true) { callback(_function.properties); }
         _function.visibleForm = !_function.visibleForm;
       }
     }
@@ -424,6 +421,7 @@ client.factory('DeviceProperties', ['$rootScope', 'Device', 'Utils', function($r
    */
 
   service.update = function(scope, functionProperties) {
+    console.log("Update properties", scope.$id);
     var properties = service.mapProperties(functionProperties);
     service.sendProperties(scope, properties);
     service.optimisticProperties(scope, properties);
