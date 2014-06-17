@@ -100,12 +100,16 @@ h1:not(:first-child) {
 
 h2 {
   margin-top: 80px;
-  font-size: 1.2em;
+  font-size: 1.5em;
 }
 
 h3 {
   margin-top: 40px;
   font-size: 1em;
+}
+
+h3 a {
+  font-weight: 200;
 }
 
 ul li {
@@ -322,18 +326,23 @@ table.button .parameter {
 }
 
 div.device {
-  width: 21em;
-  padding: 1em;
+  width: 23em;
+  padding: 0.5em;
   margin-top:50px;
+  margin-bottom:50px;
   background-color: #f6f6f6;
   border: 1px solid #eee;
   border-radius: 5px;
+}
+
+div.center {
   margin-left: auto;
   margin-right: auto;
 }
 
-div#device .ly-device {
-  font-size: 16px;
+div.compact {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .gist-file {
@@ -351,4 +360,12 @@ div#device .ly-device {
 .gist-syntax .s,
 .gist-syntax .na {
   font-weight: normal !important;
+}
+
+/* Switch personalization */
+
+.ly-switch {
+  padding: 1em;
+  height: 5.5em;
+  background-color: #fff;
 }

@@ -1,0 +1,19 @@
+<div class="ly-device">
+  <div class="ly-content">
+    <div class="ly-status">
+      <div class="ly-execute" ng-click="execute(status.function)">
+        <button class="ly-button"></button>
+        <div class="ly-spinner ly-animation" ng-if="device.pending">
+          <div class="ly-bounce-1"></div>
+          <div class="ly-bounce-2"></div>
+          <div class="ly-bounce-3"></div>
+        </div>
+      </div>
+      <div class="ly-description">
+        <p class="ly-name" ng-bind="device.name"></p>
+        <p class="ly-extras ly-updated-animation" ng-bind="status.name || 'Undefined status'"></p>
+      </div>
+    </div>
+  </div>
+</div>
+

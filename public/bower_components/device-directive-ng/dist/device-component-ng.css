@@ -22,6 +22,9 @@
   line-height: 1.2em;
 }
 
+.fa {
+  font-family: FontAwesome;
+}
 
 /*
  * Device generics

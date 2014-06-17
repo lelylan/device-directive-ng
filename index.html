@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="public/bower_components/animate.css/animate.css" />
     <link rel="stylesheet" href="public/bower_components/fontawesome/css/font-awesome.css" />
     <link rel="stylesheet" href="public/bower_components/device-directive-ng/dist/device-component-ng.css">
+    <link rel="stylesheet" href="public/views/templates/switch/switch.css" />
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
   </head>
   <body ng-app="app">
@@ -32,7 +33,7 @@
     <div id="heading">
       <div id="logo">&lt;device&gt;</div>
       <div id="tagline">The new HTML5 tag to control your devices, on web and mobile</a></div>
-      <div class="device"><device device-id="1"></device><div>
+      <div class="device center"><device device-id="1"></device><div>
     </div>
     </section>
 
@@ -77,7 +78,7 @@
     <div class="content">
 
 
-      <h1 id="howto">Create your first app using &lt;device&gt;</h1>
+      <h1 id="howto">Create your first app</h1>
       <p>
       In this section you will learn how to use the device directive to monitor and control
       all the devices you have defined in Lelylan.
@@ -281,15 +282,14 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       devices.
       </p>
 
-      <div class="device"><device device-id="2"></device></div>
-
-      <p><img src="public/images/themes/default/controls.png"></img></p>
+      <div class="device"><device device-id="1"></device></div>
 
     </div>
     </section>
 
-    <section>
 
+
+    <section>
     <div class="content">
 
       <h1 id="customization-css">Custom CSS</h1>
@@ -369,67 +369,37 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
     <section>
     <div class="content">
 
-      <h1 id="customization-template">Custom Template</h1>
+
+      <h1 id="customization-template">Custom Templates</h1>
 
       <p>
       The device directive lets you define a custom template when the default one does not
       satisty your needs (e.g. compact widget, light specific widget, etc.).
-      </p>
-
-      <h3>
-        Default Template |
-        <a href="">See HTML</a> |
-        <a href="public/images/themes/default/collection.png">See wireframes</a>
-      </h3>
-
-      <a href="public/images/themes/default/collection.png">
-        <img src="public/images/themes/default/controls.png" class="linked-image"></img>
-      </a>
-
-      <pre class="indent"><code><xmp>No config needed (it's the default one)</xmp></code></pre>
-
-
-      <h2>
-        Compact Template |
-        <a href="">See HTML</a> |
-        <a href="public/images/themes/default/collection.png">See wireframes</a>
-      </h2>
-
-      <a href="public/images/templates/compact/collection.png">
-        <img src="public/images/templates/compact/controls.png" class="linked-image"></img>
-      </a>
-
-      <pre class="indent"><code><xmp>Template: "bower_components/device-directive-ng/dist/views/templates/compact.html"</xmp></code></pre>
-
-      </br>
-
-      <p class="notice">
-      <a href="mailto:dev@lelylan.com">Mail</a>
-      or <a href="http://twitter.com/lelylan">Tweet</a>
-      us about new templates. We'll be happy to add them to the docs.</p>
+      This means that you can personalize the widget at any level with custom HTML, CSS and
+      funtionalities.
       </p>
 
 
 
-      <h1>Template configuration</h1>
+      <h2>Configuration</h2>
 
       <p>
-      The device directive offers two ways to change the template.
+      To set the new template you need to let the device directive the location where the new
+      HTML file is located. To do so you can use two solutions.
       </p>
 
-      <h3>1. Template attribute (static)</h3>
+      <h3>1. Template attribute</h3>
 
       <p>
-      Set the template path (or uri) as value for the <code>device-template</code> attribute.
+      Set the template path (or uri) to the <code>device-template</code> attribute.
       </p>
 
       <pre><code><xmp><device device-template="TEMPLATE_PATH" ... ></device></xmp></code></pre>
 
-      <h3>2. Template event (dynamic)</h3>
+      <h3>2. Template event</h3>
 
       <p>
-      Fires the update template event passing an object with the template and, optionally,
-      with the device id to update.
+      Fires the update template event passing an object with the following attributes.
       </p>
 
       <table class="table smaller-titles">
@@ -456,18 +426,59 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
         </tbody>
       </table>
 
-      <p>
-      Example.
-      </p>
-
       <pre><code><xmp>$rootScope.$broadcast(
-  'lelylan:device:template:update',
+  'lelylan:directives:device:template',
   { template: 'TEMPLATE_PATH', id: 'DEVICE_ID'}
 );</xmp></code></pre>
 
 
 
-      <h1>Create a basic template</h1>
+      <h1 id="exisiting-template">Existing Templates</h1>
+
+      <p>
+      Lelylan comes to life with few templates (check them out before building a new one).
+      </p>
+
+      <p class="notice">
+      <a href="mailto:dev@lelylan.com">Mail</a>
+      or <a href="http://twitter.com/lelylan">Tweet</a>
+      us about new templates. We'll be happy to add them to the project.</p>
+      </p>
+
+      <h3>
+        Default Template |
+        <a href="https://github.com/lelylan/device-directive-ng/blob/master/dist/views/templates/default.html">See HTML</a> |
+        <a href="public/images/themes/default/collection.png">See wireframes</a>
+      </h3>
+
+      <div class="device compact"><device device-id="1"></device></div>
+
+      <pre class="indent"><code><xmp>// No config needed (it's the default one)
+<device device-json="DEVICE_JSON"></device></xmp></code></pre>
+
+
+      <h3>
+        Compact Template |
+        <a href="https://github.com/lelylan/device-directive-ng/blob/master/dist/views/templates/compact.html">See HTML</a> |
+        <a href="public/images/themes/default/collection.png">See wireframes</a>
+      </h3>
+
+      <div class="device compact">
+      <device device-id="1" device-template="public/bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
+      </div>
+
+      <pre class="indent"><code><xmp>// Set the compact.html template
+<device device-json="DEVICE_JSON"
+  device-template="bower_components/device-directive-ng/dist/views/templates/compact.html">
+</device>
+</xmp></code></pre>
+
+      </br>
+
+
+
+
+      <h1>Create your first (basic) template</h1>
 
       <p>
       When the existing templates does not satisfy your needs, you can create a new one to
@@ -475,16 +486,18 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       template that will looks like the image below.
       </p>
 
-      <p><img src="public/images/templates/custom/controls.png"></img></p>
+      <div class="device">
+      <device device-id="1" device-template="public/views/templates/custom/custom.html"></device>
+      </div>
 
       <p>
-      The code that makes it possible is the one below.
+      The code that makes it possible is this.
       </p>
 
       <script src="https://gist.github.com/andreareginato/61766ae2cc904aa238b9.js"></script>
 
       <p>
-      Let's understand step by step what this code does.
+      Let's study step by step what this code does.
       </p>
 
       <h2>Default function</h2>
@@ -494,9 +507,15 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 </div></xmp></code></pre>
 
       <p>
-      As convention, the blue circle is used to execute the device default function. What is
-      it you ask? Lets take the light example. When it's turned on the switch turns it off
-      and when it's turned off the the switch turns it on.
+      As convention, the blue circle is used to execute the device default function (the
+      expected functionality you want to execute when a device is in a specific state).
+      For example when a light is "turned on" the default function is "turn off" and
+      viceversa.
+      </p>
+
+      <p>
+      To execute the defualt function use <code>execute(status.function)</code>. As you can get
+      from the naming it will execute the default function based on the current device status.
       </p>
 
       <p class="notice">
@@ -505,11 +524,6 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       <a href="http://dev.lelylan.com/types#statuses-api">Status API</a>.
       </p>
 
-      <p>
-      To execute the defualt function use <code>execute(status.function)</code>. As you can get
-      from the naming it will execute the default function based on the current device status.
-      Taking the example back, it turns on the light when it is off and viceversa.
-      </p>
 
       <h2>The blue circle</h2>
 
@@ -543,39 +557,31 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       </p>
 
       <pre><code><xmp><div class="ly-description">
-  <p class="ly-name">{{device.name}}</p>
-  <p class="ly-extras ly-updated-animation">{{status.name}}</p>
+  <p class="ly-name" ng-bind="device.name"></p>
+  <p class="ly-extras ly-updated-animation" ng-bind="status.name"></p>
 </div></xmp></code></pre>
 
-      <h2>You are done</h2>
+      <h2>Done</h2>
 
       <p>
-      Save the new template under your project and set the path using the
-      template attribute and you are done.
+      Save the new template under your project and set the path using the template attribute
+      and you are done. Congrats. You have created your first custom template
       </p>
 
       <pre><code><xmp><device device-json="DEVICE_JSON" device-template="TEMPLATE_PATH"></device></xmp></code></pre>
 
-      <p>
-      You have created your first custom template. Congrats.
-      </p>
-
-      <h2>Tips</h2>
-
-      <p>
-      1. To fully understand the power of custom templates check out the existing
+      <p class="notice">
+      To fully understand the power of custom templates check out the existing
       <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/default.html">default</a>
-      and <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/compact.html">compact</a> templates
-      (use them as base to build your new template).
+      and <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/compact.html">compact</a> ones.
+      Using them as base to build your new template will save you time.
       </p>
-    </div>
-    </section>
+
+      </br></br></br>
 
 
-    <section>
-    <div class="content">
 
-      <h1>Create a type specific template</h1>
+      <h1>Create your first type specific template</h1>
 
       <p>
       The device directive defines a user interface that adapts to any device.
@@ -591,48 +597,48 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       <p>
       That said, we now want to build a template that can be used to control
       a basic light having only the <code>turn on</code> and <code>turn off</code>
-      functionalities. Thanks to the Billy Crist
-      <a href="http://codepen.io/billycrist/pen/CHmiE">CSS switches</a>
-      the final result will be this.
+      functionalities.
       </p>
 
-        <img src="public/images/templates/switch/on.png"></img>
+      <div class="device" style="width:8.8em;">
+      <device device-id="1" device-template="public/views/templates/switch/switch.html"></device>
+      </div>
 
-
-      <h2>Template</h2>
+      <h2>Switch Template</h2>
 
       <p>
-      The HTML code that makes it possible is simple. You have a checkbox that when clicked
-      executes the default function. This means that when the light is on the switch turns it off
-      and when the light is off the switch turns it on.
+      The template is pretty simple. You have a checkbox label that when clicked executes the
+      default function. This means that when the light is on the switch turns it off and when
+      the light is off the switch turns it on.
       </p>
 
       <script src="https://gist.github.com/andreareginato/00a120b314523b690e2c.js"></script>
 
       <p>
-      You also have a loader identified by the <code>ly-spinner</code> class visible only when the
-      device is in a pending status, meaning that the request is sent to the physical device and
-      you are waiting for its execution to be completed.
+      You also have the spinner which is visible only when the device is pending, meaning that
+      the request is sent to the physical device and you are waiting for its execution to be
+      completed.
       </p>
 
-      <h2>CSS</h2>
+      <h2>Switch CSS</h2>
 
       <p>
-      To get the final result siply copy (or link) the CSS above.
+      This is the CSS you need to get the final switch.
       </p>
 
       <script src="https://gist.github.com/andreareginato/168ddfb68dbde6f4a6ea.js"></script>
 
       <p class="notice">
-      Check out the <a href="http://codepen.io/billycrist/pen/CHmiE">Billy Crist Pen</a>
-      to understand how the Light Switch CSS is defined.
+      Many thanks to the <a href="http://codepen.io/billycrist/pen/CHmiE">Billy Crist Pen</a>
+      for his awesome switches.
       </p>
 
       <h2>Assigning the new template</h2>
 
       <p>
-      Save the new HTML and CSS template files under your project and apply it to all basic lights.
-      To do so you need to follow these steps.
+      Save the new HTML and CSS template files under your project. Now you need to set this
+      template only to your lights (not other devices like locks or thermostats). To reach
+      the desired result you need to follow these steps.
       </p>
 
       <h3>Get your lights</h3>
@@ -680,22 +686,19 @@ _.each(scope.devices, function(device) {
   );
 });</xmp></code></pre>
 
-      <h2>You are done</h2>
+      <h2>Done</h2>
 
       <p>
-      You have created your first custom type template. Congrats!
+      You are done. You have created your first switch template.
       </p>
 
 
 
+
       <br><br>
       <br><br>
       <br><br>
       <br><br>
-
-
-
-
 
 
 
