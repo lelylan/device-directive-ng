@@ -321,12 +321,14 @@ table.button .parameter {
   margin-top: 2em;
 }
 
-div#device {
-  width: 20em;
-  display: block;
+div.device {
+  background-color: #f6f6f6;
+  width: 21em;
+  padding: 1em;
+  margin-top:50px;
   margin-left: auto;
   margin-right: auto;
-  margin-top:50px;
+  border-radius: 5px;
 }
 
 div#device .ly-device {
