@@ -178,7 +178,16 @@ module.exports = function (grunt) {
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
       options: {
-        dest: '<%= yeoman.dist %>'
+        dest: '<%= yeoman.dist %>',
+        flow: {
+          html: {
+            steps: {
+              css: ['concat'],
+              js: ['concat']
+            },
+            post: {}
+          }
+        }
       }
     },
 
@@ -258,13 +267,7 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
           src: [
-            //'*.{ico,png,txt}',
-            //'.htaccess',
-            //'*.html',
             'views/{,*/}*.html',
-            //'bower_components/**/*',
-            //'images/{,*/}*.{webp}',
-            //'fonts/*'
           ]
         }, {
           //expand: true,
@@ -296,52 +299,7 @@ module.exports = function (grunt) {
       ]
     },
 
-    // Concatenate all JS files
-    concat: {
-      options: {
-        banner: '/* <%= yeoman.name %> - v<%= yeoman.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */\n\n'
-      },
-      dist: {
-        files: {
-          '<%= yeoman.dist %>/<%= yeoman.name %>.js': [
-            '.tmp/scripts/{,*/}*.js',
-            '<%= yeoman.app %>/scripts/{,*/}*.js'
-          ],
-          '<%= yeoman.dist %>/<%= yeoman.name %>.css': [
-            '.tmp/styles/{,*/}*.css',
-            '<%= yeoman.app %>/styles/{,*/}*.css'
-          ]
-        }
-      }
-    },
-
-    // Minify all JS files
-    uglify: {
-      options: {
-        banner: '/* <%= yeoman.name %> - v<%= yeoman.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */\n'
-      },
-      dist: {
-        files: {
-          '<%= yeoman.dist %>/<%= yeoman.name %>.min.js': [
-            '<%= yeoman.dist %>/<%= yeoman.name %>.js'
-          ]
-        }
-      }
-    },
-
-    // Minify all CSS files
-    cssmin: {
-      dist: {
-        files: {
-          '<%= yeoman.dist %>/<%= yeoman.name %>.min.css': [
-            '.tmp/styles/{,*/}*.css',
-            '<%= yeoman.app %>/styles/{,*/}*.css'
-          ]
-        }
-      }
-    },
-
-
+    // search and replace for specific strings in the code
     'string-replace': {
       dist: {
         files: {
@@ -399,10 +357,6 @@ module.exports = function (grunt) {
     'clean:dist',
     'copy',
     'useminPrepare',
-    'concat',
-    'ngmin',
-    'uglify',
-    'cssmin',
     'concat',
     'string-replace',
   ]);

@@ -1,6 +1,19 @@
 {
-  "name": "device-component-ng",
+  "name": "device-directive-ng",
   "version": "0.2.0-beta",
+  "main": [
+    "dist/device-directive-ng.js",
+    "dist/device-directive-ng.css"
+  ],
+  "ignore": [
+    "app",
+    "test",
+    "bower.json",
+    "Gruntfile.js",
+    "karma.conf.js",
+    "protractor.conf.js",
+    "package.json"
+  ],
   "dependencies": {
     "angular": "1.2.16",
     "angular-animate": "~1.2.16",
