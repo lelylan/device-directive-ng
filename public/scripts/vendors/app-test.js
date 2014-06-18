@@ -47,6 +47,11 @@ app.run(function($httpBackend, $timeout, Profile) {
   }
 });
 
+// hack to make the anchor links work
+app.run(function($rootScope, $location, $anchorScroll) {
+  $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) { });
+});
+
 app.config(['$locationProvider', function ($locationProvider) {
   $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('!');
