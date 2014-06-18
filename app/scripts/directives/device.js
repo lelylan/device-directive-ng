@@ -229,9 +229,9 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Animate status change */
     scope.animateStatus = function() {
-      var effect = 'flipInX';
+      var effect = 'flipInX'; // fadeIn is a cleaner solution
       element.find('.ly-updated-animation').addClass('animated ' + effect);
-      $timeout(function() { element.find('.ly-updated-animation').removeClass('animated ' + effect); }, 500);
+      $timeout(function() { element.find('.ly-updated-animation').removeClass(effect); }, 500);
     }
 
 
