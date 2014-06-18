@@ -1,8 +1,13 @@
 # Device Directive
 
-AngularJS directive that makes it easy to monitor and control your physical devices
+AngularJS directive to easily monitor and control your physical devices
 (e.g. lights, locks, thermostats) from desktop, tablet, and mobile. To make this possible
 it uses [Lelylan](http://lelylan.com), a simple, open and robust REST API for the Connected Home.
+
+# Documentation
+
+[Docs](http://lelylan.github.io/device-directive-ng)
+[![device-directive-ng](http://i.imgur.com/JrFww5o.png)](http://lelylan.github.io/device-directive-ng/)
 
 ## Contributing
 
