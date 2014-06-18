@@ -41,8 +41,7 @@ Or run a specific suite
 ### Creating your own distribution
 
 * Fork and clone the repository
-* Run `npm install`
-* Run `grunt`
+* Run `grunt build`
 
 The new distribution files will be created in the `dist/` folder.
 
@@ -52,12 +51,12 @@ Follow [github](https://github.com/styleguide/) guidelines.
 
 ### Feedback
 
-Use the [issue tracker](http://github.com/lelylan/device-component-ng/issues) for bugs.
+Use the [issue tracker](http://github.com/lelylan/device-directive-ng/issues) for bugs.
 [Mail](mailto:touch@lelylan.com) or [Tweet](http://twitter.com/lelylan) us for any idea that can improve the project.
 
 ### Links
 
-* [GIT Repository](http://github.com/lelylan/device-component-ng)
+* [GIT Repository](http://github.com/lelylan/device-directive-ng)
 * [Lelylan Angular Client](http://lelylan.github.com/lelylan-ng)
 * [Lelylan Dev Center](http://dev.lelylan.com)
 * [Lelylan Dashboard](http://manage.lelylan.com)
@@ -69,16 +68,16 @@ Use the [issue tracker](http://github.com/lelylan/device-component-ng/issues) fo
 
 ## Contributors
 
-Special thanks to all [contributors](https://github.com/lelylan/device-component-ng/contributors)
+Special thanks to all [contributors](https://github.com/lelylan/device-directive-ng/contributors)
 for submitting patches.
 
 
 ## Changelog
 
-See [CHANGELOG](https://github.com/lelylan/device-component-ng/blob/master/CHANGELOG.md)
+See [CHANGELOG](https://github.com/lelylan/device-directive-ng/blob/master/CHANGELOG.md)
 
 
 ## Copyright
 
 Copyright (c) 2014 [Lelylan](http://lelylan.com).
-See [LICENSE](https://github.com/lelylan/device-component-ng/blob/master/LICENSE.md) for details.
+See [LICENSE](https://github.com/lelylan/device-directive-ng/blob/master/LICENSE.md) for details.
