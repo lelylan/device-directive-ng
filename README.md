@@ -6,7 +6,7 @@ it uses [Lelylan](http://lelylan.com), a simple, open and robust REST API for th
 
 # Documentation
 
-[Docs](http://lelylan.github.io/device-directive-ng)
+[Device directive documentation](http://lelylan.github.io/device-directive-ng)
 
 [![device-directive-ng](http://i.imgur.com/JrFww5o.png)](http://lelylan.github.io/device-directive-ng/)
 
