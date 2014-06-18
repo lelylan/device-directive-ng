@@ -2,12 +2,12 @@
 <html>
   <head>
     <title>device-ng | AngularJS directive to control your devices, on web and mobile</title>
-    <link rel="stylesheet" href="public/style.css">
+    <link rel="stylesheet" href="public/styles/style.css">
     <link rel="stylesheet" href="public/icons/css/slate.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Italiana&amp;subset=latin">
-    <link rel="stylesheet" href="public/bower_components/animate.css/animate.css" />
-    <link rel="stylesheet" href="public/bower_components/fontawesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="public/bower_components/device-directive-ng/dist/device-component-ng.css">
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/device-directive-ng/dist/device-directive-ng.css">
     <link rel="stylesheet" href="public/views/templates/switch/switch.css" />
     <link rel="stylesheet" href="public/views/templates/black/black.css" />
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -34,7 +34,9 @@
     <div id="heading">
       <div id="logo">&lt;device&gt;</div>
       <div id="tagline">The new HTML5 tag to control your devices, on web and mobile</a></div>
-      <div class="device center"><device device-id="1"></device><div>
+      <div class="device center">
+        <device device-id="1"></device>
+      <div>
     </div>
     </section>
 
@@ -85,10 +87,10 @@
       all the devices you have defined in Lelylan.
       </p>
 
-      <p class="btn-group">
-      <a href="" class="btn" target="_blank">View Demo</a>
-      <a href="" class="btn" target="_blank">Download Source</a>
-      </p>
+      <!--<p class="btn-group">-->
+      <!--<a href="" class="btn" target="_blank">View Demo</a>-->
+      <!--<a href="" class="btn" target="_blank">Download Source</a>-->
+      <!--</p>-->
 
 
       <h2 id="setup">Setup</h2>
@@ -193,7 +195,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
       <p>
       Lelylan uses an OAuth 2.0 server for authentication and authorization.
-      <a href="http://people.lelylan.com/oauth/applications">Register</a> a new application
+      <a href="http://people.lelylan.com/oauth/applications/new">Register</a> a new application
       and take the generated credentials (Client ID and Redirect URI) before moving to the
       next step.
       </p>
@@ -206,14 +208,15 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       <p>
       To get an authorization token you need to use
       <a href="http://andreareginato.github.io/oauth-ng/" target="blank">oauth-ng</a>,
-      an AngularJS directive for OAuth 2.0 (already installed as device directive dependency).
-      Open your main.html view and insert the oauth directive with the required configurations.
+      an AngularJS directive for OAuth 2.0 (already installed as dependency).
+      Open your main.html view and configure the oauth directive by setting the
+      <code>client-id</code> and <code>redirect-uri</code> previously defined.
       </p>
 
       <pre><code><xmp><oauth
   site="http://people.lelylan.com"
-  client-id="CLIENT_ID_HERE"
-  redirect-uri="REDIRECT_URI_HERE"
+  client-id="CLIENT_ID"
+  redirect-uri="REDIRECT_URI"
   profile-uri="http://api.lelylan.com/me"
   scope="devices">
 </oauth></xmp></code></pre>
@@ -228,8 +231,8 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
       <p>
       To get all your devices you can use the
-      <a href="http://lelylan.github.io/lelylan-ng/" target="_blank">AngularJS client</a>
-      for Lelylan (already installed as dependency). Open the main controller
+      <a href="http://lelylan.github.io/lelylan-ng/" target="_blank">Lelylan client</a>
+      for AngularJS (already installed as dependency). Open the main controller
       and place the <code>Device#all</code> method.
       </p>
 
@@ -306,7 +309,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
               <span class="info">optional</span>
             </td>
             <td>
-              Device JSON (learn more about the device <a href="http://dev.lelylan.com/developers#get-a-device">representation</a>).
+              Device JSON.
               <span class="info">(required if device-id is not used)</span>
             </td>
           </tr>
@@ -326,102 +329,28 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
               <span class="info">optional</span>
             </td>
             <td>
-              Custom template to render.<br>
+              Custom template to render.
+              Learn more <a href="cusomization">about</a>.
             </td>
           </tr>
         </tbody>
       </table>
 
-      <p>
-      Here a few examples.
-      </p>
+      <h2>Examples</h2>
 
-      <table class="table">
-        <tbody class="smaller-titles">
-          <tr>
-            <td>
-              <code><xmp><device device-id="DEVICE_ID"></device></xmp></code>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <code><xmp><device device-json="DEVICE_JSON"></device></xmp></code>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <code><xmp><device device-json="DEVICE_JSON" device-template="TEMPLATE_URI"></device></xmp></code>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <pre><code><xmp>// Load the device by setting its id
+<device device-id="DEVICE_ID"></device>
+
+// Load the device by setting its json structure and a specific template
+<device device-json="DEVICE_JSON" device-template="TEMPLATE_URI"></device></xmp></code></pre>
+
+      <h2>Tips</h2>
 
       <p class="notice">
-      A good habit is to fetch the devices you need first and then render them usig the
+      As good habit, fetch the all your devices first and then render them usig the
       <code>device-json</code> attribute. This will make the system more efficient than
-      using the <code>device-id</code> attribute (it fires an HTTP request per device).
+      using the <code>device-id</code> attribute which fires an HTTP request per device.
       </p>
-
-    </div>
-    </section>
-
-
-    <section>
-    <div class="content">
-      <h1 id="events">Events</h1>
-
-      <p>
-      The events related to the device directive are the following.
-      </p>
-
-      <table class="table">
-        <tbody>
-          <tr>
-            <td class="parameter">
-              <code>lelylan:device:update(device)</code><br>
-              Fired when the user updates the device name or physical uri.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <code>lelylan:device:delete(device)</code><br>
-              Fired when the user deletes the device.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <code>lelylan:device:function:start(device)</code><br>
-              Fired when a function execution starts (device is pending).
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <code>lelylan:device:function:end</code><br>
-              Fired when a function execution is completed.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <code>lelylan:device:template:update({template: "TEMPLATE_PATH", id: "DEVICE_ID"})</code><br>
-              Listen for runtime template change.
-              See the <a href="#template">templates</a> section for more details.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>
-      Here some examples.
-      </p>
-
-      <pre><code><xmp>$scope.$on('lelylan:device:function:start', function(event, device) {
-  console.log('Function execution started for', device.name');
-});
-
-$scope.$on('lelylan:device:function:end', function(event, device) {
-  console.log('Function execution completed for', device.name);
-});</xmp></code></pre>
-
 
     </div>
     </section>
@@ -513,32 +442,9 @@ $scope.$on('lelylan:device:function:end', function(event, device) {
       <h3>2. Template event</h3>
 
       <p>
-      Fires the update template event passing an object with the following attributes.
+      Fires the update template event passing an object with the template uri and the
+      optional device id (when not set all devices are affected by the change).
       </p>
-
-      <table class="table smaller-titles">
-        <tbody class="smaller-titles">
-          <tr>
-            <td class="parameter">
-              <span>template</span>
-              <span class="info">required</span>
-            </td>
-            <td>
-              Template path (or uri) value.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>id</span>
-              <span class="info">optional</span>
-            </td>
-            <td>
-              Device ID indicating the device targeted to update the template.</br>
-              (when missing all devices are targeted to update the template).
-            </td>
-          </tr>
-        </tbody>
-      </table>
 
       <pre><code><xmp>$rootScope.$broadcast(
   'lelylan:directives:device:template',
@@ -547,10 +453,10 @@ $scope.$on('lelylan:device:function:end', function(event, device) {
 
 
 
-      <h1 id="templates">Templates</h1>
+      <h2 id="">Existing templates</h1>
 
       <p>
-      Lelylan comes to life with few templates (check them out before building a new one).
+      The device directive comes to life with few templates (check them out before building a new one).
       </p>
 
       <p class="notice">
@@ -562,9 +468,11 @@ $scope.$on('lelylan:device:function:end', function(event, device) {
       <h3>
         Default Template |
         <a href="https://github.com/lelylan/device-directive-ng/blob/master/dist/views/templates/default.html">
-          <i class="fa fa-html5 fa-2x"></i>See HTML
+          See HTML
         </a>
       </h3>
+
+      <pre class="indent"><code><xmp><device device-id="DEVICE_ID"></device></xmp></code></pre>
 
       <div class="device compact"><device device-id="1"></device></div>
 
@@ -572,20 +480,25 @@ $scope.$on('lelylan:device:function:end', function(event, device) {
       <h3>
         Compact Template |
         <a href="https://github.com/lelylan/device-directive-ng/blob/master/dist/views/templates/compact.html">
-          <i class="fa fa-html5 fa-2x"></i>See HTML
+          See HTML
         </a>
       </h3>
 
-      <pre class="indent"><code><xmp >Template: "bower_components/device-directive-ng/dist/views/templates/compact.html"</xmp></code></pre>
+      <pre class="indent"><code><xmp><device
+  device-id="DEVICE_ID"
+  device-template="bower_components/device-directive-ng/dist/views/templates/compact.html">
+</device></xmp></code></pre>
 
       <div class="device compact">
-        <device device-id="1" device-template="public/bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
+        <device device-id="1" device-template="bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
       </div>
 
-      </br></br>
+    </div>
+    </section>
 
 
-
+    <section>
+    <div class="content">
 
       <h1>Create your first (basic) template</h1>
 
@@ -688,9 +601,12 @@ $scope.$on('lelylan:device:function:end', function(event, device) {
       Using them as base to build your new template will save you time.
       </p>
 
-      </br></br></br>
+    </div>
+    </section>
 
 
+    <section>
+    <div class="content">
 
       <h1>Create your first type specific template</h1>
 
@@ -795,6 +711,158 @@ _.each(scope.devices, function(device) {
     'lelylan:device:template:update',
     { template: 'TEMPLATE_PATH', id: device.id}
   );
+});</xmp></code></pre>
+
+
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+
+      <h1 id="events">Events</h1>
+
+      <h2>Get a device update</h2>
+
+      <p>
+        <code>lelylan:device:update:get(device)</code><br>
+      </p>
+
+      <p>
+      Listen for a device name or phyiscal uri update event.<br>
+      As param it receives the updated JSON device representation.
+      </p>
+
+      <pre><code><xmp>$scope.$on('lelylan:device:update:get', function(event, device) { ... })</xmp></code></pre>
+
+
+      <h2>Set a device update</h2>
+
+      <p>
+        <code>lelylan:device:update:set(device)</code><br>
+      </p>
+
+      <p>
+      Fires an event to update a device representation.<br>
+      As param it sends the new JSON device representation.
+      </p>
+
+      <pre><code><xmp>$rootScope.$broadcast('lelylan:device:update:set', device);</xmp></code></pre>
+
+
+      <h2>Device delete</h2>
+
+      <p>
+        <code>lelylan:device:deleted(device)</code><br>
+      </p>
+
+      <p>
+      Listen for device deletion.<br>
+      As param it sends the deleted JSON device representation.
+      </p>
+
+      <pre><code><xmp>$scope.$on('lelylan:device:delete', function(event, device) { ... });</xmp></code></pre>
+
+
+      <h2>Update device(s) template</h2>
+
+      <p>
+        <code>lelylan:device:template:update({template: "TEMPLATE_PATH", id: "DEVICE_ID"})</code><br>
+      </p>
+
+      <p>
+        Fires the template update. The event accepts an object with the following options.
+      </p>
+
+      <table class="table smaller-titles">
+        <tbody class="smaller-titles">
+          <tr>
+            <td class="parameter">
+              <span>template</span>
+              <span class="info">required</span>
+            </td>
+            <td>
+              Template path (or uri) value.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
+              <span>id</span>
+              <span class="info">optional</span>
+            </td>
+            <td>
+              Device ID indicating the device targeted to update the template.</br>
+              (when missing all devices are targeted to update the template).
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <pre><code><xmp>$rootScope.$broadcast(
+  'lelylan:directives:device:template',
+  { template: 'TEMPLATE_PATH', id: 'DEVICE_ID'}
+);</xmp></code></pre>
+
+
+      <h2>Custom events</h2>
+
+      <p>
+        <code>lelylan:device:custom:EVENT_NAME(device)</code><br>
+      </p>
+
+      <p>
+      Listen for a custom event (as param it sends the JSON device representation).
+      This is a special event tha can be used when defining a new <a href="#">template</a>.
+      It may be useful to fire custom events when interacting with specific parts of the
+      directive.
+      </p>
+
+      <pre><code><xmp>$scope.$on('lelylan:device:custom:EVENT_NAME', function(event, device) { ... });</xmp></code></pre>
+
+
+      <h3>Example</h3>
+
+      <p>
+      An example is the custom event <code>lelylan:device:custom:open(device)</code>
+      that is fired in the compact template when you click the right arrow.
+      </p>
+
+      <br>
+      <div ng-controller="CustomEventController">
+        <p class="notice">
+        <span ng-bind="text"></span>
+        <span ng-if="message!=text"><a href="#" ng-click="reset()">[reset]</a></span>
+        </p>
+      </div>
+
+      <div class="device compact">
+        <device device-id="1" device-template="bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
+      </div>
+      <br>
+
+      <script>
+        function CustomEventController($scope, $timeout) {
+          $scope.message = 'Click the blue arrow to fire the custom event.';
+          $scope.text = $scope.message;
+
+          $scope.$on('lelylan:device:custom:open', function(event, device) {
+            $scope.text = 'The custom:open event was fired from the ' + device.name;
+          });
+          $scope.reset = function() {
+            $scope.text = $scope.message;
+          }
+        }
+      </script>
+
+      <p>
+      To make this possible we attach the <code>fire('open')</code> function to the
+      right arrow click event. In this way the directive will automatically fire the
+      open custom event that we can easily catch with the following code.
+      </p>
+
+      <pre><code><xmp>$scope.$on('lelylan:device:custom:open', function(event, device) {
+  $scope.text = 'The custom:open event was fired from the ' + device.name;
 });</xmp></code></pre>
 
 
@@ -957,6 +1025,17 @@ _.each(scope.devices, function(device) {
           </tr>
           <tr>
             <td class="parameter">
+              <span>fire(EVENT_NAME)</span>
+              <span class="info">function</span>
+            </td>
+            <td>
+              Fires an event where the prefix is <code>lelylan:device:custom:</code>
+              and the suffix is <code>EVENT_NAME</code>. Supposing the event name is
+              <code>open</code>, the custom event will be <code>lelylan:device:custom:open</code>.
+            </td>
+          </tr>
+          <tr>
+            <td class="parameter">
               <span>showSettings()</span>
               <span class="info">function</span>
             </td>
@@ -1026,31 +1105,44 @@ _.each(scope.devices, function(device) {
     </div>
     </section>
 
-    <!-- strict dependencies -->
-    <script src="public/bower_components/angular/angular.js"></script>
-    <script src="public/bower_components/angular-animate/angular-animate.js"></script>
-    <script src="public/bower_components/angular-touch/angular-touch.js"></script>
-    <script src="public/bower_components/base64/base64.js"></script>
-    <script src="public/bower_components/ngstorage/ngStorage.js"></script>
-    <script src="public/bower_components/oauth-ng/dist/oauth-ng.js"></script>
-    <script src="public/bower_components/lelylan-ng/dist/lelylan-ng.js"></script>
-    <script src="public/bower_components/moment/moment.js"></script>
-    <script src="public/bower_components/angular-moment/angular-moment.js"></script>
-    <script src="public/bower_components/underscore/underscore.js"></script>
-
     <!-- test dependencies -->
-    <script src="public/bower_components/jasmine/lib/jasmine-core/jasmine.js"></script>
-    <script src="public/bower_components/jquery/dist/jquery.js"></script>
-    <script src="public/bower_components/jasmine-jquery/lib/jasmine-jquery.js"></script>
+    <script src="bower_components/jasmine/lib/jasmine-core/jasmine.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jasmine-jquery/lib/jasmine-jquery.js"></script>
+
+    <!-- strict dependencies -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/base64/base64.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/oauth-ng/dist/oauth-ng.js"></script>
+    <script src="bower_components/lelylan-ng/dist/lelylan-ng.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+
+    <!-- device directive -->
+    <script src="bower_components/device-directive-ng/dist/device-directive-ng.js"></script>
 
     <!-- mock lib -->
-    <script src="public/bower_components/angular-mocks/angular-mocks.js"></script>
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
 
     <!-- app test -->
     <script src="public/scripts/vendors/app-test.js"></script>
     <script src="public/scripts/vendors/delayed-responses.js"></script>
 
-
-    <script src="public/bower_components/device-directive-ng/dist/device-component-ng.js"></script>
+    <script>
+      $('a').each(function() {
+        var a = new RegExp('/' + window.location.host + '/');
+        if(!a.test(this.href)) {
+          $(this).click(function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            window.open(this.href, '_blank');
+          });
+        }
+      });
+    </script>
   </body>
 </html>

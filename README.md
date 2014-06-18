@@ -1,7 +1,7 @@
-# AngularJS directive for Lelylan Device Component
+# AngularJS directive for Device Directive
 
-Source code for the AngularJS directive for for Lelylan Device Component [website](http://lelylan.github.com/device-component-ng).
-[![device-component-ng](http://i.imgur.com/dLN4isF.png)](http://lelylan.github.com/device-component-ng)
+Source code for the AngularJS directive for for Lelylan Device Directive [website](http://lelylan.github.com/device-directive-ng).
+[![device-directive-ng](http://i.imgur.com/dLN4isF.png)](http://lelylan.github.com/device-directive-ng)
 
 
 ## Contributing
@@ -11,13 +11,13 @@ Fork the repo on github and send a pull requests with topic branches.
 
 ### Feedback
 
-Use the [issue tracker](http://github.com/lelylan/device-component-ng/issues) for bugs.
+Use the [issue tracker](http://github.com/lelylan/device-directive-ng/issues) for bugs.
 [Mail](mailto:touch@lelylan.com) or [Tweet](http://twitter.com/lelylan) us for any idea
 that can improve the project.
 
 ## Links
 
-* [GIT Repository](http://github.com/lelylan/device-component-ng)
+* [GIT Repository](http://github.com/lelylan/device-directive-ng)
 * [Lelylan Device API](http://dev.lelylan.com/developers#devices-api)
 * [Lelylan](http://lelylan.com)
 
@@ -28,9 +28,9 @@ that can improve the project.
 
 ## Contributors
 
-Special thanks to all [contributors](https://github.com/lelylan/device-component-ng/contributors)
+Special thanks to all [contributors](https://github.com/lelylan/device-directive-ng/contributors)
 for submitting patches.
 
 ## License
 
-See [license](https://github.com/lelylan/device-component-ng/blob/master/LICENSE.md).
+See [license](https://github.com/lelylan/device-directive-ng/blob/master/LICENSE.md).
