@@ -18,7 +18,7 @@ Do not forget to provide specs to your contribution.
 ### Setup
 
 * Fork and clone the repository
-* Run `npm install`
+* Run `npm install && bower install`
 
 ### Unit tests (karma)
 
@@ -40,7 +40,6 @@ Or run a specific suite
 
 ### Creating your own distribution
 
-* Fork and clone the repository
 * Run `grunt build`
 
 The new distribution files will be created in the `dist/` folder.
@@ -52,30 +51,20 @@ Follow [github](https://github.com/styleguide/) guidelines.
 ### Feedback
 
 Use the [issue tracker](http://github.com/lelylan/device-directive-ng/issues) for bugs.
-[Mail](mailto:touch@lelylan.com) or [Tweet](http://twitter.com/lelylan) us for any idea that can improve the project.
-
-### Links
-
-* [GIT Repository](http://github.com/lelylan/device-directive-ng)
-* [Lelylan Angular Client](http://lelylan.github.com/lelylan-ng)
-* [Lelylan Dev Center](http://dev.lelylan.com)
-* [Lelylan Dashboard](http://manage.lelylan.com)
+[Mail](mailto:dev@lelylan.com) or [Tweet](http://twitter.com/lelylan) us for any idea that can improve the project.
 
 ## Authors
 
 [Andrea Reginato](http://twitter.com/andreareginato)
-
 
 ## Contributors
 
 Special thanks to all [contributors](https://github.com/lelylan/device-directive-ng/contributors)
 for submitting patches.
 
-
 ## Changelog
 
 See [CHANGELOG](https://github.com/lelylan/device-directive-ng/blob/master/CHANGELOG.md)
-
 
 ## Copyright
 
