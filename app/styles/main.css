@@ -1,8 +1,11 @@
+
 /*
  * Device component reset
  */
 
 .ly-device * {
+  font-size: 1em;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: none repeat scroll 0 0 transparent;
   border: medium none;
   border-spacing: 0;
@@ -15,8 +18,12 @@
   text-decoration: none;
   text-indent: 0;
   letter-spacing: 0.05em;
+  line-height: 1.2em;
 }
 
+.fa {
+  font-family: FontAwesome;
+}
 
 /*
  * Device generics
@@ -66,11 +73,6 @@
   cursor: pointer;
 }
 
-/*.ly-device .ly-modal .ly-button:hover {*/
-  /*background-color: #01cf9e;*/
-  /*color: #fff*/
-/*}*/
-
 
 /*
  * Link and button transitions
@@ -89,12 +91,12 @@
  */
 
 .ly-spinner > div {
-  width: 10px;
-  height: 10px;
-  background-color: #aaa;
-
+  width: .5em;
+  height: .5em;
+  background-color: #bbb;
   border-radius: 100%;
   display: inline-block;
+
   -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
   animation: bouncedelay 1.4s infinite ease-in-out;
   -webkit-animation-fill-mode: both;
@@ -163,11 +165,7 @@
 }
 
 .ly-header .ly-name {
-  font-size: 1.5em;
-}
-
-.ly-header .ly-device-name {
-  font-size: 2.2em;
+  font-size: 2em;
 }
 
 .ly-header .ly-menu {
@@ -218,13 +216,13 @@
 
 .ly-status .ly-execute .ly-spinner {
   position: absolute;
-  top: 0.65em;
-  left: 0.5em;
+  top: 0.6em;
+  left: 0.7em;
 }
 
 .ly-status .ly-execute .ly-spinner > div {
-  width: 6px;
-  height: 6px;
+  width: .25em;
+  height: .25em;
   background-color: #239cbb;
 }
 
@@ -315,12 +313,14 @@
 .ly-modal .ly-modal-window {
   position: absolute;
   z-index: 2001;
-  /*bottom: 3.6em;*/
   top: 0;
   left: 0;
   width: 100%;
-  /*height: 100%;*/
   background: #fff;
+  border: 1px solid #eee;
+  margin-top: -1px;
+  margin-right: -1px;
+  margin-left: -1px;
 }
 
 .ly-modal .ly-modal-window .ly-close {
@@ -436,8 +436,7 @@
 
 .ly-property  .ly-description .ly-name {
   color: #aaa;
-  text-transform: uppercase;
-  font-size: 0.7em;
+  font-size: 0.9em;
 }
 
 .ly-property  .ly-description .ly-color-ball {
@@ -636,4 +635,3 @@ input:focus {
   right: 0.1em;
   font-size: 4.2em;
 }
-
