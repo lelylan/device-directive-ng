@@ -22,12 +22,17 @@
       <ul>
         <li><a href="#introduction">Introduction</a></li>
         <li><a href="#getting-started">Getting Started</a></li>
+        <li><a href="#responsive">Responsive</a></li>
         <li><a href="#howto">How To</a></li>
         <li><a href="#configurations">Configurations</a></li>
-        <li><a href="#customizations">Customizations</a></li>
+        <li><a href="#custom-css">Custom CSS</a></li>
+        <li><a href="#custom-templates">Custom templates</a></li>
+        <li><a href="#create-a-template">Create a template</a></li>
+        <li><a href="#create-a-light-switch">Create a light switch</a></li>
         <li><a href="#events">Events</a></li>
+        <li><a href="#api">Internal API</a></li>
         <li><a href="#links">Links</a></li>
-        <li><a href="#thanks">Thanks To</a></li>
+        <li><a href="#thanks">Thanks</a></li>
       </ul>
     </div>
 
@@ -72,6 +77,31 @@
       </p>
 
       <pre><code><xmp><device device-id="DEVICE_ID"></device></xmp></code></pre>
+
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+      <h1 id="responsive">Responsive</h1>
+
+      <p>
+      The device directive was created to provide an optimal user experience across a wide
+      range of devices (from mobile to tablet and desktop).
+      </p>
+
+      <div class="device" style="font-size:1.5em">
+        <device device-id="1" device-template="bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
+      </div>
+
+      <div class="device" style="font-size:1.25em">
+        <device device-id="1" device-template="bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
+      </div>
+
+      <div class="device" style="font-size:1em">
+        <device device-id="1" device-template="bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
+      </div>
 
     </div>
     </section>
@@ -294,31 +324,6 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
     <section>
     <div class="content">
-      <h1 id="introduction">Responsive</h1>
-
-      <p>
-      The device directive was created to provide an optimal user experience across a wide
-      range of devices (from mobile to tablet and desktop).
-      </p>
-
-      <div class="device" style="font-size:1.5em">
-        <device device-id="1" device-template="bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
-      </div>
-
-      <div class="device" style="font-size:1.25em">
-        <device device-id="1" device-template="bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
-      </div>
-
-      <div class="device" style="font-size:1em">
-        <device device-id="1" device-template="bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
-      </div>
-
-    </div>
-    </section>
-
-
-    <section>
-    <div class="content">
       <h1 id="configurations">Configurations</h1>
 
       <p>
@@ -354,7 +359,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
             </td>
             <td>
               Custom template to render.
-              Learn more <a href="cusomization">about</a>.
+              Learn more <a href="#custom-templates">about</a>.
             </td>
           </tr>
         </tbody>
@@ -383,7 +388,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
     <section>
     <div class="content">
 
-      <h1 id="customization-css">Custom CSS</h1>
+      <h1 id="custom-css">Custom CSS</h1>
 
       <p>
       The oauth directive comes to life with customization in mind. This means that you can
@@ -396,8 +401,6 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
       <div class="device compact"><device device-id="1"></device></div>
 
-
-
       <h3>
         Black Style |
         <a href="https://gist.github.com/andreareginato/cc4a8a05b6e0217ec741">
@@ -405,10 +408,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
         </a>
       </h3>
 
-
       <div class="device compact ly-black"><device device-id="1"></device></div>
-
-
 
       <p class="notice">
       <a href="mailto:dev@lelylan.com">Mail</a>
@@ -436,7 +436,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
     <div class="content">
 
 
-      <h1 id="customization-template">Custom Templates</h1>
+      <h1 id="custom-templates">Custom Templates</h1>
 
       <p>
       The device directive lets you define a custom template when the default one does not
@@ -523,7 +523,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
     <section>
     <div class="content">
 
-      <h1>Create your first (basic) template</h1>
+      <h1 id="create-a-template">Create your first (basic) template</h1>
 
       <p>
       When the existing templates does not satisfy your needs, you can create a new one to
@@ -631,7 +631,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
     <section>
     <div class="content">
 
-      <h1>Create your first type specific template</h1>
+      <h1 id="create-a-light-switch">Create your first type specific template</h1>
 
       <p>
       The device directive defines a user interface that adapts to any device.
@@ -836,9 +836,8 @@ _.each(scope.devices, function(device) {
 
       <p>
       Listen for a custom event (as param it sends the JSON device representation).
-      This is a special event tha can be used when defining a new <a href="#">template</a>.
-      It may be useful to fire custom events when interacting with specific parts of the
-      directive.
+      This is a special event tha can be used when defining a new template and interacting
+      with specific parts of it.
       </p>
 
       <pre><code><xmp>$scope.$on('lelylan:device:custom:EVENT_NAME', function(event, device) { ... });</xmp></code></pre>
@@ -896,7 +895,7 @@ _.each(scope.devices, function(device) {
     <section>
     <div class="content">
 
-      <h1>Internal API (Advanced)</h1>
+      <h1 id="api">Internal API (Advanced)</h1>
 
       <p>
       Any template is composed by mix of HTML (structure), CSS (visual) and AngularJS (logic).
@@ -1085,7 +1084,7 @@ _.each(scope.devices, function(device) {
         </a>
         </li>
         <li>
-        <a href="andreareginato.github.io/oauth-ng" target="blank">
+        <a href="http://andreareginato.github.io/oauth-ng" target="blank">
           OAuth 2.0 Directive for AngularJS
         </a>
         </li>

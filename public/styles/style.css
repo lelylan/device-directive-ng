@@ -198,7 +198,7 @@ section:nth-child(2n) {
 #menu ul {
   display: none;
   position: absolute;
-  width: 200px;
+  width: 240px;
   top: 2.8em;
   right: 0;
   margin: 0;
