@@ -117,7 +117,6 @@ var client = angular.module('lelylan.directives.device.services.functions', [])
 client.factory('DeviceFunction', ['Utils', function(Utils) {
 
   var service = {};
-  var referenceScope;
 
 
   /*
@@ -125,8 +124,6 @@ client.factory('DeviceFunction', ['Utils', function(Utils) {
    */
 
   service.setForms = function(scope) {
-    referenceScope = scope;
-
     scope.functions = angular.copy(scope.type.functions);
     _.each(scope.functions, function(_function) {
       service.setForm(_function, scope);
@@ -143,15 +140,13 @@ client.factory('DeviceFunction', ['Utils', function(Utils) {
    *   - if visible, it updates the properties and becomes hidden
    */
 
-  // TODO change visibleForm with isVisibleForm
-  // TODO fix the thing that we need to use referenceScope. We should not
-  service.execute = function(_function) {
+  service.execute = function(_function, callback) {
     if (_function ) {
       if (_function.toFill == false) {
-        referenceScope.updateProperties(_function.properties)
+        callback(_function.properties)
       } else {
         if (_function.visibleForm == true)
-          referenceScope.updateProperties(_function.properties);
+          callback(_function.properties);
         _function.visibleForm = !_function.visibleForm;
       }
     }
@@ -556,7 +551,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Function execution */
     scope.execute = function(_function) {
-      DeviceFunction.execute(_function);
+      DeviceFunction.execute(_function, scope.updateProperties);
     };
 
 
