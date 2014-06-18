@@ -186,7 +186,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Function execution */
     scope.execute = function(_function) {
-      DeviceFunction.execute(_function);
+      DeviceFunction.execute(_function, scope.updateProperties);
     };
 
 
