@@ -76,7 +76,7 @@
 
       <img src="public/images/mobile-first.png" style="border:none"></img>
 
-      <h2>Open and fully customizable</h2>
+      <h2>Fully customizable</h2>
 
       <p>
       The device directive comes to life with customization in mind. It offers you clean and
@@ -753,7 +753,23 @@ _.each(scope.devices, function(device) {
 
       <h1 id="events">Events</h1>
 
-      <h2>Get a device update</h2>
+      <h2>Device loaded</h2>
+
+      <p>
+        <code>lelylan:device:load(device)</code><br>
+      </p>
+
+      <p>
+      Listen for an event fired when the directive has completed the requests to the API.<br>
+      As param it receives the updated device JSON representation.
+      </p>
+
+      <pre><code><xmp>$scope.$on('lelylan:device:load', function(event, device) { ... })</xmp></code></pre>
+
+
+      <h1 id="events">Events</h1>
+
+      <h2>Receive a device update</h2>
 
       <p>
         <code>lelylan:device:update:get(device)</code><br>
@@ -761,13 +777,13 @@ _.each(scope.devices, function(device) {
 
       <p>
       Listen for a device name or phyiscal uri update event.<br>
-      As param it receives the updated JSON device representation.
+      As param it receives the updated device JSON representation.
       </p>
 
       <pre><code><xmp>$scope.$on('lelylan:device:update:get', function(event, device) { ... })</xmp></code></pre>
 
 
-      <h2>Set a device update</h2>
+      <h2>Update a device</h2>
 
       <p>
         <code>lelylan:device:update:set(device)</code><br>
@@ -775,7 +791,7 @@ _.each(scope.devices, function(device) {
 
       <p>
       Fires an event to update a device representation.<br>
-      As param it sends the new JSON device representation.
+      As param it sends the new device JSON representation.
       </p>
 
       <pre><code><xmp>$rootScope.$broadcast('lelylan:device:update:set', device);</xmp></code></pre>
@@ -798,7 +814,7 @@ _.each(scope.devices, function(device) {
       <h2>Update device(s) template</h2>
 
       <p>
-        <code>lelylan:device:template:update({template: "TEMPLATE_PATH", id: "DEVICE_ID"})</code><br>
+        <code>lelylan:device:template({template: "TEMPLATE_PATH", id: "DEVICE_ID"})</code><br>
       </p>
 
       <p>
