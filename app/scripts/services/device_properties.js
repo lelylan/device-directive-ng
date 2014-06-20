@@ -63,15 +63,21 @@ client.factory('DeviceProperties', ['$rootScope', 'Device', 'Utils', function($r
 
   /*
    * Updates the device properties (API).
+   *
+   * When the response is 200 (and not 202) the request is resolved.
+   * This happens when the physical uri is not set in the device.
    */
 
   service.sendProperties = function(scope, properties) {
     $rootScope.$broadcast('lelylan:device:properties:send', scope.device);
 
     Device.properties(scope.device.id, { properties: properties })
-      .success(function(response) {
+      .success(function(response, status) {
         scope.device = response;
         service.extend(scope);
+
+        if (status == 200)
+          $rootScope.$broadcast('lelylan:device:update:set', scope.device);
       });
   }
 

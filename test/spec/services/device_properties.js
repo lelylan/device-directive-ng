@@ -84,35 +84,60 @@ describe('DeviceProperties', function() {
         payload = { properties: [{ id: '1', pending: true, expected: 'on' }]};
       });
 
-      beforeEach(function() {
-        result = JSON.parse(readFixtures('device.json'));
-        result.properties[0].expected = 'on';
+      describe('with response 202 (Accepted)', function() {
+
+        beforeEach(function() {
+          result = JSON.parse(readFixtures('device.json'));
+          result.properties[0].expected = 'on';
+        });
+
+        beforeEach(function() {
+          $httpBackend.whenPUT('http://api.lelylan.com/devices/1/properties', payload).respond(202, result);
+        });
+
+        beforeEach(function() {
+          expect(scope.device.properties[0].expected).toBe('off');
+        });
+
+        it('makes the request', function() {
+          $httpBackend.expect('PUT', 'http://api.lelylan.com/devices/1/properties', payload);
+          DeviceProperties.sendProperties(scope, payload.properties);
+          $httpBackend.flush();
+        });
+
+        it('gets the updated device representation', function() {
+          DeviceProperties.sendProperties(scope, payload.properties);
+          $httpBackend.flush();
+          expect(scope.device.properties[0].expected).toBe('on');
+        });
+
+        it('fires the start function event', function() {
+          $rootScope.$on('lelylan:device:properties:send', callback);
+          DeviceProperties.sendProperties(scope, payload.properties);
+          expect(callback).toHaveBeenCalledWith(event, scope.device);
+        });
+
+
+        it('does not fires the udate:set event', function() {
+          $rootScope.$on('lelylan:device:update:set', callback);
+          DeviceProperties.sendProperties(scope, payload.properties);
+          $httpBackend.flush();
+          expect(callback).not.toHaveBeenCalledWith(event, scope.device);
+        });
       });
 
-      beforeEach(function() {
-        $httpBackend.whenPUT('http://api.lelylan.com/devices/1/properties', payload).respond(result);
-      });
+      describe('with response 200 (Accepted)', function() {
 
-      beforeEach(function() {
-        expect(scope.device.properties[0].expected).toBe('off');
-      });
+        beforeEach(function() {
+          $httpBackend.whenPUT('http://api.lelylan.com/devices/1/properties', payload).respond(200, result);
+        });
 
-      it('makes the request', function() {
-        $httpBackend.expect('PUT', 'http://api.lelylan.com/devices/1/properties', payload);
-        DeviceProperties.sendProperties(scope, payload.properties);
-        $httpBackend.flush();
-      });
-
-      it('gets the updated device representation', function() {
-        DeviceProperties.sendProperties(scope, payload.properties);
-        $httpBackend.flush();
-        expect(scope.device.properties[0].expected).toBe('on');
-      });
-
-      it('fires the start function event', function() {
-        $rootScope.$on('lelylan:device:properties:send', callback);
-        DeviceProperties.sendProperties(scope, payload.properties);
-        expect(callback).toHaveBeenCalledWith(event, scope.device);
+        it('fires the udate:set event', function() {
+          $rootScope.$on('lelylan:device:update:set', callback);
+          DeviceProperties.sendProperties(scope, payload.properties);
+          $httpBackend.flush();
+          expect(callback).toHaveBeenCalledWith(event, scope.device);
+        });
       });
     });
 
