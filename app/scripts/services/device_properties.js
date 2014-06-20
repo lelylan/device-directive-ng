@@ -66,13 +66,12 @@ client.factory('DeviceProperties', ['$rootScope', 'Device', 'Utils', function($r
    */
 
   service.sendProperties = function(scope, properties) {
-    $rootScope.$broadcast('lelylan:device:function:start', scope.device);
+    $rootScope.$broadcast('lelylan:device:properties:send', scope.device);
 
     Device.properties(scope.device.id, { properties: properties })
       .success(function(response) {
         scope.device = response;
         service.extend(scope);
-        $rootScope.$broadcast('lelylan:device:function:end', scope.device);
       });
   }
 

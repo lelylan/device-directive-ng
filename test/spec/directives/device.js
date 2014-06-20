@@ -170,7 +170,7 @@ describe('<device>', function() {
           });
 
           beforeEach(function() {
-            $rootScope.$broadcast('lelylan:device:template:update', { template: 'views/templates/new.html' });
+            $rootScope.$broadcast('lelylan:device:template', { template: 'views/templates/new.html' });
             $rootScope.$apply();
           });
 
@@ -194,7 +194,7 @@ describe('<device>', function() {
           });
 
           beforeEach(function() {
-            $rootScope.$broadcast('lelylan:device:template:update', { id: '1', template: 'views/templates/new.html' });
+            $rootScope.$broadcast('lelylan:device:template', { id: '1', template: 'views/templates/new.html' });
             $rootScope.$apply();
           });
 
@@ -291,6 +291,10 @@ describe('<device>', function() {
       describe('when all requests are resolved', function() {
 
         beforeEach(function() {
+          $rootScope.$on('lelylan:device:load', callback);
+        });
+
+        beforeEach(function() {
           compile($rootScope, $compile);
           $httpBackend.flush();
         })
@@ -301,6 +305,11 @@ describe('<device>', function() {
 
         it('sets view.path to /default', function() {
           expect(scope.view.path).toBe('/default');
+        });
+
+        it('fires the loaded device event', function() {
+          var event = jasmine.any(Object);
+          expect(callback).toHaveBeenCalledWith(event, scope.device);
         });
       });
     });
@@ -449,7 +458,7 @@ describe('<device>', function() {
     describe('#update', function() {
 
       beforeEach(function() {
-        $rootScope.$on('lelylan:device:update', callback);
+        $rootScope.$on('lelylan:device:update:get', callback);
       });
 
       beforeEach(function() {
@@ -531,7 +540,35 @@ describe('<device>', function() {
         expect(callback).toHaveBeenCalledWith(event, scope.device);
       });
     });
+
+    describe('when listen to the update:set event', function() {
+
+      beforeEach(function() {
+        compile($rootScope, $compile);
+      });
+
+      beforeEach(function() {
+        scope = element.scope().$$childTail;
+      });
+
+      beforeEach(function() {
+        $httpBackend.flush();
+      });
+
+      beforeEach(function() {
+        var copy = angular.copy(device);
+        copy.properties[0].value    = 'on';
+        copy.properties[0].expected = 'on';
+        $rootScope.$broadcast('lelylan:device:update:set', copy);
+      });
+
+      it('updates the device status', function() {
+        expect(scope.status.name).toBe('On')
+      });
+    });
   });
+
+
 
 
   describe('when raises an error', function() {

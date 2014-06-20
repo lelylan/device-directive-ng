@@ -110,15 +110,8 @@ describe('DeviceProperties', function() {
       });
 
       it('fires the start function event', function() {
-        $rootScope.$on('lelylan:device:function:start', callback);
+        $rootScope.$on('lelylan:device:properties:send', callback);
         DeviceProperties.sendProperties(scope, payload.properties);
-        expect(callback).toHaveBeenCalledWith(event, scope.device);
-      });
-
-      it('fires the end function event', function() {
-        $rootScope.$on('lelylan:device:function:end', callback);
-        DeviceProperties.sendProperties(scope, payload.properties);
-        $httpBackend.flush();
         expect(callback).toHaveBeenCalledWith(event, scope.device);
       });
     });
