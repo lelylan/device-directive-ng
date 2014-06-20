@@ -80,13 +80,12 @@ client.factory('DeviceProperties', ['$rootScope', 'Device', 'Utils', function($r
    */
 
   service.sendProperties = function(scope, properties) {
-    $rootScope.$broadcast('lelylan:device:function:start', scope.device);
+    $rootScope.$broadcast('lelylan:device:properties:send', scope.device);
 
     Device.properties(scope.device.id, { properties: properties })
       .success(function(response) {
         scope.device = response;
         service.extend(scope);
-        $rootScope.$broadcast('lelylan:device:function:end', scope.device);
       });
   }
 
@@ -487,6 +486,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       scope.visualization();
       scope.initialize();
       scope.view.path = '/default';
+      $rootScope.$broadcast('lelylan:device:load', scope.device);
     }
 
 
@@ -567,7 +567,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       scope.view.path = '/default';
       Device.update(scope.device.id, scope.device).success(function(response) {
         scope.device = response;
-        $rootScope.$broadcast('lelylan:device:update', response);
+        $rootScope.$broadcast('lelylan:device:update:get', response);
       });
     }
 
@@ -608,9 +608,14 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       $rootScope.$broadcast('lelylan:device:custom:' + event, scope.device);
     }
 
+    /* Updates the device */
+    scope.$on('lelylan:device:update:set', function(event, device) {
+      scope.device = device;
+      scope.initialize();
+    });
 
     /* Updates the template at runtime */
-    scope.$on('lelylan:device:template:update', function(event, data) {
+    scope.$on('lelylan:device:template', function(event, data) {
       if (!data.id || data.id == scope.device.id) {
         scope.template = data.template;
         compile(scope);
