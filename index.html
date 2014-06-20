@@ -768,8 +768,6 @@ _.each(scope.devices, function(device) {
       <pre><code><xmp>$scope.$on('lelylan:device:load', function(event, device) { ... })</xmp></code></pre>
 
 
-      <h1 id="events">Events</h1>
-
       <h2>Receive a device update</h2>
 
       <p>
@@ -796,6 +794,20 @@ _.each(scope.devices, function(device) {
       </p>
 
       <pre><code><xmp>$rootScope.$broadcast('lelylan:device:update:set', device);</xmp></code></pre>
+
+
+      <h2>Send properties update</h2>
+
+      <p>
+        <code>lelylan:device:properties:send(device)</code><br>
+      </p>
+
+      <p>
+      Listen for an event fired when a function is executed (and a request to update the device properties is sent).<br>
+      As param it receives the updated device JSON representation.
+      </p>
+
+      <pre><code><xmp>$scope.$on('lelylan:device:load', function(event, device) { ... })</xmp></code></pre>
 
 
       <h2>Device delete</h2>
