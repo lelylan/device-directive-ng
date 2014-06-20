@@ -77,15 +77,21 @@ client.factory('DeviceProperties', ['$rootScope', 'Device', 'Utils', function($r
 
   /*
    * Updates the device properties (API).
+   *
+   * When the response is 200 (and not 202) the request is resolved.
+   * This happens when the physical uri is not set in the device.
    */
 
   service.sendProperties = function(scope, properties) {
     $rootScope.$broadcast('lelylan:device:properties:send', scope.device);
 
     Device.properties(scope.device.id, { properties: properties })
-      .success(function(response) {
+      .success(function(response, status) {
         scope.device = response;
         service.extend(scope);
+
+        if (status == 200)
+          $rootScope.$broadcast('lelylan:device:update:set', scope.device);
       });
   }
 
@@ -500,7 +506,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       DeviceProperties.extend(scope);
       DeviceFunction.setForms(scope);
       DeviceStatuses.set(scope);
-      scope.animateStatus();
+      scope.animate();
    };
 
 
@@ -592,29 +598,43 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     }
 
 
-    /* Animate status change */
-    scope.animateStatus = function() {
+    /*
+     * Animate status change
+     */
+
+    scope.animate = function() {
       var effect = 'flipInX'; // fadeIn is a cleaner solution
       element.find('.ly-updated-animation').addClass('animated ' + effect);
       $timeout(function() { element.find('.ly-updated-animation').removeClass(effect); }, 500);
     }
 
 
-    /* Device opening event.
+    /*
+     * Device opening event.
      * This event does not do anything but fires an open event that can be catched
-     *to do some other stuff (like opening a detailed view).
+     * to do some other stuff (like opening a detailed view).
      */
+
     scope.fire = function(event) {
       $rootScope.$broadcast('lelylan:device:custom:' + event, scope.device);
     }
 
-    /* Updates the device */
+
+    /*
+     * Event listening for the device update.
+     */
+
     scope.$on('lelylan:device:update:set', function(event, device) {
       scope.device = device;
       scope.initialize();
+      $rootScope.$broadcast('lelylan:device:update:get', scope.device);
+
     });
 
-    /* Updates the template at runtime */
+    /*
+     * Updates the template at runtime
+     */
+
     scope.$on('lelylan:device:template', function(event, data) {
       if (!data.id || data.id == scope.device.id) {
         scope.template = data.template;
