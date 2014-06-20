@@ -585,30 +585,26 @@ input:focus {
  * Elements animation
  */
 
-.ly-animation.ng-enter,
+.ly-animation.ng-enter {
+  -webkit-animation: fadeIn 0.6s;
+  animation: fadeIn 0.6s;
+}
+
 .ly-animation.ng-leave {
-  -webkit-transition:0.6s linear all;
-  transition:0.6s linear all;
+  -webkit-animation: fadeOut 0.6s;
+  animation: fadeOut 0.6s;
 }
 
-.ly-animation-fast.ng-enter,
+.ly-animation-fast.ng-enter {
+  -webkit-animation: fadeIn 0.3s;
+  animation: fadeIn 0.3s;
+}
+
 .ly-animation-fast.ng-leave {
-  -webkit-transition:0.2s ease-out all;
-  transition:0.2s ease-out all;
+  -webkit-animation: fadeOut 0.3s;
+  animation: fadeOut 0.3s;
 }
 
-.ly-animation.ng-enter,
-.ly-animation.ng-leave.ng-leave-active,
-.ly-animation-fast.ng-enter,
-.ly-animation-fast.ng-leave.ng-leave-active {
-  opacity:0;
-}
-.ly-animation.ng-leave,
-.ly-animation.ng-enter.ng-enter-active,
-.ly-animation-fast.ng-leave,
-.ly-animation-fast.ng-enter.ng-enter-active {
-  opacity:1;
-}
 
 /* Override animated.css */
 
