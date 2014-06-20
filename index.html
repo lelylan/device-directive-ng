@@ -22,7 +22,6 @@
       <ul>
         <li><a href="#introduction">Introduction</a></li>
         <li><a href="#getting-started">Getting Started</a></li>
-        <li><a href="#responsive">Responsive</a></li>
         <li><a href="#howto">How To</a></li>
         <li><a href="#configurations">Configurations</a></li>
         <li><a href="#custom-css">Custom CSS</a></li>
@@ -48,12 +47,45 @@
     <section>
     <div class="content">
       <h1 id="introduction">Introduction</h1>
+
       <p>
       Device is an AngularJS directive that makes it easy to monitor and control your
       physical devices (e.g. lights, locks, thermostats) from desktop, tablet, and mobile.
       To make this possible it uses <a href="http://lelylan.com/" target="_blank">Lelylan</a>,
       a simple, open and robust REST API for the Connected Home.
       </p>
+
+      <h2>The best control experience for you</h2>
+
+      <p>
+      The device directive was created with simplicity in mind. Its goal is to give
+      you an intuitive solution to interact with the physical world and to control
+      any device, from the simplest one (e.g. light, lock) to the most complex ones
+      (e.g. audio, televion).
+      </p>
+
+      <img src="public/images/intuitive.png" style="border:none"></img>
+
+      <h2>Mobile first</h2>
+
+      <p>
+      Each week new devices with varying screen sizes appears. Creating great mobile experiences
+      offers new opportunities but also new challanges. For this reason we created a solution
+      that works great on tablets and mobile phones, including iPhones, iPads, and Android devices.
+      </p>
+
+      <img src="public/images/mobile-first.png" style="border:none"></img>
+
+      <h2>Open and fully customizable</h2>
+
+      <p>
+      The device directive comes to life with customization in mind. It offers you clean and
+      simple view, but if it doesn't work for your needs you can personalize the CSS or define
+      new templates, even for specific type of devices (e.g. a switch for a light).
+      </p>
+
+      <img src="public/images/customizable.png" style="border:none"></img>
+
     </div>
     </section>
 
@@ -77,31 +109,6 @@
       </p>
 
       <pre><code><xmp><device device-id="DEVICE_ID"></device></xmp></code></pre>
-
-    </div>
-    </section>
-
-
-    <section>
-    <div class="content">
-      <h1 id="responsive">Responsive</h1>
-
-      <p>
-      The device directive was created to provide an optimal user experience across a wide
-      range of devices (from mobile to tablet and desktop).
-      </p>
-
-      <div class="device" style="font-size:1.5em">
-        <device device-id="1" device-template="bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
-      </div>
-
-      <div class="device" style="font-size:1.25em">
-        <device device-id="1" device-template="bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
-      </div>
-
-      <div class="device" style="font-size:1em">
-        <device device-id="1" device-template="bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
-      </div>
 
     </div>
     </section>
