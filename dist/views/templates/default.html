@@ -45,7 +45,7 @@
       <!-- Top menu -->
 
       <ul class="ly-menu">
-        <li><a class="ly-menu-settings" href="#" ng-click="showSettings()"></i> Settings</a></li>
+        <li><a class="ly-menu-settings" href="" ng-click="showSettings()"></i> Settings</a></li>
       </ul>
 
     </div>
@@ -172,6 +172,11 @@
           <div class="ly-header">
             <p class="ly-name">Settings</p>
           </div>
+
+          <div class="ly-subheader">
+            <p class="ly-name">Device details</p>
+          </div>
+
           <form class="ly-form" name="form" ng-submit="form.$valid && update()">
             <div class="ly-fields">
               <div class="ly-field">
@@ -185,13 +190,21 @@
               <div class="ly-field">
                 <p class="ly-description">Type</p>
                 <p class="ly-value">
-                <a class="ly-type" href="http://types.lelylan.com/types/{{type.id}}" target="blank">{{type.name}}</a>
+                <a class="ly-type-value" href="http://types.lelylan.com/types/{{type.id}}" target="blank">{{type.name}}</a>
                 </p>
               </div>
+            </div>
+          </form>
+
+          <div class="ly-subheader">
+            <p class="ly-name">Device info</p>
+          </div>
+
+          <form class="ly-form" name="form" ng-submit="form.$valid && update()">
+            <div class="ly-fields">
               <div class="ly-field ly-editable">
                 <p class="ly-description" ng-class="{'ly-error': form.name.$error.required}">Name (required)</p>
                 <input class="ly-value ly-name" type="text" placeholder="Device name" name="name" ng-model="device.name" required></input>
-
               </div>
               <div class="ly-field ly-editable" ng-show="isMaker()">
                 <p class="ly-description">Physical URI <a href="http://dev.lelylan.com/makers#mqtt-set-the-physical-uri" target="blank">(what is this?)</a></p>

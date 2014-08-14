@@ -110,10 +110,25 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* gets the type representation */
     var getType = function(id) {
-      Type.find(id).success(function(response) {
+      Type.find(id, { cache: true }).success(function(response) {
         scope.type = response;
         loadingCompleted();
       });
+    }
+
+
+    /* Gets the device privates info */
+    var getPrivates = function(id) {
+      if (scope.isMaker()) {
+        Device.privates(id).
+          success(function(response) {
+            scope.privates = response;
+          }).
+          error(function(data, status) {
+            scope.view.path = '/message';
+            scope.message = { title: 'Unauthorized Access', description: 'You have not the rights to access this device' }
+          });
+      }
     }
 
 
@@ -164,21 +179,6 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     }
 
 
-    /* Gets the device privates info */
-    var getPrivates = function(id) {
-      if (scope.isMaker()) {
-        Device.privates(id).
-          success(function(response) {
-            scope.privates = response;
-          }).
-          error(function(data, status) {
-            scope.view.path = '/message';
-            scope.message = { title: 'Unauthorized Access', description: 'You have not the rights to access this device' }
-          });
-      }
-    }
-
-
     /* Returns true if the logged user (if any) is the maker of the device */
     scope.isMaker = function() {
       return (Profile.get() && Profile.get().id == scope.device.maker.id);
@@ -203,7 +203,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
       scope.view.path = '/default';
       Device.update(scope.device.id, scope.device).success(function(response) {
         scope.device = response;
-        $rootScope.$broadcast('lelylan:device:update:get', response);
+        $rootScope.$broadcast('lelylan:device:update:set', response);
       });
     }
 
@@ -223,8 +223,8 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Form reset */
     scope.resetForm = function() {
-      scope.device.name         = scope.deviceCopy.name;
-      scope.device.physical.uri = scope.device.physical.uri;
+      scope.device.name     = scope.deviceCopy.name;
+      scope.device.physical = scope.deviceCopy.physical;
     }
 
 
@@ -255,10 +255,10 @@ angular.module('lelylan.directives.device.directive').directive('device', [
      */
 
     scope.$on('lelylan:device:update:set', function(event, device) {
-      scope.device = device;
-      scope.initialize();
-      $rootScope.$broadcast('lelylan:device:update:get', scope.device);
-
+      if (scope.device.id == device.id) {
+        scope.device = device;
+        scope.initialize();
+      }
     });
 
     /*
