@@ -122,7 +122,7 @@ describe('DeviceProperties', function() {
           $rootScope.$on('lelylan:device:update:set', callback);
           DeviceProperties.sendProperties(scope, payload.properties);
           $httpBackend.flush();
-          expect(callback).not.toHaveBeenCalledWith(event, scope.device);
+          expect(callback).toHaveBeenCalledWith(event, scope.device);
         });
       });
 
