@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "main": [],
   "dependencies": {
-    "device-directive-ng": "~0.2.0-beta.2",
+    "device-directive-ng": "~0.2.2",
     "jasmine": "v1.3.1",
     "angular-mocks": "1.2.16",
     "angular-scenario": "1.2.16",
@@ -11,5 +11,8 @@
     "jasmine-jquery": "~2.0.3",
     "animate.css": "~3.1.1",
     "angular-route": "~1.2.18"
+  },
+  "resolutions": {
+    "angular": "~1.2.22"
   }
 }

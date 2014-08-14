@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="public/styles/style.css">
     <link rel="stylesheet" href="public/icons/css/slate.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Italiana" type='text/css'>
-    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
     <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/device-directive-ng/dist/device-directive-ng.css">
@@ -607,7 +606,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
   <p class="ly-extras ly-updated-animation" ng-bind="status.name"></p>
 </div></xmp></code></pre>
 
-      <h2>Done</h2>
+      <h2>You are done</h2>
 
       <p>
       Save the new template under your project and set the path using the template attribute
@@ -747,7 +746,7 @@ _.each(scope.devices, function(device) {
 
       <h1 id="events">Events</h1>
 
-      <h2>Device loaded</h2>
+      <h2>[Listen] Device loaded</h2>
 
       <p>
         <code>lelylan:device:load(device)</code><br>
@@ -755,13 +754,13 @@ _.each(scope.devices, function(device) {
 
       <p>
       Listen for an event fired when the directive has completed the requests to the API.<br>
-      As param it receives the updated device JSON representation.
+      As param it receives the loaded device JSON representation.
       </p>
 
       <pre><code><xmp>$scope.$on('lelylan:device:load', function(event, device) { ... })</xmp></code></pre>
 
 
-      <h2>Receive a device update</h2>
+      <h2>[Listen] Device update</h2>
 
       <p>
         <code>lelylan:device:update:get(device)</code><br>
@@ -775,7 +774,7 @@ _.each(scope.devices, function(device) {
       <pre><code><xmp>$scope.$on('lelylan:device:update:get', function(event, device) { ... })</xmp></code></pre>
 
 
-      <h2>Update a device</h2>
+      <h2>[Fire] Device update</h2>
 
       <p>
         <code>lelylan:device:update:set(device)</code><br>
@@ -783,27 +782,27 @@ _.each(scope.devices, function(device) {
 
       <p>
       Fires an event to update a device representation.<br>
-      As param it sends the new device JSON representation.
+      As param you need to send a valid device JSON representation.
       </p>
 
       <pre><code><xmp>$rootScope.$broadcast('lelylan:device:update:set', device);</xmp></code></pre>
 
 
-      <h2>Send properties update</h2>
+      <h2>[Listen] Properties update</h2>
 
       <p>
-        <code>lelylan:device:properties:send(device)</code><br>
+        <code>lelylan:device:properties:get(properties)</code><br>
       </p>
 
       <p>
-      Listen for an event fired when a function is executed (and a request to update the device properties is sent).<br>
-      As param it receives the updated device JSON representation.
+      Listen for an event fired when a function starts and some properties are sent to be updated.<br>
+      As param it receives the properties to update.
       </p>
 
       <pre><code><xmp>$scope.$on('lelylan:device:load', function(event, device) { ... })</xmp></code></pre>
 
 
-      <h2>Device delete</h2>
+      <h2>[Listen] Device delete</h2>
 
       <p>
         <code>lelylan:device:deleted(device)</code><br>
@@ -817,14 +816,14 @@ _.each(scope.devices, function(device) {
       <pre><code><xmp>$scope.$on('lelylan:device:delete', function(event, device) { ... });</xmp></code></pre>
 
 
-      <h2>Update device(s) template</h2>
+      <h2>[Fire] Update device(s) template</h2>
 
       <p>
         <code>lelylan:device:template({template: "TEMPLATE_PATH", id: "DEVICE_ID"})</code><br>
       </p>
 
       <p>
-        Fires the template update. The event accepts an object with the following options.
+        Fires the update of the directive template. The event accepts an object with the following options.
       </p>
 
       <table class="table smaller-titles">
@@ -857,7 +856,7 @@ _.each(scope.devices, function(device) {
 );</xmp></code></pre>
 
 
-      <h2>Custom events</h2>
+      <h2>[Listen] Custom events</h2>
 
       <p>
         <code>lelylan:device:custom:EVENT_NAME(device)</code><br>

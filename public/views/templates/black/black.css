@@ -8,6 +8,16 @@
   border: 1px solid #555;
 }
 
+.ly-black .ly-device .ly-modal-window .ly-subheader,
+.ly-black .ly-device .ly-modal-window .ly-subheader p {
+  background-color: #333;
+}
+
+.ly-black .ly-device .ly-modal-window .ly-subheader {
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+}
+
 .ly-black .ly-functions,
 .ly-black .ly-status,
 .ly-black .ly-header,

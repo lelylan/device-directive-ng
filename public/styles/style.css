@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'Lato';
+  src: url('/bower_components/device-directive-ng/dist/fonts/Lato/Lato-Light.eot'); /* IE9 Compat Modes */
+       url('/bower_components/device-directive-ng/dist/fonts/Lato/Lato-Light.woff') format('woff'), /* Modern Browsers */
+       url('/bower_components/device-directive-ng/dist/fonts/Lato/Lato-Light.ttf') format('truetype'), /* Safari, Android, iOS */
+}
 
 * {
   -webkit-box-sizing: border-box;
