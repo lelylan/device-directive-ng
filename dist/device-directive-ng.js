@@ -45,7 +45,7 @@ client.factory('DeviceProperties', ['$rootScope', 'Device', 'Utils', function($r
 
   service.extend = function(scope) {
     _.each(scope.device.properties, function(property) {
-      var resource = Utils.getResource(property.id, scope.type.properties)
+      var resource = Utils.getResource(property.id, scope.type.properties);
       property.name = resource.name;
       property.type = resource.type;
     });
@@ -316,7 +316,7 @@ client.factory('DeviceStatuses', ['Utils', function(Utils) {
 
   service.checkValues = function(property, statusProperty) {
     if (statusProperty.values.length == 0) { return true }
-    return (_.contains(statusProperty.values, property.value)) ? true : false
+    return (_.contains(statusProperty.values, property.expected)) ? true : false
   }
 
 
@@ -325,6 +325,7 @@ client.factory('DeviceStatuses', ['Utils', function(Utils) {
    */
 
   service.checkRanges = function(property, statusProperty) {
+    statusProperty.ranges ||= [];
     if (statusProperty.ranges.length == 0) { return true }
 
     var pass = false;
@@ -563,7 +564,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Properties update */
     scope.updateProperties = function(properties) {
-      DeviceProperties.update(scope, properties, element);
+      DeviceProperties.update(scope, properties);
       scope.initialize();
     }
 

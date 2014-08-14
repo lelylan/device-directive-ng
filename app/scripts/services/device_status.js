@@ -80,6 +80,7 @@ client.factory('DeviceStatuses', ['Utils', function(Utils) {
    */
 
   service.checkRanges = function(property, statusProperty) {
+    statusProperty.ranges = statusProperty.ranges || [];
     if (statusProperty.ranges.length == 0) { return true }
 
     var pass = false;
