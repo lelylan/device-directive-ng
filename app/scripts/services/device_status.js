@@ -71,7 +71,7 @@ client.factory('DeviceStatuses', ['Utils', function(Utils) {
 
   service.checkValues = function(property, statusProperty) {
     if (statusProperty.values.length == 0) { return true }
-    return (_.contains(statusProperty.values, property.value)) ? true : false
+    return (_.contains(statusProperty.values, property.expected)) ? true : false
   }
 
 

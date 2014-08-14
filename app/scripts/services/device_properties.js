@@ -31,7 +31,7 @@ client.factory('DeviceProperties', ['$rootScope', 'Device', 'Utils', function($r
 
   service.extend = function(scope) {
     _.each(scope.device.properties, function(property) {
-      var resource = Utils.getResource(property.id, scope.type.properties)
+      var resource = Utils.getResource(property.id, scope.type.properties);
       property.name = resource.name;
       property.type = resource.type;
     });

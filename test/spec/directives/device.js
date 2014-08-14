@@ -458,7 +458,7 @@ describe('<device>', function() {
     describe('#update', function() {
 
       beforeEach(function() {
-        $rootScope.$on('lelylan:device:update:get', callback);
+        $rootScope.$on('lelylan:device:update:set', callback);
       });
 
       beforeEach(function() {

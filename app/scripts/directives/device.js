@@ -193,7 +193,7 @@ angular.module('lelylan.directives.device.directive').directive('device', [
 
     /* Properties update */
     scope.updateProperties = function(properties) {
-      DeviceProperties.update(scope, properties, element);
+      DeviceProperties.update(scope, properties);
       scope.initialize();
     }
 
