@@ -1,3 +1,5 @@
+/* device-directive-ng - v0.2.1 - 2014-08-14 */
+
 /*
  * Fonts
  */
@@ -405,7 +407,6 @@
 
 .ly-device .ly-form .ly-field .ly-color {
   height: 1.8em;
-  margin-left: 0.4em !important;
 }
 
 .ly-device .ly-form .ly-field .ly-range {

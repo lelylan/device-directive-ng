@@ -315,6 +315,11 @@ module.exports = function (grunt) {
       }
     },
 
+    concat: {
+      options: {
+        banner: '/* <%= yeoman.name %> - v<%= yeoman.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */\n\n'
+      }
+    },
 
     // Test settings
     karma: {

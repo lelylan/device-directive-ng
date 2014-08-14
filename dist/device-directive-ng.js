@@ -1,3 +1,5 @@
+/* device-directive-ng - v0.2.1 - 2014-08-14 */
+
 'use strict';
 
 angular.module('lelylan.directives.device', [
@@ -78,7 +80,7 @@ client.factory('DeviceProperties', ['$rootScope', 'Device', 'Utils', function($r
   /*
    * Updates the device properties (API).
    *
-   * When the response is 200 (and not 202) the request is resolved.
+   * When the response is 200 (and 202) the request is propagated.
    * This happens when the physical uri is not set in the device.
    */
 
@@ -90,8 +92,8 @@ client.factory('DeviceProperties', ['$rootScope', 'Device', 'Utils', function($r
         scope.device = response;
         service.extend(scope);
 
-        if (status == 200)
-          $rootScope.$broadcast('lelylan:device:update:set', scope.device);
+        //if (status == 200)
+        $rootScope.$broadcast('lelylan:device:update:set', scope.device);
       });
   }
 
@@ -325,7 +327,7 @@ client.factory('DeviceStatuses', ['Utils', function(Utils) {
    */
 
   service.checkRanges = function(property, statusProperty) {
-    statusProperty.ranges ||= [];
+    statusProperty.ranges = statusProperty.ranges || [];
     if (statusProperty.ranges.length == 0) { return true }
 
     var pass = false;

@@ -1,6 +1,6 @@
 {
   "name": "device-directive-ng",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Andrea Reginato <dev@lelylan.com>",
   "description": "AngularJS directive for Lelylan devices",
   "repository": {
