@@ -1,4 +1,4 @@
-/* device-directive-ng - v0.2.1 - 2014-08-14 */
+/* device-directive-ng - v0.2.3 - 2014-08-25 */
 
 /*
  * Fonts
@@ -6,9 +6,10 @@
 
 @font-face {
   font-family: 'Lato';
-  src: url('fonts/Lato/Lato-Light.eot'); /* IE9 Compat Modes */
+  src: url('fonts/Lato/Lato-Light.eot'), /* IE9 Compat Modes */
+       url('fonts/Lato/Lato-Light.svg') format('svg'),
        url('fonts/Lato/Lato-Light.woff') format('woff'), /* Modern Browsers */
-       url('fonts/Lato/Lato-Light.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/Lato/Lato-Light.ttf') format('truetype'); /* Safari, Android, iOS */
 }
 
 
