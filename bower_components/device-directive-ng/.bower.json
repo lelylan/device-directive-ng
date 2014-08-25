@@ -1,6 +1,6 @@
 {
   "name": "device-directive-ng",
-  "version": "0.2.2",
+  "version": "0.2.4",
   "main": [
     "dist/device-directive-ng.js",
     "dist/device-directive-ng.css"
@@ -38,14 +38,13 @@
     "angular": "1.2.22"
   },
   "homepage": "https://github.com/lelylan/device-directive-ng",
-  "_release": "0.2.2",
+  "_release": "0.2.4",
   "_resolution": {
     "type": "version",
-    "tag": "0.2.2",
-    "commit": "255248fa4d463207252f0fa478a43f91536dd323"
+    "tag": "0.2.4",
+    "commit": "0365525bcfd332e4d74b7bf32c686fb977b1a111"
   },
   "_source": "git://github.com/lelylan/device-directive-ng.git",
   "_target": "~0.2.2",
-  "_originalSource": "device-directive-ng",
-  "_direct": true
+  "_originalSource": "device-directive-ng"
 }

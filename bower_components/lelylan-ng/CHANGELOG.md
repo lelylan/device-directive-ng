@@ -1,8 +1,10 @@
 # Changelog
 
 
-## 0.2.0 (June 1, 2014)
+## 0.2.0 (August 13, 2014)
 
+* Added caching system
+* Added provider for configuration
 * Moved the oauth directive to the [oauth-ng](http://andreareginato.github.io/oauth-ng/) repo.
 * Moved from $resource to $http.
 * Refactoring test suite.

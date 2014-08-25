@@ -1,4 +1,4 @@
-/* device-directive-ng - v0.2.1 - 2014-08-14 */
+/* device-directive-ng - v0.2.3 - 2014-08-25 */
 
 'use strict';
 
@@ -85,7 +85,7 @@ client.factory('DeviceProperties', ['$rootScope', 'Device', 'Utils', function($r
    */
 
   service.sendProperties = function(scope, properties) {
-    $rootScope.$broadcast('lelylan:device:properties:get', properties);
+    $rootScope.$broadcast('lelylan:device:properties:send', scope.device);
 
     Device.properties(scope.device.id, { properties: properties })
       .success(function(response, status) {

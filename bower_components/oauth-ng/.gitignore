@@ -27,7 +27,6 @@ docs
 
 # Yeoman
 app/bower_components
-.bowerrc
 .editorconfig
 .gitattributes
 .jshintrc
@@ -38,3 +37,8 @@ app/index-dev.html
 
 # Dist
 #dist
+
+#IDE
+.idea
+
+bower_components
