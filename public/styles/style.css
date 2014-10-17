@@ -331,6 +331,7 @@ table.button .parameter {
   border: 1px solid #000;
   padding: 0.5em 1em;
   margin-right: 0.5em;
+  margin-bottom: 1em;
 }
 
 .btn-group {
@@ -361,9 +362,16 @@ div.compact {
   margin: 3em 0 !important;
 }
 
+.gist .file-data {
+  font-size: 14px !important;
+}
+
 .gist-file table {
   margin: 0;
-  font-size: 0.8em;
+}
+
+.gist .line-pre {
+  line-height: 21px !important;
 }
 
 .gist-syntax .nc,
@@ -382,4 +390,9 @@ div.compact {
   padding: 1em;
   height: 5.5em;
   background-color: #fff;
+}
+
+.bordered {
+  border: 5px solid #eee !important;
+  border-radius: 5px;
 }

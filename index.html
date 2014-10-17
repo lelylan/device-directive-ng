@@ -20,12 +20,12 @@
         <i class="icon-menu"></i>
       </a>
       <ul>
-        <li><a href="#getting-started">Getting Started</a></li>
         <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#howto">How To</a></li>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#getting-started">Getting Started</a></li>
         <li><a href="#configurations">Configurations</a></li>
-        <li><a href="#custom-css">Custom CSS</a></li>
         <li><a href="#custom-templates">Custom templates</a></li>
+        <li><a href="#type-specific-templates">Type specific templates</a></li>
         <li><a href="#create-a-template">Create a template</a></li>
         <li><a href="#create-a-light-switch">Create a light switch</a></li>
         <li><a href="#events">Events</a></li>
@@ -57,9 +57,9 @@
       <h2>Control anything</h2>
 
       <p>
-      The device directive gives you a ready to use solution to control any device.
-      To make this possible it uses <a href="http://lelylan.com/" target="_blank">Lelylan</a>,
-      a simple, open and robust REST API for the Connected Home.
+      The device directive gives you a ready to use solution to control any physical device in the real world.
+      This is possible thanks to <a href="http://lelylan.com/" target="_blank">Lelylan</a>,
+      a simple and open REST API for the Connected Home.
       </p>
 
       <img src="public/images/intuitive.png" style="border:none"></img>
@@ -67,8 +67,7 @@
       <h2>Mobile first</h2>
 
       <p>
-      We created a solution that works great on tablets and mobile phones, including
-      iPhones, iPads, and Android devices.
+      Works across desktop, tablet and mobile, including iPhones, iPads and Android devices.
       </p>
 
       <img src="public/images/mobile-first.png" style="border:none"></img>
@@ -76,8 +75,9 @@
       <h2>Fully customizable</h2>
 
       <p>
-      The device directive comes to life with customization in mind. It offers you default template
-      but if it doesn't work for your needs personalize it with custom CSS and HTML.
+      The device directive comes to life with customization in mind. It offers you a default template,
+      but if it doesn't fit your needs, you can easily create new ones only changing few lines of
+      CSS and HTML.
       </p>
 
       <img src="public/images/customizable.png" style="border:none"></img>
@@ -89,7 +89,7 @@
     <section>
     <div class="content">
 
-      <h1 id="getting-started">Getting Started</h1>
+      <h1 id="overview">Overview</h1>
 
       <p>
       Install the device directive using <a href="http://bower.io/" target="_blank">Bower</a>.
@@ -111,7 +111,7 @@
     <div class="content">
 
 
-      <h1 id="howto">Create your first app</h1>
+      <h1 id="getting-started">Getting Started</h1>
       <p>
       In this section you will learn how to use the device directive to monitor and control
       all the devices you have defined in Lelylan.
@@ -215,7 +215,7 @@
       <h2>Add the device directive</h2>
 
       <p>
-      Inject the device directive into your AngularJS application.
+        Inject the device directive into your AngularJS <code>app.js</code>.
       </p>
 
       <pre><code><xmp>// app/scripts/app.js
@@ -226,11 +226,10 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       <p>
       Lelylan uses an OAuth 2.0 server for authentication and authorization.
       <a href="http://people.lelylan.com/oauth/applications/new">Register</a> a new application
-      and take the generated credentials (Client ID and Redirect URI) before moving to the
-      next step.
+      setting a name (e.g Lelylan App) and the Redirect URI (e.g. http://localhost:9000).
       </p>
 
-      <img src="public/images/application.png" class="full-image"></img>
+      <img src="public/images/application.png"></img>
 
 
       <h2>Add the oauth-ng directive</h2>
@@ -251,10 +250,37 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
   scope="devices">
 </oauth></xmp></code></pre>
 
-      <p class="notice">
-      Check out the <a href="http://andreareginato.github.io/oauth-ng/" target="blank">oauth-ng</a>
-      docs if you want to better understand how it works.
+      <p>
+      The oauth directive works just straight when the HTML5 mode is active.
+      Inject the <code>$locationProvider</code> into your AngularJS <code>app.js</code>
+      config block and set the HTML5 mode.
       </p>
+
+      <pre><code><xmp>.config(function ($routeProvider, $locationProvider) {
+  $locationProvider.html5Mode(true).hashPrefix('!');
+  ...
+});</xmp></code></pre>
+
+      <p class="notice">
+      The oauth directive works also
+      <a href="http://andreareginato.github.io/oauth-ng/#html5"> without</a> HTML5 mode.
+      Check out the <a href="http://andreareginato.github.io/oauth-ng/" target="blank">oauth-ng</a>
+      docs to better understand how OAuth 2.0 works with AngularJS.
+      </p>
+
+
+      <h2>Create your first device</h2>
+
+      <p>
+      If you never used Lelylan before you need to create your first device using
+      <a href="http://lelylan.github.io/devices-dashboard-ng/#/create" target="_blank">Lelylan Dashboard</a>.
+      The fastest way to get started is to simulate a device as showed below. In this way
+      you don't need any hardware (perfect for app development).
+      </p>
+
+      <img src="public/images/create-device/1.png" class="bordered"></img>
+      <img src="public/images/create-device/2.png" class="bordered"></img>
+      <img src="public/images/create-device/3.png" class="bordered"></img>
 
 
       <h2>Get your devices</h2>
@@ -262,15 +288,15 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       <p>
       To get all your devices you can use the
       <a href="http://lelylan.github.io/lelylan-ng/" target="_blank">Lelylan client</a>
-      for AngularJS (already installed as dependency). Open the main controller
-      and place the <code>Device#all</code> method.
+      for AngularJS (already installed as dependency). Open the controller <code>main.js</code>,
+      inject the <code>Device</code> service and place the <code>Device#all</code> method.
       </p>
 
       <pre><code><xmp>angular.module('newProjectApp')
   .controller('MainCtrl', function ($scope, Device) {
     Device.all()
       .success(function(data) { $scope.devices = data })
-      .error(function(data)   { $scope.error   = 'Unauthorized request. Login first.' })
+      .error(function(data) { $scope.error = 'Unauthorized. Login first.' })
   });</xmp></code></pre>
 
       <p>
@@ -288,14 +314,8 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       view and list your devices by using the device directive.
       </p>
 
-      <p class="notice">
-      If you have no devices in Leylan, <a href="http://manage.lelylan.com/new">create</a>
-      your first one (it takes few seconds).
-      </p>
-
-      <pre><code><xmp><div ng-repeat="device in devices">
-  <device device-json="device"></device>
-<div></xmp></code></pre>
+      <iframe src="public/extracts/getting-started.html" scrolling="no" style="margin: 0;border: none;width: 100%;height: 190px;">
+      </iframe>
 
       <p>
       This is what happens. You iterate between all devices and show them using the device
@@ -367,7 +387,7 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
       <h2>Examples</h2>
 
-      <pre><code><xmp>// Load the device by setting its id
+<pre><code><xmp>// Load the device by setting its id
 <device device-id="DEVICE_ID"></device>
 
 // Load the device by setting its json structure and a specific template
@@ -388,70 +408,26 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
     <section>
     <div class="content">
 
-      <h1 id="custom-css">Custom CSS</h1>
-
-      <p>
-      The device directive comes to life with customization in mind. This means that you can
-      easily define your personalized CSS styles and create your own theme.
-      </p>
-
-      <h3>
-        Default Style
-      </h3>
-
-      <div class="device compact"><device device-id="1"></device></div>
-
-      <h3>
-        Black Style |
-        <a href="https://gist.github.com/andreareginato/cc4a8a05b6e0217ec741">
-        <i class="fa fa-cloud-download fa-2x"></i>Download CSS
-        </a>
-      </h3>
-
-      <div class="device compact ly-black"><device device-id="1"></device></div>
-
-      <p class="notice">
-      <a href="mailto:dev@lelylan.com">Mail</a>
-      or <a href="http://twitter.com/lelylan">Tweet</a>
-      us about new CSS customizations.</p>
-      </p>
-
-      <h2>Defining a new style</h2>
-
-      <p>
-      Customizing the device directive is easy. Simply study the CSS classes defining the
-      <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/default.html">default template</a>
-      and override the existing CSS rules with new ones.
-      </p>
-
-      <p>
-      Checkout the <a href="https://gist.github.com/andreareginato/cc4a8a05b6e0217ec741">Black Style</a>
-      definition to have an idea of how a personalization can be made.
-      </p>
-
-    </div>
-    </section>
-
-    <section>
-    <div class="content">
-
-
       <h1 id="custom-templates">Custom Templates</h1>
 
       <p>
-      The device directive lets you define a custom template when the default one does not
-      satisty your needs (e.g. compact widget, light specific widget, etc.).
-      This means that you can personalize the widget at any level with custom HTML, CSS and
-      funtionalities.
+      The device directive comes to life to be easily customizable. If the default template
+      does not satisty your needs, you can create new ones (e.g light specific). All you need
+      to do is to personalize the HTML and CSS code.
       </p>
 
+      <p class="notice">
+      All examples below are created with <a href="http://codepen.io">Codepen</a>.
+      This makes it easy for you to create new templates by forking and editing
+      the existing code.
+      </p>
 
 
       <h2>Configuration</h2>
 
       <p>
-      To set the new template you need to let the device directive the location where the new
-      HTML file is located. To do so you can use two solutions.
+      To set a new template you need to tell to the device directive where the HTML file is
+      located.
       </p>
 
       <h3>1. Template attribute</h3>
@@ -476,34 +452,34 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
 
 
-      <h2 id="">Existing templates</h1>
-
-      <p>
-      The device directive comes to life with few templates (check them out before building a new one).
-      </p>
-
-      <p class="notice">
-      <a href="mailto:dev@lelylan.com">Mail</a>
-      or <a href="http://twitter.com/lelylan">Tweet</a>
-      us about new templates. We'll be happy to add them to the project.</p>
-      </p>
+      <h1>Included templates</h1>
 
       <h3>
-        Default Template |
+        Default |
         <a href="https://github.com/lelylan/device-directive-ng/blob/master/dist/views/templates/default.html">
-          See HTML
+          <i class="fa fa-external-link"></i> HTML
+        </a> |
+        <a href="https://github.com/lelylan/device-directive-ng/blob/master/dist/device-directive-ng.css">
+          <i class="fa fa-external-link"></i> CSS
         </a>
       </h3>
 
       <pre class="indent"><code><xmp><device device-id="DEVICE_ID"></device></xmp></code></pre>
 
-      <div class="device compact"><device device-id="1"></device></div>
+
+      <div class="device">
+      <p data-height="440" data-theme-id="9307" data-slug-hash="Gxgae" data-default-tab="result" data-user="andreareginato" class='codepen'>See the Pen <a href='http://codepen.io/andreareginato/pen/Gxgae/'>Gxgae</a> by Andrea Reginato (<a href='http://codepen.io/andreareginato'>@andreareginato</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+      <script async src="//codepen.io/assets/embed/ei.js"></script>
+      </div>
 
 
       <h3>
-        Compact Template |
+        Compact |
         <a href="https://github.com/lelylan/device-directive-ng/blob/master/dist/views/templates/compact.html">
-          See HTML
+          <i class="fa fa-external-link"></i> HTML
+        </a> |
+        <a href="https://github.com/lelylan/device-directive-ng/blob/master/dist/device-directive-ng.css">
+          <i class="fa fa-external-link"></i> CSS
         </a>
       </h3>
 
@@ -512,11 +488,108 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
   device-template="bower_components/device-directive-ng/dist/views/templates/compact.html">
 </device></xmp></code></pre>
 
-      <div class="device compact">
-        <device device-id="1" device-template="bower_components/device-directive-ng/dist/views/templates/compact.html"></device>
+      <div class="device">
+      <p data-height="131" data-theme-id="9307" data-slug-hash="pGrcD" data-default-tab="result" data-user="andreareginato" class='codepen'>See the Pen <a href='http://codepen.io/andreareginato/pen/pGrcD/'>pGrcD</a> by Andrea Reginato (<a href='http://codepen.io/andreareginato'>@andreareginato</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+      <script async src="//codepen.io/assets/embed/ei.js"></script>
       </div>
 
+
+      <h1>Community templates</h1>
+
+      <p>
+      Follows a list of templates created by the community. To use them, as convention,
+      download the HTML template and CSS style into <code>views/templates</code> and use
+      them as described in the code examples.
+      </p>
+
+      <h3>
+        Switch |
+        <a href="http://codepen.io/andreareginato/pen/czodF?editors=100">
+          <i class="fa fa-external-link"></i> HTML
+        </a> |
+        <a href="http://codepen.io/andreareginato/pen/czodF?editors=010">
+          <i class="fa fa-external-link"></i> CSS
+        </a>
+      </h3>
+
+      <p>
+      <em>Valid for any device type</em>.
+      </p>
+
+      <p>
+      When you click on the switch we apply the default function of the device in a
+      specific status of its life (e.g if a light is on, the default function is turn
+      off and viceversa).
+      </p>
+
+      <pre class="indent"><code><xmp><link rel="stylesheet" href="views/templates/switch.css">
+<device device-id="ID" device-template="views/templates/switch.html"></device></xmp></code></pre>
+
+      <div class="device">
+      <p data-height="150" data-theme-id="9307" data-slug-hash="czodF" data-default-tab="result" data-user="andreareginato" class='codepen'>See the Pen <a href='http://codepen.io/andreareginato/pen/czodF/'>czodF</a> by Andrea Reginato (<a href='http://codepen.io/andreareginato'>@andreareginato</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+      <script async src="//codepen.io/assets/embed/ei.js"></script>
+      </div>
+
+
+      <br>
+
+      <p class="notice">
+        <a href="mailto:dev@lelylan.com">Mail</a>,
+        <a href="http://twitter.com/lelylan">Tweet</a> or send us a
+        <a href="https://github.com/lelylan/device-directive-ng/tree/gh-pages">pull request</a>
+        for any new template. We'll be happy to add them to the project.</p>
+      </p>
+
     </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+      <h1 id="type-specific-templates">Type specific templates</h1>
+
+      <p>
+      With the device directive we want to define the best user experience when controlling
+      the physical world. To make this possible we need to create type specific templates for
+      lights, thermostats, locks and more like the ones below.
+      </p>
+
+      <img src="public/images/templates/examples/light.png" class="bordered"></img>
+      <img src="public/images/templates/examples/thermostat.png" class="bordered"></img>
+
+      <p>
+      To reach these results we need to create custom templates for every specific type.
+      To easily get started we created the following pens for the most important types.
+      </p>
+
+      <br>
+      <p>
+      <a class="btn" href="http://codepen.io/andreareginato/pen/GmjDI" target="_blank">Switch</a>
+      <a class="btn" href="http://codepen.io/andreareginato/pen/nKBHF" target="_blank">Light</a>
+      <a class="btn" href="http://codepen.io/andreareginato/pen/Hhqwv" target="_blank">Lock</a>
+      <a class="btn" href="http://codepen.io/andreareginato/pen/Lnxjy" target="_blank">Thermostat</a>
+      <a class="btn" href="http://codepen.io/andreareginato/pen/DniuG" target="_blank">IP Camera</a>
+      <a class="btn" href="http://codepen.io/andreareginato/pen/pytwj" target="_blank">Alarm System</a>
+      <a class="btn" href="http://codepen.io/andreareginato/pen/hluvo" target="_blank">Roller Shutter</a>
+      <a class="btn" href="http://codepen.io/andreareginato/pen/jefAk" target="_blank">Alarm Clock</a>
+      <a class="btn" href="http://codepen.io/andreareginato/pen/aBtIh" target="_blank">Sprinkler System</a>
+      <a class="btn" href="http://codepen.io/andreareginato/pen/nwovj" target="_blank">Kettle</a>
+      <a class="btn" href="http://codepen.io/andreareginato/pen/IoAni" target="_blank">Temperature Sensor</a>
+      <a class="btn" href="http://codepen.io/andreareginato/pen/rldcE" target="_blank">Fire Sensor</a>
+      <a class="btn" href="http://codepen.io/andreareginato/pen/wetuA" target="_blank">City pollution</a>
+      </p>
+      <br>
+
+      <p class="notice">
+      If you want to experiment on a type not listed here
+      <a href="mailto:dev@lelylan.com" target="_blank">mail</a> or
+      <a href="http://twitter.com/lelylan" target="_blank">tweet</a> us.
+      </p>
+
+      <p class="notice">
+      To deeply understand how templates can be created, read the next sections.
+      </p>
+
     </section>
 
 
@@ -526,9 +599,8 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       <h1 id="create-a-template">Create your first (basic) template</h1>
 
       <p>
-      When the existing templates does not satisfy your needs, you can create a new one to
-      satisfy your desired representation. In this section we explain how to create a new
-      template that will looks like this.
+      When the existing templates does not satisfy your needs, you can create a new one.
+      In this section we'll explain how to create the template below step by step.
       </p>
 
       <div class="device">
@@ -615,15 +687,6 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
       <pre><code><xmp><device device-json="DEVICE_JSON" device-template="TEMPLATE_PATH"></device></xmp></code></pre>
 
-      <h2>Tips</h2>
-
-      <p class="notice">
-      1. To fully understand the power of custom templates check out the existing
-      <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/default.html">default</a>
-      and <a href="https://github.com/lelylan/device-directive-ng/blob/master/app/views/templates/compact.html">compact</a> ones.
-      Using them as base to build your new template will save you time.
-      </p>
-
     </div>
     </section>
 
@@ -687,25 +750,11 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
       <p>
       Save the new HTML and CSS template files under your project. Now you need to set this
-      template only to your lights (not other devices like locks or thermostats). To reach
-      the desired result you need to follow these steps.
+      template only for your lights (not other devices like locks or thermostats).
+      To get all devices of a specific type (in this case all lights) you have two solutions.
       </p>
 
-      <h3>Get your lights</h3>
-
-      <p>To get all devices of a specific type (in this case all lights) you have two solutions.</p>
-
-      <ul>
-        <li>
-          Use the <a href="http://dev.lelylan.com/developers#get-all-devices">device API</a>
-          passing the Type ID in the query string.
-        </li>
-        <li>
-        Get all devices and filter them checking each device JSON Type ID.
-        </li>
-      </ul>
-
-      <pre><code><xmp>// Using Device API
+      <pre><code><xmp>// Using Device API passing the Type ID in the query string
 Device.all({ type: TYPE_ID }).success(function(devices) {
   scope.devices = devices;
 })
@@ -715,14 +764,6 @@ Device.all().success(function(devices) {
   scope.devices = _.where(devices, { type.id: TYPE_ID }
 });
 </xmp></code></pre>
-
-
-      <p class="notice">
-      Every device has a type identifying its structure (properties, functions and statuses).
-      <a href="http://dev.lelylan.com/types">Learn more about</a>.
-      </p>
-
-      <h3>Set the template</h3>
 
       <p>
       Now use the template event to set the new template to all previously filtered devices.
@@ -741,10 +782,11 @@ _.each(scope.devices, function(device) {
     </section>
 
 
+
     <section>
     <div class="content">
 
-      <h1 id="events">Events</h1>
+      <h1 id="events" style="clear:both">Events</h1>
 
       <h2>[Listen] Device loaded</h2>
 
@@ -965,10 +1007,10 @@ _.each(scope.devices, function(device) {
               <span class="info">variable</span>
             </td>
             <td>
-              JSON object representing a device <a href="http://dev.lelylan.com/developers#get-a-device-private-info">private info</a>.<br>
-              <p class="notice">
-              <code>privates</code> are loaded only when <code>showSettings()</code> is called
-              and the logged user is the device maker (aka creator).
+              JSON object representing a device
+              <a href="http://dev.lelylan.com/developers#get-a-device-private-info">private info</a>.
+              Keep in mind that <code>privates</code> are loaded only when
+              <code>showSettings()</code> is called and the logged user is the creator.
               </p>
             </td>
           </tr>
@@ -979,6 +1021,7 @@ _.each(scope.devices, function(device) {
             </td>
             <td>
               JSON object representing the device <a href="http://dev.lelylan.com/types#get-a-function">functions</a>.
+              Each of them can be executed using the <code>execute()</code> method.
             </td>
           </tr>
           <tr>
@@ -1013,24 +1056,9 @@ _.each(scope.devices, function(device) {
               <span class="info">function</span>
             </td>
             <td>
-              This function wxecutes a function. When the function properties are all predefined
-              (e.g. turn on has the status property predefined to on) the update properties
-              request is fired to Lelylan.<br><br>
-
-              When not the <code>function.visibleForm</code>
-              variable is set to true. This let your template know that it has to show the
-              form that needs to be filled by the user. In this case you also need to know
-              which properties are predefined and which are not (e.g. set intesity has the
-              status predefined to on but needs the user to set the intensity value). This
-              info is given by <code>property.toFill</code> (the propery comes from the
-              <code>function.properties</code> list).<br><br>
-
-              The function object can be taken from:
-
-              <ul>
-                <li><code>functions</code></li>
-                <li><code>status.function</code></li>
-              </ul>
+              This function executes a function.
+              When params are required from the user the <code>function.visibleForm</code>
+              variable is set to true. This let you show the form that needs to be filled
             </td>
           </tr>
           <tr>
@@ -1039,16 +1067,7 @@ _.each(scope.devices, function(device) {
               <span class="info">function</span>
             </td>
             <td>
-              Update the device name and physical URI.
-            </td>
-          </tr>
-          <tr>
-            <td class="parameter">
-              <span>update()</span>
-              <span class="info">function</span>
-            </td>
-            <td>
-              Update the device name and physical URI.
+              Update the device name or the device physical URI.
             </td>
           </tr>
           <tr>
@@ -1080,7 +1099,7 @@ _.each(scope.devices, function(device) {
             </td>
             <td>
               Fires an event where the prefix is <code>lelylan:device:custom:</code>
-              and the suffix is <code>EVENT_NAME</code>. Supposing the event name is
+              and the suffix is the <code>EVENT_NAME</code>. Supposing the event name is
               <code>open</code>, the custom event will be <code>lelylan:device:custom:open</code>.
             </td>
           </tr>
@@ -1090,8 +1109,8 @@ _.each(scope.devices, function(device) {
               <span class="info">function</span>
             </td>
             <td>
-              Sets the path to <code>/settings</code> and load <code>privaetes</code>
-              if the logged user is the device maker (aka creator).
+              Sets the path to <code>/settings</code> and load the device <code>privates</code>
+              info (if the logged user is the creator).
             </td>
           </tr>
         </tbody>
@@ -1140,16 +1159,6 @@ _.each(scope.devices, function(device) {
       <a href="mailto:dev@lelylan.com" target="_blank">Mail</a> or
       <a href="http://twitter.com/lelylan" target="_blank">Tweet</a>
       us for any idea that can improve the project.
-      </p>
-
-      <p class="notice">
-      This project exists and is released as open source thanks to the work of
-      <a href="http://twitter.com/andreareginato" target="_blank">Reggie</a> and all its
-      <a href="https://github.com/lelylan/device-directive-ng/graphs/contributors">contributors</a>.
-      If you like what he is doing offer him a coffe
-      <script data-gittip-username="andreareginato"
-        data-gittip-widget="button"
-        src="//gttp.co/v1.js"></script>
       </p>
 
     </div>

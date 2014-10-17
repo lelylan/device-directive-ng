@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>device-ng | AngularJS directive to control your devices, on web and mobile</title>
+    <style>
+      pre {
+        margin: 2em 0;
+        background: white;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 25px;
+        font-size: .95em;
+        font-family: monospace;
+        overflow-x: auto;
+      }
+
+      xmp {
+        font-size: 15px;
+        line-height: 22px;
+      }
+    </style>
+  </head>
+  <body>
+
+<pre><code><xmp><div ng-repeat="device in devices">
+  <device device-json="{{device}}"></device>
+<div></xmp></code></pre>
+
+  </body>
+</html>
