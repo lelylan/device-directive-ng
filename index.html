@@ -238,11 +238,12 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       To get an authorization token you need to use
       <a href="http://andreareginato.github.io/oauth-ng/" target="blank">oauth-ng</a>,
       an AngularJS directive for OAuth 2.0 (already installed as dependency).
-      Open your main.html view and configure the oauth directive by setting the
+      Open your index page and configure the oauth directive by setting the
       <code>client-id</code> and <code>redirect-uri</code> previously defined.
       </p>
 
-      <pre><code><xmp><oauth
+      <pre><code><xmp>// app/index.html
+<oauth
   site="http://people.lelylan.com"
   client-id="CLIENT_ID"
   redirect-uri="REDIRECT_URI"
@@ -252,11 +253,12 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
       <p>
       The oauth directive works just straight when the HTML5 mode is active.
-      Inject the <code>$locationProvider</code> into your AngularJS <code>app.js</code>
-      config block and set the HTML5 mode.
+      Inject the <code>$locationProvider</code> into a new AngularJS config
+      block and set the HTML5 mode.
       </p>
 
-      <pre><code><xmp>.config(function ($routeProvider, $locationProvider) {
+      <pre><code><xmp>// app/scripts/app.js
+.config(function ($locationProvider) {
   $locationProvider.html5Mode(true).hashPrefix('!');
   ...
 });</xmp></code></pre>
@@ -292,7 +294,8 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
       inject the <code>Device</code> service and place the <code>Device#all</code> method.
       </p>
 
-      <pre><code><xmp>angular.module('newProjectApp')
+      <pre><code><xmp>// app/scripts/controllers/main.js
+angular.module('newProjectApp')
   .controller('MainCtrl', function ($scope, Device) {
     Device.all()
       .success(function(data) { $scope.devices = data })
