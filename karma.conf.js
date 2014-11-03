@@ -32,6 +32,7 @@ module.exports = function(config) {
       'app/scripts/**/*.js',
       'test/spec/directives/**/*.js',
       'test/spec/services/**/*.js',
+
       { pattern: 'test/spec/fixtures/*.json', watched: true, served: true, included: false }
     ],
 

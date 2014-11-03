@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.5 (3 November, 2014)
+
+* Bump to lelylan-ng 0.2.2
 
 ## 0.2.0 (14 August, 2014)
 
