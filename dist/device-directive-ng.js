@@ -1,4 +1,4 @@
-/* device-directive-ng - v0.2.5 - 2014-11-03 */
+/* device-directive-ng - v0.2.6 - 2014-11-15 */
 
 'use strict';
 

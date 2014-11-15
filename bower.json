@@ -1,6 +1,6 @@
 {
   "name": "device-directive-ng",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "main": [
     "dist/device-directive-ng.js",
     "dist/device-directive-ng.css"
