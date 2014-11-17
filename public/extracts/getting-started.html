@@ -23,6 +23,7 @@
   <body>
 
 <pre><code><xmp>// app/views/main.html
+<h3 ng-if="error">{{error}}</h3>
 <div ng-repeat="device in devices">
   <device device-json="{{device}}"></device>
 <div></xmp></code></pre>

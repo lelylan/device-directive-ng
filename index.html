@@ -112,16 +112,18 @@
 
 
       <h1 id="getting-started">Getting Started</h1>
+
       <p>
       In this section you will learn how to use the device directive to monitor and control
       all the devices you have defined in Lelylan.
       </p>
 
-      <!--<p class="btn-group">-->
-      <!--<a href="" class="btn" target="_blank">View Demo</a>-->
-      <!--<a href="" class="btn" target="_blank">Download Source</a>-->
-      <!--</p>-->
-
+      <p class="notice">
+      The oauth directive has beed tested with AngularJS 1.2.x (legacy version).
+      It could have some problems when using AngularJS 1.3.x. In this case open an
+      <a href="https://github.com/lelylan/device-directive-ng/issues" target="blank">issue</a>
+      on Github.
+      </p>
 
       <h2 id="setup">Setup</h2>
 
@@ -295,10 +297,12 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
 
       <pre><code><xmp>// app/scripts/controllers/main.js
 angular.module('newProjectApp')
-  .controller('MainCtrl', function ($scope, Device) {
-    Device.all()
-      .success(function(data) { $scope.devices = data })
-      .error(function(data) { $scope.error = 'Unauthorized. Login first.' })
+  .controller('MainCtrl', function ($scope, $timeout, Device) {
+    $timeout(function() {
+      Device.all()
+        .success(function(data) { $scope.devices = data })
+        .error(function(data) { $scope.error = 'Unauthorized. Sign in first.' })
+    }) // digest for the access token to be loaded
   });</xmp></code></pre>
 
       <p>
