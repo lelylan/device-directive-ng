@@ -172,10 +172,8 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     scope.showSettings = function() {
       scope.deviceCopy = angular.copy(scope.device);
       scope.view.path  = '/settings';
-
-      if (!scope.privates) {
-        getPrivates(scope.device.id);
-      }
+      scope.privates = { secret: 'loading...' };
+      getPrivates(scope.device.id);
     }
 
 

@@ -390,7 +390,7 @@ describe('<device>', function() {
 
             it('sets scope.private', function() {
               scope = element.scope().$$childTail;
-              expect(scope.privates).toBe(undefined);
+              expect(scope.privates).toBe({secret: 'loading...'});
             });
           });
         });

@@ -1,4 +1,4 @@
-/* device-directive-ng - v0.2.6 - 2014-11-15 */
+/* device-directive-ng - v0.2.7 - 2014-11-27 */
 
 'use strict';
 
@@ -545,10 +545,8 @@ angular.module('lelylan.directives.device.directive').directive('device', [
     scope.showSettings = function() {
       scope.deviceCopy = angular.copy(scope.device);
       scope.view.path  = '/settings';
-
-      if (!scope.privates) {
-        getPrivates(scope.device.id);
-      }
+      scope.privates = { secret: 'loading...' };
+      getPrivates(scope.device.id);
     }
 
 
