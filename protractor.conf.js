@@ -1,8 +1,11 @@
 // An example configuration file.
 exports.config = {
 
+  // Bypass the need of a selenium server
+  directConnect: true,
+
   // The address of a running selenium server.
-  seleniumAddress: 'http://localhost:4444/wd/hub',
+  // seleniumAddress: 'http://localhost:4444/wd/hub',
 
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
@@ -19,11 +22,8 @@ exports.config = {
     delete:    'test/protractor/device-delete.js',
   },
 
-  // Bypass the need of a selenium server
-  chromeOnly: true,
-
   // Running server
-  baseUrl: 'http://localhost:9000',
+  //baseUrl: 'http://localhost:9000',
 
   jasmineNodeOpts: {
     showColors: true

@@ -28,7 +28,7 @@ describe('<device>', function() {
         it('shows the settings info', function() {
           expect($('.ly-settings .ly-form .ly-id').getAttribute('value')).toBe('1');
           expect($('.ly-settings .ly-form .ly-secret').getAttribute('value')).toBe('secret');
-          expect($('.ly-settings .ly-form .ly-type').getText()).toBe('Dimmer');
+          expect($('.ly-settings .ly-form .ly-type-value').getText()).toBe('Dimmer');
           expect($('.ly-settings .ly-form .ly-name').getAttribute('value')).toBe('Closet dimmer');
           expect($('.ly-settings .ly-form .ly-physical').getAttribute('value')).toBe('https://node.lelylan.com/mqtt/devices/1');
         });
