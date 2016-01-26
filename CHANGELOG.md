@@ -1,15 +1,15 @@
 # Changelog
 
-## 0.2.8 (6 February, 2015)
+## 0.2.8 (2015.02.6 February)
 
 * Upgraded to lelylan-ng v0.2.4
 * Fixed some bugs on testing
 
-## 0.2.5 (3 November, 2014)
+## 0.2.5 (2014.11.3)
 
 * Bump to lelylan-ng 0.2.2
 
-## 0.2.0 (14 August, 2014)
+## 0.2.0 (2014.08.14)
 
 * Uses new [lelylan client](http://lelylan.github.io/lelylan-ng/)
 * Uses new [oauth directive](http://andreareginato.github.io/oauth-ng/)
