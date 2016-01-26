@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.8 (2015.02.6 February)
+## 0.2.8 (2015.02.6)
 
 * Upgraded to lelylan-ng v0.2.4
 * Fixed some bugs on testing
