@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.9 (2017.02.6)
+* Fixed bug: Device directive not support types status without default function [detail](https://github.com/lelylan/device-directive-ng/issues/105)
+
 ## 0.2.8 (2015.02.6)
 
 * Upgraded to lelylan-ng v0.2.4
