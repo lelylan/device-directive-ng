@@ -36,8 +36,10 @@ module.exports = function (grunt) {
     //Environment variables
     env: {
       dev: {
+        LELYLAN_TYPE_DASHBOARD_PUBLIC_URL: 'lelylan.github.io/types-dashboard-ng',
       },
       prod: {
+        LELYLAN_TYPE_DASHBOARD_PUBLIC_URL: process.env.LELYLAN_TYPE_DASHBOARD_PUBLIC_URL || 'lelylan.github.io/types-dashboard-ng',
       }
     },
 
@@ -320,6 +322,18 @@ module.exports = function (grunt) {
             pattern: /views\/templates\/default\.html/g,
             replacement: 'bower_components/<%= yeoman.name %>/dist/views/templates/default.html'
           }]
+        }
+      },
+      'types-dashboard': {
+        files: {
+          './': 'dist/views/templates/default.html'
+        },
+        options: {
+        replacements: [{
+            pattern: 'lelylan.github.io/types-dashboard-ng',
+            replacement: process.env.LELYLAN_TYPE_DASHBOARD_PUBLIC_URL
+          }]
+        }
         }
       }
     },
