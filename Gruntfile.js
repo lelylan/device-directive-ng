@@ -37,9 +37,11 @@ module.exports = function (grunt) {
     env: {
       dev: {
         LELYLAN_TYPE_DASHBOARD_PUBLIC_URL: 'lelylan.github.io/types-dashboard-ng',
+        LELYLAN_DEV_CENTER_PUBLIC_URL: 'dev.lelylan.com',
       },
       prod: {
         LELYLAN_TYPE_DASHBOARD_PUBLIC_URL: process.env.LELYLAN_TYPE_DASHBOARD_PUBLIC_URL || 'lelylan.github.io/types-dashboard-ng',
+        LELYLAN_DEV_CENTER_PUBLIC_URL: process.env.LELYLAN_DEV_CENTER_PUBLIC_URL || 'dev.lelylan.com',
       }
     },
 
@@ -334,6 +336,16 @@ module.exports = function (grunt) {
             replacement: process.env.LELYLAN_TYPE_DASHBOARD_PUBLIC_URL
           }]
         }
+      },
+      'dev-center': {
+        files: {
+          './': 'dist/views/templates/default.html'
+        },
+        options: {
+        replacements: [{
+            pattern: 'dev.lelylan.com',
+            replacement: process.env.LELYLAN_DEV_CENTER_PUBLIC_URL
+          }]
         }
       }
     },
