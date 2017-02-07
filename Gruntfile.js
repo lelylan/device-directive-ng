@@ -33,6 +33,14 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+    //Environment variables
+    env: {
+      dev: {
+      },
+      prod: {
+      }
+    },
+
     // Project settings
     yeoman: yeomanConfig,
 
@@ -338,6 +346,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'env:dev',
       'clean:server',
       'bower-install',
       'concurrent:server',
@@ -353,6 +362,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('test', [
+    'env:dev',
     'clean:server',
     'concurrent:test',
     'autoprefixer',
@@ -361,6 +371,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'env:prod',
     'clean:dist',
     'copy',
     'useminPrepare',
@@ -369,6 +380,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
+    'env:dev',
     'newer:jshint',
     'test',
     'build'
