@@ -334,7 +334,7 @@ module.exports = function (grunt) {
         },
         options: {
         replacements: [{
-            pattern: 'nodes.lelylan.com',
+            pattern: /nodes.lelylan.com/g,
             replacement: process.env.LELYLAN_NODES_PUBLIC_URL
           }]
         }
@@ -345,7 +345,7 @@ module.exports = function (grunt) {
         },
         options: {
         replacements: [{
-            pattern: 'lelylan.github.io/types-dashboard-ng',
+            pattern: /lelylan.github.io\/types-dashboard-ng/g,
             replacement: process.env.LELYLAN_TYPE_DASHBOARD_PUBLIC_URL
           }]
         }
@@ -356,7 +356,7 @@ module.exports = function (grunt) {
         },
         options: {
         replacements: [{
-            pattern: 'dev.lelylan.com',
+            pattern: /dev.lelylan.com/g,
             replacement: process.env.LELYLAN_DEV_CENTER_PUBLIC_URL
           }]
         }
