@@ -36,12 +36,12 @@ module.exports = function (grunt) {
     //Environment variables
     env: {
       dev: {
-        LELYLAN_TYPE_DASHBOARD_PUBLIC_URL: 'lelylan.github.io/types-dashboard-ng',
+        LELYLAN_TYPES_DASHBOARD_PUBLIC_URL: 'lelylan.github.io/types-dashboard-ng',
         LELYLAN_DEV_CENTER_PUBLIC_URL: 'dev.lelylan.com',
         LELYLAN_NODES_PUBLIC_URL: 'localhost:8003',
       },
       prod: {
-        LELYLAN_TYPE_DASHBOARD_PUBLIC_URL: process.env.LELYLAN_TYPE_DASHBOARD_PUBLIC_URL || 'lelylan.github.io/types-dashboard-ng',
+        LELYLAN_TYPES_DASHBOARD_PUBLIC_URL: process.env.LELYLAN_TYPES_DASHBOARD_PUBLIC_URL || 'lelylan.github.io/types-dashboard-ng',
         LELYLAN_DEV_CENTER_PUBLIC_URL: process.env.LELYLAN_DEV_CENTER_PUBLIC_URL || 'dev.lelylan.com',
         LELYLAN_NODES_PUBLIC_URL: process.env.LELYLAN_NODES_PUBLIC_URL || 'nodes.lelylan.com',
       }
@@ -346,7 +346,7 @@ module.exports = function (grunt) {
         options: {
         replacements: [{
             pattern: /lelylan.github.io\/types-dashboard-ng/g,
-            replacement: process.env.LELYLAN_TYPE_DASHBOARD_PUBLIC_URL
+            replacement: process.env.LELYLAN_TYPES_DASHBOARD_PUBLIC_URL
           }]
         }
       },
