@@ -20,7 +20,9 @@ client.factory('DeviceStatuses', ['Utils', function(Utils) {
     _.each(scope.type.statuses, function(status) {
       if (service.checkStatus(status, scope.device)) {
         scope.status = status
-        scope.status.function = Utils.getResource(status.function.id, scope.functions);
+        if (status.function) {
+          scope.status.function = Utils.getResource(status.function.id, scope.functions);
+        }
       }
     });
   }

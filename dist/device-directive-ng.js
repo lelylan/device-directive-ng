@@ -1,4 +1,4 @@
-/* device-directive-ng - v0.2.8 - 2015-02-06 */
+/* device-directive-ng - v0.2.9 - 2017-02-06 */
 
 'use strict';
 
@@ -267,7 +267,9 @@ client.factory('DeviceStatuses', ['Utils', function(Utils) {
     _.each(scope.type.statuses, function(status) {
       if (service.checkStatus(status, scope.device)) {
         scope.status = status
-        scope.status.function = Utils.getResource(status.function.id, scope.functions);
+        if (status.function) {
+          scope.status.function = Utils.getResource(status.function.id, scope.functions);
+        }
       }
     });
   }
